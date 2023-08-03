@@ -1,0 +1,37 @@
+using Microsoft.Xna.Framework;
+using ChargerClass;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.DataStructures;
+using ChargerClass.Common.Players;
+
+namespace ChargerClass.Content.Items.Acessories
+{
+	public class HydrogenGas : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Hydrogen Gas");
+			Tooltip.SetDefault("Blowing weapons explode on contact & balloons fly faster and higher");
+		}
+
+		public override void SetDefaults()
+		{
+            Item.width = 11;
+            Item.height = 23;
+            Item.maxStack = 1;
+            Item.value = 1000000;
+            Item.rare = 6;	
+			Item.accessory = true;
+		}
+
+		public override void AddRecipes()
+		{
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.IronBar, 12);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+		}
+	}
+}

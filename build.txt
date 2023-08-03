@@ -1,0 +1,3 @@
+displayName = ChargerClass
+author = SST
+version = 0.21

@@ -1,0 +1,18 @@
+
+Mods: {
+	ChargerClass: {
+		Items: {
+			Rock: {
+				DisplayName: Rock
+				Tooltip: Great for slinging!
+			}
+
+			Slingshot: {
+				DisplayName: Slingshot
+				Tooltip: The slingshot shoots rocks
+			}
+		}
+
+		Projectiles.RockProjectile.DisplayName: Rock Projectile
+	}
+}

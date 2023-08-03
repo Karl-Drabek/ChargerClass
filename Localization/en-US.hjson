@@ -1,0 +1,10 @@
+Mods: {
+	ChargerClass: {
+		Buffs: {
+			LightHeaded: {
+				DisplayName: LightHeaded
+				Description: Can't use your Inhaler for a little bit.
+			}
+		}
+	}
+}
