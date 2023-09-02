@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class SecretStimulants : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("SecretStimulants");
-			Tooltip.SetDefault("Chance to increase charge level by 1 (crit chance)");
-		}
 
 		public override void SetDefaults()
 		{

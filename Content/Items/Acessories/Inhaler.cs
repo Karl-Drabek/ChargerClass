@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class Inhaler : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Inhaler");
-			Tooltip.SetDefault("Keybind to instantly gain a charge level for blowing weapons");
-		}
 
 		public override void SetDefaults()
 		{

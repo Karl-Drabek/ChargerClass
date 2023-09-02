@@ -5,7 +5,7 @@ using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Buffs
 {
-	public class LightHeaded : ModBuff
+	public class Tetnus : ModBuff
 	{
 		private int _timer;
 
@@ -15,9 +15,9 @@ namespace ChargerClass.Content.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex) {
 			_timer++;
-			if(timer >= 30){
-				npc.StrikeNPCNoInteraction(1, 0, 0);
-				timer = 0;
+			if(_timer >= 30){
+				npc.SimpleStrikeNPC(1 , 0);
+				_timer = 0;
 			}
 		}
 	}

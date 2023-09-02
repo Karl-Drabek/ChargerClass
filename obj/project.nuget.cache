@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xQQj0fHRX8zXW5YBmEifhU9orFfagyyc0VVn1I9YVLk10I1uXtRPxyX652zUQqYrro+6PKVfG2TQXh5T5XksVA==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\Karl\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ChargerClass\\ChargerClass.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Karl\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

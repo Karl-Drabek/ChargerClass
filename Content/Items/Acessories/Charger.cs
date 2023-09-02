@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class Charger : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Charger");
-			Tooltip.SetDefault("Increases charge speed by 5%");
-		}
 
 		public override void SetDefaults()
 		{

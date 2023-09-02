@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class ShadewoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Shadewood Slingshot");
-			Tooltip.SetDefault("5% chance for Red projectiles stick to enemies");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,8 +33,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo){
-            if(ChargerClassModSystem.Random.NextDouble() <= 0.13f * chargeLevels) type = ModContent.ProjectileType<SpikyRockProjectile>();
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+            if(Main.rand.NextBool(13 * chargeLevel, 100)) type = ModContent.ProjectileType<SpikyRockProjectile>();
         }
 
 		public override Vector2? HoldoutOffset() {

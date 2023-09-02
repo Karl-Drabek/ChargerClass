@@ -14,8 +14,7 @@ namespace ChargerClass.Common.Players
 {
 	public class ChargeModPlayer : ModPlayer
 	{
-		public int DefaultCharge = 1000; //the defualt charge pre modifiers
-		public int DefaultSpeed = 10; //the increment by which charge increases pre modifiers.
+		public static readonly int DefaultCharge = 1000; //the defualt charge pre modifiers
 		public bool IronLung, Inhaler, Exhaler, Respirator, BreathingAid, /*Whether the player has a given accesory at the time*/
 					AAABattery, Capacitor, CarBattery, OverCharger, PowerBank,
 					Charger, ChargeRespository, ExtensionCord, LightningRod, Generator,
@@ -26,99 +25,77 @@ namespace ChargerClass.Common.Players
 		private int inhalerTimer = 0;
 
 		 //the total charge the player can use. MaxCharge / (ChargeSpeed * 60) = charge time in seconds.
-		public int MaxCharge{
-			get {
-				int tempCharge = DefaultCharge;
+		public int GetMaxCharge(){
+			var maxCharge = StatModifier.Default;
 
-				if(PowerBank){ //player can only get bonuses from combined items once
-					tempCharge += (int)(DefaultCharge * 0.15f);
-				}else if(CarBattery){
-					tempCharge += (int)(DefaultCharge * 0.10f);
-				}else if(AAABattery){
-					tempCharge += (int)(DefaultCharge * 0.05f);
-				}
+			if(PowerBank) maxCharge += 0.15f;
+			else if(CarBattery) maxCharge += 0.10f;
+			else if(AAABattery) maxCharge += 0.05f;
+			
 
-				if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon){//player can only get bonuses from combined items once
-					if(BreathingAid){
-						tempCharge += (int)(DefaultCharge * 0.25f);
-					}else if(IronLung){
-						tempCharge += (int)(DefaultCharge * 0.15f);
-					}
-				}
-
-				tempCharge += (int)(DefaultCharge * 0.03f * overChargeCount);
-
-				return tempCharge;
+			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon){
+				if(BreathingAid) maxCharge += 0.25f;
+				else if(IronLung) maxCharge += 0.15f;
 			}
-			set { DefaultCharge = value; }
+
+			maxCharge += 0.03f * overChargeCount;
+
+			return (int)maxCharge.ApplyTo(DefaultCharge);
 		}
 
-		//the increment by which charge increases
-		public int ChargeSpeed{
-			get {
-				int tempSpeed = DefaultSpeed;
+		public override float UseTimeMultiplier(Item item){
+			if(item.ModItem is ChargeWeapon weapon){
+				float speed = 1f;
 
-				if(Generator){//player can only get bonuses from combined items once
-					tempSpeed += (int)(DefaultSpeed * 0.15f);
-				}else if(ExtensionCord){
-					tempSpeed += (int)(DefaultSpeed * 0.10f);
-				}else if(Charger){
-					tempSpeed += (int)(DefaultSpeed * 0.05f);
+				if(Generator) speed += 0.15f;
+				else if(ExtensionCord) speed += 0.10f;
+				else if(Charger) speed += 0.05f;
+				
+
+				if(weapon.blowWeapon){
+					if(BreathingAid) speed += 0.25f;
+					else if(Respirator) speed += 0.15f;
 				}
 
-				if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon){//player can only get bonuses from combined items once
-					if(BreathingAid){
-						tempSpeed += (int)(DefaultSpeed * 0.25f);
-					}else if(Respirator){
-						tempSpeed += (int)(DefaultSpeed * 0.15f);
-					}
-				}
-
-				return tempSpeed;
+				return speed;
 			}
-			set { DefaultSpeed = value; }
+			return 1f;
 		}
 
-		public void GetChargeDamage(ref int damage, int chargeLevel){
-			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (BreathingAid || Exhaler)){
-				damage += (int)(0.03f * damage);
-			}
+		public override void ModifyWeaponDamage(Item item, ref StatModifier damage){
+			if(item.ModItem is not ChargeWeapon chargeWeapon) return;
 
-			if(UltimateChargingGear){//player can only get bonuses from combined items once
-				damage += (int)(0.03f * damage * chargeLevel);
-			}else if(ShootingGlove){
-				damage += (int)(0.02f * damage * chargeLevel);
-			}else if(GripTape){
-				damage += (int)(0.01f * damage * chargeLevel);
-			}
+			if(chargeWeapon.blowWeapon && (BreathingAid || Exhaler)) damage += 0.3f;
+
+			if(UltimateChargingGear)damage += 0.03f * chargeWeapon.chargeLevel;
+			else if(ShootingGlove) damage += 0.02f * chargeWeapon.chargeLevel;
+			else if(GripTape) damage += 0.01f * chargeWeapon.chargeLevel;
 		}
 
-		public void GetChargeCritChance(ref float crit, int chargeLevel){
-			if(UltimateChargingGear){//player can only get bonuses from combined items once
-				crit += 0.03f * chargeLevel;
-			}else if(TrackingSpecs){
-				crit += 0.02f * chargeLevel;
-			}else if(RedDot){
-				crit += 0.01f * chargeLevel;
-			}
+		public override void ModifyWeaponCrit(Item item, ref float crit){
+			if(item.ModItem is not ChargeWeapon chargeWeapon) return;
+
+			if(UltimateChargingGear)crit += 0.03f * chargeWeapon.chargeLevel;
+			else if(TrackingSpecs)crit += 0.02f * chargeWeapon.chargeLevel;
+			else if(RedDot)crit += 0.01f * chargeWeapon.chargeLevel;
+		
 		}
 
-		public void GetProjectileSpeed(ref Vector2 velocity){
+		public void ModifyProjectileSpeed(ref Vector2 velocity){
 			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Exhaler || BreathingAid)){
 				velocity *= 1.25f;
 			}
 		}
 
 		public void ModifyChargeLevel(ref int chargeLevel, int crit){
-			if((SecretStimulants || UltimateChargingGear) && ChargerClassModSystem.Random.NextDouble() <= crit / 100d){
+			if((SecretStimulants || UltimateChargingGear) && Main.rand.NextBool(crit, 100)){
 				chargeLevel++;
-			}	
+			}
 		}
 
 		public void RepositorySuccess(int totalCharge){
 			if(Player.HeldItem.ModItem is ChargeWeapon weapon){
-				weapon.charge += totalCharge / 10;
-				if(weapon.charge > MaxCharge) weapon.charge = MaxCharge;
+				weapon.bonusCharge += totalCharge / 10;
 			}
 		}
 
@@ -143,7 +120,8 @@ namespace ChargerClass.Common.Players
 			}
 		}
 
-		public void ShootInfo(bool fullyCharged){
+		public void ShootInfo(ChargeWeapon weapon, int charge){
+			bool fullyCharged = charge >= GetMaxCharge();
 			if(OverCharger || PowerBank){
 				if(fullyCharged){ //if the corrent accessories are equiped, the weapon has shot and it was fully charged.
 					if(overChargeCount < 3){
@@ -160,8 +138,7 @@ namespace ChargerClass.Common.Players
 		public override void ProcessTriggers(TriggersSet triggersSet) {
 			if (ChargerClassModSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || BreathingAid) && !LightHeaded) {
 				Player.AddBuff(ModContent.BuffType<LightHeaded>() , 1200); //debuff to stop the player from using the ability for a 20 seconds.
-				weapon.charge += weapon.chargeAmount;
-				if(weapon.charge > MaxCharge) weapon.charge = MaxCharge; //make sure charge doesnt go over max. This should probably also be implimented in the chargeweapon but I dont want to deal with timing and tics.
+				weapon.bonusCharge += weapon.chargeAmount;
 			}
 		}
 
@@ -171,7 +148,6 @@ namespace ChargerClass.Common.Players
 			Charger = ChargeRespository = ExtensionCord = LightningRod = Generator =
 			GripTape = LeatherGlove = ShootingGlove = RedDot = TrackingSpecs = SecretStimulants = UltimateChargingGear = false; //reset accessory effects.
 			LightHeaded = false; //reset buff effects.
-
 		}
 	}
 }

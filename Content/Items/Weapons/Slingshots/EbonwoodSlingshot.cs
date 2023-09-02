@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class EbonwoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ebonwood Slingshot");
-			Tooltip.SetDefault("Chance to shoot exploding projectiles");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,8 +33,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo){
-            if(ChargerClassModSystem.Random.NextDouble() <= 0.1f * chargeLevels){
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+            if(Main.rand.NextBool(10 * chargeLevel, 100)){
                 type = ModContent.ProjectileType<ExplodingRockProjectile>();
             }
         }

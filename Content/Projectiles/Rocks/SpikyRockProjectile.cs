@@ -17,10 +17,6 @@ namespace ChargerClass.Content.Projectiles.Rocks
         private int _damage;
         private Vector2 _offset;
 
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Spiky Rock Projectile");
-        }
-
 		public override void SetDefaults()
 		{
             Projectile.width = 8;
@@ -44,12 +40,12 @@ namespace ChargerClass.Content.Projectiles.Rocks
             return new Color(155, 155, 155, 0) * Projectile.Opacity;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit){
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone){
             Projectile.position -= Projectile.velocity;
             Projectile.aiStyle = 0; //remove gravity
             _target = target; 
             _offset = Projectile.position - target.position;
-            _damage = damage;
+            _damage = hit.Damage;
             Projectile.timeLeft = 120;
             Projectile.tileCollide = false;
         }
@@ -72,7 +68,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
 
             _timer += _damage; //increment the timer by the original damage
             if(_timer >= 100){ //if the timer is greater than the limit, remove the max and deal damage for each removal.
-                _target.StrikeNPCNoInteraction(_damage / 100, 0f, _offset.X > 0 ? 0 : 1);
+                _target.SimpleStrikeNPC(_damage / 100, _offset.X > 0 ? 0 : 1);
                 _timer = _damage % 100;
             }
 

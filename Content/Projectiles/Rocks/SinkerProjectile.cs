@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class SinkerProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Sinker Projectile");
-        }
 
 		public override void SetDefaults()
 		{
@@ -33,6 +30,10 @@ namespace ChargerClass.Content.Projectiles.Rocks
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
+        }
+
+        public override void AI(){
+            Projectile.velocity.Y += 0.1f;
         }
 
         public override void Kill(int timeLeft) {

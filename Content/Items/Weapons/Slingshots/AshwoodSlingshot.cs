@@ -3,6 +3,7 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
 using ChargerClass.Content.Items;
 using ChargerClass.Common.GlobalProjectiles;
 
@@ -10,11 +11,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class AshwoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ashwood Slingshot");
-			Tooltip.SetDefault("10% chance to inflict hellfire");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -39,8 +35,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void PostProjectileEffects(ChargerProjectile chargerProj, int chargeLevels){
-            if (ChargerClassModSystem.Random.NextDouble() <= 0.1f * chargeLevels) chargerProj.Hellfire = true;
+        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            if (Main.rand.NextBool(10 * chargeLevel, 100)) chargerProj.Hellfire = true;
         }
 
 		public override Vector2? HoldoutOffset() {
@@ -50,7 +46,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-           // recipe.AddIngredient(ItemID.AshWood, 10);
+           recipe.AddIngredient(ItemID.AshWood, 10);
             recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 5);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();

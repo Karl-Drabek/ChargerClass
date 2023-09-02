@@ -3,17 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 using ChargerClass.Content;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class Rubberband : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rubberband");
-			Tooltip.SetDefault("5% chance to damage player");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,6 +34,14 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 12f;
             Item.ammo = Item.type;
 		}
+
+            public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+                  if(Main.rand.NextBool(chargeLevel, 100)){
+                        player.Hurt(PlayerDeathReason.ByPlayerItem(player.whoAmI, Item), damage, player.direction);
+                        return false;
+                  }
+                  return true;
+            }
 
 		public override void AddRecipes()
 		{

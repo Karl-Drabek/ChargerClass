@@ -13,9 +13,7 @@ namespace ChargerClass.Test.Projectiles
 	public class CentrifeugalGunChamber : ModProjectile
 	{
 	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Centrifeugal Gun Chamber");
-						// Total count animation frames
-			Main.projFrames[Projectile.type] = 4;
+			Main.projFrames[Projectile.type] = 4; // Total count animation frames
         }
 
 		public override void SetDefaults()

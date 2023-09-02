@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class LeatherGlove : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Leather Glove");
-			Tooltip.SetDefault("Critcial Hits deal 2% extra damage per Charge level");
-		}
 
 		public override void SetDefaults()
 		{

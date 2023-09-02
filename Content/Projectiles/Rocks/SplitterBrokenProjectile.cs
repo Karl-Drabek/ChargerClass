@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class SplitterBrokenProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Spltter Broken Projectile");
-        }
 
 		public override void SetDefaults()
 		{

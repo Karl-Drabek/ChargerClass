@@ -12,9 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("AAA Battery");
-			Tooltip.SetDefault("Increases max charge by 5%");
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 4)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

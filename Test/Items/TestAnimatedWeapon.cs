@@ -8,11 +8,6 @@ namespace ChargerClass.Test.Items
 {
 	public class TestAnimatedWeapon : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Test Animated Weapon");
-			Tooltip.SetDefault("Projectile is a test animated weapon");
-		}
 
 		public override void SetDefaults()
 		{

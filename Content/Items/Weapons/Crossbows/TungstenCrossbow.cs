@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TungstenCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tungsten Crossbow");
-			Tooltip.SetDefault("+5 damage");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) {
-            damage += 5 * chargeLevels;
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+            damage += 5 * chargeLevel;
         }
 
 		public override void AddRecipes()

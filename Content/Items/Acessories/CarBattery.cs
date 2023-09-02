@@ -12,9 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Car Battery");
-			Tooltip.SetDefault("Increase max charge by 10%, has a chance to stun enemies on crits");
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(16, 3)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

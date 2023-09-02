@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class Airgun : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Airgun");
-			Tooltip.SetDefault("Extra damage against squirrels and rabbits ");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -34,7 +29,7 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
             Item.shootSpeed = 10f;
-            Item.ammo = Item.type;
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.Pellet>();
 		}
 	}
 }

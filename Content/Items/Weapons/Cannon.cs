@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class Cannon : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cannon");
-			Tooltip.SetDefault("Chance to shoot bomb");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -32,9 +27,9 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 5;
             Item.knockBack = 10f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.CannonBallProjectile>();
             Item.shootSpeed = 8f;
-            Item.ammo = Item.type;
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.CannonBall>();
 		}
 	}
 }

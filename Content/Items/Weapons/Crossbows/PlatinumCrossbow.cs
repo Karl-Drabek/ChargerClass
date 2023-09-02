@@ -3,16 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
+using ChargerClass.Content.Items.Weapons.Slingshots;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class PlatinumCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Platinum Crossbow");
-			Tooltip.SetDefault("15% chance not to consume ammo.");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,9 +34,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) {
-            if (ChargerClassModSystem.Random.NextDouble() <= 0.15f * chargeLevels) consumeAmmo = false;
-        }
+        public override bool CanConsumeAmmo(Item item, Player player) => 
+            !Main.rand.NextBool(15 * chargeLevel, 100);
 
 		public override void AddRecipes()
 		{

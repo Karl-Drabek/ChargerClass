@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class BreathingAid : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("BreathingAid");
-			Tooltip.SetDefault("Increase max charge and charge speed by 25%. Adds a keybind to automatically increase charge for blowing weapons by 2 levels. Increase projectile speed by 25% and damage by 3% for blowing weapons.");
-		}
 
 		public override void SetDefaults()
 		{

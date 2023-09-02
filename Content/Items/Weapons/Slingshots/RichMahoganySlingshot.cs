@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using ChargerClass;
 using Terraria;
 using Terraria.ID;
+using ChargerClass.Common.Players;
 using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
 
@@ -9,11 +10,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class RichMahoganySlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rich Mahogany Slingshot");
-			Tooltip.SetDefault("5% chance to spawn a bee");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void PostProjectileEffects(ChargerProjectile chargerProj, int chargeLevel){
+        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
             chargerProj.BeeAttempts = chargeLevel;
         }
 

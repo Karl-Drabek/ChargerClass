@@ -3,14 +3,13 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo
 {
 	public class Pellet : ModItem
 	{
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Pellet");
-			Tooltip.SetDefault("Used in an airgun");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }
@@ -20,7 +19,7 @@ namespace ChargerClass.Content.Items.Ammo
             Item.height = 9;
 
             Item.damage = 4;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = ChargerDamageClass.Instance;
 
             Item.maxStack = 999;
             Item.consumable = true;

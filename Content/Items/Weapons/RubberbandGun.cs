@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class RubberbandGun : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rubberband Gun");
-			Tooltip.SetDefault("Flurry of rubber bands + rare RED (en fuego) rubberband");
-		}
 
 		public override void SafeSetDefaults()
 		{

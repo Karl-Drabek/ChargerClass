@@ -12,9 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Charge Respository");
-			Tooltip.SetDefault("Keep 10% charge after scoring critical hits.");
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 6)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

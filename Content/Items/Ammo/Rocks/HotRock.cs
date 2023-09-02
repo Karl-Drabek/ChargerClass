@@ -10,8 +10,6 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 	public class HotRock : ModItem
 	{
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Hot Rock");
-            Tooltip.SetDefault("Don't hold on for too long!'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
 
@@ -39,7 +37,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(4);
-            recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<Items.Ammo.Rocks.Rock>(), 4);
             recipe.AddIngredient(ItemID.Torch, 4);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();

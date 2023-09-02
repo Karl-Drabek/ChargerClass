@@ -12,10 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Lightning Rod");
-			Tooltip.SetDefault("Enemies have a chance to drop charge on death.");
-
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(60, 2)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

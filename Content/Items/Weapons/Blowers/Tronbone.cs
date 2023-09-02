@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 {
 	public class Tronbone : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tronbone");
-			Tooltip.SetDefault("Shoots out three sonic rings. Additionally shoot extra bone projectiles per charge.");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -33,9 +28,11 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.knockBack = 1f;
 
             blowWeapon = true;
-            Item.shoot = ProjectileID.PurificationPowder;
+            Item.shoot = ModContent.ProjectileType<Projectiles.TronboneSonicProjectile>();
             Item.shootSpeed = 10f;
-            Item.useAmmo = AmmoID.Dart;
+            Item.useAmmo = AmmoID.None;
 		}
+
+            public override bool CanConsumeAmmo(Item item, Player player) => false;
 	}
 }

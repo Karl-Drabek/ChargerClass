@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class UltimateChargingGear : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ultimate Charging Gear");
-			Tooltip.SetDefault("Increase damage and crit chance by 3% per charge level, and an additional chance to increase charge level by 1 (crit chance).");
-		}
 
 		public override void SetDefaults()
 		{

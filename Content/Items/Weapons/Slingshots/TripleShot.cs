@@ -1,19 +1,16 @@
 using Microsoft.Xna.Framework;
 using ChargerClass;
+using Terraria.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class TripleShot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Triple Shot");
-			Tooltip.SetDefault("Shoots three bullets. \n 10% chance not to consume ammo per charge");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -35,13 +32,16 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-		public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) {
-            count = 3;
-			if (ChargerClassModSystem.Random.NextDouble() <= 0.1f * chargeLevels) consumeAmmo = false;
-        }
+            public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+                  for(int i = 0; i < 3; i++){
+                        Projectile proj = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(MathHelper.ToRadians(8 - 4 * i)), type, damage, knockback);
+                        PostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                  }
+                  return false;
+            }
 
-		public override Vector2? HoldoutOffset() {
-			return new Vector2(0f, 0f);
-		}
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(10 * chargeLevel, 100);
+
+		public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 	}
 }

@@ -12,10 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Generator");
-			Tooltip.SetDefault("Increase Charge speed by 15%. Keep 10% charge on crits. Enemies have a chance to drop charge on death.");
-
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 4)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

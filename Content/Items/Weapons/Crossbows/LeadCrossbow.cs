@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class LeadCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Lead Crossbow");
-			Tooltip.SetDefault("Increase knockback by 1");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) {
-            knockback += chargeLevels;
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+            knockback += chargeLevel;
         }
 
 		public override void AddRecipes()

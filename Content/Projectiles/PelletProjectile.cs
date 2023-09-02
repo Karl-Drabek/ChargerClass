@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class PelletProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Pellet Projectile");
-        }
 
 		public override void SetDefaults()
 		{

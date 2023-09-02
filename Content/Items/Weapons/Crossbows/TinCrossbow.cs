@@ -3,16 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TinCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tin Crossbow");
-			Tooltip.SetDefault("Increase weak food drop chance");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -36,6 +33,10 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
 		}
+
+            public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer) {
+                  chargerProj.TinCanChance = 10 * chargeLevel;
+            }
 
 		public override void AddRecipes()
 		{

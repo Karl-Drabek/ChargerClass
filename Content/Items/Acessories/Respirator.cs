@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class Respirator : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Respirator");
-			Tooltip.SetDefault("Increases charge speed of blowing weapons by 15%.");
-		}
 
 		public override void SetDefaults()
 		{

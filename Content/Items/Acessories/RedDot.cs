@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class RedDot : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Red Dot");
-			Tooltip.SetDefault("Increase crit chance by 1% per charge level");
-		}
 
 		public override void SetDefaults()
 		{

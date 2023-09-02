@@ -3,16 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class CopperCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Copper Crossbow");
-			Tooltip.SetDefault("Projectiles move 25% faster in water (rain) +10% per charge");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -36,6 +33,11 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
 		}
+
+            public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  proj.ignoreWater = true;
+                  chargerProj.RainSpeed = 1 + 0.25f * chargeLevel;
+            }
 
 		public override void AddRecipes()
 		{

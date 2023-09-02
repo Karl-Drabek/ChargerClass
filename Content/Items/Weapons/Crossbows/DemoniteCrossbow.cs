@@ -3,16 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class DemoniteCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Demonite Crossbow");
-			Tooltip.SetDefault("Increase projectile penetration by one per charge level.");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +34,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override PostProjectileEffects(ChargerProjectile chargerProj, int chargeLevel){
-            chargerProj.Projectile.penetration += chargeLevel;
+        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            proj.penetrate += chargeLevel;
         }
 
 		public override void AddRecipes()

@@ -1,15 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Common",
-    "\\Common\\GlobalProjectiles",
     "\\Content",
-    "\\Content\\Buffs",
     "\\Content\\Items",
-    "\\Content\\Items\\Weapons",
-    "\\Content\\Items\\Weapons\\Slingshots",
-    "\\Content\\Projectiles",
-    "\\Content\\Projectiles\\Rocks"
+    "\\Content\\Items\\Weapons"
   ],
+  "SelectedNode": "\\Content\\Items\\Weapons\\ChargeWeapon.cs",
   "PreviewInSolutionExplorer": false
 }

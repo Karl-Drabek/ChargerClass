@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class BalloonProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Balloon Projectile");
-        }
 
 		public override void SetDefaults()
 		{

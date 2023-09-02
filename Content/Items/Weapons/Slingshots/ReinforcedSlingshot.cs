@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class ReinforcedSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Reinforced Slingshot");
-			Tooltip.SetDefault("Deal 3 extra damage per charge level");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) {
-            damage += chargeLevels * 3;
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+            damage += chargeLevel * 3;
         }
 
 		public override Vector2? HoldoutOffset() {

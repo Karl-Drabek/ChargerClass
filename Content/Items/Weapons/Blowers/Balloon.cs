@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 {
 	public class Balloon : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Balloon");
-			Tooltip.SetDefault("Each charge level balloon has a chance to explode.");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -36,6 +31,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             Item.shoot = ModContent.ProjectileType<Projectiles.BalloonProjectile>();
             Item.shootSpeed = 4f;
+            Item.ammo = Item.type;
 		}
 
 		public override void AddRecipes()

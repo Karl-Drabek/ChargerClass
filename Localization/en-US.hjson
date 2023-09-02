@@ -1,10 +1,473 @@
 Mods: {
 	ChargerClass: {
+		Keybinds.InhalerKeybind.DisplayName: Inhaler Keybind
+		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
+
 		Buffs: {
 			LightHeaded: {
 				DisplayName: LightHeaded
 				Description: Can't use your Inhaler for a little bit.
 			}
+
+			Tetnus: {
+				DisplayName: Tetnus
+				Description: That Looks like it hurts...
+			}
+
+			Bound: {
+				DisplayName: Bound
+				Description: the bola makes it hard to move
+			}
 		}
+
+		Items: {
+			AAABattery: {
+				DisplayName: AAA Battery
+				Tooltip: Increases max charge by 5%
+			}
+
+			BreathingAid: {
+				DisplayName: BreathingAid
+				Tooltip: Increase max charge and charge speed by 25%. Adds a keybind to automatically increase charge for blowing weapons by 2 levels. Increase projectile speed by 25% and damage by 3% for blowing weapons.
+			}
+
+			Capacitor: {
+				DisplayName: Capacitor
+				Tooltip: Charge weapons have a chance to stun enemies on critical hits
+			}
+
+			CarBattery: {
+				DisplayName: Car Battery
+				Tooltip: Increase max charge by 10%, has a chance to stun enemies on crits
+			}
+
+			Charger: {
+				DisplayName: Charger
+				Tooltip: Increases charge speed by 5%
+			}
+
+			ChargeRepository: {
+				DisplayName: Charge Respository
+				Tooltip: Keep 10% charge after scoring critical hits.
+			}
+
+			Diaphragm: {
+				DisplayName: Iron Diaphragm
+				Tooltip: Increase charge speed of blowing weapons by 15%.
+			}
+
+			Exhaler: {
+				DisplayName: Exhaler
+				Tooltip: Increase projectile speed by 25% and damage by 3% for blowing weapons.
+			}
+
+			ExtensionCord: {
+				DisplayName: Extension Cord
+				Tooltip: Increase Charge speed by 10%. Keep 10% charge on crits.
+			}
+
+			Generator: {
+				DisplayName: Generator
+				Tooltip: Increase Charge speed by 15%. Keep 10% charge on crits. Enemies have a chance to drop charge on death.
+			}
+
+			GripTape: {
+				DisplayName: Grip Tape
+				Tooltip: Deal 1% extra damage per charge level
+			}
+
+			HydrogenGas: {
+				DisplayName: Hydrogen Gas
+				Tooltip: Blowing weapons explode on contact & balloons fly faster and higher
+			}
+
+			Inhaler: {
+				DisplayName: Inhaler
+				Tooltip: Keybind to instantly gain a charge level for blowing weapons
+			}
+
+			IronLung: {
+				DisplayName: IronLung
+				Tooltip: Increases max charge by 10%
+			}
+
+			LeatherGlove: {
+				DisplayName: Leather Glove
+				Tooltip: Critcial Hits deal 2% extra damage per Charge level
+			}
+
+			LightningRod: {
+				DisplayName: Lightning Rod
+				Tooltip: Enemies have a chance to drop charge on death.
+			}
+
+			Overcharger: {
+				DisplayName: Overcharger
+				Tooltip: Gain 3% bonus max Charge for each shot fired at full charge (max 3). This effect resets if a shot is not fired to full charge or after 3 seconds.
+			}
+
+			PowerBank: {
+				DisplayName: PowerBank
+				Tooltip: Increase Max charge by 15%. Gain 3% bonus max Charge for each shot fired at full charge (max 3). This resets if a shot is not fired to full charge or after 3 seconds. Crits have a chance to stun enemies.
+			}
+
+			RedDot: {
+				DisplayName: Red Dot
+				Tooltip: Increase crit chance by 1% per charge level
+			}
+
+			Respirator: {
+				DisplayName: Respirator
+				Tooltip: Increases charge speed of blowing weapons by 15%.
+			}
+
+			SecretStimulants: {
+				DisplayName: SecretStimulants
+				Tooltip: Chance to increase charge level by 1 (crit chance)
+			}
+
+			ShootingGlove: {
+				DisplayName: Shooting Glove
+				Tooltip: Deal 2% extra damage per charge level
+			}
+
+			TrackingSpecs: {
+				DisplayName: Tracking Specs
+				Tooltip: Increase crit chance by 2% per charge level
+			}
+
+			UltimateChargingGear: {
+				DisplayName: Ultimate Charging Gear
+				Tooltip: Increase damage and crit chance by 3% per charge level, and an additional chance to increase charge level by 1 (crit chance).
+			}
+
+			Pellet: {
+				DisplayName: Pellet
+				Tooltip: Used in an airgun
+			}
+
+			BouncyRock: {
+				DisplayName: Bouncy Rock
+				Tooltip: Bounces before braking apart
+			}
+
+			HotRock: {
+				DisplayName: Hot Rock
+				Tooltip: Don't hold on for too long!'
+			}
+
+			Rock: {
+				DisplayName: Rock
+				Tooltip: Great for slinging!
+			}
+
+			Sinker: {
+				DisplayName: Sinker
+				Tooltip: This feels heavy.
+			}
+
+			Splitter: {
+				DisplayName: Spltter
+				Tooltip: splits into two smaller rocks after a little while
+			}
+
+			BlueCharge: {
+				DisplayName: BlueCharge
+				Tooltip: Pickup to gain 200 charge
+			}
+
+			Charge: {
+				DisplayName: Charge
+				Tooltip: Pickup to gain 100 charge
+			}
+
+			Rubber: {
+				DisplayName: Rubber
+				Tooltip: Great for slinging!
+			}
+
+			Airgun: {
+				DisplayName: Airgun
+				Tooltip: "Extra damage against squirrels and rabbits "
+			}
+
+			BagpipeBlaster: {
+				DisplayName: Bagpipe Blaster
+				Tooltip: Shoots a barrage of darts. Number depends on the charge.
+			}
+
+			Balloon: {
+				DisplayName: Balloon
+				Tooltip: Each charge level balloon has a chance to explode.
+			}
+
+			HellfireBlowgun: {
+				DisplayName: Hellfire Blowgun
+				Tooltip: Sets projectiles aflame + 10% crit chance
+			}
+
+			Tronbone: {
+				DisplayName: Tronbone
+				Tooltip: Shoots out three sonic rings. Additionally shoot extra bone projectiles per charge.
+			}
+
+			CopperCrossbow: {
+				DisplayName: Copper Crossbow
+				Tooltip: Projectiles move 25% faster in water (rain) +10% per charge
+			}
+
+			CrimtaneCrossbow: {
+				DisplayName: Crimtane Crossbow
+				Tooltip: Deal 3 extra damage per charge. Shots cause bleeding
+			}
+
+			DemoniteCrossbow: {
+				DisplayName: Demonite Crossbow
+				Tooltip: Increase projectile penetration by one per charge level.
+			}
+
+			GoldCrossbow: {
+				DisplayName: Gold Crossbow
+				Tooltip: Midas touch 5% (extra gold)
+			}
+
+			HellfireCrossbow: {
+				DisplayName: Hellfire Crossbow
+				Tooltip: Explode on contact (fire)
+			}
+
+			IronCrossbow: {
+				DisplayName: Iron Crossbow
+				Tooltip: Chance to inflict enemies with tetnus
+			}
+
+			LeadCrossbow: {
+				DisplayName: Lead Crossbow
+				Tooltip: Increase knockback by 1
+			}
+
+			PlatinumCrossbow: {
+				DisplayName: Platinum Crossbow
+				Tooltip: 15% chance not to consume ammo.
+			}
+
+			SilverCrossbow: {
+				DisplayName: Silver Crossbow
+				Tooltip: Increase projectile speed by 5%
+			}
+
+			TinCrossbow: {
+				DisplayName: Tin Crossbow
+				Tooltip: Increase weak food drop chance
+			}
+
+			TungstenCrossbow: {
+				DisplayName: Tungsten Crossbow
+				Tooltip: +5 damage
+			}
+
+			Rubberband: {
+				DisplayName: Rubberband
+				Tooltip: 5% chance to damage player
+			}
+
+			RubberbandGun: {
+				DisplayName: Rubberband Gun
+				Tooltip: Flurry of rubber bands + rare RED (en fuego) rubberband
+			}
+
+			AntlerSlinger: {
+				DisplayName: Antler Slinger
+				Tooltip:
+					'''
+					Charges add a chance to shoot an icy rock. 
+					 On death enemies explode with ice spikes
+					'''
+			}
+
+			AshwoodSlingshot: {
+				DisplayName: Ashwood Slingshot
+				Tooltip: 10% chance to inflict hellfire
+			}
+
+			BorealWoodSlingshot: {
+				DisplayName: Boreal Wood Slingshot
+				Tooltip: 5% chance to inflict frostburn
+			}
+
+			EbonwoodSlingshot: {
+				DisplayName: Ebonwood Slingshot
+				Tooltip: Chance to shoot exploding projectiles
+			}
+
+			MultiShot: {
+				DisplayName: MultiShot
+				Tooltip: Shoots an extra projectile for each charge level
+			}
+
+			PalmWoodSlingshot: {
+				DisplayName: Palm Wood Slingshot
+				Tooltip: 3% chance to shoot a coconut
+			}
+
+			PearlwoodSlingshot: {
+				DisplayName: Pearlwood Slingshot
+				Tooltip: 15% chance to confuse enemy
+			}
+
+			ReinforcedSlingshot: {
+				DisplayName: Reinforced Slingshot
+				Tooltip: Deal 3 extra damage per charge level
+			}
+
+			RichMahoganySlingshot: {
+				DisplayName: Rich Mahogany Slingshot
+				Tooltip: 5% chance to spawn a bee
+			}
+
+			ShadewoodSlingshot: {
+				DisplayName: Shadewood Slingshot
+				Tooltip: 5% chance for Red projectiles stick to enemies
+			}
+
+			TripleShot: {
+				DisplayName: Triple Shot
+				Tooltip:
+					'''
+					Shoots three bullets. 
+					 10% chance not to consume ammo per charge
+					'''
+			}
+
+			WoodSlingshot: {
+				DisplayName: Wood Slingshot
+				Tooltip: Increase crit chance by 5% per charge level
+			}
+
+			SuperSoaker: {
+				DisplayName: Super Soaker
+				Tooltip: In ice the biome it freezes enemies & in the desert it evaporates.Charge increases the amount shot.
+			}
+
+			SuperSlimer: {
+				Tooltip: ""
+				DisplayName: Super Slimer
+			}
+
+			ScorchingScream: {
+				Tooltip: ""
+				DisplayName: Scorching Scream
+			}
+
+			PremeCalamari: {
+				Tooltip: ""
+				DisplayName: Preme Calamari
+			}
+
+			PotatoCannon: {
+				Tooltip: ""
+				DisplayName: Potato Cannon
+			}
+
+			NectarNailGun: {
+				Tooltip: ""
+				DisplayName: Nectar Nail Gun
+			}
+
+			MoltenMolitov: {
+				Tooltip: ""
+				DisplayName: Molten Molitov
+			}
+
+			LongBow: {
+				Tooltip: ""
+				DisplayName: Long Bow
+			}
+
+			ConsumingLens: {
+				Tooltip: ""
+				DisplayName: Consuming Lens
+			}
+
+			CompoundBow: {
+				Tooltip: ""
+				DisplayName: Compound Bow
+			}
+
+			Cannon: {
+				Tooltip: ""
+				DisplayName: Cannon
+			}
+
+			Bola: {
+				Tooltip: ""
+				DisplayName: Bola
+			}
+
+			Bellows: {
+				Tooltip: ""
+				DisplayName: Bellows
+			}
+
+			SealedTinCan: {
+				Tooltip: ""
+				DisplayName: Sealed Tin Can
+			}
+
+			Potatoe: {
+				Tooltip: ""
+				DisplayName: Potatoe
+			}
+
+			NecterNail: {
+				Tooltip: ""
+				DisplayName: Necter Nail
+			}
+
+			CannonBall: {
+				Tooltip: ""
+				DisplayName: Cannon Ball
+			}
+
+			BottledSlime: {
+				Tooltip: ""
+				DisplayName: Bottled Slime
+			}
+
+			TestWeapon: {
+				Tooltip: ""
+				DisplayName: Test Weapon
+			}
+		}
+
+		Projectiles: {
+			BalloonProjectile.DisplayName: Balloon Projectile
+			CoconutProjectile.DisplayName: Coconut Projectile
+			PelletProjectile.DisplayName: Pellet Projectile
+			BouncyRockProjectile.DisplayName: Bouncy rock projectile
+			ExplodingRockProjectile.DisplayName: Exploding Rock Projectile
+			HotRockProjectile.DisplayName: Hot Rock Projectile
+			RockProjectile.DisplayName: Rock Projectile
+			SinkerProjectile.DisplayName: Sinker Projectile
+			SpikyRockProjectile.DisplayName: Spiky Rock Projectile
+			SplitterBrokenProjectile.DisplayName: Spltter Broken Projectile
+			SplitterProjectile.DisplayName: Splitter Projectile
+			RubberbandProjectile.DisplayName: Rubberband Projectile
+			WaterSprayProjectile.DisplayName: Water Spray Projectile
+			CentrifeugalGunChamber.DisplayName: Centrifeugal Gun Chamber
+			ScorchingScreamProjectile.DisplayName: Scorching Scream Projectile
+			FrozenRockProjectile.DisplayName: Frozen Rock Projectile
+			PotatoeProjectile.DisplayName: Potatoe Projectile
+			NecterNailProjectile.DisplayName: Necter Nail Projectile
+			MoltenMolitovProjectile.DisplayName: Molten Molitov Projectile
+			InkProjectile.DisplayName: Ink Projectile
+			CannonBallProjectile.DisplayName: Cannon Ball Projectile
+			BolaProjectile.DisplayName: Bola Projectile
+			BellowsAirProjectile.DisplayName: Bellows Air Projectile
+			SuperSlimerProjectile.DisplayName: Super Slimer Projectile
+			TronboneSonicProjectile.DisplayName: Tronbone Sonic Projectile
+		}
+
+		Tiles.PotatoePlant.MapEntry: Potatoe Plant
 	}
 }

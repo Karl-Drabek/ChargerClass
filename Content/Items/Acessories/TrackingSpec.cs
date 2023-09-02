@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class TrackingSpecs : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tracking Specs");
-			Tooltip.SetDefault("Increase crit chance by 2% per charge level");
-		}
 
 		public override void SetDefaults()
 		{

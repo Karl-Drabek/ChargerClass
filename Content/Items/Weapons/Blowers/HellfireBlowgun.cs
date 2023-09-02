@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 {
 	public class HellfireBlowgun : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hellfire Blowgun");
-			Tooltip.SetDefault("Sets projectiles aflame + 10% crit chance");
-		}
 
 		public override void SafeSetDefaults()
 		{

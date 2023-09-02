@@ -12,9 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Iron Diaphragm");
-			Tooltip.SetDefault("Increase charge speed of blowing weapons by 15%.");
-
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 3)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

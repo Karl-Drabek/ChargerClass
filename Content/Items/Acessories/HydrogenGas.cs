@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class HydrogenGas : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hydrogen Gas");
-			Tooltip.SetDefault("Blowing weapons explode on contact & balloons fly faster and higher");
-		}
 
 		public override void SetDefaults()
 		{

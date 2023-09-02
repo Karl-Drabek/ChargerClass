@@ -9,7 +9,6 @@ namespace ChargerClass.Content.Items
 	public class Rubber : ModItem
 	{
         public override void SetStaticDefaults() {
-            Tooltip.SetDefault("Great for slinging!");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }
@@ -18,17 +17,9 @@ namespace ChargerClass.Content.Items
             Item.width = 10;
             Item.height = 9;
 
-            Item.damage = 5;
-            Item.DamageType = DamageClass.Ranged;
-
             Item.maxStack = 999;
-            Item.consumable = true;
-            Item.knockBack = 1f;
             Item.value = Item.sellPrice(0, 0, 0, 4);
             Item.rare = ItemRarityID.White;
-            Item.shoot = ModContent.ProjectileType<Projectiles.Rocks.RockProjectile>();
-
-            Item.ammo = Item.type;
         }
 
         public override void AddRecipes() {

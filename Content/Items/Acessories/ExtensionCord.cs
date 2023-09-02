@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class ExtensionCord : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Extension Cord");
-			Tooltip.SetDefault("Increase Charge speed by 10%. Keep 10% charge on crits.");
-		}
 
 		public override void SetDefaults()
 		{

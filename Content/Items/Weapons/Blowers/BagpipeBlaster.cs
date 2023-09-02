@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 {
 	public class BagpipeBlaster : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bagpipe Blaster");
-			Tooltip.SetDefault("Shoots a barrage of darts. Number depends on the charge.");
-		}
 
 		public override void SafeSetDefaults()
 		{

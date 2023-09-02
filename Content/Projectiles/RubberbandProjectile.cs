@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class RubberbandProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Rubberband Projectile");
-        }
 
 		public override void SetDefaults()
 		{

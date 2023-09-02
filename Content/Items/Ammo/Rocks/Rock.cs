@@ -9,8 +9,6 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 	public class Rock : ModItem
 	{
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Rock");
-            Tooltip.SetDefault("Great for slinging!");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }

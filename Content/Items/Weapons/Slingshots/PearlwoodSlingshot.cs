@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using ChargerClass;
 using Terraria;
 using Terraria.ID;
+using ChargerClass.Common.Players;
 using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
 
@@ -9,11 +10,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class PearlwoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pearlwood Slingshot");
-			Tooltip.SetDefault("15% chance to confuse enemy");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,8 +34,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void PostProjectileEffects(ChargerProjectile chargerProj, int chargeLevels){
-            if (ChargerClassModSystem.Random.NextDouble() <= 0.15f * chargeLevels) chargerProj.Confused = true;
+        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            if (Main.rand.NextBool(15 * chargeLevel, 100)) chargerProj.Confused = true;
         }
 
 		public override Vector2? HoldoutOffset() {

@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class Capacitor : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Capacitor");
-			Tooltip.SetDefault("Charge weapons have a chance to stun enemies on critical hits");
-		}
 
 		public override void SetDefaults()
 		{

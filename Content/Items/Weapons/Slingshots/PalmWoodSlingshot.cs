@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class PalmWoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Palm Wood Slingshot");
-			Tooltip.SetDefault("3% chance to shoot a coconut");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -38,12 +33,12 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo){
-            if(ChargerClassModSystem.Random.NextDouble() <= 0.03f * chargeLevels){
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+            if(Main.rand.NextBool(3 * chargeLevel, 100)){
                 type = ModContent.ProjectileType<CoconutProjectile>();
-                veloctiy *= 0.6f;
-                damage = (int)((Item.damage + 20) * modifier);
-                knockback = (Item.knockBack + 8f) * modifier;
+                velocity *= 0.75f;
+                damage = (int)(1.5f * damage);
+                knockback *= 2;
             }
         }
         

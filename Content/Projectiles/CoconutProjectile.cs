@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class CoconutProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Coconut Projectile");
-        }
 
 		public override void SetDefaults()
 		{

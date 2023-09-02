@@ -1,0 +1,11 @@
+    Short Term:
+Add useTime, useAnnimation and JourneyRequirments to each Item
+Fix potatoe
+Special Charge Effect Tootip
+
+    Long Term:
+Finish Implimenting ChargeWeapons
+Balance Weapons
+Update Tootips
+Add remaining items
+Add Remaining Sprites

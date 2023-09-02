@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class GripTape : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Grip Tape");
-			Tooltip.SetDefault("Deal 1% extra damage per charge level");
-		}
 
 		public override void SetDefaults()
 		{

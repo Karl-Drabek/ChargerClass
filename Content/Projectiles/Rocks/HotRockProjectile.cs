@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class HotRockProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Hot Rock Projectile");
-        }
 
 		public override void SetDefaults()
 		{
@@ -38,7 +35,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
             return new Color(155, 155, 155, 0) * Projectile.Opacity;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit){
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone){
             target.AddBuff(BuffID.OnFire, 30);
         }
 

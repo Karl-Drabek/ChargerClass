@@ -9,8 +9,6 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 	public class Splitter : ModItem
 	{
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Spltter");
-            Tooltip.SetDefault("splits into two smaller rocks after a little while");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }
@@ -35,7 +33,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(1);
-            recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<Items.Ammo.Rocks.Rock>(), 2);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

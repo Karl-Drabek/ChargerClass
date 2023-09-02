@@ -10,8 +10,6 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 	public class Sinker : ModItem
 	{
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Sinker");
-            Tooltip.SetDefault("This feels heavy.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }

@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class IronCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Iron Crossbow");
-			Tooltip.SetDefault("Chance to inflict enemies with tetnus");
-		}
 
 		public override void SafeSetDefaults()
 		{

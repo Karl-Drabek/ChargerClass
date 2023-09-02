@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class RockProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Rock Projectile");
-        }
 
 		public override void SetDefaults()
 		{

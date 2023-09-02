@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class PotatoCannon : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Potato Cannon");
-			Tooltip.SetDefault("Chance to shoot PAPA CALIENTE");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -32,9 +27,9 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 3f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.PotatoeProjectile>();
             Item.shootSpeed = 8f;
-            Item.ammo = Item.type;
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.Potatoe>();
 		}
 	}
 }

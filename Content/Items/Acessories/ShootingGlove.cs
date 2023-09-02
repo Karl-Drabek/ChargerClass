@@ -10,11 +10,6 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class ShootingGlove : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Shooting Glove");
-			Tooltip.SetDefault("Deal 2% extra damage per charge level");
-		}
 
 		public override void SetDefaults()
 		{

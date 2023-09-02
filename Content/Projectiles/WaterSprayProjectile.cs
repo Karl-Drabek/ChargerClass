@@ -11,9 +11,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class WaterSprayProjectile : ModProjectile
 	{
-	    public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Water Spray Projectile");
-        }
 
 		public override void SetDefaults()
 		{

@@ -3,16 +3,13 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class CrimtaneCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Crimtane Crossbow");
-			Tooltip.SetDefault("Deal 3 extra damage per charge. Shots cause bleeding");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,14 +34,13 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void ChargeLevelEffects(ref Vector2 veloctiy, ref int type, ref int damage, ref float knockback, ref int chargeLevels, ref int count, float modifier, ref bool consumeAmmo) 
-        {
-            damage += chargeLevels * 3
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+            damage += chargeLevel * 3;
         }
 
-        public override void PostProjectileEffects(ChargerProjectile chargerProj, int chargeLevel){
-            chargerProjectile.Hellfire = true;
-            if (ChargerClassModSystem.Random.NextDouble() <= 0.25f * chargeLevels) chargerProj.ExplosionSize = 30 * chargeLevel;
+        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            chargerProj.Hellfire = true;
+            if (Main.rand.NextBool(25 * chargeLevel, 100)) chargerProj.ExplosionSize = 30 * chargeLevel;
         }
 
 		public override void AddRecipes()

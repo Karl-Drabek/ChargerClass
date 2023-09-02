@@ -49,8 +49,8 @@ namespace ChargerClass.Content.UI.ChargeMeter
             outerHitbox = new Rectangle((Main.screenWidth - outerWidth) / 2, (Main.screenHeight - outerHeight) / 2 + yOffset, outerWidth, outerHeight);
             innerHitbox = new Rectangle((Main.screenWidth - innerWidth) / 2, (Main.screenHeight - innerHeight) / 2 + yOffset - 1, innerWidth, innerHeight);
 
-            int MaxCharge = Main.CurrentPlayer.GetModPlayer<ChargeModPlayer>().MaxCharge;
-            float charge = (float)chargeWeapon.charge / MaxCharge;
+            int MaxCharge = Main.CurrentPlayer.GetModPlayer<ChargeModPlayer>().GetMaxCharge();
+            float charge = (float)chargeWeapon.GetTotalCharge() / MaxCharge;
             charge = Utils.Clamp(charge, 0f, 1f);
 
             int steps = (int)(innerHitbox.Width * charge); //how many pixels of charge to fill the meter with

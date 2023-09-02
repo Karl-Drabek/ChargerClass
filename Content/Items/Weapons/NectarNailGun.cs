@@ -9,11 +9,6 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class NectarNailGun : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Nectar Nail Gun");
-			Tooltip.SetDefault("Fire an extra nectar nail per charge");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -32,9 +27,9 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 1f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.NecterNailProjectile>();
             Item.shootSpeed = 12f;
-            Item.ammo = Item.type;
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.NecterNail>();
 		}
 	}
 }

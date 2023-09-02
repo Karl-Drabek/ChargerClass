@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class WoodSlingshot : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Wood Slingshot");
-			Tooltip.SetDefault("Increase crit chance by 5% per charge level");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void SafeModifyWeaponCrit(int chargeLevels, ref float crit){
-            crit += chargeLevels * 5f;
+        public override void SafeModifyWeaponCrit(Player player, ref float crit){
+            crit += chargeLevel * 5f;
         }
 
 		public override Vector2? HoldoutOffset() {

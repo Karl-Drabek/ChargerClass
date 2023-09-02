@@ -12,9 +12,6 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Overcharger");
-			Tooltip.SetDefault("Gain 3% bonus max Charge for each shot fired at full charge (max 3). This effect resets if a shot is not fired to full charge or after 3 seconds.");
-		
 			
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(20, 4)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

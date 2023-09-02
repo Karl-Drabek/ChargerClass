@@ -3,17 +3,15 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Content.Projectiles.Rocks;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class AntlerSlinger : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Antler Slinger");
-			Tooltip.SetDefault("Charges add a chance to shoot an icy rock. \n On death enemies explode with ice spikes");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -26,6 +24,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.value = Item.sellPrice(0, 2, 0, 0);;
 
             chargeAmount = 550;
+            Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
             Item.damage = 25;
             Item.crit = 3;
             Item.knockBack = 3f;
@@ -34,6 +33,15 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.shootSpeed = 10f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
+
+            public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  if (chargeLevel > 0 && Main.rand.NextBool(20 * chargeLevel))chargerProj.Frostburn = true;
+            }
+
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+                  type = ModContent.ProjectileType<FrozenRockProjectile>();
+                  damage += (int)(damage* 0.25f);
+            }
 
 		public override Vector2? HoldoutOffset() {
 			return new Vector2(0f, 0f);

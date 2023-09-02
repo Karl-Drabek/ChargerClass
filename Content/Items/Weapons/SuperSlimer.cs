@@ -4,16 +4,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Content.Items.Weapons;
 
 namespace ChargerClass.Content.Items.Weapons
 {
-	public class SuperSlime : ChargeWeapon
+	public class SuperSlimer : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Super Slimer");
-			Tooltip.SetDefault("Slime slows enemies for more length");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -32,15 +28,15 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 0f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.SuperSlimerProjectile>();
             Item.shootSpeed = 4f;
-            Item.ammo = Item.type;
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.BottledSlime>();
 		}
 
-        public override void AddRecipes()
+            public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Items.SuperSoaker>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<Items.Weapons.SuperSoaker>(), 1);
             recipe.AddIngredient(ItemID.SlimeGun, 1);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();

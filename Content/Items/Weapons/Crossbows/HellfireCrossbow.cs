@@ -8,11 +8,6 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class HellfireCrossbow : ChargeWeapon
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hellfire Crossbow");
-			Tooltip.SetDefault("Explode on contact (fire)");
-		}
 
 		public override void SafeSetDefaults()
 		{
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void SafeModifyWeaponCrit(int chargeLevels, ref float crit){
-            crit += chargeLevels * 5f;
+        public override void SafeModifyWeaponCrit(Player player, ref float crit){
+            crit += chargeLevel * 5f;
         }
 
 		public override Vector2? HoldoutOffset() {
