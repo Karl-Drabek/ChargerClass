@@ -40,7 +40,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 				this.Chilled                   = modProj.Chilled;
 			}else{
 				RainSpeed = TinCanChance = GoldBonusCount = ExplosionSize = Repository = BeeAttempts = LightningPole = LeatherGloveChargeLevel = 0;
-				Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
+				Bleeding = Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
 			}
 		}
 
@@ -59,7 +59,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 		public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hitInfo, int damage){
 			if(Electrified && hitInfo.Crit) target.AddBuff(BuffID.Electrified, 300);
 			if(Tetnus) target.AddBuff(ModContent.BuffType<Tetnus>(), 120);
-			if(Bleeding) target.AddBuff(BuffID.Bleeding, 180);
+			if(Bleeding)target.AddBuff(BuffID.Bleeding, 180);
 			if(Frostburn) target.AddBuff(BuffID.Frostburn, 90);
 			if(Hellfire) target.AddBuff(BuffID.OnFire, 180);
 			if(Confused) target.AddBuff(BuffID.Confused, 240);

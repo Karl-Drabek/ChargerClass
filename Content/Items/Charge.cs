@@ -11,7 +11,9 @@ namespace ChargerClass.Content.Items
 {
 	public class Charge : ModItem
 	{
-
+        public override void SetStaticDefaults() {
+            Item.ResearchUnlockCount = 0;
+		}
 		public override void SetDefaults()
 		{
             Item.CloneDefaults(ItemID.Heart);

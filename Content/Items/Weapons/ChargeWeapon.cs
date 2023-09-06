@@ -16,21 +16,21 @@ namespace ChargerClass.Content.Items.Weapons
 	{
 	    public int charge = 0;
 	    public int chargeAmount = 10;
+        public string chargeEffect = "";
         public bool blowWeapon;
         public int bonusCharge = 0;
         public int chargeLevel; //only accurate after GetChargeLevel has been called
 
         private int GetChargeLevel() => (int)(charge / chargeAmount);
 
-        public sealed override void SetDefaults() { //Don't use Item.useTime or Item.useAnimation, instead use chargeAmount;
+        public sealed override void SetDefaults() {
             blowWeapon = false;
-            Item.useTime = 15;
+            Item.autoReuse = true;
+            Item.noMelee = true;
             Item.useAnimation = 15;
             SafeSetDefaults(); //allows members to set defualts here
             Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = true;
-            Item.noMelee = true;
         }
 
         public int GetTotalCharge() => charge + bonusCharge;
@@ -59,7 +59,7 @@ namespace ChargerClass.Content.Items.Weapons
                         charge += bonusCharge;
                         bonusCharge = 0;
                     }
-                    if(charge < maxCharge)charge += 100 / CombinedHooks.TotalUseTime(Item.useTime, player, Item); //increase charge if not maxed.
+                    if(charge < maxCharge)charge += 300 / CombinedHooks.TotalUseTime(Item.useTime, player, Item); //increase charge if not maxed. 
                     else charge = maxCharge;
                     player.itemAnimation = player.itemAnimationMax; //reset the animation so it doesnt end
                     player.itemRotation = (float)Math.Atan2( //Point item towards curser with orientation (not my code).
@@ -110,24 +110,39 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public sealed override void ModifyWeaponCrit(Player player, ref float crit){
-            crit += 10 * (float)charge / ChargeModPlayer.DefaultCharge;
+            float percentCharged = (float)charge / ChargeModPlayer.DefaultCharge;
+            if(percentCharged == 1) percentCharged += 0.25f;
+            crit += 10 * percentCharged;
             SafeModifyWeaponCrit(player, ref crit);
         }
 
         public sealed override void ModifyWeaponDamage(Player player, ref StatModifier damage){
-            if(charge < chargeAmount / 4) return; //ensures modifer work properly for tooltips  
-            damage *= (float)charge / ChargeModPlayer.DefaultCharge;
+            if(charge < chargeAmount / 4) return; //ensures modifer work properly for tooltips
+            float percentCharged = (float)charge / ChargeModPlayer.DefaultCharge;
+            if(percentCharged == 1) percentCharged += 0.25f;
+            damage *= percentCharged;
             SafeModifyWeaponDamage(player, ref damage);
         }
         public sealed override void ModifyWeaponKnockback(Player player, ref StatModifier knockback){
-            knockback *= (float)charge / ChargeModPlayer.DefaultCharge;
+            knockback *= (float)charge / ChargeModPlayer.DefaultCharge + 0.5f;
             SafeModifyWeaponKnockback(player, ref knockback);
         }
 
        public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			var line = new TooltipLine(Mod, "Charge Value", $"Charge {chargeAmount}");
+			var line = new TooltipLine(Mod, "Charge Value", $"{ChargeAmountDescription(chargeAmount)} charge levels");
+			tooltips.Add(line);
+            line = new TooltipLine(Mod, "Charge Effect", $"Charge Effect: {chargeEffect}");
 			tooltips.Add(line);
         }
+
+        public string ChargeAmountDescription(int chargeAmount) => chargeAmount switch{
+            < 150 => "Tiny",
+            < 250 => "Small",
+            < 350 => "Normal",
+            < 500 => "Large",
+            < 650 => "Huge",
+            _ => "Ginormous"
+        };
 
         public virtual void SafeModifyWeaponCrit(Player player, ref float crit) {}
         public virtual void SafeModifyWeaponDamage(Player player, ref StatModifier damage) {}

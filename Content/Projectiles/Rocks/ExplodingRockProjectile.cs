@@ -12,12 +12,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class ExplodingRockProjectile : ModProjectile
 	{
-
-        private bool _exploding;
-
 		public override void SetDefaults()
 		{
-            _exploding = false;
             Projectile.width = 8;
             Projectile.height = 8;
             Projectile.aiStyle = 1;

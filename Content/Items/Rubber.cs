@@ -9,8 +9,7 @@ namespace ChargerClass.Content.Items
 	public class Rubber : ModItem
 	{
         public override void SetStaticDefaults() {
-
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults() {

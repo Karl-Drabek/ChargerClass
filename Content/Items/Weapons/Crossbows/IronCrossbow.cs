@@ -8,7 +8,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class IronCrossbow : ChargeWeapon
 	{
-
+            public override void SetStaticDefaults() {
+                  Item.ResearchUnlockCount = 1;
+            }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -18,14 +20,14 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             chargeAmount = 300;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 2, 80);
 
-            Item.damage = 12;
+            Item.damage = 32;
             Item.crit = 0;
             Item.knockBack = 0f;
+            Item.useTime = 30;
 
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 10f;

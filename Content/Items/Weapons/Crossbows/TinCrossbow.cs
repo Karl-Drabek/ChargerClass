@@ -10,7 +10,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TinCrossbow : ChargeWeapon
 	{
-
+            public override void SetStaticDefaults() {
+                  Item.ResearchUnlockCount = 1;
+            }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -20,14 +22,14 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             chargeAmount = 400;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 1, 5);
 
-            Item.damage = 10;
+            Item.damage = 23;
             Item.crit = 0;
             Item.knockBack = 0f;
+            Item.useTime = 24;
 
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 10f;

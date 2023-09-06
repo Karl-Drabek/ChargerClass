@@ -1,1 +1,25 @@
-Charger class adds a charger class to Terraria.
+Charger Class adds a charger class to Terraria.
+
+This Includes:
+    25 Accessories
+    43 Weapons
+    10 Ammos
+    3 Other Items
+
+Charge Weapons charge up to increase crit chance, knockback and damage
+Each player has a max charge that can be increased throughout the game
+Each weapon also has charge levels that grant bonus effects.
+
+For example, if the player has 1000 max charge,
+and a charge weapon with charge levels of 300,
+if the weapon is charged to 500,
+it will do 50% total damage
+and acitivate one charge effect
+because 300 goes into 500 only once.
+
+The charger class is a subclass of ranged weapon so effects will carry over
+
+We are still working on sprites for items, projectiles, debuffs, ect...
+There are also many balance issues/bugs that will be addressed when we can get to them.
+This mod is still in its earliest stages of development so consider that.
+The mod should work for the most part with multiplayer, but is not intended for it.

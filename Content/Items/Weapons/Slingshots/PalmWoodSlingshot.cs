@@ -9,7 +9,9 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class PalmWoodSlingshot : ChargeWeapon
 	{
-
+        public override void SetStaticDefaults() {
+                Item.ResearchUnlockCount = 1;
+        }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;

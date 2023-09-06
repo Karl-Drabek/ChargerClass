@@ -12,7 +12,7 @@ namespace ChargerClass.Content.Items.Acessories
 	{
 		public override void SetStaticDefaults()
 		{
-			
+			Item.ResearchUnlockCount = 1;
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(60, 2)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 		}

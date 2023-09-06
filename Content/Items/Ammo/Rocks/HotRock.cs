@@ -10,9 +10,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 	public class HotRock : ModItem
 	{
         public override void SetStaticDefaults() {
-
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
-
+            Item.ResearchUnlockCount = 99;
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 8)); //(tics, frames)
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }

@@ -10,7 +10,10 @@ namespace ChargerClass.Content.Items.Acessories
 {
 	public class Charger : ModItem
 	{
-
+		public override void SetStaticDefaults()
+		{
+			Item.ResearchUnlockCount = 1;
+		}
 		public override void SetDefaults()
 		{
             Item.width = 14;

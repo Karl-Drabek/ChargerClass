@@ -8,7 +8,9 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 {
 	public class BagpipeBlaster : ChargeWeapon
 	{
-
+            public override void SetStaticDefaults() {
+                  Item.ResearchUnlockCount = 1;
+            }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;

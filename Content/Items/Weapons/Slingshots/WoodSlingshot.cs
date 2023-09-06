@@ -8,24 +8,25 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class WoodSlingshot : ChargeWeapon
 	{
-
+        public override void SetStaticDefaults() {
+                Item.ResearchUnlockCount = 1;
+        }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
+            
             Item.rare = ItemRarityID.White;
-
-            chargeAmount = 250;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
-
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
 
             Item.damage = 6;
             Item.crit = 0;
             Item.knockBack = 0f;
+            Item.useTime = 10;
+            chargeAmount = 250;
 
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 6f;

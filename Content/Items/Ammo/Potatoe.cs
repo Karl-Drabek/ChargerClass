@@ -12,18 +12,25 @@ namespace ChargerClass.Content.Items.Ammo
 	{
         public override void SetStaticDefaults() {
             ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults() {
-            Item.DefaultToPlaceableTile(ModContent.TileType<PotatoePlant>());
-            Item.width = 10;
-            Item.height = 9;
+            Item.createTile = ModContent.TileType<PotatoePlant>();
+            Item.placeStyle = 0;
+            Item.useStyle = 1;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.maxStack = Item.CommonMaxStack;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.width = 14;
+            Item.height = 14;
+            Item.noMelee = true;
 
             Item.damage = 5;
             Item.DamageType = ChargerDamageClass.Instance;
 
-            Item.maxStack = 999;
             Item.consumable = true;
             Item.knockBack = 0f;
             Item.value = Item.sellPrice(0, 0, 0, 99);
@@ -33,5 +40,7 @@ namespace ChargerClass.Content.Items.Ammo
 
             Item.ammo = Item.type;
         }
+
+        public override bool CanShoot(Player player) => false;
     }
 }

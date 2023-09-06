@@ -8,7 +8,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class SilverCrossbow : ChargeWeapon
 	{
-
+        public override void SetStaticDefaults() {
+                Item.ResearchUnlockCount = 1;
+        }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -18,12 +20,12 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             chargeAmount = 250;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 18;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 7, 0);
 
-            Item.damage = 14;
+            Item.damage = 30;
             Item.crit = 0;
             Item.knockBack = 0f;
 
@@ -33,7 +35,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            velocity *= chargeLevel * 0.05f;
+            velocity *= chargeLevel * 1.05f;
         }
 
 		public override void AddRecipes()

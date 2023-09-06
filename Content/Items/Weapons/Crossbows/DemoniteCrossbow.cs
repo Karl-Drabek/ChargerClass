@@ -10,7 +10,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class DemoniteCrossbow : ChargeWeapon
 	{
-
+        public override void SetStaticDefaults() {
+                Item.ResearchUnlockCount = 1;
+        }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -20,12 +22,12 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             chargeAmount = 400;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 28;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 36, 0);
 
-            Item.damage = 21;
+            Item.damage = 42;
             Item.crit = 0;
             Item.knockBack = 1f;
 

@@ -10,7 +10,9 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class Bola : ChargeWeapon
 	{
-
+            public override void SetStaticDefaults() {
+                  Item.ResearchUnlockCount = 99;
+            }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;

@@ -8,7 +8,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TungstenCrossbow : ChargeWeapon
 	{
-
+        public override void SetStaticDefaults() {
+                Item.ResearchUnlockCount = 1;
+        }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -18,12 +20,12 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             chargeAmount = 450;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 27;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 10, 50);
 
-            Item.damage = 15;
+            Item.damage = 33;
             Item.crit = 0;
             Item.knockBack = 0f;
 

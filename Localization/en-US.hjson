@@ -1,5 +1,17 @@
 Mods: {
 	ChargerClass: {
+		CommonItemTooltip: {
+			ChargeEffect: Charge effect: {0}
+			#{$CommonItemTooltip.ChargeEffect}
+			# It is recommended to make some common tooltips for custom damage classes
+			# You can use them by referencing {$CommonItemTooltip.PercentIncreasedExampleDamage}
+			# Other mods can use them by referencing {$ExampleMod.CommonItemTooltip.PercentIncreasedExampleDamage}
+			PercentIncreasedExampleDamage: "{0}% increased example damage"
+			PercentIncreasedExampleCritChance: "{0}% increased example critical strike chance"
+			PercentIncreasedExampleDamageCritChance: "{0}% increased example damage and critical strike chance"
+			PercentIncreasedExampleSpeed: "{0}% increased example attack speed"
+		}
+
 		Keybinds.InhalerKeybind.DisplayName: Inhaler Keybind
 		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
 
@@ -437,6 +449,11 @@ Mods: {
 			TestWeapon: {
 				Tooltip: ""
 				DisplayName: Test Weapon
+			}
+
+			BakedPotatoe: {
+				DisplayName: Baked Potatoe
+				Tooltip: ""
 			}
 		}
 

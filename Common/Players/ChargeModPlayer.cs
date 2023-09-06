@@ -22,7 +22,6 @@ namespace ChargerClass.Common.Players
 		public bool LightHeaded;
 		private int overChargeCount;  
 		private int overChargeTimer = 0;
-		private int inhalerTimer = 0;
 
 		 //the total charge the player can use. MaxCharge / (ChargeSpeed * 60) = charge time in seconds.
 		public int GetMaxCharge(){

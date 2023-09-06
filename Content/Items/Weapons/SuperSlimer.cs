@@ -10,7 +10,9 @@ namespace ChargerClass.Content.Items.Weapons
 {
 	public class SuperSlimer : ChargeWeapon
 	{
-
+            public override void SetStaticDefaults() {
+                  Item.ResearchUnlockCount = 1;
+            }
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;

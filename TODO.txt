@@ -1,11 +1,13 @@
     Short Term:
-Add useTime, useAnnimation and JourneyRequirments to each Item
-Fix potatoe
-Special Charge Effect Tootip
+Add useTime, useAnnimation
+Buy potato from dryad
+use sounds
+add particles effects
+animated item
 
     Long Term:
 Finish Implimenting ChargeWeapons
 Balance Weapons
-Update Tootips
+Update Tootips (including charge effects within ChargeWeapon)
 Add remaining items
 Add Remaining Sprites
