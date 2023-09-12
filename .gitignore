@@ -18,11 +18,15 @@
 **/bin/
 **/obj/
 **/packages/
+.vs
 *.user
 *.suo
-.vs
 *.cache
 *.force
 **/packages/
 **/.vs/
 **/.idea/
+/14*
+/artifacts
+**/msbuild.binlog
+/steam_build
