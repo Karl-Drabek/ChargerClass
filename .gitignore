@@ -10,3 +10,19 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+
+# From ExampleMod
+/src
+/setup/logs
+**/bin/
+**/obj/
+**/packages/
+*.user
+*.suo
+.vs
+*.cache
+*.force
+**/packages/
+**/.vs/
+**/.idea/
