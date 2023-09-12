@@ -23,12 +23,12 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 
             chargeAmount = 300;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 20;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
 
-            Item.damage = 14;
+            Item.damage = 30;
             Item.crit = 0;
             Item.knockBack = 0f;
 
@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 		}
 
-        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+        public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
             if (Main.rand.NextBool(10 * chargeLevel, 100)) chargerProj.Hellfire = true;
         }
 

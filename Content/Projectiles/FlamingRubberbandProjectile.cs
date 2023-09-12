@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class RubberbandProjectile : ModProjectile
+	public class FlamingRubberbandProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()
@@ -32,7 +32,11 @@ namespace ChargerClass.Content.Projectiles
             AIType = ProjectileID.WoodenArrowFriendly;
         }
 
-        private int bounces = 2;
+        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
+			target.AddBuff(BuffID.OnFire, 180);
+        }
+
+        private int bounces = 3;
 
         public override bool OnTileCollide(Vector2 oldVelocity) {
 

@@ -115,6 +115,12 @@ namespace ChargerClass.Common.GlobalProjectiles
 				projectile.Size = oldSize;
 				projectile.Center = projectile.position;
 				//It dies shortly after so I don't know why this is neccessary except that maybe it shows for one more frame.
+				for (int i = 0; i < 350; i++) {
+					Dust dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, 130, 0, 0, 100, Color.Red, 0.8f);
+					dust.noGravity = true;
+					dust.velocity *= 2f;
+					dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, 130, 0f, 0f, 100, Color.Red, 0.5f);
+				}
 			}
         }
 

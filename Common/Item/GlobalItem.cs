@@ -3,7 +3,9 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
+using ChargerClass.Content.Projectiles;
 
 namespace ExampleMod.Common.GlobalItems
 {
@@ -20,6 +22,12 @@ namespace ExampleMod.Common.GlobalItems
 						}
 					}
 				break;
+			}
+		}
+		public override void SetDefaults(Item item) {
+			if (item.type == ItemID.BottledWater) {
+				item.ammo = item.type;
+				item.shoot = ModContent.ProjectileType<SuperSoakerProjectile>();
 			}
 		}
 	}

@@ -15,19 +15,19 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 24;
+            Item.height = 60;
             Item.scale = 1f;
             Item.rare = ItemRarityID.Blue;
 
-            chargeAmount = 200;
+            chargeAmount = 155;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 34;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 4, 50, 0);
 
-            Item.damage = 11;
+            Item.damage = 24;
             Item.crit = 0;
             Item.knockBack = 1f;
 
@@ -38,10 +38,11 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   int count = chargeLevel + 1;
-                  int spread = count * 3;
+                  float spreadMult = 4; //degrees between projectiles in spread
+                  float spread = count * spreadMult / 2; //start degrees for projectiles
                   for(int i = 0; i < count; i++){
-                        Projectile proj = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(MathHelper.ToRadians(spread - 6 * i)), type, damage, knockback);
-                        PostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                        Projectile proj = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(MathHelper.ToRadians(spread - spreadMult * i)), type, damage, knockback);
+                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return false;
             }

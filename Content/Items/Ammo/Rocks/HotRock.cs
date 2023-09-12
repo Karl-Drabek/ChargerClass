@@ -40,5 +40,6 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
+        
     }
 }

@@ -26,7 +26,7 @@ namespace ChargerClass.Content.Tiles
 	//- Player.PlaceThing_Tiles_BlockPlacementForAssortedThings: check where type == 84 (grown herb)
 	//- Player.ItemCheck_GetTileCutIgnoreList: maybe generalize?
 	//TODO vanilla seeds to replace fully grown herb
-	public class PotatoePlant : ModTile
+	public class PotatoPlant : ModTile
 	{
 		private const int FrameWidth = 18; // A constant for readability and to kick out those magic numbers
 
@@ -101,7 +101,7 @@ namespace ChargerClass.Content.Tiles
 		public override bool CanDrop(int i, int j) => GetStage(i, j) != PlantStage.Planted;
 
 		public override IEnumerable<Item> GetItemDrops(int i, int j) =>
-            new List<Item>(){new Item(ModContent.ItemType<Potatoe>(), GetStage(i, j) == PlantStage.Grown ? Main.rand.Next(2, 4) : 1)};
+            new List<Item>(){new Item(ModContent.ItemType<Potato>(), GetStage(i, j) == PlantStage.Grown ? Main.rand.Next(2, 4) : 1)};
 
 		public override bool IsTileSpelunkable(int i, int j) => GetStage(i, j) == PlantStage.Grown;
 

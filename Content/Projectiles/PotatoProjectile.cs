@@ -7,15 +7,15 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ChargerClass.Content.Projectiles.Rocks
+namespace ChargerClass.Content.Projectiles
 {
-	public class FrozenRockProjectile : ModProjectile
+	public class PotatoProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()
 		{
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 15;
+            Projectile.height = 15;
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -28,11 +28,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
 
+            
             AIType = ProjectileID.WoodenArrowFriendly;
-        }
-
-        public override Color? GetAlpha(Color lightColor) {
-            return new Color(155, 155, 155, 0) * Projectile.Opacity;
         }
 
         public override void Kill(int timeLeft) {

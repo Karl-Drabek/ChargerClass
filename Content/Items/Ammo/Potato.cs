@@ -8,7 +8,7 @@ using ChargerClass.Content.Tiles;
 
 namespace ChargerClass.Content.Items.Ammo
 {
-	public class Potatoe : ModItem
+	public class Potato : ModItem
 	{
         public override void SetStaticDefaults() {
             ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
@@ -16,7 +16,7 @@ namespace ChargerClass.Content.Items.Ammo
         }
 
         public override void SetDefaults() {
-            Item.createTile = ModContent.TileType<PotatoePlant>();
+            Item.createTile = ModContent.TileType<PotatoPlant>();
             Item.placeStyle = 0;
             Item.useStyle = 1;
             Item.useAnimation = 15;
@@ -35,7 +35,7 @@ namespace ChargerClass.Content.Items.Ammo
             Item.knockBack = 0f;
             Item.value = Item.sellPrice(0, 0, 0, 99);
             Item.rare = ItemRarityID.White;
-            Item.shoot = ModContent.ProjectileType<Projectiles.PotatoeProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.PotatoProjectile>();
             Item.shootSpeed = 4f;
 
             Item.ammo = Item.type;

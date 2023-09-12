@@ -15,8 +15,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
         }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 24;
-            Item.height = 32;
+            Item.width = 37;
+            Item.height = 13;
             Item.scale = 1f;
             Item.rare = ItemRarityID.Orange;
 
@@ -35,14 +35,12 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shootSpeed = 13f;
             Item.useAmmo = AmmoID.Arrow;
 		}
-        public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+        public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
             chargerProj.Hellfire = true;
             chargerProj.ExplosionSize = 60 * chargeLevel;
         }
-
-		public override Vector2? HoldoutOffset() {
-			return new Vector2(0f, 0f);
-		}
+        
+		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
 		public override void AddRecipes()
 		{

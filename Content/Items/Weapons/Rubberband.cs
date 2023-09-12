@@ -33,7 +33,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.consumable = true;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
-            Item.shootSpeed = 12f;
+            Item.shootSpeed = 6f;
             Item.ammo = Item.type;
 		}
 

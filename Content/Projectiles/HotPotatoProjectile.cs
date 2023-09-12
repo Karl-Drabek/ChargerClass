@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class PotatoeProjectile : ModProjectile
+	public class HotPotatoProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()

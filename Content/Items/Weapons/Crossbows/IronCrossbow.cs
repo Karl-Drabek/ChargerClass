@@ -34,6 +34,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
+		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
+		
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();

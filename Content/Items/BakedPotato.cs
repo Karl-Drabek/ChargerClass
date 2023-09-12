@@ -8,7 +8,7 @@ using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items
 {
-	public class BakedPotatoe : ModItem
+	public class BakedPotato : ModItem
 	{
         public override void SetStaticDefaults() {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
@@ -30,7 +30,7 @@ namespace ChargerClass.Content.Items
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Items.Ammo.Potatoe>());
+            recipe.AddIngredient(ModContent.ItemType<Items.Ammo.Potato>());
             recipe.AddTile(TileID.CookingPots);
             recipe.Register();
         }

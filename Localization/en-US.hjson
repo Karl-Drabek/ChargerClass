@@ -406,9 +406,9 @@ Mods: {
 				DisplayName: Compound Bow
 			}
 
-			Cannon: {
+			HandCannon: {
 				Tooltip: ""
-				DisplayName: Cannon
+				DisplayName: Hand Cannon
 			}
 
 			Bola: {
@@ -426,14 +426,14 @@ Mods: {
 				DisplayName: Sealed Tin Can
 			}
 
-			Potatoe: {
+			Potato: {
 				Tooltip: ""
-				DisplayName: Potatoe
+				DisplayName: Potato
 			}
 
-			NecterNail: {
+			NectarNail: {
 				Tooltip: ""
-				DisplayName: Necter Nail
+				DisplayName: Nectar Nail
 			}
 
 			CannonBall: {
@@ -451,8 +451,23 @@ Mods: {
 				DisplayName: Test Weapon
 			}
 
-			BakedPotatoe: {
-				DisplayName: Baked Potatoe
+			Test: {
+				DisplayName: Test
+				Tooltip: ""
+			}
+
+			BakedPotato: {
+				DisplayName: Baked Potato
+				Tooltip: ""
+			}
+
+			CentrifeugalGun: {
+				DisplayName: Centrifeugal Gun
+				Tooltip: ""
+			}
+
+			CentrifugalGun: {
+				DisplayName: Centrifugal Gun
 				Tooltip: ""
 			}
 		}
@@ -474,8 +489,8 @@ Mods: {
 			CentrifeugalGunChamber.DisplayName: Centrifeugal Gun Chamber
 			ScorchingScreamProjectile.DisplayName: Scorching Scream Projectile
 			FrozenRockProjectile.DisplayName: Frozen Rock Projectile
-			PotatoeProjectile.DisplayName: Potatoe Projectile
-			NecterNailProjectile.DisplayName: Necter Nail Projectile
+			PotatoProjectile.DisplayName: Potato Projectile
+			NectarNailProjectile.DisplayName: Nectar Nail Projectile
 			MoltenMolitovProjectile.DisplayName: Molten Molitov Projectile
 			InkProjectile.DisplayName: Ink Projectile
 			CannonBallProjectile.DisplayName: Cannon Ball Projectile
@@ -483,8 +498,12 @@ Mods: {
 			BellowsAirProjectile.DisplayName: Bellows Air Projectile
 			SuperSlimerProjectile.DisplayName: Super Slimer Projectile
 			TronboneSonicProjectile.DisplayName: Tronbone Sonic Projectile
+			IceSpikeProjectile.DisplayName: Ice Spike Projectile
+			TestProjectile.DisplayName: Test Projectile
+			FlamingRubberbandProjectile.DisplayName: Flaming Rubberband Projectile
+			SuperSoakerProjectile.DisplayName: Super Soaker Projectile
 		}
 
-		Tiles.PotatoePlant.MapEntry: Potatoe Plant
+		Tiles.PotatoPlant.MapEntry: Potato Plant
 	}
 }

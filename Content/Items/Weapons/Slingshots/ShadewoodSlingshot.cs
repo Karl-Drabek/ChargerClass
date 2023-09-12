@@ -21,7 +21,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 
             chargeAmount = 450;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 26;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 20);

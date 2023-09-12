@@ -7,7 +7,7 @@ using ChargerClass.Content;
 
 namespace ChargerClass.Content.Items.Weapons
 {
-	public class Cannon : ChargeWeapon
+	public class HandCannon : ChargeWeapon
 	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;

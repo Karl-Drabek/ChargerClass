@@ -35,8 +35,8 @@ namespace ChargerClass
         public static ModKeybind InhalerKeybind { get; private set; }
 
         public override void PostWorldGen() {
+            int ItemCount;
 			for(int c = 0; c < Main.maxChests; c++) {
-
 				Chest chest = Main.chest[c];
 				if(chest == null) continue;
 
@@ -44,11 +44,11 @@ namespace ChargerClass
 				//(ExampleMod): If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Frozen Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. An alternate approach is to check the wiki and looking for the "Internal Tile ID" section in the infobox: https://terraria.wiki.gg/wiki/Frozen_Chest
 				if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == 1 * 36) {
 
-					if (WorldGen.genRand.NextBool(3)) continue; //33% chance for first chests
-
+					if (WorldGen.genRand.NextBool(2, 3)) continue; //33% chance
 					for (int i = 0; i < Chest.maxItems; i++) {
 						if (chest.item[i].type == ItemID.None) {
-							chest.item[i].SetDefaults(ModContent.ItemType<TripleShot>());
+							chest.item[i].SetDefaults(ItemCount % 2 == 0? ModContent.ItemType<TripleShot>() : ModContent.ItemType<TripleShot>());
+                            if(++ItemCount >= 20) break;
 							break;
 						}
 					}

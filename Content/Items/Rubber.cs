@@ -13,8 +13,8 @@ namespace ChargerClass.Content.Items
         }
 
         public override void SetDefaults() {
-            Item.width = 10;
-            Item.height = 9;
+            Item.width = 8;
+            Item.height = 7;
 
             Item.maxStack = 999;
             Item.value = Item.sellPrice(0, 0, 0, 4);

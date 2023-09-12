@@ -22,10 +22,10 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
 
-            Item.damage = 6;
+            Item.damage = 14;
             Item.crit = 0;
             Item.knockBack = 0f;
-            Item.useTime = 10;
+            Item.useTime = 22;
             chargeAmount = 250;
 
             Item.shoot = ProjectileID.PurificationPowder;

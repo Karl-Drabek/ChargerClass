@@ -21,6 +21,14 @@ namespace ChargerClass.Content.Items.Weapons
         public int bonusCharge = 0;
         public int chargeLevel; //only accurate after GetChargeLevel has been called
 
+        EntitySource_ItemUse_WithAmmo tempSource;
+        float tempSpeed;
+        int tempType, tempDamage, ticCounter;
+        float tempKnockback, speed;
+        public int ShotsRemaining;
+
+        public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
+
         private int GetChargeLevel() => (int)(charge / chargeAmount);
 
         public sealed override void SetDefaults() {
@@ -40,7 +48,7 @@ namespace ChargerClass.Content.Items.Weapons
         public sealed override bool CanShoot(Player player) => false; //we have our own shooting system so Projectile is not necessary
         
         public override void HoldItem(Player player){
-            //Main.NewText(player.itemAnimation);
+            if(player.whoAmI != Main.myPlayer) return;
             if(player.itemAnimation == player.itemAnimationMax - 1){ //use style for some reason does not update charge. really confusing stuff
                 ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
 
@@ -62,43 +70,75 @@ namespace ChargerClass.Content.Items.Weapons
                     if(charge < maxCharge)charge += 300 / CombinedHooks.TotalUseTime(Item.useTime, player, Item); //increase charge if not maxed. 
                     else charge = maxCharge;
                     player.itemAnimation = player.itemAnimationMax; //reset the animation so it doesnt end
-                    player.itemRotation = (float)Math.Atan2( //Point item towards curser with orientation (not my code).
-                        (Main.MouseWorld.Y - player.Center.Y) * player.direction, //numerator for arctan
-                        (Main.MouseWorld.X - player.Center.X) * player.direction); //Denominator for arctan
-                    player.direction = Main.MouseWorld.X > player.Center.X ? 1 : -1; //Orient player towards mouse.
+                    AnimatePlayer(player);
                 }
-            }
+            }else if(player.ItemAnimationActive && ShotsRemaining > 0){ //finish shooting bullets if shots remaining
+                player.itemAnimation = player.itemAnimationMax - 2;
+                AnimatePlayer(player);
+                if(++ticCounter >= ticsPerShot){
+                    ticCounter = 0;
+                    ShotsRemaining--;
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * speed;
+                    ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
+                    ChargedShoot(player, modPlayer, tempSource, player.Center, velocity, tempType, tempDamage, tempKnockback);
+                }
+            };
+        }
+
+        public void AnimatePlayer(Player player){
+            player.direction = Main.MouseWorld.X > player.Center.X ? 1 : -1; //Orient player towards mouse.
+            player.itemRotation = (float)Math.Atan2( //Point item towards curser with orientation (not my code).
+                (Main.MouseWorld.Y - player.Center.Y) * player.direction, //numerator for arctan
+                (Main.MouseWorld.X - player.Center.X) * player.direction); //Denominator for arctan
         }
 
         public void Shoot(Player player, ChargeModPlayer modPlayer){
-            Item ammo = Item.ammo == Item.type ? Item : player.ChooseAmmo(Item);//get the ammo item for the weapon
+            Item ammo = Item.ammo == Item.type ? Item : player.ChooseAmmo(Item);//get the ammo item for further calculations
 
-            Vector2 position = Main.CurrentPlayer.Center; //Shoots from the location of the current Player's center
-            Vector2 velocity = 
-                Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - Main.CurrentPlayer.Center)//gets the direction to the mouse, normalizes it for consistancy
-                * (ammo.shootSpeed + Item.shootSpeed) * charge / ChargeModPlayer.DefaultCharge; 
+            //gather basic shooting variables
+            Vector2 position = player.Center;
+            Vector2 velocity = Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - player.Center) * (ammo.shootSpeed + Item.shootSpeed) * (((float)charge / ChargeModPlayer.DefaultCharge) + 0.25f); 
             int type = ammo.shoot;
             int damage = player.GetWeaponDamage(Item);
-            float knockback = player.GetWeaponKnockback(Item);
+            float knockback = player.GetWeaponKnockback(Item, ammo.knockBack + Item.knockBack);
+            var source = new EntitySource_ItemUse_WithAmmo(player, Item, Item.useAmmo);
             chargeLevel = GetChargeLevel();
 
+            //modify speed and charge level based ChargerClass accesories
             modPlayer.ModifyProjectileSpeed(ref velocity);
-            modPlayer.ModifyChargeLevel(ref chargeLevel, player.GetWeaponCrit(Item));//eventually don't use this
-            ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
-            
-            var source = new EntitySource_ItemUse_WithAmmo(Main.CurrentPlayer, Item, Item.useAmmo);
-            if(Shoot(player, source, position, velocity, type, damage, knockback)){
-                Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback);
-                PostProjectileEffects(proj, modPlayer);
+            modPlayer.ModifyChargeLevel(ref chargeLevel, player.GetWeaponCrit(Item));
+
+            //if gun is inteded to shoot a volley save stats for further projectiles
+            if(ticsPerShot > 0){
+                tempSource = source;
+                tempType = type;
+                tempDamage = damage;
+                tempKnockback = knockback;
+                speed = (float)Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y);
+                ShotsRemaining = chargeLevel;
             }
-            //(count > 1) ? velocity.RotatedByRandom(MathHelper.ToRadians(count + (float)Math.Sqrt(4 * count))) : velocity,
+
+            ChargedShoot(player, modPlayer, source, position, velocity, type, damage, knockback); //Shoot Projectile
+
             if(CanConsumeAmmo(Item, player)) player.ConsumeItem(ammo.type); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
-            modPlayer.ShootInfo(this, charge);
+            modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
         }
 
-        public void PostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
+        private void ChargedShoot(Player player, ChargeModPlayer modPlayer, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback); //modify stats for the weapon
+            if(Shoot(player, source, position, velocity, type, damage, knockback)){
+                int owner = -1;
+                float ai0 , ai1, ai2;
+                ai0 = ai1 = ai2 = 0f;
+                ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
+                Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
+                InternalPostProjectileEffects(proj, modPlayer); //allow children to apply effects to projectiles.
+            }
+        }
+
+        public void InternalPostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
             ChargerProjectile chargerProj = proj.GetGlobalProjectile<ChargerProjectile>();
-            SafePostProjectileEffects(proj, chargerProj, modPlayer);
+            PostProjectileEffects(proj, chargerProj, modPlayer);
 
             chargerProj.LightningPole = modPlayer.GetLightningRod();
             if(modPlayer.GetShock()) chargerProj.Electrified = true;
@@ -124,7 +164,7 @@ namespace ChargerClass.Content.Items.Weapons
             SafeModifyWeaponDamage(player, ref damage);
         }
         public sealed override void ModifyWeaponKnockback(Player player, ref StatModifier knockback){
-            knockback *= (float)charge / ChargeModPlayer.DefaultCharge + 0.5f;
+            knockback *= (float)charge / ChargeModPlayer.DefaultCharge;
             SafeModifyWeaponKnockback(player, ref knockback);
         }
 
@@ -144,10 +184,11 @@ namespace ChargerClass.Content.Items.Weapons
             _ => "Ginormous"
         };
 
+        public virtual void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {}
+        public virtual void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){}
+
         public virtual void SafeModifyWeaponCrit(Player player, ref float crit) {}
         public virtual void SafeModifyWeaponDamage(Player player, ref StatModifier damage) {}
         public virtual void SafeModifyWeaponKnockback(Player player, ref StatModifier knockback) {}
-
-        public virtual void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){}
     }
 }

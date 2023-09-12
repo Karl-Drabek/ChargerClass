@@ -12,6 +12,7 @@ namespace ChargerClass.Content.Items.Weapons
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
+            
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -33,5 +34,9 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 10f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Pellet>();
 		}
+
+            public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {
+                  if(Main.rand.NextBool(chargeLevel * 5, 100)) ai0 = 1f;
+            }
 	}
 }

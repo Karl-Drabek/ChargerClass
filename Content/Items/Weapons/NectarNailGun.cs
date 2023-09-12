@@ -24,14 +24,17 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.useTime = 22;
+            ticsPerShot = 1;
+            Item.autoReuse = true;
 
-            Item.damage = 18;
+            Item.damage = 36;
             Item.crit = 0;
             Item.knockBack = 1f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.NecterNailProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.NectarNailProjectile>();
             Item.shootSpeed = 12f;
-            Item.useAmmo = ModContent.ItemType<Items.Ammo.NecterNail>();
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.NectarNail>();
 		}
 	}
 }

@@ -15,8 +15,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 24;
-            Item.height = 32;
+            Item.width = 37;
+            Item.height = 15;
             Item.scale = 1f;
             Item.rare = ItemRarityID.White;
 
@@ -36,8 +36,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override bool CanConsumeAmmo(Item item, Player player) => 
-            !Main.rand.NextBool(15 * chargeLevel, 100);
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(15 * chargeLevel, 100);
+
+            public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
 		public override void AddRecipes()
 		{

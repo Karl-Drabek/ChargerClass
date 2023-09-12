@@ -13,8 +13,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
         }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 24;
-            Item.height = 32;
+            Item.width = 37;
+            Item.height = 13;
             Item.scale = 1f;
             Item.rare = ItemRarityID.White;
 
@@ -37,6 +37,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             knockback += chargeLevel;
         }
+
+        public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
 		public override void AddRecipes()
 		{

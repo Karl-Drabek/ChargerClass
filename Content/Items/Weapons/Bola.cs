@@ -38,7 +38,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.ammo = Item.type;
 		}
             
-            public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   var bolaProj = proj.ModProjectile as Projectiles.BolaProjectile;
                   bolaProj.SlowTime = 30 * chargeLevel;
             }

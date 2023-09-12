@@ -7,7 +7,7 @@ using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo
 {
-	public class NecterNail : ModItem
+	public class NectarNail : ModItem
 	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
@@ -25,7 +25,7 @@ namespace ChargerClass.Content.Items.Ammo
             Item.knockBack = 0f;
             Item.value = Item.sellPrice(0, 0, 0, 99);
             Item.rare = ItemRarityID.White;
-            Item.shoot = ModContent.ProjectileType<Projectiles.NecterNailProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.NectarNailProjectile>();
             Item.shootSpeed = 4f;
 
             Item.ammo = Item.type;

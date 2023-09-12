@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class NecterNailProjectile : ModProjectile
+	public class SuperSoakerProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()
@@ -30,6 +30,10 @@ namespace ChargerClass.Content.Projectiles
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
+        }
+
+        public override void AI(){
+            
         }
 
         public override void Kill(int timeLeft) {

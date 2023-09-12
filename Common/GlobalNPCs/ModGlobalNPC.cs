@@ -5,8 +5,11 @@ using System.Linq;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 using ChargerClass.Content.Items;
+using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Common.ItemDropRules.DropConditions;
+using ChargerClass.Content.Items.Ammo;
+
 //TODO find if both drop rules could be combined.
 namespace ChargerClass.Common.GlobalNPCs
 {
@@ -31,6 +34,14 @@ namespace ChargerClass.Common.GlobalNPCs
 					}
 				break;
 			}
+		}
+
+		public override void ModifyShop(NPCShop shop) {
+			if (shop.NpcType == NPCID.Dryad) shop.Add<Potato>();
+		}
+
+		public virtual void SetupTravelShop(int[] shop, ref int nextSlot){
+			shop[nextSlot] = ModContent.ItemType<Airgun>();
 		}
 	}
 }

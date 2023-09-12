@@ -20,18 +20,21 @@ namespace ChargerClass.Content.Items.Weapons
             Item.scale = 1f;
             Item.rare = ItemRarityID.Green;
 
-            chargeAmount = 100;
+            chargeAmount = 110;
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 31, 0);
+            Item.useTime = 28;
+            ticsPerShot = 3;
+            Item.autoReuse = true;
 
-            Item.damage = 17;
+            Item.damage = 9;
             Item.crit = 0;
             Item.knockBack = 0f;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.SuperSlimerProjectile>();
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 8f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.BottledSlime>();
 		}
 

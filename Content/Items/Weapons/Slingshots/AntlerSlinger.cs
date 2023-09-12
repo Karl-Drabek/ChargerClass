@@ -3,10 +3,12 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Content.Projectiles.Rocks;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
@@ -17,32 +19,39 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 22;
+            Item.height = 44;
             Item.scale = 1f;
             Item.rare = ItemRarityID.Green;
 
             Item.UseSound = SoundID.Item1;
-            Item.value = Item.sellPrice(0, 2, 0, 0);;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.useTime = 23;
 
-            chargeAmount = 550;
+            chargeAmount = 275;
             Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
-            Item.damage = 25;
+            Item.damage = 73;
             Item.crit = 3;
             Item.knockBack = 3f;
 
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 10f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
-		}
+		}     
 
-            public override void SafePostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                  if (chargeLevel > 0 && Main.rand.NextBool(20 * chargeLevel))chargerProj.Frostburn = true;
-            }
+            public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
 
-            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-                  type = ModContent.ProjectileType<FrozenRockProjectile>();
-                  damage += (int)(damage* 0.25f);
+                  int projectile = ModContent.ProjectileType<IceSpikeProjectile>();
+                  StatModifier modifier = player.GetTotalDamage(ModContent.GetInstance<ChargerDamageClass>()); //chargedamage class damage modifier
+                  player.GetModPlayer<ChargeModPlayer>().ModifyWeaponDamage(Item, ref modifier); //I'm not using CombinedHooks/Item to avoid scaling with charge percent            
+                  for(int i = 0; i < chargeLevel; i++){
+                        Projectile proj = Projectile.NewProjectileDirect(source, position,
+                              Vector2.Normalize(Main.MouseWorld - player.Center)
+                              .RotatedByRandom(MathHelper.ToRadians(15)) * (10f + (float)Main.rand.NextDouble() * 2.5f),
+                              projectile, (int)modifier.ApplyTo(41), 1f);
+                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                  }
+                  return true;
             }
 
 		public override Vector2? HoldoutOffset() {

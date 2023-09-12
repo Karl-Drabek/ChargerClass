@@ -29,9 +29,17 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 3f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PotatoeProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.PotatoProjectile>();
             Item.shootSpeed = 8f;
-            Item.useAmmo = ModContent.ItemType<Items.Ammo.Potatoe>();
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.Potato>();
 		}
+
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  if(Main.rand.NextBool(10 * chargeLevel, 100)){
+                        type = ModContent.ProjectileType<Projectiles.HotPotatoProjectile>();
+                        damage = (int)(3f * damage);
+                        knockback *= 3f;
+                  }
+            }
 	}
 }

@@ -1,13 +1,15 @@
-    Short Term:
-Add useTime, useAnnimation
-Buy potato from dryad
-use sounds
-add particles effects
-animated item
+Quality:
+    Sounds
+    Collision.HitTiles();
+    Dust
+    Gore
+    Lighting
+    if (player.whoAmI == Main.myPlayer)
+    Main.Player[Main.myPlayer]
 
-    Long Term:
-Finish Implimenting ChargeWeapons
-Balance Weapons
-Update Tootips (including charge effects within ChargeWeapon)
-Add remaining items
-Add Remaining Sprites
+Long Term:
+    go over projectile code, IgnoreWater?
+    Finish Implimenting ChargeWeapons
+    Update Tootips (including charge effects within ChargeWeapon)
+    Add remaining items
+    Add Remaining Sprites

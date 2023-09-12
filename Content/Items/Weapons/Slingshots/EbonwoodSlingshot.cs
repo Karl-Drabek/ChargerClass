@@ -21,12 +21,12 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 
             chargeAmount = 350;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
+            Item.useTime = 28;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
 
-            Item.damage = 12;
+            Item.damage = 26;
             Item.crit = 0;
             Item.knockBack = 0f;
 
