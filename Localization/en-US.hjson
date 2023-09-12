@@ -502,6 +502,7 @@ Mods: {
 			TestProjectile.DisplayName: Test Projectile
 			FlamingRubberbandProjectile.DisplayName: Flaming Rubberband Projectile
 			SuperSoakerProjectile.DisplayName: Super Soaker Projectile
+			HotPotatoProjectile.DisplayName: Hot Potato Projectile
 		}
 
 		Tiles.PotatoPlant.MapEntry: Potato Plant

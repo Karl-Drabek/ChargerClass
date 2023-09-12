@@ -35,7 +35,7 @@ namespace ChargerClass
         public static ModKeybind InhalerKeybind { get; private set; }
 
         public override void PostWorldGen() {
-            int ItemCount;
+            int ItemCount = 0;
 			for(int c = 0; c < Main.maxChests; c++) {
 				Chest chest = Main.chest[c];
 				if(chest == null) continue;
