@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class CannonBallProjectile : ModProjectile
+	public class MiniCannonballProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()

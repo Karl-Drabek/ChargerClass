@@ -46,7 +46,7 @@ namespace ChargerClass.Content.Items.Weapons
                   return;
             }
 
-            public virtual void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   if(modPlayer.Player.ZoneDesert || modPlayer.Player.ZoneSnow) proj.timeLeft /= 4;
             }
 

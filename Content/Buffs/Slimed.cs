@@ -5,14 +5,14 @@ using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Buffs
 {
-	public class Bound : ModBuff
+	public class Slimed : ModBuff
 	{
 		public override void SetStaticDefaults() {
 			Main.debuff[Type] = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex) {
-			npc.velocity *= 0.9f;
+			npc.velocity *= 0.8f;
 		}
 	}
 }

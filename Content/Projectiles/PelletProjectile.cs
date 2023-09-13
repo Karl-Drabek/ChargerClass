@@ -35,7 +35,7 @@ namespace ChargerClass.Content.Projectiles
             AIType = ProjectileID.WoodenArrowFriendly;
         }
 
-        public override void OnSpawn(IEntitySource	spawnSource){
+        public override void OnSpawn(IEntitySource spawnSource){
             if(spawnSource is EntitySource_ItemUse_WithAmmo source){
                 sourcePlayer = source.Player;
                 sourceItem = source.Item;

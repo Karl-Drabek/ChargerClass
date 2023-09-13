@@ -1,13 +1,14 @@
+make sure Item.ammo and Item.useAmmo are correct
+
 Quality:
     Sounds
     Collision.HitTiles();
     Dust
     Gore
     Lighting
-    if (player.whoAmI == Main.myPlayer)
-    Main.Player[Main.myPlayer]
 
 Long Term:
+    other ore receipies
     go over projectile code, IgnoreWater?
     Finish Implimenting ChargeWeapons
     Update Tootips (including charge effects within ChargeWeapon)

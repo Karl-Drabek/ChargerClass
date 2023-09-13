@@ -47,7 +47,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   for(int i = 0; i < chargeLevel; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position,
                               Vector2.Normalize(Main.MouseWorld - player.Center)
-                              .RotatedByRandom(MathHelper.ToRadians(15)) * (10f + (float)Main.rand.NextDouble() * 2.5f),
+                              .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 2 + 5f + (float)Main.rand.NextDouble() * 1.5f),
                               projectile, (int)modifier.ApplyTo(41), 1f);
                         InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }

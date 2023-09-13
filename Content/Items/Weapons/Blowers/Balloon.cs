@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers
 {
@@ -12,6 +14,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
+
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -35,6 +38,15 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.shootSpeed = 4f;
             Item.ammo = Item.type;
 		}
+
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  proj.timeLeft += chargeLevel * 15;
+                  if((proj.timeLeft > 15) && (Main.rand.NextBool((int)proj.timeLeft, 2500))){
+                        proj.hostile = true;
+                        proj.Kill();
+                  }
+            }
+
 
 		public override void AddRecipes()
 		{

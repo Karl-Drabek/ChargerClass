@@ -38,6 +38,10 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.useAmmo = AmmoID.Dart;
 		}
 
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  velocity = velocity.RotatedByRandom(MathHelper.ToRadians(2));
+            }
+
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();

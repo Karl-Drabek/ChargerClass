@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -19,7 +20,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.scale = 1f;
             Item.rare = ItemRarityID.LightRed;
 
-            chargeAmount = 1050;
+            chargeAmount = 650;
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.UseSound = SoundID.Item1;
@@ -29,9 +30,17 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 5;
             Item.knockBack = 10f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.CannonBallProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.MiniCannonballProjectile>();
             Item.shootSpeed = 8f;
-            Item.useAmmo = ModContent.ItemType<Items.Ammo.CannonBall>();
+            Item.useAmmo = ModContent.ItemType<Items.Ammo.MiniCannonball>();
 		}
+
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  if(Main.rand.NextBool(20 * chargeLevel, 100)){
+                        type = ModContent.ProjectileType<Projectiles.HandCannonBombProjectile>();
+                        damage = (int)(3f * damage);
+                        knockback *= 3f;
+                  }
+            }
 	}
 }

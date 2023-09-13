@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Content.Buffs;
 
 namespace ChargerClass.Content.Projectiles
 {
@@ -30,6 +31,10 @@ namespace ChargerClass.Content.Projectiles
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
+			target.AddBuff(ModContent.BuffType<Slimed>(), 180);
         }
 
         public override void Kill(int timeLeft) {

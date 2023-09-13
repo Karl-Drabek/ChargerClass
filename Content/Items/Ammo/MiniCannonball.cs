@@ -7,7 +7,7 @@ using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo
 {
-	public class CannonBall : ModItem
+	public class MiniCannonball : ModItem
 	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
@@ -25,7 +25,7 @@ namespace ChargerClass.Content.Items.Ammo
             Item.knockBack = 0f;
             Item.value = Item.sellPrice(0, 0, 0, 99);
             Item.rare = ItemRarityID.White;
-            Item.shoot = ModContent.ProjectileType<Projectiles.CannonBallProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.MiniCannonballProjectile>();
             Item.shootSpeed = 4f;
 
             Item.ammo = Item.type;
@@ -33,8 +33,8 @@ namespace ChargerClass.Content.Items.Ammo
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(10);
-            recipe.AddIngredient(ItemID.StoneBlock, 999);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemID.LeadBar, 100);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }

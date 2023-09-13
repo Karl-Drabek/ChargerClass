@@ -22,20 +22,20 @@ namespace ChargerClass.Content.Items.Weapons
         public int chargeLevel; //only accurate after GetChargeLevel has been called
 
         EntitySource_ItemUse_WithAmmo tempSource;
-        float tempSpeed;
         int tempType, tempDamage, ticCounter;
-        float tempKnockback, speed;
+        float tempKnockback, tempSpeed;
         public int ShotsRemaining;
 
         public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
 
-        private int GetChargeLevel() => (int)(charge / chargeAmount);
+        private void GetChargeLevel() { chargeLevel = (int)(charge / chargeAmount); }
 
         public sealed override void SetDefaults() {
             blowWeapon = false;
             Item.autoReuse = true;
             Item.noMelee = true;
-            Item.useAnimation = 15;
+            Item.useAnimation = 10;
+            Item.useTime = 10;
             SafeSetDefaults(); //allows members to set defualts here
             Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -78,7 +78,7 @@ namespace ChargerClass.Content.Items.Weapons
                 if(++ticCounter >= ticsPerShot){
                     ticCounter = 0;
                     ShotsRemaining--;
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * speed;
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * tempSpeed;
                     ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
                     ChargedShoot(player, modPlayer, tempSource, player.Center, velocity, tempType, tempDamage, tempKnockback);
                 }
@@ -93,16 +93,13 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public void Shoot(Player player, ChargeModPlayer modPlayer){
-            Item ammo = Item.ammo == Item.type ? Item : player.ChooseAmmo(Item);//get the ammo item for further calculations
 
-            //gather basic shooting variables
+            GetChargeLevel();
+            player.PickAmmo(Item, out int projToShoot, out float speed, out int damage, out float knockBack, out int usedAmmoItemId);
             Vector2 position = player.Center;
-            Vector2 velocity = Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - player.Center) * (ammo.shootSpeed + Item.shootSpeed) * (((float)charge / ChargeModPlayer.DefaultCharge) + 0.25f); 
-            int type = ammo.shoot;
-            int damage = player.GetWeaponDamage(Item);
-            float knockback = player.GetWeaponKnockback(Item, ammo.knockBack + Item.knockBack);
-            var source = new EntitySource_ItemUse_WithAmmo(player, Item, Item.useAmmo);
-            chargeLevel = GetChargeLevel();
+            float chargeSpeed = speed * (((float)charge / ChargeModPlayer.DefaultCharge) + 0.25f);
+            Vector2 velocity = Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - player.Center) * chargeSpeed;
+            var source = new EntitySource_ItemUse_WithAmmo(player, Item, usedAmmoItemId);
 
             //modify speed and charge level based ChargerClass accesories
             modPlayer.ModifyProjectileSpeed(ref velocity);
@@ -111,16 +108,16 @@ namespace ChargerClass.Content.Items.Weapons
             //if gun is inteded to shoot a volley save stats for further projectiles
             if(ticsPerShot > 0){
                 tempSource = source;
-                tempType = type;
+                tempType = projToShoot;
                 tempDamage = damage;
-                tempKnockback = knockback;
-                speed = (float)Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y);
+                tempKnockback = knockBack;
+                tempSpeed = chargeSpeed;
                 ShotsRemaining = chargeLevel;
             }
 
-            ChargedShoot(player, modPlayer, source, position, velocity, type, damage, knockback); //Shoot Projectile
+            ChargedShoot(player, modPlayer, source, position, velocity, projToShoot, damage, knockBack); //Shoot Projectile
 
-            if(CanConsumeAmmo(Item, player)) player.ConsumeItem(ammo.type); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
+            //if(CanConsumeAmmo(Item, player)) player.ConsumeItem(ammo.type); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
             modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
         }
 

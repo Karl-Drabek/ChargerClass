@@ -3,6 +3,8 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers
 {
@@ -11,6 +13,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
+
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -34,6 +37,18 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.shootSpeed = 16f;
             Item.useAmmo = AmmoID.Dart;
 		}
+
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  chargerProj.Hellfire = true;
+            }
+
+            public override void SafeModifyWeaponCrit(Player player, ref float crit){
+                  crit += chargeLevel * 10f;
+            }
+
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  velocity *= 10f * chargeLevel;
+            }
 
 		public override void AddRecipes()
 		{

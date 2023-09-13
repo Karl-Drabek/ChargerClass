@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Items.Weapons.Blowers;
 
 namespace ExampleMod.Common.GlobalItems
 {
@@ -21,6 +22,25 @@ namespace ExampleMod.Common.GlobalItems
 							OptionsDropRule.dropIds = original.ToArray();
 						}
 					}
+					break;	
+				case ItemID.QueenBeeBossBag:
+					foreach (var rule in itemLoot.Get()) {
+						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<NectarNailGun>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
+				case ItemID.SkeletronBossBag:
+					foreach (var rule in itemLoot.Get()) {
+						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<Tronbone>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
 				break;
 			}
 		}

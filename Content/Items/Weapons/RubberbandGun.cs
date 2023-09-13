@@ -44,6 +44,7 @@ namespace ChargerClass.Content.Items.Weapons
                         type = ModContent.ProjectileType<Projectiles.FlamingRubberbandProjectile>();
                         damage = (int)(1.5f * damage);
                   }
+                  velocity = velocity.RotatedByRandom(MathHelper.ToRadians(2));
             }
 
 		public override void AddRecipes()

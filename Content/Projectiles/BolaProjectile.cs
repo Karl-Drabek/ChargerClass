@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Content.Buffs;
 
 namespace ChargerClass.Content.Projectiles
 {
@@ -35,7 +36,7 @@ namespace ChargerClass.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
             if(hitInfo.Crit){
-                target.AddBuff(BuffID.Slow, SlowTime);
+                target.AddBuff(ModContent.BuffType<Bound>(), SlowTime);
             }
         
         }

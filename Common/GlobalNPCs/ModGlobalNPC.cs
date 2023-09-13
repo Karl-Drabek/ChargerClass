@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria.ModLoader;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.Items.Weapons;
+using ChargerClass.Content.Items.Weapons.Blowers;
 using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Common.ItemDropRules.DropConditions;
 using ChargerClass.Content.Items.Ammo;
@@ -24,15 +25,32 @@ namespace ChargerClass.Common.GlobalNPCs
 			switch(npc.type){
 				case NPCID.Deerclops:
 					foreach (var rule in npcLoot.Get()) {
-						if (rule is LeadingConditionRule lcr
-						&& lcr.ChainedRules[0].RuleToChain is OneFromRulesRule OFRR
-						&& OFRR.options[0] is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR){
+						if (rule is LeadingConditionRule lcr && lcr.ChainedRules[0].RuleToChain is OneFromRulesRule OFRR && OFRR.options[0] is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR){
 							var original = OFONSWLDR.dropIds.ToList();
 							original.Add(ModContent.ItemType<AntlerSlinger>());
 							OFONSWLDR.dropIds = original.ToArray();
 						}
 					}
-				break;
+					break;
+				case NPCID.QueenBee:
+					foreach (var rule in npcLoot.Get()) {
+						if (rule is DropBasedOnExpertMode DBOEM && DBOEM.ruleForNormalMode is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<NectarNailGun>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
+				case NPCID.SkeletronHead:
+					foreach (var rule in npcLoot.Get()) {
+						if (rule is ItemDropWithConditionRule IDWC) {
+							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7));
+						}
+					}
+					break;
+				case NPCID.PirateCaptain:
+					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HandCannon>(), 3));
+					break;
 			}
 		}
 

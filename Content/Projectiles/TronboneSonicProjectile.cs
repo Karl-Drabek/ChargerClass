@@ -16,7 +16,7 @@ namespace ChargerClass.Content.Projectiles
 		{
             Projectile.width = 15;
             Projectile.height = 15;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;

@@ -30,6 +30,11 @@ Mods: {
 				DisplayName: Bound
 				Description: the bola makes it hard to move
 			}
+
+			Slimed: {
+				DisplayName: Slimed
+				Description: Mods.ChargerClass.Buffs.Slimed.Description
+			}
 		}
 
 		Items: {
@@ -436,9 +441,9 @@ Mods: {
 				DisplayName: Nectar Nail
 			}
 
-			CannonBall: {
+			MiniCannonball: {
 				Tooltip: ""
-				DisplayName: Cannon Ball
+				DisplayName: Mini Cannonball
 			}
 
 			BottledSlime: {
@@ -493,7 +498,7 @@ Mods: {
 			NectarNailProjectile.DisplayName: Nectar Nail Projectile
 			MoltenMolitovProjectile.DisplayName: Molten Molitov Projectile
 			InkProjectile.DisplayName: Ink Projectile
-			CannonBallProjectile.DisplayName: Cannon Ball Projectile
+			MiniCannonballProjectile.DisplayName: Mini Cannonball Projectile
 			BolaProjectile.DisplayName: Bola Projectile
 			BellowsAirProjectile.DisplayName: Bellows Air Projectile
 			SuperSlimerProjectile.DisplayName: Super Slimer Projectile
@@ -503,6 +508,7 @@ Mods: {
 			FlamingRubberbandProjectile.DisplayName: Flaming Rubberband Projectile
 			SuperSoakerProjectile.DisplayName: Super Soaker Projectile
 			HotPotatoProjectile.DisplayName: Hot Potato Projectile
+			HandCannonBombProjectile.DisplayName: Hand Cannon Bomb Projectile
 		}
 
 		Tiles.PotatoPlant.MapEntry: Potato Plant
