@@ -22,7 +22,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             chargeAmount = 300;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 2);
@@ -35,7 +34,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.BolaProjectile>();
             Item.shootSpeed = 10f;
-            Item.ammo = Item.type;
 		}
             
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

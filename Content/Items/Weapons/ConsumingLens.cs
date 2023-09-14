@@ -20,7 +20,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             chargeAmount = 150;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 40);
@@ -29,9 +28,8 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 0f;
 
-            //Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.ConsumingLenseProjectile>();
             Item.shootSpeed = 16f;
-            //Item.useAmmo = ModContent.ItemType<Items.Weapons.Rubberband>();
 		}
 
 		public override void AddRecipes()

@@ -22,18 +22,16 @@ namespace ChargerClass.Content.Items.Weapons
             chargeAmount = 180;
             Item.useTime = 32;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 1, 20);
             ticsPerShot = 8;
-            Item.autoReuse = true;
+
 
             Item.damage = 3;
             Item.crit = 0;
             Item.knockBack = 0f;
 
-            blowWeapon = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
             Item.shootSpeed = 4f;
             Item.useAmmo = ModContent.ItemType<Items.Weapons.Rubberband>();

@@ -31,7 +31,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.MoltenMolitovProjectile>();
             Item.shootSpeed = 5f;
-            Item.useAmmo = Item.type; //Default, uses that same item as Ammo.
 		}
 	}
 }

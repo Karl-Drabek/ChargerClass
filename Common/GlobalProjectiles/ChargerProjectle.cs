@@ -14,7 +14,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 		public override bool InstancePerEntity => true; //Needed for GlobalProjectile for some reason.
 
 		public int Repository, BeeAttempts, LightningPole, LeatherGloveChargeLevel, ExplosionSize;
-		public bool LeatherGlove, Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled;
+		public bool LeatherGlove, Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled, PenOnCrit;
 		public bool _inWater = false;
 		public float RainSpeed;
 		public int GoldBonusCount, TinCanChance;
@@ -38,9 +38,10 @@ namespace ChargerClass.Common.GlobalProjectiles
 				this.GoldBonusCount            = modProj.GoldBonusCount;
 				this.TinCanChance              = modProj.TinCanChance;
 				this.Chilled                   = modProj.Chilled;
+				this.PenOnCrit                 = modProj.PenOnCrit;
 			}else{
 				RainSpeed = TinCanChance = GoldBonusCount = ExplosionSize = Repository = BeeAttempts = LightningPole = LeatherGloveChargeLevel = 0;
-				Bleeding = Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
+				PenOnCrit = Bleeding = Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
 			}
 		}
 
@@ -57,6 +58,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 		}
 
 		public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hitInfo, int damage){
+			if(PenOnCrit && hitInfo.Crit) projectile.penetrate++;
 			if(Electrified && hitInfo.Crit) target.AddBuff(BuffID.Electrified, 300);
 			if(Tetnus) target.AddBuff(ModContent.BuffType<Tetnus>(), 120);
 			if(Bleeding)target.AddBuff(BuffID.Bleeding, 180);

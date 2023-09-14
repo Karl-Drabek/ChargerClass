@@ -1,4 +1,5 @@
 make sure Item.ammo and Item.useAmmo are correct
+every npc drops tronbone
 
 Quality:
     Sounds

@@ -31,7 +31,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.ScorchingScreamProjectile>();
             Item.shootSpeed = 8f;
-            Item.useAmmo = AmmoID.None;
 		}
 
             public override bool CanConsumeAmmo(Item item, Player player) => false;

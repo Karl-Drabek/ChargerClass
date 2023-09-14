@@ -36,7 +36,6 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             Item.shoot = ModContent.ProjectileType<Projectiles.BalloonProjectile>();
             Item.shootSpeed = 4f;
-            Item.ammo = Item.type;
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

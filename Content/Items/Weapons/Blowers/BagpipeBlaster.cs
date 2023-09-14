@@ -20,13 +20,11 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             chargeAmount = 90;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 1, 20, 55);
             Item.useTime = 42;
             ticsPerShot = 3;
-            Item.autoReuse = true;
 
             Item.damage = 54;
             Item.crit = 0;

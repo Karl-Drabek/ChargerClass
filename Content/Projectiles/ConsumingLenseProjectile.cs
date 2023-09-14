@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class BellowsAirProjectile : ModProjectile
+	public class ConsumingLenseProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()

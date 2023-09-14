@@ -27,7 +27,6 @@ namespace ChargerClass.Content.Items.Weapons
             Item.value = Item.sellPrice(0, 0, 31, 0);
             Item.useTime = 28;
             ticsPerShot = 3;
-            Item.autoReuse = true;
 
             Item.damage = 9;
             Item.crit = 0;

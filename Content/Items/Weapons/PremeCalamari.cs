@@ -20,7 +20,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             chargeAmount = 150;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 4, 30);
@@ -31,7 +30,6 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.InkProjectile>();
             Item.shootSpeed = 6f;
-            Item.useAmmo = AmmoID.None;
 		}
 
             public override bool CanConsumeAmmo(Item item, Player player) => false;

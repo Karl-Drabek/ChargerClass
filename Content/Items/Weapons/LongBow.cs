@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -12,6 +14,7 @@ namespace ChargerClass.Content.Items.Weapons
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
+            
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -33,5 +36,13 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 12f;
             Item.useAmmo = AmmoID.Arrow;
 		}
+
+            public override void SafeModifyWeaponCrit(Player player, ref float crit) {
+                  crit += 10 * chargeLevel;
+            }
+
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  chargerProj.PenOnCrit = true;
+            }
 	}
 }

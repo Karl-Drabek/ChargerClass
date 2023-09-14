@@ -509,6 +509,7 @@ Mods: {
 			SuperSoakerProjectile.DisplayName: Super Soaker Projectile
 			HotPotatoProjectile.DisplayName: Hot Potato Projectile
 			HandCannonBombProjectile.DisplayName: Hand Cannon Bomb Projectile
+			ConsumingLenseProjectile.DisplayName: Consuming Lense Projectile
 		}
 
 		Tiles.PotatoPlant.MapEntry: Potato Plant

@@ -14,36 +14,39 @@ namespace ChargerClass.Content.Items.Weapons
             }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 24;
-            Item.height = 32;
-            Item.scale = 1f;
-            Item.rare = ItemRarityID.White;
+                  Item.width = 24;
+                  Item.height = 32;
+                  Item.scale = 1f;
+                  Item.rare = ItemRarityID.White;
 
-            chargeAmount = 200;
-            Item.useStyle = ItemUseStyleID.Shoot;
+                  chargeAmount = 200;
+                  Item.useStyle = ItemUseStyleID.Shoot;
 
-            Item.UseSound = SoundID.Item1;
-            Item.value = Item.sellPrice(0, 0, 1, 25);
+                  Item.UseSound = SoundID.Item1;
+                  Item.value = Item.sellPrice(0, 0, 1, 25);
 
-            Item.damage = 6;
-            Item.crit = 0;
-            Item.knockBack = 1f;
+                  Item.damage = 6;
+                  Item.crit = 0;
+                  Item.knockBack = 3f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.BellowsAirProjectile>();
-            Item.shootSpeed = 6f;
-            Item.useAmmo = AmmoID.None; //Default, uses that same item as Ammo.
+                  ticsPerShot = 4;
+
+                  Item.shoot = ModContent.ProjectileType<Projectiles.BellowsAirProjectile>();
+                  Item.shootSpeed = 6f;
 		}
 
-            public override bool CanConsumeAmmo(Item item, Player player) => false;
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
+            }
 
             public override void AddRecipes()
 		{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 4);
-            recipe.AddIngredient(ItemID.Wood, 12);
-            recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Blowers.Balloon>(), 1);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
+                  Recipe recipe = CreateRecipe();
+                  recipe.AddIngredient(ItemID.IronBar, 4);
+                  recipe.AddIngredient(ItemID.Wood, 12);
+                  recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Blowers.Balloon>(), 1);
+                  recipe.AddTile(TileID.Anvils);
+                  recipe.Register();
 		}
 	}
 }

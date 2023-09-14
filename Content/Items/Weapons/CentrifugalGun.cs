@@ -39,7 +39,6 @@ namespace ChargerClass.Content.Items.Weapons
             ticsPerShot = 5;
 
             Item.noMelee = true;
-            Item.autoReuse = true;
             Item.noUseGraphic = true;
         }
 

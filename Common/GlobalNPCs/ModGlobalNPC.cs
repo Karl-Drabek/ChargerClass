@@ -43,13 +43,18 @@ namespace ChargerClass.Common.GlobalNPCs
 					break;
 				case NPCID.SkeletronHead:
 					foreach (var rule in npcLoot.Get()) {
-						if (rule is ItemDropWithConditionRule IDWC) {
+						if (rule is ItemDropWithConditionRule IDWC){
 							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7));
 						}
 					}
 					break;
 				case NPCID.PirateCaptain:
 					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HandCannon>(), 3));
+					break;
+				case NPCID.GoblinArcher:
+					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LongBow>(), 75));
+					break;
+				default:
 					break;
 			}
 		}

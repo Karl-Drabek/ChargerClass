@@ -95,7 +95,16 @@ namespace ChargerClass.Content.Items.Weapons
         public void Shoot(Player player, ChargeModPlayer modPlayer){
 
             GetChargeLevel();
-            player.PickAmmo(Item, out int projToShoot, out float speed, out int damage, out float knockBack, out int usedAmmoItemId);
+            int type, damage, usedAmmoItemId;
+            float speed, knockBack;
+            if(Item.useAmmo != AmmoID.None) player.PickAmmo(Item, out type, out speed, out damage, out knockBack, out usedAmmoItemId);
+            else{
+                type = Item.shoot;
+                damage = player.GetWeaponDamage(Item);
+                knockBack = player.GetWeaponKnockback(Item);
+                speed = Item.shootSpeed;
+                usedAmmoItemId = Item.consumable ? Item.type : Item.useAmmo;
+            }
             Vector2 position = player.Center;
             float chargeSpeed = speed * (((float)charge / ChargeModPlayer.DefaultCharge) + 0.25f);
             Vector2 velocity = Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - player.Center) * chargeSpeed;
@@ -108,16 +117,16 @@ namespace ChargerClass.Content.Items.Weapons
             //if gun is inteded to shoot a volley save stats for further projectiles
             if(ticsPerShot > 0){
                 tempSource = source;
-                tempType = projToShoot;
+                tempType = type;
                 tempDamage = damage;
                 tempKnockback = knockBack;
                 tempSpeed = chargeSpeed;
                 ShotsRemaining = chargeLevel;
             }
 
-            ChargedShoot(player, modPlayer, source, position, velocity, projToShoot, damage, knockBack); //Shoot Projectile
+            ChargedShoot(player, modPlayer, source, position, velocity, type, damage, knockBack); //Shoot Projectile
 
-            //if(CanConsumeAmmo(Item, player)) player.ConsumeItem(ammo.type); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
+            if(CanConsumeAmmo(Item, player)) player.ConsumeItem(usedAmmoItemId); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
             modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
         }
 
