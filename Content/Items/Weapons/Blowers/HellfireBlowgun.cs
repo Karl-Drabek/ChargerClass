@@ -27,9 +27,10 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 1, 25, 0);
 
-            Item.damage = 22;
+            Item.damage = 132;
             Item.crit = 6;
             Item.knockBack = 4f;
+            Item.useTime = 26;
 
             blowWeapon = true;
             Item.shoot = ProjectileID.PurificationPowder;

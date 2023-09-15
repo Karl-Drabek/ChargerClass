@@ -54,6 +54,9 @@ namespace ChargerClass.Common.GlobalNPCs
 				case NPCID.GoblinArcher:
 					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LongBow>(), 75));
 					break;
+				case NPCID.BloodSquid:
+					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PremeCalamari>(), 6));
+					break;
 				default:
 					break;
 			}

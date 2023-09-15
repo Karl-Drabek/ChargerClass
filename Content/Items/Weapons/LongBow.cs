@@ -28,9 +28,10 @@ namespace ChargerClass.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 30);
 
-            Item.damage = 13;
+            Item.damage = 46;
             Item.crit = 4;
             Item.knockBack = 0f;
+            Item.useTime = 32;
 
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 12f;

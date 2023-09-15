@@ -31,6 +31,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.damage = 16;
             Item.crit = 5;
             Item.knockBack = 0f;
+            Item.useTime = 26;
 
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 12f;

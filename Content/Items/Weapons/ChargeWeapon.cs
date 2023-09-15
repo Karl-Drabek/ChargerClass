@@ -23,7 +23,7 @@ namespace ChargerClass.Content.Items.Weapons
 
         EntitySource_ItemUse_WithAmmo tempSource;
         int tempType, tempDamage, ticCounter;
-        float tempKnockback, tempSpeed;
+        float tempKnockback, tempSpeed, tempCrit;
         public int ShotsRemaining;
 
         public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
@@ -72,15 +72,19 @@ namespace ChargerClass.Content.Items.Weapons
                     player.itemAnimation = player.itemAnimationMax; //reset the animation so it doesnt end
                     AnimatePlayer(player);
                 }
-            }else if(player.ItemAnimationActive && ShotsRemaining > 0){ //finish shooting bullets if shots remaining
-                player.itemAnimation = player.itemAnimationMax - 2;
-                AnimatePlayer(player);
-                if(++ticCounter >= ticsPerShot){
-                    ticCounter = 0;
-                    ShotsRemaining--;
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * tempSpeed;
-                    ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
-                    ChargedShoot(player, modPlayer, tempSource, player.Center, velocity, tempType, tempDamage, tempKnockback);
+            }else if(player.ItemAnimationActive){ //finish shooting bullets if shots remaining
+                if(ShotsRemaining > 0){
+                    player.itemAnimation = player.itemAnimationMax - 2;
+                    AnimatePlayer(player);
+                    if(++ticCounter >= ticsPerShot){
+                        ticCounter = 0;
+                        ShotsRemaining--;
+                        Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * tempSpeed;
+                        ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
+                        ChargedShoot(player, modPlayer, tempSource, player.Center, velocity, tempType, tempDamage, tempKnockback);
+                    }
+                }else{
+                    tempCrit = 0;
                 }
             };
         }
@@ -97,7 +101,7 @@ namespace ChargerClass.Content.Items.Weapons
             GetChargeLevel();
             int type, damage, usedAmmoItemId;
             float speed, knockBack;
-            if(Item.useAmmo != AmmoID.None) player.PickAmmo(Item, out type, out speed, out damage, out knockBack, out usedAmmoItemId);
+            if(Item.useAmmo != AmmoID.None) player.PickAmmo(Item, out type, out speed, out damage, out knockBack, out usedAmmoItemId, true); //doesnt comsume ammo
             else{
                 type = Item.shoot;
                 damage = player.GetWeaponDamage(Item);
@@ -121,12 +125,14 @@ namespace ChargerClass.Content.Items.Weapons
                 tempDamage = damage;
                 tempKnockback = knockBack;
                 tempSpeed = chargeSpeed;
+                tempCrit = player.GetWeaponCrit(Item);
                 ShotsRemaining = chargeLevel;
+
             }
 
             ChargedShoot(player, modPlayer, source, position, velocity, type, damage, knockBack); //Shoot Projectile
 
-            if(CanConsumeAmmo(Item, player)) player.ConsumeItem(usedAmmoItemId); //uses one of the weapon's ammo type. if it is none it is throwable so consume the ammo.
+            player.ConsumeItem(usedAmmoItemId);
             modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
         }
 
@@ -137,6 +143,7 @@ namespace ChargerClass.Content.Items.Weapons
                 float ai0 , ai1, ai2;
                 ai0 = ai1 = ai2 = 0f;
                 ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
+                Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
                 Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
                 InternalPostProjectileEffects(proj, modPlayer); //allow children to apply effects to projectiles.
             }
@@ -156,6 +163,10 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public sealed override void ModifyWeaponCrit(Player player, ref float crit){
+            if(tempCrit != 0){
+                crit = tempCrit;
+                return;
+            }
             float percentCharged = (float)charge / ChargeModPlayer.DefaultCharge;
             if(percentCharged == 1) percentCharged += 0.25f;
             crit += 10 * percentCharged;

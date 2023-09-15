@@ -41,13 +41,27 @@ namespace ExampleMod.Common.GlobalItems
 						}
 					}
 					break;
+				case ItemID.ObsidianLockbox:
+					foreach (var rule in itemLoot.Get()) {
+						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<MolotovMortar>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
 				break;
 			}
 		}
 		public override void SetDefaults(Item item) {
-			if (item.type == ItemID.BottledWater) {
-				item.ammo = item.type;
-				item.shoot = ModContent.ProjectileType<SuperSoakerProjectile>();
+			switch(item.type){
+				case ItemID.BottledWater:
+					item.ammo = item.type;
+					item.shoot = ModContent.ProjectileType<SuperSoakerProjectile>();
+					break;
+				case ItemID.MolotovCocktail:
+					item.ammo = item.type;
+					break;
 			}
 		}
 	}

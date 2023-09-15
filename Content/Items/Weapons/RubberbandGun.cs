@@ -19,7 +19,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.scale = 1f;
             Item.rare = ItemRarityID.White;
 
-            chargeAmount = 180;
+            chargeAmount = 220;
             Item.useTime = 32;
             Item.useStyle = ItemUseStyleID.Shoot;
 
@@ -28,7 +28,7 @@ namespace ChargerClass.Content.Items.Weapons
             ticsPerShot = 8;
 
 
-            Item.damage = 3;
+            Item.damage = 2;
             Item.crit = 0;
             Item.knockBack = 0f;
 

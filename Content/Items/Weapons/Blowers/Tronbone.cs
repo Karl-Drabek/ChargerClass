@@ -26,15 +26,16 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 1, 10, 0);
+            Item.useTime = 32;
             ticsPerShot = 1;
 
-            Item.damage = 8;
+            Item.damage = 32;
             Item.crit = 2;
             Item.knockBack = 1f;
 
             blowWeapon = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.TronboneSonicProjectile>();
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 8f;
 		}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
@@ -45,13 +46,11 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
                   for(int i = 0; i < count; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position,
                               Vector2.Normalize(Main.MouseWorld - player.Center)
-                              .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 2f + 4f + (float)Main.rand.NextDouble() * 2.5f),
-                              ProjectileID.Bone, (int)modifier.ApplyTo(25), 1f);
+                              .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 4f + (float)Main.rand.NextDouble() * 6f),
+                              ProjectileID.Bone, (int)modifier.ApplyTo(13), 1f);
                         InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return true;
             }
-
-            public override bool CanConsumeAmmo(Item item, Player player) => false;
 	}
 }

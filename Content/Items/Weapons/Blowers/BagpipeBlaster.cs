@@ -26,7 +26,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.useTime = 42;
             ticsPerShot = 3;
 
-            Item.damage = 54;
+            Item.damage = 6;
             Item.crit = 0;
             Item.knockBack = 1f;
 

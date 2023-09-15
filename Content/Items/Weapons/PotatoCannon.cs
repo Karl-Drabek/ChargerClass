@@ -21,11 +21,12 @@ namespace ChargerClass.Content.Items.Weapons
 
             chargeAmount = 400;
             Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useTime = 28;      
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 2, 30);
 
-            Item.damage = 16;
+            Item.damage = 34;
             Item.crit = 0;
             Item.knockBack = 3f;
 

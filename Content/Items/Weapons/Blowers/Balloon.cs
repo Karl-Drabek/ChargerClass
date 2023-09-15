@@ -27,8 +27,9 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 3);
+            Item.useTime = 24;
 
-            Item.damage = 14;
+            Item.damage = 33;
             Item.crit = 2;
             Item.knockBack = 2f;
             Item.maxStack = 999;

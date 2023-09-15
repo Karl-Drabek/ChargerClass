@@ -19,7 +19,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.scale = 1f;
             Item.rare = ItemRarityID.Orange;
 
-            chargeAmount = 250;
+            chargeAmount = 185;
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.UseSound = SoundID.Item1;
@@ -27,7 +27,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.useTime = 22;
             ticsPerShot = 1;
 
-            Item.damage = 36;
+            Item.damage = 7;
             Item.crit = 0;
             Item.knockBack = 1f;
 

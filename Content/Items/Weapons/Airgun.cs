@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -25,18 +27,19 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 1, 40);
+            Item.useTime = 16;
 
-            Item.damage = 14;
+            Item.damage = 35;
             Item.crit = 1;
-            Item.knockBack = 1f;
+            Item.knockBack = 0f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.PelletProjectile>();
+            Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 10f;
-            Item.useAmmo = ModContent.ItemType<Items.Ammo.Pellet>();
+            Item.useAmmo = AmmoID.Bullet;
 		}
 
-            public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {
-                  if(Main.rand.NextBool(chargeLevel * 5, 100)) ai0 = 1f;
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  if(Main.rand.NextBool(chargeLevel * 5, 100)) chargerProj.CatchCritters = true;
             }
 	}
 }

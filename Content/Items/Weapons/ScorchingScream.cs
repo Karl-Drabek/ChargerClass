@@ -24,21 +24,25 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 1, 25);
+            Item.useTime = 28;
 
-            Item.damage = 16;
+            Item.damage = 22;
             Item.crit = 0;
-            Item.knockBack = 1f;
+            Item.knockBack = 3f;
+            ticsPerShot = 4;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.ScorchingScreamProjectile>();
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 6f;
 		}
 
-            public override bool CanConsumeAmmo(Item item, Player player) => false;
+            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
+            }
 
             public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.HellstoneBar, 4);
+            recipe.AddIngredient(ItemID.HellstoneBar, 14);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Bellows>(), 1);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();

@@ -26,13 +26,11 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.damage = 12;
             Item.crit = 0;
-            Item.knockBack = 0f;
+            Item.knockBack = 3f;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.InkProjectile>();
             Item.shootSpeed = 6f;
 		}
-
-            public override bool CanConsumeAmmo(Item item, Player player) => false;
 
 		public override void AddRecipes()
 		{

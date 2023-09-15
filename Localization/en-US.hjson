@@ -158,11 +158,6 @@ Mods: {
 				Tooltip: Increase damage and crit chance by 3% per charge level, and an additional chance to increase charge level by 1 (crit chance).
 			}
 
-			Pellet: {
-				DisplayName: Pellet
-				Tooltip: Used in an airgun
-			}
-
 			BouncyRock: {
 				DisplayName: Bouncy Rock
 				Tooltip: Bounces before braking apart
@@ -391,9 +386,9 @@ Mods: {
 				DisplayName: Nectar Nail Gun
 			}
 
-			MoltenMolitov: {
+			MolotovMortar: {
 				Tooltip: ""
-				DisplayName: Molten Molitov
+				DisplayName: Molotov Mortar
 			}
 
 			LongBow: {
@@ -480,7 +475,6 @@ Mods: {
 		Projectiles: {
 			BalloonProjectile.DisplayName: Balloon Projectile
 			CoconutProjectile.DisplayName: Coconut Projectile
-			PelletProjectile.DisplayName: Pellet Projectile
 			BouncyRockProjectile.DisplayName: Bouncy rock projectile
 			ExplodingRockProjectile.DisplayName: Exploding Rock Projectile
 			HotRockProjectile.DisplayName: Hot Rock Projectile
@@ -496,7 +490,6 @@ Mods: {
 			FrozenRockProjectile.DisplayName: Frozen Rock Projectile
 			PotatoProjectile.DisplayName: Potato Projectile
 			NectarNailProjectile.DisplayName: Nectar Nail Projectile
-			MoltenMolitovProjectile.DisplayName: Molten Molitov Projectile
 			InkProjectile.DisplayName: Ink Projectile
 			MiniCannonballProjectile.DisplayName: Mini Cannonball Projectile
 			BolaProjectile.DisplayName: Bola Projectile

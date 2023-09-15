@@ -1,5 +1,6 @@
-make sure Item.ammo and Item.useAmmo are correct
-every npc drops tronbone
+explosions/fix Balloon
+new molotovmortar functionality
+tronbone still dropping from npcs
 
 Quality:
     Sounds

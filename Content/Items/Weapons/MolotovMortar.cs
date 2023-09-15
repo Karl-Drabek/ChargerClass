@@ -7,11 +7,12 @@ using ChargerClass.Content;
 
 namespace ChargerClass.Content.Items.Weapons
 {
-	public class MoltenMolitov : ChargeWeapon
+	public class MolotovMortar : ChargeWeapon
 	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
+
 		public override void SafeSetDefaults()
 		{
             Item.width = 24;
@@ -19,18 +20,22 @@ namespace ChargerClass.Content.Items.Weapons
             Item.scale = 1f;
             Item.rare = ItemRarityID.Orange;
 
-            chargeAmount = 350;
+            chargeAmount = 160;
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 2, 30);
 
-            Item.damage = 6;
+            Item.damage = 8;
             Item.crit = 0;
             Item.knockBack = 0f;
+            Item.useTime = 48;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.MoltenMolitovProjectile>();
+            ticsPerShot = 10;
+
+            Item.shoot = ProjectileID.MolotovCocktail;
             Item.shootSpeed = 5f;
+            Item.useAmmo = ItemID.MolotovCocktail;
 		}
 	}
 }

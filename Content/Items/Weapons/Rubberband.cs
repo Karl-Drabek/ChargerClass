@@ -24,9 +24,10 @@ namespace ChargerClass.Content.Items.Weapons
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.UseSound = SoundID.Item1;
+            Item.useTime = 12;
             Item.value = Item.sellPrice(0, 0, 0, 1);
 
-            Item.damage = 6;
+            Item.damage = 14;
             Item.crit = 0;
             Item.knockBack = 0f;
             Item.maxStack = 999;

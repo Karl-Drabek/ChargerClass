@@ -25,9 +25,10 @@ namespace ChargerClass.Content.Items.Weapons
                   Item.UseSound = SoundID.Item1;
                   Item.value = Item.sellPrice(0, 0, 1, 25);
 
-                  Item.damage = 6;
+                  Item.damage = 4;
                   Item.crit = 0;
-                  Item.knockBack = 3f;
+                  Item.knockBack = 2f;
+                  Item.useTime = 26;
 
                   ticsPerShot = 4;
 

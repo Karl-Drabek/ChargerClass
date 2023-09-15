@@ -21,6 +21,8 @@ namespace ChargerClass.Content.Projectiles
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
             Projectile.timeLeft = 600;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;

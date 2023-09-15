@@ -16,7 +16,7 @@ namespace ChargerClass.Content.Projectiles
 		{
             Projectile.width = 15;
             Projectile.height = 15;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;
@@ -30,6 +30,10 @@ namespace ChargerClass.Content.Projectiles
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
+			target.AddBuff(BuffID.OnFire, 180);
         }
 
         public override void Kill(int timeLeft) {
