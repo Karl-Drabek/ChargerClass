@@ -470,6 +470,16 @@ Mods: {
 				DisplayName: Centrifugal Gun
 				Tooltip: ""
 			}
+
+			ElectrudiumOre: {
+				DisplayName: Electrudium Ore
+				Tooltip: ""
+			}
+
+			ElectrudiumBar: {
+				DisplayName: Electrudium Bar
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -505,6 +515,11 @@ Mods: {
 			ConsumingLenseProjectile.DisplayName: Consuming Lense Projectile
 		}
 
-		Tiles.PotatoPlant.MapEntry: Potato Plant
+		Tiles: {
+			PotatoPlant.MapEntry: Potato Plant
+			ElectrudiumOre.MapEntry: Electrudium Ore
+		}
+
+		WorldGen.ElectrudiumOrePassMessage: Charging up Electrudium Ore
 	}
 }

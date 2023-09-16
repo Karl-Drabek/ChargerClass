@@ -1,25 +1,33 @@
-Charger Class adds a charger class to Terraria.
+Charger Class adds a new Charger class to Terraria.
 
-This Includes:
-    25 Accessories
-    43 Weapons
-    10 Ammos
-    3 Other Items
+THIS MOD IS STILL IN ITS EARLIEST STAGES OF DEVELOPMENT:
 
-Charge Weapons charge up to increase crit chance, knockback and damage
-Each player has a max charge that can be increased throughout the game
+most projectiles and some items are still missing sprites.
+some Items are also not functioning fully as intended.
+The mod will usually work with multiplayer, but it's not designed for it.
+I am continually working on balancing the mod but almost everything is bound to change.
+
+With that being said, this mod includes:
+    25 new Accessories
+    43 new Weapons
+    9 new Ammos
+    & 5 other new Items
+
+Charge Weapons charge up to increase crit chance, knockback and damage.
+Each player has a max charge that can be increased throughout the game.
 Each weapon also has charge levels that grant bonus effects.
 
-For example, if the player has 1000 max charge,
-and a charge weapon with charge levels of 300,
-if the weapon is charged to 500,
-it will do 50% total damage
-and acitivate one charge effect
-because 300 goes into 500 only once.
+For example, if the player has 1000 max charge and a charge weapon with charge levels of 300,
+if the weapon is charged to 500 it will do 50% total damage
+and activate one charge effect because 300 goes into 500 only once.
 
 The charger class is a subclass of ranged weapon so effects will carry over
 
-We are still working on sprites for items, projectiles, debuffs, ect...
-There are also many balance issues/bugs that will be addressed when we can get to them.
-This mod is still in its earliest stages of development so consider that.
-The mod should work for the most part with multiplayer, but is not intended for it.
+If there are any Major glitches (or ideas) you notice in the mod you can comment in the steam page to let me know.
+There are a number of small bugs I am aware of, but here are the major ones to be aware of:
+    Tronbone drops from all npcs (enemies) instead of Skeletron.
+
+Plans for the future:
+I hope to make Charger Class an option for a full terraria playthrough that doesn't have to depend on other classes
+At the moment most of the pre hard mode content has been added and right now I'm working on spriting, effects. sounds, ect...
+After I feel that pre hard mode has been sufficiently polished I will move on to many of the hardmode items that I already have planned.

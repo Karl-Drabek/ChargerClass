@@ -14,7 +14,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
         }
             
         public override void SetDefaults() {
-            Item.width = 13;
+            Item.width = 20;
             Item.height = 18;
 
             Item.damage = 11;

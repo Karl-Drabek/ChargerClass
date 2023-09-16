@@ -53,6 +53,7 @@ namespace ExampleMod.Common.GlobalItems
 				break;
 			}
 		}
+
 		public override void SetDefaults(Item item) {
 			switch(item.type){
 				case ItemID.BottledWater:

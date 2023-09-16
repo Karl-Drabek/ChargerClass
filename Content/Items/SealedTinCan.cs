@@ -17,8 +17,8 @@ namespace ChargerClass.Content.Items
             Item.maxStack = Item.CommonMaxStack;
 			Item.consumable = true;
             Item.value = Item.sellPrice(0, 0, 0, 24);
-			Item.width = 24;
-			Item.height = 24;
+			Item.width = 22;
+			Item.height = 32;
 			Item.rare = ItemRarityID.Purple;
         }
         public override bool CanRightClick() => true;

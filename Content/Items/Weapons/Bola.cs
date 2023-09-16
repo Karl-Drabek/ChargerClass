@@ -15,8 +15,8 @@ namespace ChargerClass.Content.Items.Weapons
             }
 		public override void SafeSetDefaults()
 		{
-            Item.width = 24;
-            Item.height = 32;
+            Item.width = 32;
+            Item.height = 44;
             Item.scale = 1f;
             Item.rare = ItemRarityID.White;
 

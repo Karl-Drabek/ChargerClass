@@ -1,6 +1,6 @@
 explosions/fix Balloon
-new molotovmortar functionality
 tronbone still dropping from npcs
+Bagpipe blaster shoots at different levels
 
 Quality:
     Sounds
