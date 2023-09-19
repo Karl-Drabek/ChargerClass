@@ -1,6 +1,7 @@
-explosions/fix Balloon
-tronbone still dropping from npcs
-Bagpipe blaster shoots at different levels
+Tronbone still dropping from npcs
+weapon offset while rotating in not considered by lasers (preme Calamari)
+Update Tootips (including charge effects within ChargeWeapon)
+Spikyrock projectile
 
 Quality:
     Sounds
@@ -10,9 +11,4 @@ Quality:
     Lighting
 
 Long Term:
-    other ore receipies
     go over projectile code, IgnoreWater?
-    Finish Implimenting ChargeWeapons
-    Update Tootips (including charge effects within ChargeWeapon)
-    Add remaining items
-    Add Remaining Sprites

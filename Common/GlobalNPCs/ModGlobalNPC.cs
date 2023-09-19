@@ -44,7 +44,7 @@ namespace ChargerClass.Common.GlobalNPCs
 				case NPCID.SkeletronHead:
 					foreach (var rule in npcLoot.Get()) {
 						if (rule is ItemDropWithConditionRule IDWC){
-							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7));
+							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7)); //check if Onfailed roll doesnt work at this point
 						}
 					}
 					break;

@@ -58,13 +58,13 @@ namespace ChargerClass.Common.DrawLayers
 			Vector2 pos = (drawPosition + Main.screenPosition) / 16f;
 			Color color = Lighting.GetColor((int)pos.X, (int)pos.Y);
 
-			PreQueue(ref texture, ref drawPosition, ref rect, ref color, ref rotation, ref origin, ref scale, ref effects);
+			PreQueue(drawInfo.drawPlayer, ref texture, ref drawPosition, ref rect, ref color, ref rotation, ref origin, ref scale, ref effects);
 			drawInfo.DrawDataCache.Add(new DrawData(texture, drawPosition, rect, color, rotation, origin, scale, effects));
 		}
 
 		public virtual void PreDraw(ref PlayerDrawSet drawInfo) {}
 
-		public virtual void PreQueue(ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {}
+		public virtual void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {}
 
 	}
 }

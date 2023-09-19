@@ -49,6 +49,11 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             recipe.AddIngredient(ItemID.IronBar, 5);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
+            recipe = CreateRecipe();
+            recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Slingshots.WoodSlingshot>(), 1);
+            recipe.AddIngredient(ItemID.LeadBar, 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
 		}
 	}
 }

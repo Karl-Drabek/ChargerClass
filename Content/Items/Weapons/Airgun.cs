@@ -39,7 +39,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                  if(Main.rand.NextBool(chargeLevel * 5, 100)) chargerProj.CatchCritters = true;
+                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel * 5, 0, 100), 100)) chargerProj.CatchCritters = true;
             }
 	}
 }

@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-            if (Main.rand.NextBool(5 * chargeLevel, 100)) chargerProj.Frostburn = true;
+            if (Main.rand.NextBool(Utils.Clamp(5 * chargeLevel, 0, 100), 100)) chargerProj.Frostburn = true;
         }
 
 		public override Vector2? HoldoutOffset() {

@@ -36,7 +36,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-            if(Main.rand.NextBool(10 * chargeLevel, 100)){
+            if(Main.rand.NextBool(Utils.Clamp(10 * chargeLevel, 0, 100), 100)){
                 type = ModContent.ProjectileType<ExplodingRockProjectile>();
             }
         }

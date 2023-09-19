@@ -36,7 +36,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(15 * chargeLevel, 100);
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(15 * chargeLevel, 0, 100), 100);
 
             public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 

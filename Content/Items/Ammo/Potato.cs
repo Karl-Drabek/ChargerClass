@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Tiles;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo
 {

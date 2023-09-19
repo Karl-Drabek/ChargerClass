@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer) {
-                  chargerProj.TinCanChance = 10 * chargeLevel;
+                  chargerProj.TinCanChance = Utils.Clamp(10 * chargeLevel, 0, 100);
             }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

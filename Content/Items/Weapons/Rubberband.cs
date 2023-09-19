@@ -39,7 +39,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-                  if(Main.rand.NextBool(chargeLevel, 100)){
+                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel, 0, 100), 100)){
                         player.Hurt(PlayerDeathReason.ByPlayerItem(player.whoAmI, Item), damage, player.direction);
                         return false;
                   }

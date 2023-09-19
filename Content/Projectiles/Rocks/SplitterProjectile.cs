@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Projectiles.Rocks
 {
@@ -20,7 +21,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 20;
             Projectile.alpha = 0;

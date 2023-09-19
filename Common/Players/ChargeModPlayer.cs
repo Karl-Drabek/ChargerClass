@@ -87,7 +87,7 @@ namespace ChargerClass.Common.Players
 		}
 
 		public void ModifyChargeLevel(ref int chargeLevel, int crit){
-			if((SecretStimulants || UltimateChargingGear) && Main.rand.NextBool(crit, 100)){
+			if((SecretStimulants || UltimateChargingGear) && Main.rand.NextBool(Utils.Clamp(crit, 0, 100), 100)){
 				chargeLevel++;
 			}
 		}

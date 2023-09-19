@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-            if (Main.rand.NextBool(15 * chargeLevel, 100)) chargerProj.Confused = true;
+            if (Main.rand.NextBool(Utils.Clamp(15 * chargeLevel, 0, 100), 100)) chargerProj.Confused = true;
         }
 
 		public override Vector2? HoldoutOffset() {

@@ -513,6 +513,8 @@ Mods: {
 			HotPotatoProjectile.DisplayName: Hot Potato Projectile
 			HandCannonBombProjectile.DisplayName: Hand Cannon Bomb Projectile
 			ConsumingLenseProjectile.DisplayName: Consuming Lense Projectile
+			ConsumingLensLaser.DisplayName: Consuming Lens Laser
+			PremeCalamariLaser.DisplayName: Preme Calamari Laser
 		}
 
 		Tiles: {

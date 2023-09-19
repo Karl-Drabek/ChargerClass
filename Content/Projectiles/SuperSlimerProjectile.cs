@@ -7,6 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Buffs;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Projectiles
 {
@@ -20,7 +21,7 @@ namespace ChargerClass.Content.Projectiles
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 600;
             Projectile.alpha = 0;

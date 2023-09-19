@@ -40,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   if(ShotsRemaining != chargeLevel) return true;
-                  StatModifier modifier = player.GetTotalDamage(ModContent.GetInstance<ChargerDamageClass>()); //chargedamage class damage modifier
+                  StatModifier modifier = player.GetTotalDamage(ChargerDamageClass.Instance); //chargedamage class damage modifier
                   player.GetModPlayer<ChargeModPlayer>().ModifyWeaponDamage(Item, ref modifier); //I'm not using CombinedHooks/Item to avoid scaling with charge percent
                   int count = (int)(Main.rand.NextFloat(chargeLevel * 2, chargeLevel * 3) + 0.5f);
                   for(int i = 0; i < count; i++){

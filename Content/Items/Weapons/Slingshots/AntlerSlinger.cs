@@ -29,7 +29,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.useTime = 23;
 
             chargeAmount = 275;
-            Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
+            Item.DamageType = ChargerDamageClass.Instance;
             Item.damage = 73;
             Item.crit = 3;
             Item.knockBack = 3f;
@@ -42,7 +42,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
 
                   int projectile = ModContent.ProjectileType<IceSpikeProjectile>();
-                  StatModifier modifier = player.GetTotalDamage(ModContent.GetInstance<ChargerDamageClass>()); //chargedamage class damage modifier
+                  StatModifier modifier = player.GetTotalDamage(ChargerDamageClass.Instance); //chargedamage class damage modifier
                   player.GetModPlayer<ChargeModPlayer>().ModifyWeaponDamage(Item, ref modifier); //I'm not using CombinedHooks/Item to avoid scaling with charge percent            
                   for(int i = 0; i < chargeLevel; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position,

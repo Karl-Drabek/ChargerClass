@@ -6,8 +6,8 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-//Todo use ai[] to subtract velocity from position so the projectile doesnt stay in the middle of the NPCs.
-//also incorperate rotation and direction to calculate the offset.
+using ChargerClass.Content.DamageClasses;
+//Todo have the projectile stay where it hit the npc with correct orientation
 namespace ChargerClass.Content.Projectiles.Rocks
 {
 	public class SpikyRockProjectile : ModProjectile
@@ -24,7 +24,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 2;
             Projectile.timeLeft = 600;
             Projectile.alpha = 0;
@@ -43,14 +43,14 @@ namespace ChargerClass.Content.Projectiles.Rocks
         public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone){
             Projectile.position -= Projectile.velocity;
             Projectile.aiStyle = 0; //remove gravity
-            _target = target; 
-            _offset = Projectile.position - target.position;
+            _target = target;
+            _offset = Projectile.Center - _target.Center;
             _damage = hit.Damage;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = 1200;
             Projectile.tileCollide = false;
         }
 
-        public override bool? CanHitNPC (NPC target) => _target is null; //don't hit a NPC after locking on
+        public override bool? CanHitNPC (NPC target) => _target is null; //don't hit an NPC after locking on
 
         //stand in for ai[0]
         private float _timer{
@@ -71,8 +71,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
                 _target.SimpleStrikeNPC(_damage / 100, _offset.X > 0 ? 0 : 1);
                 _timer = _damage % 100;
             }
-
-            Projectile.position = _target.position + _offset; //recalulate the projectile's position based on where it orignaly hit the NPC
+            Projectile.Center = _target.Center + _offset;
         }
 
         public override void Kill(int timeLeft) {

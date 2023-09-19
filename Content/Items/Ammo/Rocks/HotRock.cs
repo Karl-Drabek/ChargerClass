@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Rocks
 {
@@ -20,7 +21,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
             Item.height = 36;
 
             Item.damage = 7;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = ChargerDamageClass.Instance;
 
             Item.maxStack = 999;
             Item.consumable = true;

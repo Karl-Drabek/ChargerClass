@@ -42,8 +42,15 @@ namespace ChargerClass.Content.Items.Weapons
 
             public override void AddRecipes()
 		{
-                  Recipe recipe = CreateRecipe();
+                  Recipe recipe = CreateRecipe(8);
                   recipe.AddIngredient(ItemID.IronBar, 4);
+                  recipe.AddIngredient(ItemID.Wood, 12);
+                  recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Blowers.Balloon>(), 1);
+                  recipe.AddTile(TileID.Anvils);
+                  recipe.Register();
+
+                  recipe = CreateRecipe(8);
+                  recipe.AddIngredient(ItemID.LeadBar, 4);
                   recipe.AddIngredient(ItemID.Wood, 12);
                   recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Blowers.Balloon>(), 1);
                   recipe.AddTile(TileID.Anvils);

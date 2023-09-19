@@ -36,7 +36,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-            if(Main.rand.NextBool(13 * chargeLevel, 100)) type = ModContent.ProjectileType<SpikyRockProjectile>();
+            if(Main.rand.NextBool(Utils.Clamp(13 * chargeLevel, 0, 100), 100)) type = ModContent.ProjectileType<SpikyRockProjectile>();
         }
 
 		public override Vector2? HoldoutOffset() {

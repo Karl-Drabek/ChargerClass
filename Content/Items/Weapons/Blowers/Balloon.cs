@@ -40,8 +40,8 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                  proj.timeLeft += chargeLevel * 15;
-                  if((proj.timeLeft > 15) && (Main.rand.NextBool((int)proj.timeLeft, 2500))){
+                  proj.timeLeft += chargeLevel * 30;
+                  if((proj.timeLeft > 15) && (Main.rand.NextBool(Utils.Clamp((int)proj.timeLeft, 0, 2500), 2500))){
                         proj.hostile = true;
                         proj.Kill();
                   }

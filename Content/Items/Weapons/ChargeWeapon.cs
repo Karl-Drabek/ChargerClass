@@ -28,7 +28,7 @@ namespace ChargerClass.Content.Items.Weapons
 
         public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
 
-        private void GetChargeLevel() { chargeLevel = (int)(charge / chargeAmount); }
+        protected int GetChargeLevel() => chargeLevel = (int)(charge / chargeAmount);
 
         public sealed override void SetDefaults() {
             blowWeapon = false;
@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.useAnimation = 10;
             Item.useTime = 10;
             SafeSetDefaults(); //allows members to set defualts here
-            Item.DamageType = ModContent.GetInstance<ChargerDamageClass>();
+            Item.DamageType = ChargerDamageClass.Instance;
             Item.useStyle = ItemUseStyleID.Shoot;
         }
 
@@ -58,7 +58,10 @@ namespace ChargerClass.Content.Items.Weapons
                 }
                 else if(!Main.mouseLeft) {//if player releases fire button
                     if(charge == 0) return; //exit if not charging
-                    else if((charge > chargeAmount / 4) && (player.itemAnimation == player.itemAnimationMax - 1)) Shoot(player, modPlayer);//shoot the weapon if on first frame and greater than min charge
+                    else if(player.itemAnimation == player.itemAnimationMax - 1){
+                        if(SafeCanShoot(player) && (charge > chargeAmount / 4)) Shoot(player, modPlayer);//shoot the weapon if on first frame and greater than min charge
+                        else player.itemAnimation = 0;
+                    } 
                     charge = 0; //resets the charge after shooting or if not greater than minimum charge. Then let animation play out.
                 }
                 else{ //it is assumed the player is charging the weapon
@@ -73,6 +76,7 @@ namespace ChargerClass.Content.Items.Weapons
                     AnimatePlayer(player);
                 }
             }else if(player.ItemAnimationActive){ //finish shooting bullets if shots remaining
+                ItemAnimation(player);
                 if(ShotsRemaining > 0){
                     player.itemAnimation = player.itemAnimationMax - 2;
                     AnimatePlayer(player);
@@ -90,7 +94,7 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public void AnimatePlayer(Player player){
-            player.direction = Main.MouseWorld.X > player.Center.X ? 1 : -1; //Orient player towards mouse.
+            player.ChangeDir(Main.MouseWorld.X > player.Center.X ? 1 : -1); //Orient player towards mouse.
             player.itemRotation = (float)Math.Atan2( //Point item towards curser with orientation (not my code).
                 (Main.MouseWorld.Y - player.Center.Y) * player.direction, //numerator for arctan
                 (Main.MouseWorld.X - player.Center.X) * player.direction); //Denominator for arctan
@@ -143,7 +147,7 @@ namespace ChargerClass.Content.Items.Weapons
                 float ai0 , ai1, ai2;
                 ai0 = ai1 = ai2 = 0f;
                 ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
-                Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
+                //Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
                 Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
                 InternalPostProjectileEffects(proj, modPlayer); //allow children to apply effects to projectiles.
             }
@@ -201,9 +205,10 @@ namespace ChargerClass.Content.Items.Weapons
             _ => "Ginormous"
         };
 
+        public virtual void ItemAnimation(Player player) {}
         public virtual void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {}
         public virtual void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){}
-
+        public virtual bool SafeCanShoot(Player player) => true;
         public virtual void SafeModifyWeaponCrit(Player player, ref float crit) {}
         public virtual void SafeModifyWeaponDamage(Player player, ref StatModifier damage) {}
         public virtual void SafeModifyWeaponKnockback(Player player, ref StatModifier knockback) {}

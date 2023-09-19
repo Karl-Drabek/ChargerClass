@@ -43,7 +43,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   return false;
             }
 
-            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(10 * chargeLevel, 100);
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(10 * chargeLevel, 0, 100), 100);
 
 		public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 	}

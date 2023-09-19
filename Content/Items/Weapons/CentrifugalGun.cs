@@ -37,8 +37,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.useAmmo = AmmoID.Bullet;
 
             ticsPerShot = 5;
-
-            Item.noMelee = true;
+            
             Item.noUseGraphic = true;
         }
 

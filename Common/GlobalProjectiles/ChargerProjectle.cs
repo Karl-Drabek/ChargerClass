@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Buffs;
 using ChargerClass.Content.Items;
+using ChargerClass.Common.Extensions;
 
 namespace ChargerClass.Common.GlobalProjectiles
 {
@@ -103,35 +104,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 		}
 
 		public override void Kill(Projectile projectile, int timeLeft) {
-			if(ExplosionSize > 0){
-				//I think by setting these to less than 0 it will have no problem hitting as many entities as it would like when it is resized
-				projectile.maxPenetrate = -1;
-				projectile.penetrate = -1;
-				Vector2 oldSize = projectile.Size;
-
-				//I'm not totally sure why this is necessary but it was in the example mod and I think makes the damage more centered
-				projectile.position = projectile.Center; //Center the projectile's hitbox
-				projectile.Size += new Vector2(ExplosionSize); //resize the projectile
-				projectile.Center = projectile.position; //offset the projectile again
-
-            
-				projectile.tileCollide = false;
-				projectile.velocity *= 0.01f;//seems like velocity should just be 0 but this was also in the example mod so I will trust it
-
-				projectile.Damage(); //damage the entities
-				projectile.scale = 0.01f; //Once again I don't know why this is here but it was in example mod
-
-				projectile.position = projectile.Center; //same as before but returns the projectile to its old size.
-				projectile.Size = oldSize;
-				projectile.Center = projectile.position;
-				//It dies shortly after so I don't know why this is neccessary except that maybe it shows for one more frame.
-				for (int i = 0; i < 350; i++) {
-					Dust dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, 130, 0, 0, 100, Color.Red, 0.8f);
-					dust.noGravity = true;
-					dust.velocity *= 2f;
-					dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, 130, 0f, 0f, 100, Color.Red, 0.5f);
-				}
-			}
+			if(ExplosionSize > 0) projectile.Explode(ExplosionSize, ExplosionSize);
         }
 
 		public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers hitModifiers){
