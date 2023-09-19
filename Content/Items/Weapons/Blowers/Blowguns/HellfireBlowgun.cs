@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons.Blowers
+namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
 {
 	public class HellfireBlowgun : ChargeWeapon
 	{

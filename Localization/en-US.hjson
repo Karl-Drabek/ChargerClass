@@ -480,6 +480,56 @@ Mods: {
 				DisplayName: Electrudium Bar
 				Tooltip: ""
 			}
+
+			AdamantiteBlowgun: {
+				DisplayName: Adamantite Blowgun
+				Tooltip: ""
+			}
+
+			BlowgunRevolver: {
+				DisplayName: Blowgun Revolver
+				Tooltip: ""
+			}
+
+			ChlorophyteBlowgun: {
+				DisplayName: Chlorophyte Blowgun
+				Tooltip: ""
+			}
+
+			CobaltBlowgun: {
+				DisplayName: Cobalt Blowgun
+				Tooltip: ""
+			}
+
+			HallowedBlowgun: {
+				DisplayName: Hallowed Blowgun
+				Tooltip: ""
+			}
+
+			MythrilBlowgun: {
+				DisplayName: Mythril Blowgun
+				Tooltip: ""
+			}
+
+			OrichalcumBlowgun: {
+				DisplayName: Orichalcum Blowgun
+				Tooltip: ""
+			}
+
+			PalladiumBlowgun: {
+				DisplayName: Palladium Blowgun
+				Tooltip: ""
+			}
+
+			PhantomBlowgun: {
+				DisplayName: Phantom Blowgun
+				Tooltip: ""
+			}
+
+			TitaniumBlowgun: {
+				DisplayName: Titanium Blowgun
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {

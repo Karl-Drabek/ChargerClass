@@ -16,6 +16,7 @@ namespace ChargerClass.Common.GlobalNPCs
 {
 	public class ModGlobalNPC : GlobalNPC
 	{
+		public static int count = 0;
 		public override void ModifyGlobalLoot(GlobalLoot globalLoot){
 			globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<Charge>(), 3));
 			globalLoot.Add(ItemDropRule.ByCondition(new BlueChargeDropCondition(), ModContent.ItemType<BlueCharge>(), 3));
@@ -43,8 +44,9 @@ namespace ChargerClass.Common.GlobalNPCs
 					break;
 				case NPCID.SkeletronHead:
 					foreach (var rule in npcLoot.Get()) {
-						if (rule is ItemDropWithConditionRule IDWC){
-							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7)); //check if Onfailed roll doesnt work at this point
+						if (rule is ItemDropWithConditionRule IDWC && IDWC.itemId == ItemID.SkeletronMask){// && IDWC.ChainedRules[0].RuleToChain is CommonDrop commonDrop && commonDrop.itemId == ItemID.SkeletronMask){
+							IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7));
+							count++;
 						}
 					}
 					break;

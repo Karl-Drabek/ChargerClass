@@ -26,7 +26,7 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(0, 0, 0, 40);
-            Item.useTime = 46;
+            Item.useTime = 42;
 
             Item.damage = 5;
             Item.crit = 0;
@@ -50,7 +50,7 @@ namespace ChargerClass.Content.Items.Weapons
             }
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                 modPlayer.Player.itemAnimation = proj.timeLeft = Item.useAnimation = 50 * chargeLevel;
+                 modPlayer.Player.itemAnimation = proj.timeLeft = Item.useAnimation = 20 * chargeLevel;
             }
 
 		public override void AddRecipes()

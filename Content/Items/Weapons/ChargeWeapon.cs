@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Common.GlobalNPCs;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -49,6 +50,7 @@ namespace ChargerClass.Content.Items.Weapons
         
         public override void HoldItem(Player player){
             if(player.whoAmI != Main.myPlayer) return;
+            Main.NewText(ModGlobalNPC.count);
             if(player.itemAnimation == player.itemAnimationMax - 1){ //use style for some reason does not update charge. really confusing stuff
                 ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
 

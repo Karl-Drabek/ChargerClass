@@ -1,7 +1,4 @@
-Tronbone still dropping from npcs
-weapon offset while rotating in not considered by lasers (preme Calamari)
-Update Tootips (including charge effects within ChargeWeapon)
-Spikyrock projectile
+add accesory recipes
 
 Quality:
     Sounds
@@ -12,3 +9,7 @@ Quality:
 
 Long Term:
     go over projectile code, IgnoreWater?
+    Spikyrock projectile
+    weapon offset while rotating in not considered by lasers (preme Calamari)
+    Spikyrock projectile
+    Update Tootips (including charge effects within ChargeWeapon)

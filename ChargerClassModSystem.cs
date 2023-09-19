@@ -21,6 +21,7 @@ using Terraria.UI.Gamepad;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
+using ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 using System;
 
 //TODO finish other chest loot
@@ -33,7 +34,23 @@ namespace ChargerClass
 
         private UserInterface _chargeMeter;
 
+        public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns;
+
         public static ModKeybind InhalerKeybind { get; private set; }
+
+		public override void AddRecipeGroups() {
+			// Language.GetTextValue("LegacyMisc.37") is the word "Any" in English, and the corresponding word in other languages
+			RecipeGroup copperBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperBar)}", ItemID.CopperBar, ItemID.TinBar);
+			CopperBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperBar), copperBarRecipeGroup);
+			RecipeGroup silverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",ItemID.SilverBar, ItemID.TungstenBar);
+			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
+            RecipeGroup hardmodeOreBlowguns = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<TitaniumBlowgun>())}",
+				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<AdamantiteBlowgun>(),
+                ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<OrichalcumBlowgun>(),
+                ModContent.ItemType<CobaltBlowgun>(), ModContent.ItemType<PalladiumBlowgun>());
+            HardmodeOreBlowguns = RecipeGroup.RegisterGroup("ChargerClass:TitaniumBlowgun", hardmodeOreBlowguns);
+
+		}
 
         public override void PostWorldGen() {
             int GoldChestItemCount = 0;

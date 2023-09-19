@@ -49,14 +49,8 @@ namespace ChargerClass.Content.Items.Weapons
             public override void AddRecipes()
 		{
                   Recipe recipe = CreateRecipe();
-                  recipe.AddIngredient(ItemID.TinBar, 6);
-                  recipe.AddIngredient(ItemID.TungstenBar, 4);
-                  recipe.AddTile(TileID.Anvils);
-                  recipe.Register();
-                  
-                  recipe = CreateRecipe();
-                  recipe.AddIngredient(ItemID.CopperBar, 6);
-                  recipe.AddIngredient(ItemID.SilverBar, 4);
+                  recipe.AddRecipeGroup(ChargerClassModSystem.CopperBarRecipeGroup, 6);
+                  recipe.AddRecipeGroup(ChargerClassModSystem.SilverBarRecipeGroup, 4);
                   recipe.AddTile(TileID.Anvils);
                   recipe.Register();
 		}
