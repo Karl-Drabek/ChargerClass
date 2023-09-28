@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using ChargerClass.Content;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
+using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -49,8 +50,8 @@ namespace ChargerClass.Content.Items.Weapons
             public override void AddRecipes()
 		{
                   Recipe recipe = CreateRecipe();
-                  recipe.AddRecipeGroup(ChargerClassModSystem.CopperBarRecipeGroup, 6);
-                  recipe.AddRecipeGroup(ChargerClassModSystem.SilverBarRecipeGroup, 4);
+                  recipe.AddRecipeGroup(ChargerClassGeneralSystem.CopperBarRecipeGroup, 6);
+                  recipe.AddRecipeGroup(ChargerClassGeneralSystem.SilverBarRecipeGroup, 4);
                   recipe.AddTile(TileID.Anvils);
                   recipe.Register();
 		}

@@ -9,6 +9,7 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 using ChargerClass.Content.Buffs;
 using ChargerClass.Content.Items.Weapons;
+using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Common.Players
 {
@@ -19,7 +20,7 @@ namespace ChargerClass.Common.Players
 					AAABattery, Capacitor, CarBattery, OverCharger, PowerBank,
 					Charger, ChargeRespository, ExtensionCord, LightningRod, Generator,
 					GripTape, LeatherGlove, ShootingGlove, RedDot, TrackingSpecs, SecretStimulants, UltimateChargingGear;
-		public bool LightHeaded;
+		public bool LightHeaded, RadiationSickness;
 		private int overChargeCount;  
 		private int overChargeTimer = 0;
 
@@ -135,7 +136,7 @@ namespace ChargerClass.Common.Players
 		}
 
 		public override void ProcessTriggers(TriggersSet triggersSet) {
-			if (ChargerClassModSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || BreathingAid) && !LightHeaded) {
+			if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || BreathingAid) && !LightHeaded) {
 				Player.AddBuff(ModContent.BuffType<LightHeaded>() , 1200); //debuff to stop the player from using the ability for a 20 seconds.
 				weapon.bonusCharge += weapon.chargeAmount;
 			}
@@ -147,6 +148,14 @@ namespace ChargerClass.Common.Players
 			Charger = ChargeRespository = ExtensionCord = LightningRod = Generator =
 			GripTape = LeatherGlove = ShootingGlove = RedDot = TrackingSpecs = SecretStimulants = UltimateChargingGear = false; //reset accessory effects.
 			LightHeaded = false; //reset buff effects.
+		}
+
+		public override void UpdateBadLifeRegen() {
+			if (RadiationSickness) {
+				if (Player.lifeRegen > 0) Player.lifeRegen = 0;
+				Player.lifeRegenTime = 0;
+				//Player.lifeRegen -= 8;
+			}
 		}
 	}
 }

@@ -20,13 +20,13 @@ namespace ChargerClass.Content.Items.Placeable
             Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ElectrudiumBar>());
             Item.width = 8;
             Item.height = 7;
-            Item.value = Item.sellPrice(0, 0, 42, 0);
+            Item.value = Item.sellPrice(0, 0, 20, 0);
             Item.rare = ItemRarityID.Green;
         }
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.ElectrudiumOre>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<ElectrudiumOre>(), 4);
             recipe.AddTile(TileID.Furnaces);
             recipe.Register();
         }

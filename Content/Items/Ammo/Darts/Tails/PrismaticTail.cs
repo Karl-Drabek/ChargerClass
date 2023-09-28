@@ -1,0 +1,32 @@
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ChargerClass.Content.Projectiles; 
+using Terraria.DataStructures;
+using ChargerClass.Content.Items;
+using ChargerClass.Content.DamageClasses;
+
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+{
+	public class PrismaticTail : DartComponent
+	{
+        public override void SafeSetDefaults() {
+            Item.width = 10;
+            Item.height = 10;
+
+            Item.value = Item.sellPrice(0, 0, 0, 4);
+            Item.rare = ItemRarityID.Orange;
+            
+            Item.shootSpeed = 4f;
+        }
+
+        public override void AddRecipes() {
+            Recipe recipe = CreateRecipe(25);
+            recipe.AddIngredient(ItemID.Geode);
+            recipe.AddIngredient(ItemID.CrystalShard, 5);
+            recipe.AddIngredient(ModContent.ItemType<FeatheredTail>(), 25);
+            recipe.Register();
+        }
+    }
+}

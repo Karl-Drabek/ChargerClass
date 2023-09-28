@@ -19,7 +19,7 @@ namespace ChargerClass.Content.Items.Placeable
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ElectrudiumOre>());
 			Item.width = 12;
 			Item.height = 12;
-			Item.value = Item.sellPrice(0, 0, 42, 0);
+			Item.value = Item.sellPrice(0, 0, 5, 0);
 			Item.rare = ItemRarityID.Green;
 		}
 	}

@@ -23,32 +23,37 @@ using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 using System;
+using ChargerClass.Content.Items.Ammo.Darts.Payloads;
 
 //TODO finish other chest loot
 
-namespace ChargerClass
+namespace ChargerClass.Common.ModSystems
 {
-    class ChargerClassModSystem : ModSystem
-    {
-        internal ChargeMeter ChargeMeter;
-
-        private UserInterface _chargeMeter;
-
-        public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns;
+    class ChargerClassGeneralSystem : ModSystem
+    {   
+        public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns, IchorCannisters, Rockets;
+        public static ChargerClassGeneralSystem Instance = ModContent.GetInstance<ChargerClassGeneralSystem>();
 
         public static ModKeybind InhalerKeybind { get; private set; }
+		public static string IchorCannisterGroup { get; internal set; }
 
 		public override void AddRecipeGroups() {
 			// Language.GetTextValue("LegacyMisc.37") is the word "Any" in English, and the corresponding word in other languages
 			RecipeGroup copperBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperBar)}", ItemID.CopperBar, ItemID.TinBar);
 			CopperBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperBar), copperBarRecipeGroup);
+            RecipeGroup rockets = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.RocketI)}", ItemID.RocketI, ItemID.RocketII, ItemID.RocketIII, ItemID.RocketIV);
+			Rockets = RecipeGroup.RegisterGroup(nameof(ItemID.RocketI), rockets);
 			RecipeGroup silverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",ItemID.SilverBar, ItemID.TungstenBar);
 			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
             RecipeGroup hardmodeOreBlowguns = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<TitaniumBlowgun>())}",
 				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<AdamantiteBlowgun>(),
                 ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<OrichalcumBlowgun>(),
                 ModContent.ItemType<CobaltBlowgun>(), ModContent.ItemType<PalladiumBlowgun>());
-            HardmodeOreBlowguns = RecipeGroup.RegisterGroup("ChargerClass:TitaniumBlowgun", hardmodeOreBlowguns);
+            HardmodeOreBlowguns = RecipeGroup.RegisterGroup("ChargerClass:HardmodeBlowgunGroup", hardmodeOreBlowguns);
+            RecipeGroup ichorCannisters = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<IchorCannister>())}",
+				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<IchorCannister>(),
+                ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<CursedCannister>());
+            IchorCannisters = RecipeGroup.RegisterGroup("ChargerClass:IchorCannisters", ichorCannisters);
 
 		}
 
@@ -85,42 +90,17 @@ namespace ChargerClass
 			}
         }
 
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                ChargeMeter = new ChargeMeter();
-                ChargeMeter.Activate();
-                _chargeMeter = new UserInterface();
-                _chargeMeter.SetState(ChargeMeter);
-            }
+        public override void PostSetupContent() {
+			ItemID.Sets.ExtractinatorMode[ItemID.Frog] = ItemID.Frog;
+            ItemID.Sets.ExtractinatorMode[ItemID.GoldFrog] = ItemID.GoldFrog;
+		}
+
+        public override void Load(){
             InhalerKeybind = KeybindLoader.RegisterKeybind(Mod, "InhalerKeybind", "P");
         }
 
-        public override void Unload() {
+        public override void Unload(){
 			InhalerKeybind = null;
 		}
-
-        public override void UpdateUI(GameTime gameTime)
-        {   
-            _chargeMeter?.Update(gameTime);
-        }
-
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex != -1)
-            {
-                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "ChargerClass: Displays charge for charged weapons",
-                    delegate
-                    {
-                        _chargeMeter.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
-        }
 	}
 }

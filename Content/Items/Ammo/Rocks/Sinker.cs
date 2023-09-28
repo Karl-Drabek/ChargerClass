@@ -34,7 +34,7 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(1);
-            recipe.AddIngredient(ItemID.LeadBar, 2);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

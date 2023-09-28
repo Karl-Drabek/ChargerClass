@@ -8,6 +8,7 @@ Quality:
     Lighting
 
 Long Term:
+    update chargeMeter ui
     go over projectile code, IgnoreWater?
     Spikyrock projectile
     weapon offset while rotating in not considered by lasers (preme Calamari)

@@ -33,7 +33,7 @@ namespace ChargerClass.Content.Items.Ammo
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(10);
-            recipe.AddIngredient(ItemID.LeadBar, 100);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 100);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

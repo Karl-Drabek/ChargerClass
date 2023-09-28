@@ -14,8 +14,8 @@ namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
 
 		public override void SafeSetDefaults()
 		{
-                  Item.width = 86;
-                  Item.height = 20;
+                  Item.width = 88;
+                  Item.height = 22;
                   Item.scale = 1f;
                   Item.rare = ItemRarityID.Pink;
 

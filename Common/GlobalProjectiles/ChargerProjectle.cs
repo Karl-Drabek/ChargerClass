@@ -104,6 +104,8 @@ namespace ChargerClass.Common.GlobalProjectiles
 		}
 
 		public override void Kill(Projectile projectile, int timeLeft) {
+			if(projectile.type == ProjectileID.MiniNukeRocketI || projectile.type == ProjectileID.MiniNukeRocketII)
+				Item.NewItem(new EntitySource_Parent(projectile), projectile.position, projectile.width, projectile.height, ModContent.ItemType<RadioactiveDebris>());
 			if(ExplosionSize > 0) projectile.Explode(ExplosionSize, ExplosionSize);
         }
 

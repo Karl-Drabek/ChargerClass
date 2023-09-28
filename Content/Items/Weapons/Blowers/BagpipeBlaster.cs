@@ -39,7 +39,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   Vector2 dir = velocity.RotatedBy(MathHelper.ToRadians(90));
                   dir.Normalize();
-                  position += (float)Main.rand.NextDouble() * 25 * dir * player.direction;
+                  position += (float)Main.rand.NextDouble() * 18 * dir * player.direction;
             }
 
 		public override void AddRecipes()

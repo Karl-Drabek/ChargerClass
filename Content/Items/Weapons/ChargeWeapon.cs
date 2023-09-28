@@ -10,6 +10,7 @@ using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.GlobalNPCs;
+using ChargerClass.Common.Configs;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -50,7 +51,6 @@ namespace ChargerClass.Content.Items.Weapons
         
         public override void HoldItem(Player player){
             if(player.whoAmI != Main.myPlayer) return;
-            Main.NewText(ModGlobalNPC.count);
             if(player.itemAnimation == player.itemAnimationMax - 1){ //use style for some reason does not update charge. really confusing stuff
                 ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
 
@@ -143,13 +143,16 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         private void ChargedShoot(Player player, ChargeModPlayer modPlayer, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            Vector2 muzzleOffset = Vector2.Normalize(velocity);
+            ModifyMuzzleOffset(muzzleOffset);
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0)) position += muzzleOffset;
             ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback); //modify stats for the weapon
             if(Shoot(player, source, position, velocity, type, damage, knockback)){
                 int owner = -1;
                 float ai0 , ai1, ai2;
                 ai0 = ai1 = ai2 = 0f;
                 ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
-                //Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
+                if(ChargerClassConfig.Instance.ShotInfoToggle) Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
                 Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
                 InternalPostProjectileEffects(proj, modPlayer); //allow children to apply effects to projectiles.
             }
@@ -208,6 +211,7 @@ namespace ChargerClass.Content.Items.Weapons
         };
 
         public virtual void ItemAnimation(Player player) {}
+        public virtual void ModifyMuzzleOffset(Vector2 muzzleOffset) {}
         public virtual void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {}
         public virtual void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){}
         public virtual bool SafeCanShoot(Player player) => true;

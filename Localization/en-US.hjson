@@ -1,19 +1,9 @@
 Mods: {
 	ChargerClass: {
-		CommonItemTooltip: {
-			ChargeEffect: Charge effect: {0}
-			#{$CommonItemTooltip.ChargeEffect}
-			# It is recommended to make some common tooltips for custom damage classes
-			# You can use them by referencing {$CommonItemTooltip.PercentIncreasedExampleDamage}
-			# Other mods can use them by referencing {$ExampleMod.CommonItemTooltip.PercentIncreasedExampleDamage}
-			PercentIncreasedExampleDamage: "{0}% increased example damage"
-			PercentIncreasedExampleCritChance: "{0}% increased example critical strike chance"
-			PercentIncreasedExampleDamageCritChance: "{0}% increased example damage and critical strike chance"
-			PercentIncreasedExampleSpeed: "{0}% increased example attack speed"
-		}
-
+		CommonItemTooltip.ChargeEffect: Charge effect: "{0}"
 		Keybinds.InhalerKeybind.DisplayName: Inhaler Keybind
 		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
+		HardmodeBlowgunGroup: Hardmode Blowgun
 
 		Buffs: {
 			LightHeaded: {
@@ -35,6 +25,13 @@ Mods: {
 				DisplayName: Slimed
 				Description: Mods.ChargerClass.Buffs.Slimed.Description
 			}
+		}
+
+		DartNameSection: {
+			DartCannister: ""
+			FeatheredTail: ""
+			HypodermicNeedle: Hypodermic Needle
+			UnholyTail: "Unholy "
 		}
 
 		Items: {
@@ -530,6 +527,36 @@ Mods: {
 				DisplayName: Titanium Blowgun
 				Tooltip: ""
 			}
+
+			CustomDart: {
+				DisplayName: Custom Dart
+				Tooltip: Where did you get this?
+			}
+
+			DartCannister: {
+				DisplayName: Dart Cannister
+				Tooltip: ""
+			}
+
+			FeatheredTail: {
+				DisplayName: Feathered Tail
+				Tooltip: ""
+			}
+
+			HypodermicNeedle: {
+				DisplayName: Hypodermic Needle
+				Tooltip: ""
+			}
+
+			UnholyTail: {
+				DisplayName: Unholy Tail
+				Tooltip: ""
+			}
+
+			DartAssemblyStation: {
+				DisplayName: Dart Assembly Station
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -565,13 +592,27 @@ Mods: {
 			ConsumingLenseProjectile.DisplayName: Consuming Lense Projectile
 			ConsumingLensLaser.DisplayName: Consuming Lens Laser
 			PremeCalamariLaser.DisplayName: Preme Calamari Laser
+			CustomDartProjectile.DisplayName: Custom Dart Projectile
 		}
 
 		Tiles: {
 			PotatoPlant.MapEntry: Potato Plant
 			ElectrudiumOre.MapEntry: Electrudium Ore
+			DartAssemblyStationTile.MapEntry: Dart Assembly Station Tile
 		}
 
 		WorldGen.ElectrudiumOrePassMessage: Charging up Electrudium Ore
+
+		Configs: {
+			ChargerClassConfig: {
+				DisplayName: Charger Class Config
+				Headers.Info: Info Header
+
+				ShotInfoToggle: {
+					Label: Shot Info Toggle
+					Tooltip: ""
+				}
+			}
+		}
 	}
 }

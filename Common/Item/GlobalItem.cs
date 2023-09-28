@@ -7,8 +7,9 @@ using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Weapons.Blowers;
+using ChargerClass.Content.Items;
 
-namespace ExampleMod.Common.GlobalItems
+namespace ChargerClass.Common.GlobalItems
 {
 	public class BossBagLoot : GlobalItem
 	{
@@ -50,10 +51,22 @@ namespace ExampleMod.Common.GlobalItems
 						}
 					}
 					break;
-				break;
+				default:
+					break;
 			}
 		}
 
+		public override void ExtractinatorUse(int extractType, int extractinatorBlockType, ref int resultType, ref int resultStack) {
+			if((extractType != ItemID.GoldFrog) && (extractType != ItemID.Frog)) return;
+
+			if (extractinatorBlockType == TileID.ChlorophyteExtractinator){
+				resultType = ModContent.ItemType<DartFrogExtract>();
+				resultStack = (extractType == ItemID.GoldFrog) ? (int)(Main.rand.NextDouble() * 5) : 1;
+			}else{
+				resultType = ItemID.FrogLeg;
+				resultStack = 1;
+			}
+		}
 		public override void SetDefaults(Item item) {
 			switch(item.type){
 				case ItemID.BottledWater:

@@ -3,6 +3,7 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
 {
@@ -39,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
 		public override void AddRecipes()
 		{
                   Recipe recipe = CreateRecipe();
-                  recipe.AddRecipeGroup(ChargerClassModSystem.HardmodeOreBlowguns);
+                  recipe.AddRecipeGroup(ChargerClassGeneralSystem.HardmodeOreBlowguns);
                   recipe.AddIngredient(ItemID.Revolver);
                   recipe.AddTile(TileID.AdamantiteForge);
                   recipe.Register();
