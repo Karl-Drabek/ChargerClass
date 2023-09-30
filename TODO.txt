@@ -1,4 +1,6 @@
-add accesory recipes
+ore bar resist values
+make hydrogen breath work for ballons
+
 
 Quality:
     Sounds
@@ -8,6 +10,7 @@ Quality:
     Lighting
 
 Long Term:
+    make debuffs/projectiles work on players/pvp
     update chargeMeter ui
     go over projectile code, IgnoreWater?
     Spikyrock projectile

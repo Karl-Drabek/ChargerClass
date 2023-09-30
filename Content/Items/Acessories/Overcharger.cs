@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Acessories
 {
@@ -22,8 +23,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 19;
             Item.height = 19;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.rare = ItemRarityID.Lime;
 			Item.accessory = true;
 		}
 
@@ -34,8 +35,11 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddIngredient(ItemID.CrystalShard, 5);
+			recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 6);
+			recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 8);
+            recipe.AddRecipeGroup(ChargerClassGeneralSystem.SilverBarRecipeGroup, 25);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
 		}
 	}

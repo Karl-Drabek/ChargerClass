@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using System.Collections.Generic;
 using Terraria.ModLoader.IO;
+using Terraria.GameContent;
 
 namespace ChargerClass.Content.Items.Ammo.Darts
 {
@@ -21,7 +22,8 @@ namespace ChargerClass.Content.Items.Ammo.Darts
 
         private int[] ComponentTypes;
         public int pen;
-        private Texture2D texture;
+        private Texture2D texture => TextureAssets.Item[Type].Value;
+        public override string Texture => "ChargerClass/Content/Items/Ammo/Darts/DartSheet";
         private static readonly int tailHeight = 10, payloadHeight = 14, tipHeight = 10, width = 10;
 
         public bool HasComponents{
@@ -41,8 +43,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             Item.shoot = ModContent.ProjectileType<CustomDartProjectile>();
             Item.ammo = AmmoID.Dart;
             Item.scale = 1f;
-
-            texture = ModContent.Request<Texture2D>("ChargerClass/Content/Items/Ammo/Darts/CustomDart").Value;
+            
             ComponentTypes = new int[3];
         }
 
@@ -100,17 +101,17 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             scale *= Item.scale * 5f;
             origin = new Vector2(width, tipHeight + payloadHeight + tailHeight) / 2;
             
-            int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<Tips.HypodermicNeedle>();
+            int id = Tip is null? 0 : Tip.DartSheetPlacement;
             frame = new Rectangle(id * (width + 2), 0, width, tipHeight);
             spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
 
             position.Y += tipHeight * scale;
-            id = Payload is null? 0 : Payload.Item.type - ModContent.ItemType<Payloads.DartCannister>();
+            id = Payload is null? 0 : Payload.DartSheetPlacement;
             frame = new Rectangle(id * (width + 2),  tipHeight + 2, width, payloadHeight);
             spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
 
             position.Y += payloadHeight * scale;
-            id = Tail is null? 0 : Tail.Item.type - ModContent.ItemType<Tails.FeatheredTail>();
+            id = Tail is null? 0 : Tail.DartSheetPlacement;
             frame = new Rectangle(id * (width + 2), payloadHeight + tipHeight + 4, width, tailHeight);
             spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin,   scale, SpriteEffects.None, 0f);
 
@@ -118,7 +119,6 @@ namespace ChargerClass.Content.Items.Ammo.Darts
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI){
-            Main.NewText("test");
             var origin = new Vector2(width, tipHeight + payloadHeight + tailHeight) / 2;
             
             int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<Tips.HypodermicNeedle>();

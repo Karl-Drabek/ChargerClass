@@ -22,15 +22,20 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 14;
             Item.height = 17;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;	
+            Item.value = Item.sellPrice(0, 0, 3, 40);
+            Item.rare =  ItemRarityID.Blue;
 			Item.accessory = true;
+		}
+
+		public override void UpdateAccessory(Player player, bool hideVisual) {
+			player.GetModPlayer<ChargeModPlayer>().IronDiaphragm = true;
 		}
 
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
+			recipe.AddRecipeGroup(RecipeGroupID.IronBar, 24);
+			recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 12);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
 		}

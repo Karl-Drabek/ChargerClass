@@ -24,6 +24,7 @@ using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 using System;
 using ChargerClass.Content.Items.Ammo.Darts.Payloads;
+using ChargerClass.Content.Items.Placeable;
 
 //TODO finish other chest loot
 
@@ -31,7 +32,9 @@ namespace ChargerClass.Common.ModSystems
 {
     class ChargerClassGeneralSystem : ModSystem
     {   
-        public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns, IchorCannisters, Rockets;
+        public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns,
+        IchorCannisters, Rockets, CopperOreRecipeGroup, GoldBarRecipeGroup,
+        TitaniumBarRecipeGroup, ShadowScaleRecipeGroup, DemoniteBarRecipeGroup;
         public static ChargerClassGeneralSystem Instance = ModContent.GetInstance<ChargerClassGeneralSystem>();
 
         public static ModKeybind InhalerKeybind { get; private set; }
@@ -41,10 +44,20 @@ namespace ChargerClass.Common.ModSystems
 			// Language.GetTextValue("LegacyMisc.37") is the word "Any" in English, and the corresponding word in other languages
 			RecipeGroup copperBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperBar)}", ItemID.CopperBar, ItemID.TinBar);
 			CopperBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperBar), copperBarRecipeGroup);
+            RecipeGroup copperOreRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperOre)}", ItemID.CopperOre, ItemID.TinOre);
+			CopperOreRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperOre), copperOreRecipeGroup);
             RecipeGroup rockets = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.RocketI)}", ItemID.RocketI, ItemID.RocketII, ItemID.RocketIII, ItemID.RocketIV);
 			Rockets = RecipeGroup.RegisterGroup(nameof(ItemID.RocketI), rockets);
 			RecipeGroup silverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",ItemID.SilverBar, ItemID.TungstenBar);
 			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
+            RecipeGroup goldBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.GoldBar)}",ItemID.GoldBar, ItemID.PlatinumBar);
+			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
+            RecipeGroup titaniumBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.TitaniumBar)}",ItemID.TitaniumBar, ItemID.AdamantiteBar);
+			TitaniumBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.TitaniumBar), titaniumBarRecipeGroup);
+            RecipeGroup shadowScaleRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.ShadowScale)}",ItemID.ShadowScale, ItemID.TissueSample);
+			ShadowScaleRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.ShadowScale), shadowScaleRecipeGroup);
+            RecipeGroup demoniteBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.DemoniteBar)}",ItemID.DemoniteBar, ItemID.CrimtaneBar);
+			DemoniteBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.DemoniteBar), demoniteBarRecipeGroup);
             RecipeGroup hardmodeOreBlowguns = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<TitaniumBlowgun>())}",
 				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<AdamantiteBlowgun>(),
                 ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<OrichalcumBlowgun>(),
@@ -93,6 +106,7 @@ namespace ChargerClass.Common.ModSystems
         public override void PostSetupContent() {
 			ItemID.Sets.ExtractinatorMode[ItemID.Frog] = ItemID.Frog;
             ItemID.Sets.ExtractinatorMode[ItemID.GoldFrog] = ItemID.GoldFrog;
+            ItemID.Sets.ExtractinatorMode[ModContent.ItemType<AncientDebris>()] = ModContent.ItemType<AncientDebris>();
 		}
 
         public override void Load(){

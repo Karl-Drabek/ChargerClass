@@ -18,7 +18,8 @@ namespace ChargerClass.Common.GlobalNPCs
 	public class ModGlobalNPC : GlobalNPC
 	{
 		public override void ModifyGlobalLoot(GlobalLoot globalLoot){
-			globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<Charge>(), 3));
+			globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<Charge>(), 5));
+			globalLoot.Add(ItemDropRule.ByCondition(new OrangeChargeDropCondition(), ModContent.ItemType<OrangeCharge>(), 4));
 			globalLoot.Add(ItemDropRule.ByCondition(new BlueChargeDropCondition(), ModContent.ItemType<BlueCharge>(), 3));
 		}
 

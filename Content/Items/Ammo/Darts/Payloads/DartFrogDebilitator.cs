@@ -9,12 +9,12 @@ using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
 {
-	public class DartFrogDabilitator : DartComponent
+	public class DartFrogDebilitator : DartComponent
 	{
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
-
+            DartSheetPlacement = 9;
             Item.value = Item.sellPrice(0, 0, 0, 4);
             Item.rare = ItemRarityID.LightRed;
         }

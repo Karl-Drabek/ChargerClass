@@ -14,8 +14,8 @@ namespace ChargerClass.Common.GlobalProjectiles
 	{
 		public override bool InstancePerEntity => true; //Needed for GlobalProjectile for some reason.
 
-		public int Repository, BeeAttempts, LightningPole, LeatherGloveChargeLevel, ExplosionSize;
-		public bool LeatherGlove, Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled, PenOnCrit, CatchCritters;
+		public int Repository, BeeAttempts, LeatherGloveChargeLevel, ExplosionSize;
+		public bool LeatherGlove, Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled, PenOnCrit, CatchCritters, Hydrogenized;
 		public bool _inWater = false;
 		public float RainSpeed;
 		public int GoldBonusCount, TinCanChance;
@@ -28,7 +28,6 @@ namespace ChargerClass.Common.GlobalProjectiles
 					ChargerProjectile modProj  = spawnerProjectile.GetGlobalProjectile<ChargerProjectile>(); 
 					this.Repository                = modProj.Repository;
 					this.BeeAttempts               = modProj.BeeAttempts;
-					this.LightningPole             = modProj.LightningPole;
 					this.LeatherGloveChargeLevel   = modProj.LeatherGloveChargeLevel;
 					this.LeatherGlove              = modProj.LeatherGlove;
 					this.Frostburn                 = modProj.Frostburn;
@@ -44,13 +43,14 @@ namespace ChargerClass.Common.GlobalProjectiles
 					this.Chilled                   = modProj.Chilled;
 					this.PenOnCrit                 = modProj.PenOnCrit;
 					this.CatchCritters             = modProj.CatchCritters;
+					this.Hydrogenized              = modProj.Hydrogenized;
 				}else if(parentSource is EntitySource_ItemUse_WithAmmo ammoSource){
 					sourcePlayer = ammoSource.Player;
                 	sourceItem = ammoSource.Item;
 				}
 			}else{
-				RainSpeed = TinCanChance = GoldBonusCount = ExplosionSize = Repository = BeeAttempts = LightningPole = LeatherGloveChargeLevel = 0;
-				CatchCritters = PenOnCrit = Bleeding = Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
+				RainSpeed = TinCanChance = GoldBonusCount = ExplosionSize = Repository = BeeAttempts = LeatherGloveChargeLevel = 0;
+				Hydrogenized = CatchCritters = PenOnCrit = Bleeding = Chilled = Tetnus = Bleeding = LeatherGlove = Frostburn = Hellfire = Confused = Electrified = false;
 			}
 		}
 
@@ -64,6 +64,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 					projectile.velocity /= RainSpeed;
 				}
 			}
+			if(Hydrogenized)projectile.velocity.Y -= (projectile.velocity.Y - projectile.oldVelocity.Y) / 2;
 		}
 
 		public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hitInfo, int damage){
@@ -107,6 +108,7 @@ namespace ChargerClass.Common.GlobalProjectiles
 			if(projectile.type == ProjectileID.MiniNukeRocketI || projectile.type == ProjectileID.MiniNukeRocketII)
 				Item.NewItem(new EntitySource_Parent(projectile), projectile.position, projectile.width, projectile.height, ModContent.ItemType<RadioactiveDebris>());
 			if(ExplosionSize > 0) projectile.Explode(ExplosionSize, ExplosionSize);
+			if(Hydrogenized) projectile.Explode(20, 20);
         }
 
 		public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers hitModifiers){

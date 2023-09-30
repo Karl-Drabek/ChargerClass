@@ -10,7 +10,7 @@ using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tips
 {
-	public class SpectreBar : DartComponent
+	public class SpectreTip : DartComponent
 	{
         public override void SafeSetDefaults() {
             Item.width = 10;
@@ -18,7 +18,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tips
             
             Item.value = Item.sellPrice(0, 0, 0, 10);
             Item.rare = ItemRarityID.Lime;
-
+            DartSheetPlacement = 10;
             Pen = 3;
             Item.damage = 18;
             Item.knockBack = 1f;

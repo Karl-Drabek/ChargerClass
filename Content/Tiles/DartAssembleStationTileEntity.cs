@@ -9,7 +9,7 @@ using Terraria.ModLoader.IO;
 
 public class DartAssemblyStationTileEntity : ModTileEntity
 	{
-        public int[] ComponentTypes = new int[4], ComponentCounts = new int[4];
+        public int[] ComponentTypes = new int[3], ComponentCounts = new int[3];
 
 		public void UpdateData(){
 			ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
@@ -36,7 +36,6 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 			return Place(i, j);
 		}
 		public override void OnPlayerUpdate(Player player){
-			Main.NewText(ComponentCounts[0]);
 			if(player.whoAmI != Main.myPlayer) return;
 			float x = player.position.X - Position.X * 16;
 			float y = player.position.Y - Position.Y * 16;

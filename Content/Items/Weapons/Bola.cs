@@ -44,11 +44,11 @@ namespace ChargerClass.Content.Items.Weapons
 
 		public override void AddRecipes()
 		{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.StoneBlock, 2);
-            recipe.AddIngredient(ItemID.Wood, 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
+                  Recipe recipe = CreateRecipe();
+                  recipe.AddIngredient(ItemID.StoneBlock, 2);
+                  recipe.AddRecipeGroup(RecipeGroupID.Wood, 4);
+                  recipe.AddTile(TileID.WorkBenches);
+                  recipe.Register();
 		}
 	}
 }

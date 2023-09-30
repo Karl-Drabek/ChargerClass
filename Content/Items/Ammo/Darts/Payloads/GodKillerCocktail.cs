@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.ModSystems;
+using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
 {
@@ -15,7 +16,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
-
+            DartSheetPlacement = 12;
             Item.value = Item.sellPrice(0, 0, 4, 10);
             Item.rare = ItemRarityID.Lime;
         }
@@ -23,7 +24,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ModContent.ItemType<DartCannister>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<DartFrogDabilitator>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<DartFrogDebilitator>(), 5);
             recipe.AddIngredient(ModContent.ItemType<DeathFactor>(), 5);
             recipe.AddRecipeGroup(ChargerClassGeneralSystem.IchorCannisters, 5);
             recipe.AddIngredient(ModContent.ItemType<JellyfishCannister>(), 5);

@@ -19,7 +19,7 @@ namespace ChargerClass.Content.Items
 
             Item.maxStack = 999;
             Item.value = Item.sellPrice(0, 0, 33, 0);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Green;
         }
 
         public override void AddRecipes() {

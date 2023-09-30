@@ -18,13 +18,24 @@ namespace ChargerClass.Common.Players
 		public static readonly int DefaultCharge = 1000; //the defualt charge pre modifiers
 		public bool IronLung, Inhaler, Exhaler, Respirator, BreathingAid, /*Whether the player has a given accesory at the time*/
 					AAABattery, Capacitor, CarBattery, OverCharger, PowerBank,
-					Charger, ChargeRespository, ExtensionCord, LightningRod, Generator,
-					GripTape, LeatherGlove, ShootingGlove, RedDot, TrackingSpecs, SecretStimulants, UltimateChargingGear;
-		public bool LightHeaded, RadiationSickness;
+					Charger, ChargeRepository, ExtensionCord, LightningRod, Generator,
+					GripTape, LeatherGlove, ShootingGlove, RedDot, TrackingSpecs,
+					 SecretStimulants, UltimateChargingGear, Haler, ChargerEmblem,
+					 HydrogenBreath, IronDiaphragm;
+		public bool LightHeaded, RadiationSickness, Charge, Impatience, Stamina;
 		private int overChargeCount;  
 		private int overChargeTimer = 0;
 
 		 //the total charge the player can use. MaxCharge / (ChargeSpeed * 60) = charge time in seconds.
+
+		public StatModifier GetChargeAmountModifier(){
+			var chargeAmount = StatModifier.Default;
+
+			if(Impatience) chargeAmount += 0.25f;
+
+			return chargeAmount;
+		}
+
 		public int GetMaxCharge(){
 			var maxCharge = StatModifier.Default;
 
@@ -37,6 +48,8 @@ namespace ChargerClass.Common.Players
 				if(BreathingAid) maxCharge += 0.25f;
 				else if(IronLung) maxCharge += 0.15f;
 			}
+
+			if(Stamina) maxCharge += 0.2f;
 
 			maxCharge += 0.03f * overChargeCount;
 
@@ -54,8 +67,10 @@ namespace ChargerClass.Common.Players
 
 				if(weapon.blowWeapon){
 					if(BreathingAid) speed += 0.25f;
-					else if(Respirator) speed += 0.15f;
+					else if(IronDiaphragm) speed += 0.15f;
 				}
+
+				if(Charge) speed += 0.15f;
 
 				return speed;
 			}
@@ -65,7 +80,15 @@ namespace ChargerClass.Common.Players
 		public override void ModifyWeaponDamage(Item item, ref StatModifier damage){
 			if(item.ModItem is not ChargeWeapon chargeWeapon) return;
 
-			if(chargeWeapon.blowWeapon && (BreathingAid || Exhaler)) damage += 0.3f;
+			if(ChargerEmblem) damage += 0.2f;
+
+			if(chargeWeapon.blowWeapon){
+				if(Exhaler) damage += 0.02f * chargeWeapon.chargeLevel;
+				else if(Haler) damage += 0.03f * chargeWeapon.chargeLevel;
+				
+				if(Respirator) damage += 0.15f;
+				else if(BreathingAid) damage += 0.25f;
+			}
 
 			if(UltimateChargingGear)damage += 0.03f * chargeWeapon.chargeLevel;
 			else if(ShootingGlove) damage += 0.02f * chargeWeapon.chargeLevel;
@@ -82,7 +105,7 @@ namespace ChargerClass.Common.Players
 		}
 
 		public void ModifyProjectileSpeed(ref Vector2 velocity){
-			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Exhaler || BreathingAid)){
+			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Exhaler || Haler)){
 				velocity *= 1.25f;
 			}
 		}
@@ -101,10 +124,13 @@ namespace ChargerClass.Common.Players
 
 		public bool GetShock() => Capacitor || CarBattery || PowerBank;
 
-		public bool GetChargeRepository() => ChargeRespository || ExtensionCord || Generator;
+		public bool GetHydrogen() => HydrogenBreath || Haler;
+
+		public bool GetChargeRepository() => ChargeRepository || Generator;
 
 		public int GetLightningRod(){ //0 is no accesory, 1 is lightning rod, and 2 is generator.
-			if(Generator) return 2;
+			if(Generator) return 3;
+			else if(ExtensionCord) return 2;
 			else if(LightningRod) return 1;
 			else return 0;
 		}
@@ -136,7 +162,7 @@ namespace ChargerClass.Common.Players
 		}
 
 		public override void ProcessTriggers(TriggersSet triggersSet) {
-			if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || BreathingAid) && !LightHeaded) {
+			if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || Haler) && !LightHeaded) {
 				Player.AddBuff(ModContent.BuffType<LightHeaded>() , 1200); //debuff to stop the player from using the ability for a 20 seconds.
 				weapon.bonusCharge += weapon.chargeAmount;
 			}
@@ -145,9 +171,10 @@ namespace ChargerClass.Common.Players
 		public override void ResetEffects() {
 			IronLung = Inhaler = Exhaler = Respirator = BreathingAid =
 			AAABattery = Capacitor = CarBattery = OverCharger = PowerBank =
-			Charger = ChargeRespository = ExtensionCord = LightningRod = Generator =
-			GripTape = LeatherGlove = ShootingGlove = RedDot = TrackingSpecs = SecretStimulants = UltimateChargingGear = false; //reset accessory effects.
-			LightHeaded = false; //reset buff effects.
+			Charger = ChargeRepository = ExtensionCord = LightningRod = Generator =
+			GripTape = LeatherGlove = ShootingGlove = RedDot = TrackingSpecs = 
+			SecretStimulants = UltimateChargingGear = Haler = ChargerEmblem = false; //reset accessory effects.
+			LightHeaded = RadiationSickness = Charge = Impatience = Stamina = false; //reset buff effects.
 		}
 
 		public override void UpdateBadLifeRegen() {

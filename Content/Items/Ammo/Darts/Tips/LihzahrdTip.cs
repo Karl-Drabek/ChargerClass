@@ -10,7 +10,7 @@ using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tips
 {
-	public class LizardTip : DartComponent
+	public class LihzahrdTip : DartComponent
 	{
         public override void SafeSetDefaults() {
             Item.width = 10;
@@ -18,7 +18,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tips
             
             Item.value = Item.sellPrice(0, 0, 0, 1);
             Item.rare = ItemRarityID.White;
-
+            DartSheetPlacement = 11;
             Pen = 3;
             Item.damage = 20;
             Item.knockBack = 4f;

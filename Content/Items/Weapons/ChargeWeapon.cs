@@ -30,7 +30,7 @@ namespace ChargerClass.Content.Items.Weapons
 
         public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
 
-        protected int GetChargeLevel() => chargeLevel = (int)(charge / chargeAmount);
+        protected int GetChargeLevel(Player player) => chargeLevel = (int)(charge / player.GetModPlayer<ChargeModPlayer>().GetChargeAmountModifier().ApplyTo(chargeAmount));
 
         public sealed override void SetDefaults() {
             blowWeapon = false;
@@ -104,7 +104,7 @@ namespace ChargerClass.Content.Items.Weapons
 
         public void Shoot(Player player, ChargeModPlayer modPlayer){
 
-            GetChargeLevel();
+            GetChargeLevel(player);
             int type, damage, usedAmmoItemId;
             float speed, knockBack;
             if(Item.useAmmo != AmmoID.None) player.PickAmmo(Item, out type, out speed, out damage, out knockBack, out usedAmmoItemId, true); //doesnt comsume ammo
@@ -161,9 +161,8 @@ namespace ChargerClass.Content.Items.Weapons
         public void InternalPostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
             ChargerProjectile chargerProj = proj.GetGlobalProjectile<ChargerProjectile>();
             PostProjectileEffects(proj, chargerProj, modPlayer);
-
-            chargerProj.LightningPole = modPlayer.GetLightningRod();
-            if(modPlayer.GetShock()) chargerProj.Electrified = true;
+            chargerProj.Hydrogenized = modPlayer.GetHydrogen();
+            chargerProj.Electrified = modPlayer.GetShock();
             if(modPlayer.GetChargeRepository()) chargerProj.Repository = charge;
             if(modPlayer.LeatherGlove){
                 chargerProj.LeatherGlove = true;

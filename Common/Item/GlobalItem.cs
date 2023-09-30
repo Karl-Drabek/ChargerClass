@@ -8,6 +8,7 @@ using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Weapons.Blowers;
 using ChargerClass.Content.Items;
+using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Common.GlobalItems
 {
@@ -57,14 +58,19 @@ namespace ChargerClass.Common.GlobalItems
 		}
 
 		public override void ExtractinatorUse(int extractType, int extractinatorBlockType, ref int resultType, ref int resultStack) {
-			if((extractType != ItemID.GoldFrog) && (extractType != ItemID.Frog)) return;
-
-			if (extractinatorBlockType == TileID.ChlorophyteExtractinator){
-				resultType = ModContent.ItemType<DartFrogExtract>();
-				resultStack = (extractType == ItemID.GoldFrog) ? (int)(Main.rand.NextDouble() * 5) : 1;
-			}else{
-				resultType = ItemID.FrogLeg;
-				resultStack = 1;
+			if(extractType == ItemID.GoldFrog || extractType != ItemID.Frog){
+				if (extractinatorBlockType == TileID.ChlorophyteExtractinator){
+					resultType = ModContent.ItemType<DartFrogExtract>();
+					resultStack = (extractType == ItemID.GoldFrog) ? (int)Main.rand.NextFloat(2, 5) : 1;
+				}else{
+					resultType = ItemID.FrogLeg;
+					resultStack = 1;
+				}
+			}else if(extractType == ModContent.ItemType<AncientDebris>()){
+				if(Main.rand.NextBool(16)){
+					resultType = ModContent.ItemType<AncientTech>();
+					resultStack = (int)Main.rand.NextFloat(3, 7);
+				}
 			}
 		}
 		public override void SetDefaults(Item item) {

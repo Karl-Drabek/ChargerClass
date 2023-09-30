@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Acessories
 {
@@ -19,8 +20,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 16;
             Item.height = 14;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 18, 50, 0);
+            Item.rare =  ItemRarityID.Yellow;
 			Item.accessory = true;
 		}
 
@@ -31,8 +32,14 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddIngredient(ModContent.ItemType<IronLung>());
+			recipe.AddIngredient(ModContent.ItemType<Diaphragm>());
+			recipe.AddIngredient(ModContent.ItemType<Respirator>());
+			recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 12);
+			recipe.AddIngredient(ItemID.SpectreBar, 6);
+            recipe.AddIngredient(ItemID.SoulofMight, 4);
+			recipe.AddIngredient(ItemID.SoulofNight, 4);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
 		}
 	}

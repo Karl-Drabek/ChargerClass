@@ -38,7 +38,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.noUseGraphic = true;
 		}
 
-            public override bool SafeCanShoot(Player player) => GetChargeLevel() > 0;
+            public override bool SafeCanShoot(Player player) => GetChargeLevel(player) > 0;
 
             public override void ItemAnimation(Player player){
                   player.ChangeDir(Main.MouseWorld.X > player.Center.X ? 1 : -1);

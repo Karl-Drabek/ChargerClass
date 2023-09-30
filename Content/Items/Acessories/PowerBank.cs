@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Acessories
 {
@@ -22,8 +23,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 21;
             Item.height = 21;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 18, 0, 0);
+            Item.rare = ItemRarityID.Cyan;
 			Item.accessory = true;
 		}
 
@@ -34,8 +35,12 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddIngredient(ItemID.FragmentStardust, 2);
+			recipe.AddIngredient(ItemID.FragmentVortex, 2);
+			recipe.AddIngredient(ModContent.ItemType<CarBattery>());
+			recipe.AddIngredient(ModContent.ItemType<Overcharger>());
+			recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 12);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.Register();
 		}
 	}

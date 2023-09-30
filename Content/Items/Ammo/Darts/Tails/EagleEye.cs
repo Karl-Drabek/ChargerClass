@@ -15,11 +15,11 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
         public override void SafeSetDefaults() {
             Item.width = 10;
             Item.height = 10;
-
+            DartSheetPlacement = 6;
             Item.value = Item.sellPrice(0, 0, 0, 9);
             Item.rare = ItemRarityID.Orange;
             
-            Item.shootSpeed = 6;
+            Item.shootSpeed = 12;
         }
 
         public override void AddRecipes() {

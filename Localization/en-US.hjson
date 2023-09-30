@@ -25,13 +25,68 @@ Mods: {
 				DisplayName: Slimed
 				Description: Mods.ChargerClass.Buffs.Slimed.Description
 			}
+
+			Charge: {
+				DisplayName: Charge
+				Description: Mods.ChargerClass.Buffs.Charge.Description
+			}
+
+			Impatience: {
+				DisplayName: Impatience
+				Description: Mods.ChargerClass.Buffs.Impatience.Description
+			}
+
+			RadiationSickness: {
+				DisplayName: Radiation Sickness
+				Description: Mods.ChargerClass.Buffs.RadiationSickness.Description
+			}
+
+			Stamina: {
+				DisplayName: Stamina
+				Description: Mods.ChargerClass.Buffs.Stamina.Description
+			}
 		}
 
 		DartNameSection: {
-			DartCannister: ""
-			FeatheredTail: ""
-			HypodermicNeedle: Hypodermic Needle
+			Atomizer: "Atomizing "
+			CryoCannister: "Chilling "
+			CursedCannister: "Cursing "
+			DartCannister: "Empty "
+			DartFrogDabilitator: Poisonus
+			DeathFactor: "Deadly "
+			ExplosiveCannister: "Explosive "
+			GodKillerCocktail: "Lethal "
+			IchorCannister: "Ichorus "
+			JellyfishCannister: "Stinging "
+			LavaCannister: "Magmatic "
+			LiquidLeadCannister: "Leadened "
+			RadioactiveParsel: Radioactive
+			BetsysBackwash: "Scorching "
+			BombingBay: "Destructive "
+			CropDuster: "Pesticidal "
+			EagleEye: "Seeking "
+			FeatheredTail: "Feathered "
+			HolyLightTail: "Holy "
+			MagesTail: "Mage's "
+			PixieDuster: "Pixie "
+			PrismaticTail: "Prismatic "
+			RocketJets: "Rocket Propelled "
+			TheCorruptor: "Currupt "
+			ToxicTail: "Toxic "
 			UnholyTail: "Unholy "
+			AdamantiteTip: Hypodermic Needle
+			BoneTip: Bone Dart
+			ChlorophyteTip: Chlorophyte Dart
+			HallowedTip: Hallowed Dart
+			HellstoneTip: Hellstone Dart
+			HypodermicNeedle: Hypodermic Needle
+			LizardTip: Lihzahrd Spike
+			LunarTip: Lunar Dart
+			MeteorTip: Meteor Dart
+			ShroomiteTip: Shroomite Dart
+			SpectreTip: Spectre Dart
+			TitaniumTip: Titanium Dart
+			UnicornTip: Unicorn Dart
 		}
 
 		Items: {
@@ -557,6 +612,261 @@ Mods: {
 				DisplayName: Dart Assembly Station
 				Tooltip: ""
 			}
+
+			ChargerEmblem: {
+				DisplayName: Charger Emblem
+				Tooltip: ""
+			}
+
+			Haler: {
+				DisplayName: Haler
+				Tooltip: ""
+			}
+
+			Atomizer: {
+				DisplayName: Atomizer
+				Tooltip: ""
+			}
+
+			CryoCannister: {
+				DisplayName: Cryo Cannister
+				Tooltip: ""
+			}
+
+			CursedCannister: {
+				DisplayName: Cursed Cannister
+				Tooltip: ""
+			}
+
+			DartFrogDabilitator: {
+				DisplayName: Dart Frog Dabilitator
+				Tooltip: ""
+			}
+
+			DeathFactor: {
+				DisplayName: Death Factor
+				Tooltip: ""
+			}
+
+			ExplosiveCannister: {
+				DisplayName: Explosive Cannister
+				Tooltip: ""
+			}
+
+			GodKillerCocktail: {
+				DisplayName: God Killer Cocktail
+				Tooltip: ""
+			}
+
+			IchorCannister: {
+				DisplayName: Ichor Cannister
+				Tooltip: ""
+			}
+
+			JellyfishCannister: {
+				DisplayName: Jellyfish Cannister
+				Tooltip: ""
+			}
+
+			LavaCannister: {
+				DisplayName: Lava Cannister
+				Tooltip: ""
+			}
+
+			LiquidLeadCannister: {
+				DisplayName: Liquid Lead Cannister
+				Tooltip: ""
+			}
+
+			RadioactiveParsel: {
+				DisplayName: Radioactive Parsel
+				Tooltip: ""
+			}
+
+			BetsysBackwash: {
+				DisplayName: Betsys Backwash
+				Tooltip: ""
+			}
+
+			BombingBay: {
+				DisplayName: Bombing Bay
+				Tooltip: ""
+			}
+
+			CropDuster: {
+				DisplayName: Crop Duster
+				Tooltip: ""
+			}
+
+			EagleEye: {
+				DisplayName: Eagle Eye
+				Tooltip: ""
+			}
+
+			HolyLightTail: {
+				DisplayName: Holy Light Tail
+				Tooltip: ""
+			}
+
+			MagesTail: {
+				DisplayName: Mages Tail
+				Tooltip: ""
+			}
+
+			PixieDuster: {
+				DisplayName: Pixie Duster
+				Tooltip: ""
+			}
+
+			PrismaticTail: {
+				DisplayName: Prismatic Tail
+				Tooltip: ""
+			}
+
+			RocketJets: {
+				DisplayName: Rocket Jets
+				Tooltip: ""
+			}
+
+			TheCorruptor: {
+				DisplayName: The Corruptor
+				Tooltip: ""
+			}
+
+			ToxicTail: {
+				DisplayName: Toxic Tail
+				Tooltip: ""
+			}
+
+			AdamantiteTip: {
+				DisplayName: Adamantite Tip
+				Tooltip: ""
+			}
+
+			BoneTip: {
+				DisplayName: Bone Tip
+				Tooltip: ""
+			}
+
+			ChlorophyteTip: {
+				DisplayName: Chlorophyte Tip
+				Tooltip: ""
+			}
+
+			HallowedTip: {
+				DisplayName: Hallowed Tip
+				Tooltip: ""
+			}
+
+			HellstoneTip: {
+				DisplayName: Hellstone Tip
+				Tooltip: ""
+			}
+
+			LizardTip: {
+				DisplayName: Lizard Tip
+				Tooltip: ""
+			}
+
+			LunarTip: {
+				DisplayName: Lunar Tip
+				Tooltip: ""
+			}
+
+			MeteorTip: {
+				DisplayName: Meteor Tip
+				Tooltip: ""
+			}
+
+			ShroomiteTip: {
+				DisplayName: Shroomite Tip
+				Tooltip: ""
+			}
+
+			SpectreTip: {
+				DisplayName: Spectre Tip
+				Tooltip: ""
+			}
+
+			TitaniumTip: {
+				DisplayName: Titanium Tip
+				Tooltip: ""
+			}
+
+			UnicornTip: {
+				DisplayName: Unicorn Tip
+				Tooltip: ""
+			}
+
+			BasicCircuitry: {
+				DisplayName: Basic Circuitry
+				Tooltip: ""
+			}
+
+			ChargedComponents: {
+				DisplayName: Charged Components
+				Tooltip: ""
+			}
+
+			ChargePotion: {
+				DisplayName: Charge Potion
+				Tooltip: ""
+			}
+
+			ImpatiencePotion: {
+				DisplayName: Impatience Potion
+				Tooltip: ""
+			}
+
+			StaminaPotion: {
+				DisplayName: Stamina Potion
+				Tooltip: ""
+			}
+
+			DartFrogExtract: {
+				DisplayName: Dart Frog Extract
+				Tooltip: ""
+			}
+
+			JellyfishTentacle: {
+				DisplayName: Jellyfish Tentacle
+				Tooltip: ""
+			}
+
+			OrangeCharge: {
+				DisplayName: Orange Charge
+				Tooltip: ""
+			}
+
+			AncientDebris: {
+				DisplayName: Ancient Debris
+				Tooltip: ""
+			}
+
+			AncientTech: {
+				DisplayName: Ancient Tech
+				Tooltip: ""
+			}
+
+			UnstableChaosShard: {
+				DisplayName: Unstable Chaos Shard
+				Tooltip: ""
+			}
+
+			RadioactiveDebris: {
+				DisplayName: Radioactive Debris
+				Tooltip: ""
+			}
+
+			LihzahrdTip: {
+				DisplayName: Lihzahrd Tip
+				Tooltip: ""
+			}
+
+			DartFrogDebilitator: {
+				DisplayName: Dart Frog Debilitator
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -599,9 +909,14 @@ Mods: {
 			PotatoPlant.MapEntry: Potato Plant
 			ElectrudiumOre.MapEntry: Electrudium Ore
 			DartAssemblyStationTile.MapEntry: Dart Assembly Station Tile
+			AncientDebris.MapEntry: Ancient Debris
+			UnstableChaosShard.MapEntry: Unstable Chaos Shard
 		}
 
-		WorldGen.ElectrudiumOrePassMessage: Charging up Electrudium Ore
+		WorldGen: {
+			ElectrudiumOrePassMessage: Charging up Electrudium Ore
+			ChargerOrePassMessage: Mods.ChargerClass.WorldGen.ChargerOrePassMessage
+		}
 
 		Configs: {
 			ChargerClassConfig: {

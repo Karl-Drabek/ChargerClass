@@ -13,7 +13,7 @@ namespace ChargerClass.Common.ItemDropRules.DropConditions
 			Description ??= Language.GetText("Mods.ChargerClass.DropConditions.BlueCharge");
 		}
 
-		public bool CanDrop(DropAttemptInfo info) => Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 2;
+		public bool CanDrop(DropAttemptInfo info) => Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 3;
 
 		public bool CanShowItemDropInUI() => true;
 

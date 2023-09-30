@@ -40,12 +40,6 @@ namespace ChargerClass.Common.ModSystems
             }
         }
         
-        public void InitializeInterface(int x, int y){
-            UI?.SetState(DartAssemblyState);
-            DartAssemblyState.TableX = x;
-            DartAssemblyState.TableY = y;
-
-        }   
         internal void ShowUI() {
             UI?.SetState(DartAssemblyState);
         }

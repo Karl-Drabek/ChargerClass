@@ -19,8 +19,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 20;
             Item.height = 15;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 1, 70, 0);
+            Item.rare =  ItemRarityID.Pink;
 			Item.accessory = true;
 		}
 
@@ -31,8 +31,10 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+            recipe.AddIngredient(ItemID.HallowedBar, 4);
+			recipe.AddIngredient(ItemID.PixieDust, 6);
+			recipe.AddIngredient(ItemID.Cloud, 60);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
 		}
 	}

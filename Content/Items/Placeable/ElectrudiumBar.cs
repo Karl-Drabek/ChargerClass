@@ -12,7 +12,7 @@ namespace ChargerClass.Content.Items.Placeable
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
 
-            ItemID.Sets.SortingPriorityMaterials[Item.type] = 59;
+            ItemID.Sets.SortingPriorityMaterials[Item.type] = ItemID.Sets.SortingPriorityMaterials[ItemID.Meteorite];
             ItemTrader.ChlorophyteExtractinator.AddOption_OneWay(Type, 5, ItemID.ChlorophyteBar, 3);
         }
 

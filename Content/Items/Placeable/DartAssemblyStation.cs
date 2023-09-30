@@ -24,7 +24,7 @@ namespace ChargerClass.Content.Items.Placeable
 
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Wood, 60);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 60);
             recipe.AddRecipeGroup(ChargerClassGeneralSystem.SilverBarRecipeGroup, 30);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();

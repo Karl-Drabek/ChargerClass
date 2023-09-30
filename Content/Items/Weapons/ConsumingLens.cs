@@ -36,7 +36,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 16f;
 		}
 
-            public override bool SafeCanShoot(Player player) => GetChargeLevel() > 0;
+            public override bool SafeCanShoot(Player player) => GetChargeLevel(player) > 0;
 
             public override void ItemAnimation(Player player){
                   float mouseRotation = (float)Math.Atan2((Main.MouseWorld.Y - player.Center.Y) * player.direction, (Main.MouseWorld.X - player.Center.X) * player.direction);

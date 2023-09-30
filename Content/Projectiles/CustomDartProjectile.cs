@@ -19,7 +19,8 @@ namespace ChargerClass.Content.Projectiles;
 public class CustomDartProjectile : ModProjectile
 {
         public DartComponent Tail, Payload, Tip;
-        private Texture2D texture;
+        private Texture2D texture => TextureAssets.Projectile[Type].Value;
+        public override string Texture => "ChargerClass/Content/Items/Ammo/Darts/DartSheet";
 
         private static readonly int tailHeight = 10, payloadHeight = 14, tipHeight = 10, width = 10;
         
@@ -38,7 +39,6 @@ public class CustomDartProjectile : ModProjectile
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
-            texture = ModContent.Request<Texture2D>("ChargerClass/Content/Items/Ammo/Darts/CustomDart").Value;
 
             AIType = ProjectileID.WoodenArrowFriendly;
         }
@@ -49,17 +49,17 @@ public class CustomDartProjectile : ModProjectile
             Vector2 normVel = Projectile.velocity;
             normVel.Normalize();
             
-            int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<HypodermicNeedle>();
+            int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<AdamantiteTip>();
             var frame = new Rectangle(id * (width + 2), 0, width, tipHeight);
             Main.EntitySpriteDraw(texture, position, frame, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 
             position -= normVel * tipHeight * Projectile.scale;
-            id = Payload is null? 0 : Payload.Item.type - ModContent.ItemType<DartCannister>();
+            id = Payload is null? 0 : Payload.Item.type - ModContent.ItemType<Atomizer>();
             frame = new Rectangle(id * (width + 2),  tipHeight + 2, width, payloadHeight);
             Main.EntitySpriteDraw(texture, position, frame, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 
             position -= normVel * payloadHeight * Projectile.scale;
-            id = Tail is null? 0 : Tail.Item.type - ModContent.ItemType<FeatheredTail>();
+            id = Tail is null? 0 : Tail.Item.type - ModContent.ItemType<BetsysBackwash>();
             frame = new Rectangle(id * (width + 2), payloadHeight + tipHeight + 4, width, tailHeight);
             Main.EntitySpriteDraw(texture, position, frame, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 

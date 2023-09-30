@@ -14,7 +14,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
-
+            DartSheetPlacement = 2;
             Item.value = Item.sellPrice(0, 0, 0, 3);
             Item.rare = ItemRarityID.White;
         }

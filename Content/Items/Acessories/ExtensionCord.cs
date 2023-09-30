@@ -19,8 +19,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 19;
             Item.height = 17;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 5, 0, 0);
+            Item.rare = ItemRarityID.Pink;
 			Item.accessory = true;
 		}
 
@@ -31,8 +31,12 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 10);
+			recipe.AddIngredient(ModContent.ItemType<Charger>());
+			recipe.AddIngredient(ModContent.ItemType<LightningRod>());
+            recipe.AddIngredient(ItemID.SoulofSight, 4);
+			recipe.AddIngredient(ItemID.SoulofLight, 4);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
 		}
 	}

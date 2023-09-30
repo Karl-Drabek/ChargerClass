@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using ChargerClass.Common.ModSystems;
 
 namespace ChargerClass.Content.Items.Acessories
 {
@@ -22,20 +23,22 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 11;
             Item.height = 20;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 1, 20, 0);
+            Item.rare = ItemRarityID.Orange;
 			Item.accessory = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().ChargeRespository = true;
+			player.GetModPlayer<ChargeModPlayer>().ChargeRepository = true;
 		}
 
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
-            recipe.AddTile(TileID.Anvils);
+			recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
+			recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 8);
+			recipe.AddRecipeGroup(ChargerClassGeneralSystem.GoldBarRecipeGroup, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
 		}
 	}

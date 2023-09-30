@@ -18,7 +18,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tips
             
             Item.value = Item.sellPrice(0, 0, 0, 4);
             Item.rare = ItemRarityID.Blue;
-
+            DartSheetPlacement = 4;
             Pen = 3;
             Item.damage = 11;
             Item.knockBack = 1f;

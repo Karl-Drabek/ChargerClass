@@ -9,12 +9,12 @@ using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
 {
-	public class LiquidLeadCanister : DartComponent
+	public class LiquidLeadCannister : DartComponent
 	{
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
-
+            DartSheetPlacement = 1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
             Item.rare = ItemRarityID.White;
         }

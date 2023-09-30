@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Acessories
 {
@@ -19,8 +20,8 @@ namespace ChargerClass.Content.Items.Acessories
             Item.width = 14;
             Item.height = 19;
             Item.maxStack = 1;
-            Item.value = 1000000;
-            Item.rare = 6;
+            Item.value = Item.sellPrice(0, 0, 10, 0);
+            Item.rare = ItemRarityID.Green;
 			Item.accessory = true;
 		}
 
@@ -31,7 +32,8 @@ namespace ChargerClass.Content.Items.Acessories
 		public override void AddRecipes()
 		{
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 12);
+            recipe.AddIngredient(ItemID.Wire, 8);
+			recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 4);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
 		}

@@ -12,7 +12,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts
 {
 	public abstract class DartComponent : ModItem
 	{
-        public int Pen;
+        public int Pen, DartSheetPlacement;
 
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
