@@ -6,6 +6,7 @@ using ChargerClass.Content.Projectiles;
 using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
+using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails
 {
@@ -20,7 +21,9 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             
             Item.shootSpeed = 2f;
         }
-
+        public override void AI(Projectile projectile, int payloadType){
+            Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10, Main.rand.Next(569, 572), 10, 0);
+        }
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ItemID.JungleSpores);

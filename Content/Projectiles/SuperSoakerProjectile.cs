@@ -33,8 +33,8 @@ namespace ChargerClass.Content.Projectiles
             AIType = ProjectileID.WoodenArrowFriendly;
         }
 
-        public override void AI(){
-            
+        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
+			target.AddBuff(BuffID.Wet, 180);
         }
 
         public override void Kill(int timeLeft) {

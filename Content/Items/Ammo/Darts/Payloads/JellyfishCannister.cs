@@ -6,6 +6,7 @@ using ChargerClass.Content.Projectiles;
 using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Content.Buffs;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
 {
@@ -17,6 +18,10 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             DartSheetPlacement = 4;
             Item.value = Item.sellPrice(0, 0, 0, 4);
             Item.rare = ItemRarityID.Blue;
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier){
+            target.AddBuff(ModContent.BuffType<Stunned>(), (int)(20 * buffTimeMultiplier));
         }
 
         public override void AddRecipes() {

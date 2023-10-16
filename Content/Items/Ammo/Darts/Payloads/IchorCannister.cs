@@ -19,6 +19,10 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             Item.rare = ItemRarityID.Orange;
         }
 
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier){
+            target.AddBuff(BuffID.Ichor, (int)(300 * buffTimeMultiplier));
+        }
+
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ItemID.Ichor);

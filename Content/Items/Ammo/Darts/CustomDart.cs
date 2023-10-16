@@ -13,6 +13,7 @@ using Terraria.Localization;
 using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 using Terraria.GameContent;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Ammo.Darts
 {
@@ -62,9 +63,18 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             Item.rare = tail.Item.rare > payload.Item.rare ? tail.Item.rare : payload.Item.rare;
             Item.rare = Item.rare > tip.Item.rare ? Item.rare : tip.Item.rare;
             Item.value = tail.Item.value + payload.Item.value + tip.Item.value;
+
+            pen = ((DartComponent)tip.Item.ModItem).Pen;
         }
 
-        public override void SaveData(TagCompound tag) {
+		public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback){
+            ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
+            modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
+            modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
+            modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
+        }
+
+		public override void SaveData(TagCompound tag) {
 			tag["Components"] = ComponentTypes;
 		}
 
@@ -120,20 +130,22 @@ namespace ChargerClass.Content.Items.Ammo.Darts
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI){
             var origin = new Vector2(width, tipHeight + payloadHeight + tailHeight) / 2;
-            
+            Vector2 position = Item.position;
+
+
             int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<Tips.HypodermicNeedle>();
             var frame = new Rectangle(id * (width + 2), 0, width, tipHeight);
-            spriteBatch.Draw(texture, Item.position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
 
-            Item.position.Y += tipHeight * Item.scale;
+            position.Y += tipHeight * Item.scale;
             id = Payload is null? 0 : Payload.Item.type - ModContent.ItemType<Payloads.DartCannister>();
             frame = new Rectangle(id * (width + 2),  tipHeight + 2, width, payloadHeight);
-            spriteBatch.Draw(texture, Item.position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
 
-            Item.position.Y += payloadHeight * Item.scale;
+            position.Y += payloadHeight * Item.scale;
             id = Tail is null? 0 : Tail.Item.type - ModContent.ItemType<Tails.FeatheredTail>();
             frame = new Rectangle(id * (width + 2), payloadHeight + tipHeight + 4, width, tailHeight);
-            spriteBatch.Draw(texture, Item.position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
 
             return false;
         }

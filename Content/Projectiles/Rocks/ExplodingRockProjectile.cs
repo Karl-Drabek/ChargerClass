@@ -1,12 +1,7 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Extensions;
 
@@ -38,7 +33,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
         }
 
         public override void Kill(int timeLeft) {
-            Projectile.Explode(50, 50);
+            Explosions.ExplodeCircle(Projectile.position, 60, 18, ChargerDamageClass.Instance, Projectile, knockback: 0.2f);
         }
 	}
 }

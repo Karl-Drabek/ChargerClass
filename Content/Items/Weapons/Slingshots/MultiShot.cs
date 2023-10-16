@@ -42,7 +42,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   float spread = count * spreadMult / 2; //start degrees for projectiles
                   for(int i = 0; i < count; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(MathHelper.ToRadians(spread - spreadMult * i)), type, damage, knockback);
-                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                        CombinedPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return false;
             }

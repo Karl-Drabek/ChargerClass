@@ -24,6 +24,10 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tips
             Item.knockBack = 1.5f;
         }
 
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier){
+            target.AddBuff(BuffID.OnFire, 300);
+        }
+
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ItemID.HellstoneBar, 1);

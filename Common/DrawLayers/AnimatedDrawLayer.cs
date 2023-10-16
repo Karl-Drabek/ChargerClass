@@ -59,11 +59,13 @@ namespace ChargerClass.Common.DrawLayers
 			Color color = Lighting.GetColor((int)pos.X, (int)pos.Y);
 
 			PreQueue(drawInfo.drawPlayer, ref texture, ref drawPosition, ref rect, ref color, ref rotation, ref origin, ref scale, ref effects);
+			drawPosition += Vector2.UnitX.RotatedBy(rotation) * WeaponOffset().X * drawInfo.drawPlayer.direction + Vector2.UnitY.RotatedBy(rotation) * WeaponOffset().Y * drawInfo.drawPlayer.direction;
 			drawInfo.DrawDataCache.Add(new DrawData(texture, drawPosition, rect, color, rotation, origin, scale, effects));
 		}
 
 		public virtual void PreDraw(ref PlayerDrawSet drawInfo) {}
 
+		public virtual Vector2 WeaponOffset() => Vector2.Zero;
 		public virtual void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {}
 
 	}

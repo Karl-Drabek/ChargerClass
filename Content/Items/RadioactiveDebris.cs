@@ -23,7 +23,7 @@ namespace ChargerClass.Content.Items
         }
 
         public override void UpdateInventory(Player player){
-            player.AddBuff(ModContent.BuffType<RadiationSickness>(), 900);
+            player.AddBuff(ModContent.BuffType<RadiationSickness>(), 60);
         }
     }
 }

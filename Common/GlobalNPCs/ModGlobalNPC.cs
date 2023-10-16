@@ -11,6 +11,8 @@ using ChargerClass.Content.Items.Weapons.Slingshots;
 using ChargerClass.Common.ItemDropRules.DropConditions;
 using ChargerClass.Content.Items.Ammo;
 using ChargerClass.Content.Items.Ammo.Darts.Tails;
+using ChargerClass.Content.Buffs;
+using Microsoft.Xna.Framework;
 
 //TODO find if both drop rules could be combined.
 namespace ChargerClass.Common.GlobalNPCs
@@ -18,7 +20,7 @@ namespace ChargerClass.Common.GlobalNPCs
 	public class ModGlobalNPC : GlobalNPC
 	{
 		public override void ModifyGlobalLoot(GlobalLoot globalLoot){
-			globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<Charge>(), 5));
+			globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<YellowCharge>(), 5));
 			globalLoot.Add(ItemDropRule.ByCondition(new OrangeChargeDropCondition(), ModContent.ItemType<OrangeCharge>(), 4));
 			globalLoot.Add(ItemDropRule.ByCondition(new BlueChargeDropCondition(), ModContent.ItemType<BlueCharge>(), 3));
 		}
@@ -81,7 +83,7 @@ namespace ChargerClass.Common.GlobalNPCs
 			}
 		}
 
-		public virtual void SetupTravelShop(int[] shop, ref int nextSlot){
+		public override void SetupTravelShop(int[] shop, ref int nextSlot){
 			shop[nextSlot] = ModContent.ItemType<Airgun>();
 		}
 	}

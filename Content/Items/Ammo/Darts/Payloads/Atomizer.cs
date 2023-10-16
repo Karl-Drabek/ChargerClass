@@ -1,10 +1,7 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
-using Terraria.DataStructures;
-using ChargerClass.Content.Items;
+using ChargerClass.Common.Extensions;
 using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
@@ -17,6 +14,10 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             DartSheetPlacement = 11;
             Item.value = Item.sellPrice(0, 0, 0, 18);
             Item.rare = ItemRarityID.LightPurple;
+        }
+
+        public override void OnKill(Projectile projectile, int timeLeft){
+            Explosions.ExplodeCircle(projectile.position, 250, 400, ChargerDamageClass.Instance, projectile, knockback: 6f);
         }
 
         public override void AddRecipes() {

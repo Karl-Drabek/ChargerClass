@@ -1,12 +1,7 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Extensions;
 
@@ -38,7 +33,7 @@ namespace ChargerClass.Content.Projectiles
         public override void Kill(int timeLeft) {
 
             if(timeLeft > 15){
-                Projectile.Explode(timeLeft - 15, timeLeft - 15);
+                Explosions.ExplodeCircle(Projectile.position, timeLeft - 15, timeLeft - 15, ChargerDamageClass.Instance, Projectile, knockback: (timeLeft - 15) / 3);
             }else{
                 Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
                 SoundEngine.PlaySound(SoundID.Item10, Projectile.position);

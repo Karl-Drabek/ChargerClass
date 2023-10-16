@@ -38,7 +38,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   for(int i = 0; i < 3; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(MathHelper.ToRadians(8 - 4 * i)), type, damage, knockback);
-                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                        CombinedPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return false;
             }

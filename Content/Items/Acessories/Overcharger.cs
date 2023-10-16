@@ -29,7 +29,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().CarBattery = true;
+			player.GetModPlayer<ChargeModPlayer>().OverCharger = true;
 		}
 
 		public override void AddRecipes()

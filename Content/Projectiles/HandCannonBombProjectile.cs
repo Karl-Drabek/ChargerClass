@@ -1,9 +1,4 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
@@ -35,7 +30,7 @@ namespace ChargerClass.Content.Projectiles
         }
 
         public override void Kill(int timeLeft) {
-            Projectile.Explode(250, 250);
+            Explosions.ExplodeCircle(Projectile.position, 60, Projectile.damage * 2, ChargerDamageClass.Instance, Projectile, knockback: 3f);
         }
 	}
 }

@@ -9,6 +9,8 @@ using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Weapons.Blowers;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.Items.Placeable;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Common.GlobalItems
 {

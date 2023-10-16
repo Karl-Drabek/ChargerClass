@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.ModSystems;
+using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails
 {
@@ -20,6 +21,10 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             Item.rare = ItemRarityID.Orange;
             
             Item.shootSpeed = 4;
+        }
+
+        public override void AI(Projectile projectile, int payloadType){
+            Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, default, ModContent.ProjectileType<PixieDust>(), 35, 0);
         }
 
         public override void AddRecipes() {

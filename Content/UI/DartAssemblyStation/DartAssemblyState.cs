@@ -74,7 +74,7 @@ namespace ChargerClass.Content.UI.DartAssemblyStation
             panel.Append(dartTipSlot);
 
             dartResultSlot = new VanillaItemSlotWrapper();
-            dartResultSlot.ValidItemFunc = item => item.type == ItemID.None || item.type == ModContent.ItemType<CustomDart>();
+            dartResultSlot.ValidItemFunc = item => item.type == ItemID.None || item.ModItem is CustomDart;// item.type == ModContent.ItemType<CustomDart>();
             dartResultSlot.VAlign = 0.5f;
             dartResultSlot.Left = new StyleDimension(-60f, 1f);
             panel.Append(dartResultSlot);
@@ -96,7 +96,10 @@ namespace ChargerClass.Content.UI.DartAssemblyStation
             else if(dartResultSlot.Item.ModItem is CustomDart dart){
                 if(oldItem.type == ItemID.None) SetComponents(dart); //put new dart in empty station
                 else if(dart.CanStack(oldItem)) SubstractComponents(oldItem.stack - dartResultSlot.Item.stack); //increase or decrease dart stack (same dart type)
-                else SetComponents(dart); //replaced the dart with a new type of dart
+                else{
+                    SubstractComponents(oldItem.stack);
+                    SetComponents(dart);
+                } //replaced the dart with a new type of dart
             }
             if(dartTailSlot.Item.type != ItemID.None && dartPayloadSlot.Item.type != ItemID.None && dartTipSlot.Item.type != ItemID.None){ //otherise update the dart based on the components
                 dartResultSlot.Item = new Item(ModContent.ItemType<CustomDart>());

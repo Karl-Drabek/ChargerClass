@@ -25,6 +25,7 @@ using ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 using System;
 using ChargerClass.Content.Items.Ammo.Darts.Payloads;
 using ChargerClass.Content.Items.Placeable;
+using ChargerClass.Content.Items.Consumables;
 
 //TODO finish other chest loot
 
@@ -34,38 +35,54 @@ namespace ChargerClass.Common.ModSystems
     {   
         public static int CopperBarRecipeGroup, SilverBarRecipeGroup, HardmodeOreBlowguns,
         IchorCannisters, Rockets, CopperOreRecipeGroup, GoldBarRecipeGroup,
-        TitaniumBarRecipeGroup, ShadowScaleRecipeGroup, DemoniteBarRecipeGroup;
+        TitaniumBarRecipeGroup, ShadowScaleRecipeGroup, DemoniteBarRecipeGroup, 
+        VoltaicScrapRecipeGroup;
         public static ChargerClassGeneralSystem Instance = ModContent.GetInstance<ChargerClassGeneralSystem>();
 
         public static ModKeybind InhalerKeybind { get; private set; }
+        public static ModKeybind RocketStormKeybind { get; private set; }
+        public static ModKeybind ChaosAdrenaline { get; private set; }
 		public static string IchorCannisterGroup { get; internal set; }
 
 		public override void AddRecipeGroups() {
 			// Language.GetTextValue("LegacyMisc.37") is the word "Any" in English, and the corresponding word in other languages
 			RecipeGroup copperBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperBar)}", ItemID.CopperBar, ItemID.TinBar);
 			CopperBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperBar), copperBarRecipeGroup);
+
             RecipeGroup copperOreRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CopperOre)}", ItemID.CopperOre, ItemID.TinOre);
 			CopperOreRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.CopperOre), copperOreRecipeGroup);
+
             RecipeGroup rockets = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.RocketI)}", ItemID.RocketI, ItemID.RocketII, ItemID.RocketIII, ItemID.RocketIV);
 			Rockets = RecipeGroup.RegisterGroup(nameof(ItemID.RocketI), rockets);
+
 			RecipeGroup silverBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.SilverBar)}",ItemID.SilverBar, ItemID.TungstenBar);
 			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
+
             RecipeGroup goldBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.GoldBar)}",ItemID.GoldBar, ItemID.PlatinumBar);
 			SilverBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), silverBarRecipeGroup);
+
             RecipeGroup titaniumBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.TitaniumBar)}",ItemID.TitaniumBar, ItemID.AdamantiteBar);
 			TitaniumBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.TitaniumBar), titaniumBarRecipeGroup);
+
             RecipeGroup shadowScaleRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.ShadowScale)}",ItemID.ShadowScale, ItemID.TissueSample);
 			ShadowScaleRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.ShadowScale), shadowScaleRecipeGroup);
+
             RecipeGroup demoniteBarRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.DemoniteBar)}",ItemID.DemoniteBar, ItemID.CrimtaneBar);
 			DemoniteBarRecipeGroup = RecipeGroup.RegisterGroup(nameof(ItemID.DemoniteBar), demoniteBarRecipeGroup);
+
+            
+            RecipeGroup voltaicScrapRecipeGroup = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<MightyVoltaicScrap>())}",
+                ModContent.ItemType<MightyVoltaicScrap>(), ModContent.ItemType<FrightfulVoltaicScrap>(), ModContent.ItemType<OpticVoltaicScrap>());
+			VoltaicScrapRecipeGroup = RecipeGroup.RegisterGroup("ChargerClass:VoltaicScrapGroup", voltaicScrapRecipeGroup);
+
             RecipeGroup hardmodeOreBlowguns = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<TitaniumBlowgun>())}",
 				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<AdamantiteBlowgun>(),
                 ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<OrichalcumBlowgun>(),
                 ModContent.ItemType<CobaltBlowgun>(), ModContent.ItemType<PalladiumBlowgun>());
             HardmodeOreBlowguns = RecipeGroup.RegisterGroup("ChargerClass:HardmodeBlowgunGroup", hardmodeOreBlowguns);
+
             RecipeGroup ichorCannisters = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ModContent.ItemType<IchorCannister>())}",
-				ModContent.ItemType<TitaniumBlowgun>(), ModContent.ItemType<IchorCannister>(),
-                ModContent.ItemType<MythrilBlowgun>(), ModContent.ItemType<CursedCannister>());
+				ModContent.ItemType<CursedCannister>(), ModContent.ItemType<IchorCannister>());
             IchorCannisters = RecipeGroup.RegisterGroup("ChargerClass:IchorCannisters", ichorCannisters);
 
 		}
@@ -111,10 +128,14 @@ namespace ChargerClass.Common.ModSystems
 
         public override void Load(){
             InhalerKeybind = KeybindLoader.RegisterKeybind(Mod, "InhalerKeybind", "P");
+            RocketStormKeybind = KeybindLoader.RegisterKeybind(Mod, "RocketStormKeybind", "L");
+            ChaosAdrenaline = KeybindLoader.RegisterKeybind(Mod, "ChaosAdrenaline", "M");
         }
 
         public override void Unload(){
 			InhalerKeybind = null;
+            RocketStormKeybind = null;
+            ChaosAdrenaline = null;
 		}
 	}
 }

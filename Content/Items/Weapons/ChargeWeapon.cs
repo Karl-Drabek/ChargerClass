@@ -30,7 +30,9 @@ namespace ChargerClass.Content.Items.Weapons
 
         public int ticsPerShot = 0; //if greater than zero fire Shoots Over time
 
-        protected int GetChargeLevel(Player player) => chargeLevel = (int)(charge / player.GetModPlayer<ChargeModPlayer>().GetChargeAmountModifier().ApplyTo(chargeAmount));
+        public int GetChargeLevel(Player player) => chargeLevel = (int)(charge / GetChargeAmount(player));
+
+        public float GetChargeAmount(Player player) => player.GetModPlayer<ChargeModPlayer>().GetChargeAmountModifier().ApplyTo(chargeAmount);
 
         public sealed override void SetDefaults() {
             blowWeapon = false;
@@ -75,13 +77,13 @@ namespace ChargerClass.Content.Items.Weapons
                     if(charge < maxCharge)charge += 300 / CombinedHooks.TotalUseTime(Item.useTime, player, Item); //increase charge if not maxed. 
                     else charge = maxCharge;
                     player.itemAnimation = player.itemAnimationMax; //reset the animation so it doesnt end
-                    AnimatePlayer(player);
+                    AnimatePlayer(player, false);
                 }
             }else if(player.ItemAnimationActive){ //finish shooting bullets if shots remaining
                 ItemAnimation(player);
                 if(ShotsRemaining > 0){
                     player.itemAnimation = player.itemAnimationMax - 2;
-                    AnimatePlayer(player);
+                    AnimatePlayer(player, true);
                     if(++ticCounter >= ticsPerShot){
                         ticCounter = 0;
                         ShotsRemaining--;
@@ -95,7 +97,7 @@ namespace ChargerClass.Content.Items.Weapons
             };
         }
 
-        public void AnimatePlayer(Player player){
+        public void AnimatePlayer(Player player, bool charging){
             player.ChangeDir(Main.MouseWorld.X > player.Center.X ? 1 : -1); //Orient player towards mouse.
             player.itemRotation = (float)Math.Atan2( //Point item towards curser with orientation (not my code).
                 (Main.MouseWorld.Y - player.Center.Y) * player.direction, //numerator for arctan
@@ -144,30 +146,24 @@ namespace ChargerClass.Content.Items.Weapons
 
         private void ChargedShoot(Player player, ChargeModPlayer modPlayer, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
             Vector2 muzzleOffset = Vector2.Normalize(velocity);
-            ModifyMuzzleOffset(muzzleOffset);
+            ModifyMuzzleOffset(ref muzzleOffset);
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0)) position += muzzleOffset;
-            ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback); //modify stats for the weapon
-            if(Shoot(player, source, position, velocity, type, damage, knockback)){
+            CombinedHooks.ModifyShootStats(player, Item, ref position, ref velocity, ref type, ref damage, ref knockback); //modify stats for the weapon
+            if(CombinedHooks.Shoot(player, Item, source, position, velocity, type, damage, knockback)){
                 int owner = -1;
                 float ai0 , ai1, ai2;
                 ai0 = ai1 = ai2 = 0f;
                 ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
                 if(ChargerClassConfig.Instance.ShotInfoToggle) Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X*velocity.X+velocity.Y*velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
                 Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
-                InternalPostProjectileEffects(proj, modPlayer); //allow children to apply effects to projectiles.
+                CombinedPostProjectileEffects(proj, modPlayer);
             }
         }
 
-        public void InternalPostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
+        public void CombinedPostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
             ChargerProjectile chargerProj = proj.GetGlobalProjectile<ChargerProjectile>();
-            PostProjectileEffects(proj, chargerProj, modPlayer);
-            chargerProj.Hydrogenized = modPlayer.GetHydrogen();
-            chargerProj.Electrified = modPlayer.GetShock();
-            if(modPlayer.GetChargeRepository()) chargerProj.Repository = charge;
-            if(modPlayer.LeatherGlove){
-                chargerProj.LeatherGlove = true;
-                chargerProj.LeatherGloveChargeLevel = chargeLevel;
-            }
+            PostProjectileEffects(proj, chargerProj, modPlayer); //allow children to apply effects to projectiles.
+            modPlayer.PostProjectileEffects(this, proj, chargerProj);
         }
 
         public sealed override void ModifyWeaponCrit(Player player, ref float crit){
@@ -210,7 +206,7 @@ namespace ChargerClass.Content.Items.Weapons
         };
 
         public virtual void ItemAnimation(Player player) {}
-        public virtual void ModifyMuzzleOffset(Vector2 muzzleOffset) {}
+        public virtual void ModifyMuzzleOffset(ref Vector2 muzzleOffset) {}
         public virtual void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {}
         public virtual void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){}
         public virtual bool SafeCanShoot(Player player) => true;

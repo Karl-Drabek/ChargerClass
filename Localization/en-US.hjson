@@ -1,7 +1,13 @@
 Mods: {
 	ChargerClass: {
 		CommonItemTooltip.ChargeEffect: Charge effect: "{0}"
-		Keybinds.InhalerKeybind.DisplayName: Inhaler Keybind
+
+		Keybinds: {
+			InhalerKeybind.DisplayName: Inhaler Keybind
+			RocketStormKeybind.DisplayName: Rocket Storm Keybind
+			ChaosAdrenaline.DisplayName: Chaos Adrenaline
+		}
+
 		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
 		HardmodeBlowgunGroup: Hardmode Blowgun
 
@@ -45,22 +51,67 @@ Mods: {
 				DisplayName: Stamina
 				Description: Mods.ChargerClass.Buffs.Stamina.Description
 			}
+
+			RocketStormCooldown: {
+				DisplayName: Rocket Storm Cooldown
+				Description: Mods.ChargerClass.Buffs.RocketStormCooldown.Description
+			}
+
+			Adrenaline: {
+				DisplayName: Adrenaline
+				Description: Mods.ChargerClass.Buffs.Adrenaline.Description
+			}
+
+			LeadPoisoning: {
+				DisplayName: Lead Poisoning
+				Description: Mods.ChargerClass.Buffs.LeadPoisoning.Description
+			}
+
+			Plague: {
+				DisplayName: Plague
+				Description: Mods.ChargerClass.Buffs.Plague.Description
+			}
+
+			Stunned: {
+				DisplayName: Stunned
+				Description: Mods.ChargerClass.Buffs.Stunned.Description
+			}
+
+			Sticky: {
+				DisplayName: Sticky
+				Description: Mods.ChargerClass.Buffs.Sticky.Description
+			}
+
+			SuperSlimed: {
+				DisplayName: Super Slimed
+				Description: Mods.ChargerClass.Buffs.SuperSlimed.Description
+			}
+
+			Dabilitated: {
+				DisplayName: Dabilitated
+				Description: Mods.ChargerClass.Buffs.Dabilitated.Description
+			}
+
+			GodKiller: {
+				DisplayName: God Killer
+				Description: Mods.ChargerClass.Buffs.GodKiller.Description
+			}
 		}
 
 		DartNameSection: {
-			Atomizer: "Atomizing "
-			CryoCannister: "Chilling "
-			CursedCannister: "Cursing "
+			Atomizer: "Atomomizing "
+			CryoCannister: "Cryogenic "
+			CursedCannister: "Cursed "
 			DartCannister: "Empty "
-			DartFrogDabilitator: Poisonus
+			DartFrogDebilitator: "Poisonus "
 			DeathFactor: "Deadly "
 			ExplosiveCannister: "Explosive "
-			GodKillerCocktail: "Lethal "
-			IchorCannister: "Ichorus "
+			GodKillerCocktail: "Godly "
+			IchorCannister: "Ichorous  "
 			JellyfishCannister: "Stinging "
 			LavaCannister: "Magmatic "
 			LiquidLeadCannister: "Leadened "
-			RadioactiveParsel: Radioactive
+			RadioactiveParsel: "Radioactive "
 			BetsysBackwash: "Scorching "
 			BombingBay: "Destructive "
 			CropDuster: "Pesticidal "
@@ -68,13 +119,13 @@ Mods: {
 			FeatheredTail: "Feathered "
 			HolyLightTail: "Holy "
 			MagesTail: "Mage's "
-			PixieDuster: "Pixie "
+			PixieDuster: "Devine "
 			PrismaticTail: "Prismatic "
 			RocketJets: "Rocket Propelled "
-			TheCorruptor: "Currupt "
+			TheCorruptor: "Cerulean  "
 			ToxicTail: "Toxic "
 			UnholyTail: "Unholy "
-			AdamantiteTip: Hypodermic Needle
+			AdamantiteTip: Adamantite Dart
 			BoneTip: Bone Dart
 			ChlorophyteTip: Chlorophyte Dart
 			HallowedTip: Hallowed Dart
@@ -729,7 +780,7 @@ Mods: {
 			}
 
 			TheCorruptor: {
-				DisplayName: The Corruptor
+				DisplayName: Cerulean Corruptor
 				Tooltip: ""
 			}
 
@@ -867,6 +918,191 @@ Mods: {
 				DisplayName: Dart Frog Debilitator
 				Tooltip: ""
 			}
+
+			SupremeCalamari: {
+				DisplayName: Supreme Calamari
+				Tooltip: ""
+			}
+
+			ElectrudiumHelmet: {
+				SetBonus: Mods.ChargerClass.Items.ElectrudiumHelmet.SetBonus
+				DisplayName: Electrudium Helmet
+				Tooltip: ""
+			}
+
+			ElectrudiumBreastplate: {
+				DisplayName: Electrudium Breastplate
+				Tooltip: ""
+			}
+
+			ElectrudiumLeggings: {
+				DisplayName: Electrudium Leggings
+				Tooltip: ""
+			}
+
+			VoltaicNugget: {
+				DisplayName: Voltaic Nugget
+				Tooltip: ""
+			}
+
+			CosmicVoltaicFragment: {
+				DisplayName: Cosmic Voltaic Fragment
+				Tooltip: ""
+			}
+
+			FragmentedQuasar: {
+				DisplayName: Fragmented Quasar
+				Tooltip: ""
+			}
+
+			FrightfulVoltaicScrap: {
+				DisplayName: Frightful Voltaic Scrap
+				Tooltip: ""
+			}
+
+			MightyVoltaicScrap: {
+				DisplayName: Mighty Voltaic Scrap
+				Tooltip: ""
+			}
+
+			OpticVoltaicScrap: {
+				DisplayName: Optic Voltaic Scrap
+				Tooltip: ""
+			}
+
+			StellerVoltaicFragment: {
+				DisplayName: Steller Voltaic Fragment
+				Tooltip: ""
+			}
+
+			ElectrudiumChainmail: {
+				DisplayName: Electrudium Chainmail
+				Tooltip: ""
+			}
+
+			ElectrudiumGreaves: {
+				DisplayName: Electrudium Greaves
+				Tooltip: ""
+			}
+
+			ChaosHelmet: {
+				SetBonus: Mods.ChargerClass.Items.ChaosHelmet.SetBonus
+				DisplayName: Chaos Helmet
+				Tooltip: ""
+			}
+
+			FestiveHelmet: {
+				SetBonus: Mods.ChargerClass.Items.FestiveHelmet.SetBonus
+				DisplayName: Festive Helmet
+				Tooltip: ""
+			}
+
+			MechLung: {
+				SetBonus: Mods.ChargerClass.Items.MechLung.SetBonus
+				DisplayName: Mech Lung
+				Tooltip: ""
+			}
+
+			ChaosLeggings: {
+				DisplayName: Chaos Leggings
+				Tooltip: ""
+			}
+
+			ChaosPlate: {
+				DisplayName: Chaos Plate
+				Tooltip: ""
+			}
+
+			FestiveBreastplate: {
+				DisplayName: Festive Breastplate
+				Tooltip: ""
+			}
+
+			FestiveLeggings: {
+				DisplayName: Festive Leggings
+				Tooltip: ""
+			}
+
+			MAD: {
+				DisplayName: M A D
+				Tooltip: ""
+				SetBonus: Mods.ChargerClass.Items.MAD.SetBonus
+			}
+
+			MechHelmet: {
+				DisplayName: Mech Helmet
+				Tooltip: ""
+			}
+
+			MechLeggings: {
+				DisplayName: Mech Leggings
+				Tooltip: ""
+			}
+
+			ChristmasCheer: {
+				DisplayName: Christmas Cheer
+				Tooltip: ""
+			}
+
+			AdamantiteCasque: {
+				SetBonus: Mods.ChargerClass.Items.AdamantiteCasque.SetBonus
+				DisplayName: Adamantite Casque
+				Tooltip: ""
+			}
+
+			AncientHallowedCasque: {
+				SetBonus: Mods.ChargerClass.Items.AncientHallowedCasque.SetBonus
+				DisplayName: Ancient Hallowed Casque
+				Tooltip: ""
+			}
+
+			CobaltCasque: {
+				SetBonus: Mods.ChargerClass.Items.CobaltCasque.SetBonus
+				DisplayName: Cobalt Casque
+				Tooltip: ""
+			}
+
+			HallowedCasque: {
+				SetBonus: Mods.ChargerClass.Items.HallowedCasque.SetBonus
+				DisplayName: Hallowed Casque
+				Tooltip: ""
+			}
+
+			MythrilCasque: {
+				SetBonus: Mods.ChargerClass.Items.MythrilCasque.SetBonus
+				DisplayName: Mythril Casque
+				Tooltip: ""
+			}
+
+			ChlorophyteCasque: {
+				DisplayName: Chlorophyte Casque
+				Tooltip: ""
+			}
+
+			OrichalcumCasque: {
+				DisplayName: Orichalcum Casque
+				Tooltip: ""
+			}
+
+			PalladiumCasque: {
+				DisplayName: Palladium Casque
+				Tooltip: ""
+			}
+
+			TitaniumCasque: {
+				DisplayName: Titanium Casque
+				Tooltip: ""
+			}
+
+			OverCritter: {
+				DisplayName: Over Critter
+				Tooltip: ""
+			}
+
+			YellowCharge: {
+				DisplayName: Yellow Charge
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -903,6 +1139,12 @@ Mods: {
 			ConsumingLensLaser.DisplayName: Consuming Lens Laser
 			PremeCalamariLaser.DisplayName: Preme Calamari Laser
 			CustomDartProjectile.DisplayName: Custom Dart Projectile
+			SupremeCalamariProjectile.DisplayName: Supreme Calamari Projectile
+			RocketStormProjectile.DisplayName: Rocket Storm Projectile
+			CropDusterProjectile.DisplayName: Crop Duster Projectile
+			PixieDust.DisplayName: Pixie Dust
+			LightningProjectile.DisplayName: Lightning Projectile
+			BombBayProjectile.DisplayName: Bomb Bay Projectile
 		}
 
 		Tiles: {

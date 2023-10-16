@@ -49,7 +49,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                               Vector2.Normalize(Main.MouseWorld - player.Center)
                               .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 2 + 5f + (float)Main.rand.NextDouble() * 1.5f),
                               projectile, (int)modifier.ApplyTo(41), 1f);
-                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                        CombinedPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return true;
             }

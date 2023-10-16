@@ -32,19 +32,19 @@ public class ChargerClassOreSystem : ModSystem
 
     public class ChargerClassOrePass : GenPass
 	{
-		public ChargerClassOrePass(string name, float loadWeight) : base(name, loadWeight) {}
+		public ChargerClassOrePass(string name, float loadWeight) : base(name, loadWeight) {} //2E-06
 
 		protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration) {
 			progress.Message = ChargerClassOreSystem.ChargerOrePassMessage.Value;
 
-			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-06); k++) {
+			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-02); k++) {
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 				int y = WorldGen.genRand.Next((int)GenVars.rockLayer, Main.maxTilesY);
 
 				WorldGen.TileRunner(x, y, WorldGen.genRand.Next(2, 3), WorldGen.genRand.Next(25, 50), ModContent.TileType<ElectrudiumOre>());
 			}
             
-            for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-06); k++) {
+            for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-02); k++) {
 				int x = WorldGen.genRand.Next(GenVars.jungleMinX, GenVars.jungleMaxX);
 				int y = WorldGen.genRand.Next((int)GenVars.rockLayer, Main.maxTilesY);
 
@@ -54,7 +54,7 @@ public class ChargerClassOreSystem : ModSystem
                 }
 			}
 
-			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-06); k++) {
+			for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 2E-02); k++) {
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 				int y = WorldGen.genRand.Next((int)GenVars.rockLayerLow, Main.maxTilesY);
 

@@ -2,6 +2,7 @@
 using Terraria.Localization;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
+using ChargerClass.Common.GlobalNPCs;
 
 namespace ChargerClass.Content.Buffs
 {
@@ -12,7 +13,7 @@ namespace ChargerClass.Content.Buffs
 		}
 
 		public override void Update(NPC npc, ref int buffIndex) {
-			npc.velocity *= 0.9f;
+			npc.GetGlobalNPC<ModInstanceNPC>().Bound = true;
 		}
 	}
 }

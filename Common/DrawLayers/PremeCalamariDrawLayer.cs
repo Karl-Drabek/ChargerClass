@@ -26,9 +26,7 @@ namespace ChargerClass.Common.DrawLayers
 			var chargeWeapon = drawInfo.drawPlayer.HeldItem.ModItem as ChargeWeapon;
 			if(chargeWeapon.charge > 0) ticsPerFrame = 20 - (int)Math.Sqrt((100 * ((float)chargeWeapon.charge / drawInfo.drawPlayer.GetModPlayer<ChargeModPlayer>().GetMaxCharge())));
 		}
-		public override void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {
-			drawPosition += player.direction * new Vector2(-10, 0);
-		}
+		public override Vector2 WeaponOffset() => new Vector2(-10, 0);
 
 	}
 }

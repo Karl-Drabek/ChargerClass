@@ -41,9 +41,14 @@ namespace ChargerClass.Content.Items.Weapons
             public override bool SafeCanShoot(Player player) => GetChargeLevel(player) > 0;
 
             public override void ItemAnimation(Player player){
-                  player.ChangeDir(Main.MouseWorld.X > player.Center.X ? 1 : -1);
                   float mouseRotation = (float)Math.Atan2((Main.MouseWorld.Y - player.Center.Y) * player.direction, (Main.MouseWorld.X - player.Center.X) * player.direction);
-                  player.itemRotation = mouseRotation;
+                  float difference = mouseRotation - player.itemRotation;
+                  float change  = difference / 10 + ((difference > 0)? 0.001f : -0.001f);
+                  player.itemRotation += ((difference > 0)? change : difference) > ((difference > 0)? difference : change) ? difference : change;
+                  if(player.itemRotation > MathHelper.ToRadians(90) || player.itemRotation < MathHelper.ToRadians(-90)){
+                        player.ChangeDir(-player.direction);
+                        player.itemRotation *= -1;
+                  }
             }
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

@@ -9,7 +9,7 @@ using ChargerClass.Content.Items.Weapons;
 
 namespace ChargerClass.Content.Items
 {
-	public class Charge : ModItem
+	public class YellowCharge : ModItem
 	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;

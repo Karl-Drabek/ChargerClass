@@ -48,7 +48,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
                               Vector2.Normalize(Main.MouseWorld - player.Center)
                               .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 4f + (float)Main.rand.NextDouble() * 6f),
                               ProjectileID.Bone, (int)modifier.ApplyTo(13), 1f);
-                        InternalPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
+                        CombinedPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return true;
             }

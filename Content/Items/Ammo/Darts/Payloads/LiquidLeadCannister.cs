@@ -6,6 +6,7 @@ using ChargerClass.Content.Projectiles;
 using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Content.Buffs;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
 {
@@ -17,6 +18,11 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             DartSheetPlacement = 1;
             Item.value = Item.sellPrice(0, 0, 0, 20);
             Item.rare = ItemRarityID.White;
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier){
+            target.AddBuff(ModContent.BuffType<LeadPoisoning>(), (int)(240 * buffTimeMultiplier));
+            target.AddBuff(BuffID.OnFire, (int)(120 * buffTimeMultiplier));
         }
 
         public override void AddRecipes() {

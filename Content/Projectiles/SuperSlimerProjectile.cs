@@ -35,7 +35,7 @@ namespace ChargerClass.Content.Projectiles
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
-			target.AddBuff(ModContent.BuffType<Slimed>(), 180);
+            target.AddBuff(ModContent.BuffType<SuperSlimed>(), 180);
         }
 
         public override void Kill(int timeLeft) {
