@@ -45,6 +45,24 @@ namespace ChargerClass.Common.GlobalItems
 						}
 					}
 					break;
+				case ItemID.FairyQueenBossBag :
+					foreach (var rule in itemLoot.Get()) {
+						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<Refractinator>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
+				case ItemID.FishronBossBag :
+					foreach (var rule in itemLoot.Get()) {
+						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
+							var original = OFONSWLDR.dropIds.ToList();
+							original.Add(ModContent.ItemType<HydrantHoser>());
+							OFONSWLDR.dropIds = original.ToArray();
+						}
+					}
+					break;
 				case ItemID.ObsidianLockbox:
 					foreach (var rule in itemLoot.Get()) {
 						if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
@@ -79,7 +97,7 @@ namespace ChargerClass.Common.GlobalItems
 			switch(item.type){
 				case ItemID.BottledWater:
 					item.ammo = item.type;
-					item.shoot = ModContent.ProjectileType<SuperSoakerProjectile>();
+					item.shoot = ProjectileID.WaterGun;
 					break;
 				case ItemID.MolotovCocktail:
 					item.ammo = item.type;

@@ -3,13 +3,16 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class ReinforcedSlingshot : ChargeWeapon
 	{
+        public static readonly int DamageIncrease = 3;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
         public override void SetStaticDefaults() {
-                Item.ResearchUnlockCount = 1;
+            Item.ResearchUnlockCount = 1;
         }
 		public override void SafeSetDefaults()
 		{
@@ -35,7 +38,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            damage += chargeLevel * 3;
+            damage += chargeLevel * DamageIncrease;
         }
 
 		public override Vector2? HoldoutOffset() {

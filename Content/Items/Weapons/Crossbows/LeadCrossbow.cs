@@ -3,11 +3,14 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class LeadCrossbow : ChargeWeapon
 	{
+        public static readonly int KnockbackIncrease = 15;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(KnockbackIncrease);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -34,8 +37,8 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            knockback += chargeLevel;
+        public override void SafeModifyWeaponKnockback(Player player, ref StatModifier knockback){
+            knockback += chargeLevel * KnockbackIncrease / 100f;
         }
 
         public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

@@ -20,6 +20,8 @@ namespace ChargerClass.Content.Items.Consumables
 
 		public override void SetDefaults() {
 			Item.CloneDefaults(ItemID.LifeFruit);
+			Item.width = 34;
+            Item.height = 48;
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(0, 1, 25, 0);
 		}

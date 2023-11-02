@@ -29,7 +29,7 @@ public class CustomDartProjectile : ModProjectile
         Projectile.hostile = false;
         Projectile.DamageType = ChargerDamageClass.Instance;
         Projectile.penetrate = 1;
-        Projectile.timeLeft = 300;
+        Projectile.timeLeft = 180;
         Projectile.alpha = 0;
         Projectile.light = 0.0f;
         Projectile.ignoreWater = true;
@@ -70,6 +70,11 @@ public class CustomDartProjectile : ModProjectile
             Tail = (DartComponent)ItemLoader.GetItem(modPlayer.TailForCustomDart);
             Payload = (DartComponent)ItemLoader.GetItem(modPlayer.PayloadForCustomDart);
             Tip = (DartComponent)ItemLoader.GetItem(modPlayer.TipForCustomDart);
+        }else if(Projectile.owner >= 0){
+            ChargeModPlayer modPlayer = Main.player[Projectile.owner].GetModPlayer<ChargeModPlayer>();
+            Tail = (DartComponent)ItemLoader.GetItem(modPlayer.TailForCustomDart);
+            Payload = (DartComponent)ItemLoader.GetItem(modPlayer.PayloadForCustomDart);
+            Tip = (DartComponent)ItemLoader.GetItem(modPlayer.TipForCustomDart);
         }
 
         if(Tip is not null) Projectile.penetrate = Tip.Pen;
@@ -85,6 +90,7 @@ public class CustomDartProjectile : ModProjectile
         var origin = new Vector2(Projectile.width, Projectile.height) / 2;
         Vector2 position = Projectile.Center - Main.screenPosition;
         Vector2 normVel = Vector2.Normalize(Projectile.velocity);
+        lightColor.A = (byte)(byte.MaxValue - Projectile.alpha);
         
         int id = Tip is null? 0 : Tip.DartSheetPlacement;
         var frame = new Rectangle(id * (width + 2), 0, width, tipHeight);

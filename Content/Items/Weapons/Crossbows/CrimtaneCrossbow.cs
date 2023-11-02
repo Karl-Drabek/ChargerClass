@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class CrimtaneCrossbow : ChargeWeapon
 	{
+        public static readonly int DamageIncrease = 7;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -37,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-            damage += chargeLevel * 7;
+            damage += chargeLevel * DamageIncrease;
         }
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

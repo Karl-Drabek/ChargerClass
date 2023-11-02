@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class LeatherGlove : ModItem
 	{
+		public static readonly int BonusCritDamage = 2;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(BonusCritDamage);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;

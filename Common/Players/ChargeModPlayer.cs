@@ -20,6 +20,7 @@ using ChargerClass.Content.Items.Armor;
 using Terraria.DataStructures;
 using ChargerClass.Content.Projectiles;
 using static Terraria.NPC;
+using ChargerClass.Content.Items.Acessories;
 
 namespace ChargerClass.Common.Players
 {
@@ -27,11 +28,11 @@ namespace ChargerClass.Common.Players
 	{
 		public const int MaxAdrenaline = 10_000;
 		public static readonly int DefaultCharge = 1000; //the defualt charge pre modifiers
-		public bool IronLung, Inhaler, Exhaler, Respirator, BreathingAid, /*Whether the player has a given accesory at the time*/
-					AAABattery, Capacitor, CarBattery, OverCharger, PowerBank,
-					Charger, ChargeRepository, ExtensionCord, LightningRod, Generator,
-					GripTape, LeatherGlove, ShootingGlove, RedDot, TrackingSpecs,
-					 SecretStimulants, UltimateChargingGear, Haler, ChargerEmblem,
+		public bool HasIronLung, Inhaler, HasExhaler, HasRespirator, HasBreathingAid, /*Whether the player has a given accesory at the time*/
+					HasAAABattery, Capacitor, HasCarBattery, HasOvercharger, HasPowerBank,
+					HasCharger, HasChargeRepository, HasExtensionCord, LightningRod, HasGenerator,
+					HasGripTape, LeatherGlove, HasShootingGlove, HasRedDot, HasTrackingSpecs,
+					 SecretStimulants, HasUltimateChargingGear, Haler, HasChargerEmblem,
 					 HydrogenBreath, IronDiaphragm, OverCritter;
 		public bool LightHeaded, RadiationSickness, Charge, Impatience, Stamina, RocketStormCooldown, Adrenaline;
 		private int overChargeCount, AdrenalineCharge;  
@@ -48,8 +49,8 @@ namespace ChargerClass.Common.Players
 		public StatModifier GetChargeAmountModifier(){
 			var chargeAmount = StatModifier.Default;
 
-			chargeAmount -= 0.01f * OpticVoltaicScrapCount;
-			if(Impatience) chargeAmount -= 0.10f;
+			chargeAmount -= OpticVoltaicScrap.ChargeLevelDecrease / 100f * OpticVoltaicScrapCount;
+			if(Impatience) chargeAmount -= ImpatiencePotion.ChargeLevelDecrease / 100f;
 
 			return chargeAmount;
 		}
@@ -60,19 +61,19 @@ namespace ChargerClass.Common.Players
 
 			maxCharge.Base += (VoltaicNuggetCount + MightyVoltaicScrapCount + StellerVoltaicFragmentCount) * VoltaicNugget.MaxChargeIncrease;
 
-			if(PowerBank) maxCharge += 0.15f;
-			else if(CarBattery) maxCharge += 0.10f;
-			else if(AAABattery) maxCharge += 0.05f;
+			if(HasPowerBank) maxCharge += PowerBank.MaxChargeIncrease / 100f;
+			else if(HasCarBattery) maxCharge += CarBattery.maxChargeIncrease / 100f;
+			else if(HasAAABattery) maxCharge += AAABattery.maxChargeIncrease / 100f;
 			
 
 			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon){
-				if(BreathingAid) maxCharge += 0.25f;
-				else if(IronLung) maxCharge += 0.15f;
+				if(HasBreathingAid) maxCharge += BreathingAid.StatIncrease / 100f;
+				else if(HasIronLung) maxCharge += IronLung.MaxChargeIncrease / 100f;
 			}
 
-			if(Stamina) maxCharge += 0.2f;
+			if(Stamina) maxCharge += StaminaPotion.MaxChargeIncrease / 100f;
 
-			maxCharge += 0.03f * overChargeCount;
+			maxCharge += Overcharger.OverChargeAmount / 100f * overChargeCount;
 			return (int)maxCharge.ApplyTo(DefaultCharge);
 		}
 
@@ -82,17 +83,17 @@ namespace ChargerClass.Common.Players
 
 				speed += (FrightfulVoltaicScrapCount + CosmicVoltaicFragmentCount) * 0.05f;
 
-				if(Generator) speed += 0.15f;
-				else if(ExtensionCord) speed += 0.10f;
-				else if(Charger) speed += 0.05f;
+				if(HasGenerator) speed += Generator.ChargeSpeedIncrease / 100f;
+				else if(HasExtensionCord) speed += ExtensionCord.ChargeSpeedIncrease / 100f;
+				else if(HasCharger) speed += Charger.ChargeSpeedIncrease / 100f;
 				
 
 				if(weapon.blowWeapon){
-					if(BreathingAid) speed += 0.25f;
-					else if(IronDiaphragm) speed += 0.15f;
+					if(HasBreathingAid) speed += BreathingAid.StatIncrease / 100f;
+					else if(IronDiaphragm) speed += Diaphragm.ChargeSpeedIncrease / 100f;
 				}
 
-				if(Charge) speed += 0.15f;
+				if(Charge) speed += ChargePotion.ChargeSpeedIncrease / 100f;
 
 				if(Adrenaline) speed *= 2f;
 
@@ -104,21 +105,21 @@ namespace ChargerClass.Common.Players
 		public override void ModifyWeaponDamage(Item item, ref StatModifier damage){
 			if(item.ModItem is not ChargeWeapon chargeWeapon) return;
 
-			if(ChargerEmblem) damage += 0.2f;
+			if(HasChargerEmblem) damage += ChargerEmblem.DamageIncrease / 100f;
 
 			if(chargeWeapon.blowWeapon){
-				if(Exhaler) damage += 0.02f * chargeWeapon.chargeLevel;
+				if(HasExhaler) damage += Exhaler.ChargeDamageIncrease / 100f * chargeWeapon.chargeLevel;
 				else if(Haler) damage += 0.03f * chargeWeapon.chargeLevel;
 				
-				if(Respirator) damage += 0.15f;
-				else if(BreathingAid) damage += 0.25f;
+				if(HasRespirator) damage += Respirator.DamageIncrease / 100f;
+				else if(HasBreathingAid) damage += BreathingAid.StatIncrease / 100f;
 			}
 
-			if(UltimateChargingGear)damage += 0.03f * chargeWeapon.chargeLevel;
-			else if(ShootingGlove) damage += 0.02f * chargeWeapon.chargeLevel;
-			else if(GripTape) damage += 0.01f * chargeWeapon.chargeLevel;
+			if(HasUltimateChargingGear)damage += UltimateChargingGear.StatIncrease / 100f * chargeWeapon.chargeLevel;
+			else if(HasShootingGlove) damage += ShootingGlove.ChargeDamageIncrease / 100f* chargeWeapon.chargeLevel;
+			else if(HasGripTape) damage += GripTape.ChargeDamageIncrease / 100f * chargeWeapon.chargeLevel;
 
-			if(HasChlorophyteCasque) damage += ChlorophyteCasque.DamageIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
+			if(HasChlorophyteCasque) damage += ChlorophyteCasque.StatIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
 
 			if(MechLungSet && chargeWeapon.blowWeapon) damage += MechLung.SetCritChanceIncrease / 100f;
 
@@ -129,15 +130,15 @@ namespace ChargerClass.Common.Players
 		public override void ModifyWeaponCrit(Item item, ref float crit){
 			if(item.ModItem is not ChargeWeapon chargeWeapon) return;
 
-			if(UltimateChargingGear)crit += 0.03f * chargeWeapon.chargeLevel;
-			else if(TrackingSpecs)crit += 0.02f * chargeWeapon.chargeLevel;
-			else if(RedDot)crit += 0.01f * chargeWeapon.chargeLevel;
+			if(HasUltimateChargingGear)crit += UltimateChargingGear.StatIncrease / 100f * chargeWeapon.chargeLevel;
+			else if(HasTrackingSpecs)crit += TrackingSpecs.CritChanceIncrease / 100f * chargeWeapon.chargeLevel;
+			else if(HasRedDot)crit += RedDot.CritChanceIncrease / 100f * chargeWeapon.chargeLevel;
 
 			if(HasChaosPlate) crit += ChaosPlate.ChargeCritChanceIncreasePerLevel * ((chargeWeapon.chargeLevel > ChaosPlate.MaxCritIncrease) ? ChaosPlate.MaxCritIncrease : chargeWeapon.chargeLevel);
 			if(CobaltArmorSet) crit += CobaltCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > CobaltCasque.MaxCritIncrease) ? CobaltCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
 			if(MythrilArmorSet) crit += MythrilCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > MythrilCasque.MaxCritIncrease) ? MythrilCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
 			if(AdamantiteArmorSet) crit += AdamantiteCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > AdamantiteCasque.MaxCritIncrease) ? AdamantiteCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
-			if(HasChlorophyteCasque) crit += ChlorophyteCasque.CritIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
+			if(HasChlorophyteCasque) crit += ChlorophyteCasque.StatIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
 			if(HallowedArmorSet) crit += HallowedCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > HallowedCasque.MaxCritIncrease) ? HallowedCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
 			
 			if(MechLungSet && chargeWeapon.blowWeapon) crit += MechLung.SetCritChanceIncrease / 100f;
@@ -146,46 +147,46 @@ namespace ChargerClass.Common.Players
 
 		public void ModifyProjectileSpeed(ref Vector2 velocity){
 			if(Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon){
-				if(Exhaler || Haler)velocity *= 1.25f;
+				if(HasExhaler || Haler) velocity *= 1 + Exhaler.ChargeVelocityIncrease / 100f;
 				if(MechLungSet) velocity *= MechLung.SetShootSpeedIncrease / 100f;
 			}
 		}
 
 		public void PostProjectileEffects(ChargeWeapon modItem, Projectile proj, ChargerProjectile chargerProj){
 			if(MechLungSet && modItem.blowWeapon) proj.penetrate += MechLung.SetPierceIncrease;
-			chargerProj.Hydrogenized = modItem.blowWeapon && (HydrogenBreath || Haler);
-            if(ChargeRepository || Generator) chargerProj.Repository = modItem.charge;
+			chargerProj.Hydrogenized = modItem.blowWeapon && HydrogenBreath;
+            if(HasChargeRepository || HasGenerator) chargerProj.Repository = modItem.charge;
 			if(LeatherGlove) chargerProj.LeatherGloveChargeLevel = modItem.chargeLevel;
 			PostProjectileEffects(proj, chargerProj);
 		}
 
 		public void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj){
-			chargerProj.Electrified = Capacitor || CarBattery || PowerBank;
+			chargerProj.Electrified = Capacitor || HasCarBattery || HasPowerBank;
 			if(MADChest) chargerProj.BossBonus = true;
 			if(FestiveSet) chargerProj.SpawnRockets = true;
 		}
 
 		public void ModifyChargeLevel(ref int chargeLevel, int crit){
-			if((SecretStimulants || UltimateChargingGear) && Main.rand.NextBool(Utils.Clamp(crit, 0, 100), 100)) chargeLevel++;
+			if((SecretStimulants || HasUltimateChargingGear) && Main.rand.NextBool(Utils.Clamp(crit, 0, 100), 100)) chargeLevel++;
 			if(FragmentedQuaser) chargeLevel++;
 			if(FestiveSet) chargeLevel++;
 		}
 
 		public void RepositorySuccess(int totalCharge){
 			if(Player.HeldItem.ModItem is ChargeWeapon weapon){
-				weapon.bonusCharge += totalCharge / 10;
+				weapon.bonusCharge += (int)(totalCharge * ChargeRepository.RetainedCharge / 100f);
 			}
 		}
 		public int GetLightningRod(){ //0 is no accesory, 1 is lightning rod, and 2 is generator.
-			if(Generator) return 3;
-			else if(ExtensionCord) return 2;
+			if(HasGenerator) return 3;
+			else if(HasExtensionCord) return 2;
 			else if(LightningRod) return 1;
 			else return 0;
 		}
 
 		public override void PostUpdateEquips (){
 			if(!ChaosSet) AdrenalineCharge = 0;	
-			if(!(OverCharger || PowerBank)){//resets the timer if the player doesnt have the accesories. this will set the count to 0 in a couple lines.
+			if(!(HasOvercharger || HasPowerBank)){//resets the timer if the player doesnt have the accesories. this will set the count to 0 in a couple lines.
 				overChargeTimer = 0;
 			}
 			if(overChargeTimer > 0){ //decrement if the timer is still going.
@@ -211,9 +212,9 @@ namespace ChargerClass.Common.Players
 		}
 
 		public void ShootInfo(ChargeWeapon weapon, int charge){
-			if(OverCharger || PowerBank){
+			if(HasOvercharger || HasPowerBank){
 				if(charge >= GetMaxCharge()){ //if the corrent accessories are equiped, the weapon has shot and it was fully charged.
-					if(overChargeCount < 3){
+					if(overChargeCount < Overcharger.OverChargeMax){
 						overChargeCount++; //increase the amount if it is not greater than the max.
 					}
 					overChargeTimer = 600; //reset the timer regardless of the max.
@@ -235,7 +236,7 @@ namespace ChargerClass.Common.Players
 		public override void ProcessTriggers(TriggersSet triggersSet) {
 			if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || Haler) && !LightHeaded) {
 				Player.AddBuff(ModContent.BuffType<LightHeaded>() , 1200); //debuff to stop the player from using the ability for a 20 seconds.
-				weapon.bonusCharge += weapon.chargeAmount;
+				weapon.bonusCharge += GetMaxCharge();
 			}
 			if (MADSet && ChargerClassGeneralSystem.RocketStormKeybind.JustPressed && !RocketStormCooldown) {
 				Player.AddBuff(ModContent.BuffType<RocketStormCooldown>(), 1800);
@@ -252,11 +253,11 @@ namespace ChargerClass.Common.Players
 		}
 
 		public override void ResetEffects() {
-			IronLung = Inhaler = Exhaler = Respirator = BreathingAid =
-			AAABattery = Capacitor = CarBattery = OverCharger = PowerBank =
-			Charger = ChargeRepository = ExtensionCord = LightningRod = Generator =
-			GripTape = LeatherGlove = ShootingGlove = RedDot = TrackingSpecs = 
-			SecretStimulants = UltimateChargingGear = Haler = ChargerEmblem = OverCritter = false; //reset accessory effects.
+			HasIronLung = Inhaler = HasExhaler = HasRespirator = HasBreathingAid =
+			HasAAABattery = Capacitor = HasCarBattery = HasOvercharger = HasPowerBank =
+			HasCharger = HasChargeRepository = HasExtensionCord = LightningRod = HasGenerator =
+			HasGripTape = LeatherGlove = HasShootingGlove = HasRedDot = HasTrackingSpecs = 
+			SecretStimulants = HasUltimateChargingGear = Haler = HasChargerEmblem = OverCritter = HydrogenBreath = false; //reset accessory effects.
 			LightHeaded = RadiationSickness = Charge = Impatience = Stamina = RocketStormCooldown = Adrenaline = false; //reset buff effects.
 			FestiveSet = ChaosSet = HasChaosPlate = MechLegs = MechLungSet = MADChest = MADSet = 
 			CobaltArmorSet = MythrilArmorSet = AdamantiteArmorSet = false;
@@ -343,9 +344,8 @@ namespace ChargerClass.Common.Players
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref HitModifiers hitModifiers){
 			if(OverCritter){
 				hitModifiers.HideCombatText();
-				hitModifiers.DisableCrit();
 				critCount = proj.CritChance / 100 + (Main.rand.NextBool(proj.CritChance % 100, 100) ? 1 : 0);
-				hitModifiers.FinalDamage += (hitModifiers.CritDamage.Additive - 1) * critCount;
+				hitModifiers.FinalDamage += (hitModifiers.CritDamage.Additive - 1) * critCount - (proj.CritChance > 100? 1 : 0);
 			}
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, HitInfo hitInfo, int damageDone){

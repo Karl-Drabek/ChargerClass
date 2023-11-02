@@ -6,11 +6,14 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Items.Placeable;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class BreathingAid : ModItem
 	{
+		public static readonly int StatIncrease = 25;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(StatIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -26,7 +29,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().BreathingAid = true;
+			player.GetModPlayer<ChargeModPlayer>().HasBreathingAid = true;
 		}
 
 		public override void AddRecipes()

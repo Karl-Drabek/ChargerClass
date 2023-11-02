@@ -5,11 +5,14 @@ using Terraria.ID;
 using ChargerClass.Common.Players;
 using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class BorealWoodSlingshot : ChargeWeapon
 	{
+        public static readonly int Frostburn = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Frostburn);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -37,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-            if (Main.rand.NextBool(Utils.Clamp(5 * chargeLevel, 0, 100), 100)) chargerProj.Frostburn = true;
+            if (Main.rand.NextBool(Utils.Clamp(Frostburn * (chargeLevel + 2), 0, 100), 100)) chargerProj.Frostburn = true;
         }
 
 		public override Vector2? HoldoutOffset() {

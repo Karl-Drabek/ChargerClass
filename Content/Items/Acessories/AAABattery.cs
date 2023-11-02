@@ -7,11 +7,14 @@ using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
 using ChargerClass.Content.Items.Placeable;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class AAABattery : ModItem
 	{
+		public static readonly int maxChargeIncrease = 5;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(maxChargeIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -30,7 +33,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().AAABattery = true;
+			player.GetModPlayer<ChargeModPlayer>().HasAAABattery = true;
 		}
 
 		public override void AddRecipes()

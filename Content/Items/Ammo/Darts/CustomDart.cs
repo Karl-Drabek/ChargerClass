@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 using Terraria.GameContent;
 using ChargerClass.Common.Players;
+using System;
 
 namespace ChargerClass.Content.Items.Ammo.Darts
 {
@@ -91,12 +92,27 @@ namespace ChargerClass.Content.Items.Ammo.Darts
 		}
 
         public override void ModifyTooltips(List<TooltipLine> tooltips){
+            if(!HasComponents) return;
+            int i = 0;
             foreach(var line in tooltips){
-                if(line.Name == "ItemName" && HasComponents){
+                if(line.Name == "ItemName"){
                     line.Text = Language.GetText($"Mods.ChargerClass.DartNameSection.{Tail.Name}").Value +
                         Language.GetText($"Mods.ChargerClass.DartNameSection.{Payload.Name}").Value +
                         Language.GetText($"Mods.ChargerClass.DartNameSection.{Tip.Name}").Value;
+                }else if(line.Name == "Tooltip0"){
+                    int tooltipLine = 0;
+                    tooltips.Remove(line);
+
+                    string tailTooltip = Language.GetText($"Mods.ChargerClass.Items.{Tail.Name}.Tooltip").Value;
+                    string payloadTooltip = Language.GetText($"Mods.ChargerClass.Items.{Payload.Name}.Tooltip").Value;
+                    string tipTooltip = Language.GetText($"Mods.ChargerClass.Items.{Tip.Name}.Tooltip").Value;
+
+                    if(tailTooltip != string.Empty) tooltips.Insert(i + tooltipLine, new TooltipLine(Mod, $"Tooltip{tooltipLine++}", tailTooltip));
+                    if(payloadTooltip != string.Empty) tooltips.Insert(i + tooltipLine, new TooltipLine(Mod, $"Tooltip{tooltipLine++}", payloadTooltip));
+                    if(tipTooltip != string.Empty) tooltips.Insert(i + tooltipLine, new TooltipLine(Mod, $"Tooltip{tooltipLine++}", tipTooltip));
+                    return;
                 }
+                i++;
             }
         }
 
@@ -131,7 +147,6 @@ namespace ChargerClass.Content.Items.Ammo.Darts
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI){
             var origin = new Vector2(width, tipHeight + payloadHeight + tailHeight) / 2;
             Vector2 position = Item.position;
-
 
             int id = Tip is null? 0 : Tip.Item.type - ModContent.ItemType<Tips.HypodermicNeedle>();
             var frame = new Rectangle(id * (width + 2), 0, width, tipHeight);

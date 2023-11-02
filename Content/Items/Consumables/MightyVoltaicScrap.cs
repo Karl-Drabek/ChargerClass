@@ -12,7 +12,7 @@ namespace ChargerClass.Content.Items.Consumables
 	{
 		public static readonly int MaxMightyVoltaicScrap = 10;
 		public static readonly int MaxChargeIncrease = 25;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease, MaxMightyVoltaicScrap);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
 
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 10;
@@ -20,6 +20,8 @@ namespace ChargerClass.Content.Items.Consumables
 
 		public override void SetDefaults() {
 			Item.CloneDefaults(ItemID.LifeFruit);
+			Item.width = 34;
+            Item.height = 48;
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(0, 1, 25, 0);
 		}

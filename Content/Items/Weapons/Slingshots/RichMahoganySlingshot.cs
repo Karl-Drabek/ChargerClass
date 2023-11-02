@@ -5,11 +5,14 @@ using Terraria.ID;
 using ChargerClass.Common.Players;
 using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class RichMahoganySlingshot : ChargeWeapon
 	{
+        public static readonly int BeeChance = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(BeeChance);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }

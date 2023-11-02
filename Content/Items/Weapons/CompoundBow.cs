@@ -7,11 +7,14 @@ using ChargerClass.Content;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class CompoundBow : ChargeWeapon
 	{
+            public static readonly int VelocityIncrease = 10;
+            public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(VelocityIncrease);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -40,7 +43,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
             
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-                  velocity *= 1f + 0.1f * chargeLevel;
+                  velocity *= 1f + VelocityIncrease / 100f * chargeLevel;
             }
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

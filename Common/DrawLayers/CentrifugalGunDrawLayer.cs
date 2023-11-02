@@ -28,7 +28,7 @@ namespace ChargerClass.Common.DrawLayers
 		public override void PreDraw(ref PlayerDrawSet drawInfo) {
 			var chargeWeapon = drawInfo.drawPlayer.HeldItem.ModItem as ChargeWeapon;
 
-			if(drawInfo.drawPlayer.itemAnimation < drawInfo.drawPlayer.itemAnimationMax - 1) shotsAtShoot = chargeWeapon.ShotsRemaining; //if just shot store shotcount
+			if(chargeWeapon.ShotsRemaining > 0 && drawInfo.drawPlayer.itemAnimation == drawInfo.drawPlayer.itemAnimationMax - 1) shotsAtShoot = chargeWeapon.ShotsRemaining; //if just shot store shotcount
 
 			if(chargeWeapon.ShotsRemaining > 0){ // still shooting
 				ticsPerFrame = framesAtShoot + shotsAtShoot - chargeWeapon.ShotsRemaining;

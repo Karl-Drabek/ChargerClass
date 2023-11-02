@@ -1,6 +1,6 @@
 Mods: {
 	ChargerClass: {
-		CommonItemTooltip.ChargeEffect: Charge effect: "{0}"
+		CommonItemTooltip.MaxChargeIncrease: "{0:+0;-#}% max charge"
 
 		Keybinds: {
 			InhalerKeybind.DisplayName: Inhaler Keybind
@@ -10,6 +10,8 @@ Mods: {
 
 		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
 		HardmodeBlowgunGroup: Hardmode Blowgun
+		VoltaicScrapGroup: Voltaic Scrap
+		IchorCannisters: Ichor Cannister
 
 		Buffs: {
 			LightHeaded: {
@@ -19,82 +21,77 @@ Mods: {
 
 			Tetnus: {
 				DisplayName: Tetnus
-				Description: That Looks like it hurts...
+				Description: Didn't someone tell you not to step on nails?
 			}
 
 			Bound: {
 				DisplayName: Bound
-				Description: the bola makes it hard to move
-			}
-
-			Slimed: {
-				DisplayName: Slimed
-				Description: Mods.ChargerClass.Buffs.Slimed.Description
+				Description: The bola makes it hard to move
 			}
 
 			Charge: {
 				DisplayName: Charge
-				Description: Mods.ChargerClass.Buffs.Charge.Description
+				Description: +15% charge speed
 			}
 
 			Impatience: {
 				DisplayName: Impatience
-				Description: Mods.ChargerClass.Buffs.Impatience.Description
+				Description: -10% charge level size
 			}
 
 			RadiationSickness: {
 				DisplayName: Radiation Sickness
-				Description: Mods.ChargerClass.Buffs.RadiationSickness.Description
+				Description: Did you always have three eyes?
 			}
 
 			Stamina: {
 				DisplayName: Stamina
-				Description: Mods.ChargerClass.Buffs.Stamina.Description
+				Description: +20% max charge
 			}
 
 			RocketStormCooldown: {
 				DisplayName: Rocket Storm Cooldown
-				Description: Mods.ChargerClass.Buffs.RocketStormCooldown.Description
+				Description: Wait a while before using your rocket storm again
 			}
 
 			Adrenaline: {
 				DisplayName: Adrenaline
-				Description: Mods.ChargerClass.Buffs.Adrenaline.Description
+				Description: Wait a while before using adrenaline again
 			}
 
 			LeadPoisoning: {
 				DisplayName: Lead Poisoning
-				Description: Mods.ChargerClass.Buffs.LeadPoisoning.Description
+				Description: Didn't I tell you not to eat lead?
 			}
 
 			Plague: {
 				DisplayName: Plague
-				Description: Mods.ChargerClass.Buffs.Plague.Description
+				Description: Seems contagious...
 			}
 
 			Stunned: {
 				DisplayName: Stunned
-				Description: Mods.ChargerClass.Buffs.Stunned.Description
-			}
-
-			Sticky: {
-				DisplayName: Sticky
-				Description: Mods.ChargerClass.Buffs.Sticky.Description
+				Description: You can't move
 			}
 
 			SuperSlimed: {
 				DisplayName: Super Slimed
-				Description: Mods.ChargerClass.Buffs.SuperSlimed.Description
+				Description: You can hardly move
 			}
 
 			Dabilitated: {
 				DisplayName: Dabilitated
-				Description: Mods.ChargerClass.Buffs.Dabilitated.Description
+				Description: What's even happening?
 			}
 
 			GodKiller: {
 				DisplayName: God Killer
-				Description: Mods.ChargerClass.Buffs.GodKiller.Description
+				Description: It's said that even the moon lord can't stand this potent toxin
+			}
+
+			Cursed: {
+				DisplayName: Cursed
+				Description: Mods.ChargerClass.Buffs.Cursed.Description
 			}
 		}
 
@@ -143,389 +140,429 @@ Mods: {
 		Items: {
 			AAABattery: {
 				DisplayName: AAA Battery
-				Tooltip: Increases max charge by 5%
+				Tooltip: Increases max charge by {0}%
 			}
 
 			BreathingAid: {
 				DisplayName: BreathingAid
-				Tooltip: Increase max charge and charge speed by 25%. Adds a keybind to automatically increase charge for blowing weapons by 2 levels. Increase projectile speed by 25% and damage by 3% for blowing weapons.
+				Tooltip:
+					'''
+					Increases max charge, charge speed and
+					charge damage by {0}% for blowing weapons
+					'''
 			}
 
 			Capacitor: {
 				DisplayName: Capacitor
-				Tooltip: Charge weapons have a chance to stun enemies on critical hits
+				Tooltip: Charged weapons stun enemies on critical hits
 			}
 
 			CarBattery: {
 				DisplayName: Car Battery
-				Tooltip: Increase max charge by 10%, has a chance to stun enemies on crits
+				Tooltip:
+					'''
+					Increases max charge by 10%
+					Charged weapons stun enemies on critical hits
+					'''
 			}
 
 			Charger: {
 				DisplayName: Charger
-				Tooltip: Increases charge speed by 5%
+				Tooltip: Increases charge speed by {0}%
 			}
 
 			ChargeRepository: {
 				DisplayName: Charge Respository
-				Tooltip: Keep 10% charge after scoring critical hits.
+				Tooltip: Retain {0}% charge on critical hits
 			}
 
 			Diaphragm: {
 				DisplayName: Iron Diaphragm
-				Tooltip: Increase charge speed of blowing weapons by 15%.
+				Tooltip: Increase charge speed of blowing weapons by {0}%.
 			}
 
 			Exhaler: {
 				DisplayName: Exhaler
-				Tooltip: Increase projectile speed by 25% and damage by 3% for blowing weapons.
+				Tooltip:
+					'''
+					Increase projectile speed by {0}%
+					Charge Effect: +{1}% charge damage
+					'''
 			}
 
 			ExtensionCord: {
 				DisplayName: Extension Cord
-				Tooltip: Increase Charge speed by 10%. Keep 10% charge on crits.
+				Tooltip:
+					'''
+					Increase charge speed by {0}%
+					Enemies occasionaly drop charge on death
+					'''
 			}
 
 			Generator: {
 				DisplayName: Generator
-				Tooltip: Increase Charge speed by 15%. Keep 10% charge on crits. Enemies have a chance to drop charge on death.
+				Tooltip:
+					'''
+					Increase Charge speed by {0}%
+					Retain {1}% charge on critical hits
+					Enemies occasionaly drop charge on death
+					'''
 			}
 
 			GripTape: {
 				DisplayName: Grip Tape
-				Tooltip: Deal 1% extra damage per charge level
+				Tooltip: Charge Effect: +{0}% charge damage
 			}
 
 			HydrogenGas: {
-				DisplayName: Hydrogen Gas
-				Tooltip: Blowing weapons explode on contact & balloons fly faster and higher
+				DisplayName: Hydrogen Breath
+				Tooltip: Blowing weapons explode on contact & balloons fly faster and higher (not only does it not do this right now, I can't imagine why we would ever want to do this...)
 			}
 
 			Inhaler: {
 				DisplayName: Inhaler
-				Tooltip: Keybind to instantly gain a charge level for blowing weapons
+				Tooltip: Use inhaler keybind to instantly charge a weapon
 			}
 
 			IronLung: {
-				DisplayName: IronLung
-				Tooltip: Increases max charge by 10%
+				DisplayName: Iron Lung
+				Tooltip: Increases max charge for blowing weapons by {0}%
 			}
 
 			LeatherGlove: {
 				DisplayName: Leather Glove
-				Tooltip: Critcial Hits deal 2% extra damage per Charge level
+				Tooltip: Charge Effect: +{0}% crit damage
 			}
 
 			LightningRod: {
 				DisplayName: Lightning Rod
-				Tooltip: Enemies have a chance to drop charge on death.
+				Tooltip: Enemies occasionaly drop charge on death
 			}
 
 			Overcharger: {
 				DisplayName: Overcharger
-				Tooltip: Gain 3% bonus max Charge for each shot fired at full charge (max 3). This effect resets if a shot is not fired to full charge or after 3 seconds.
+				Tooltip:
+					'''
+					Increase max charge by {0}% for each consecutive
+					shot fired at full charge (max {1})
+					'''
 			}
 
 			PowerBank: {
-				DisplayName: PowerBank
-				Tooltip: Increase Max charge by 15%. Gain 3% bonus max Charge for each shot fired at full charge (max 3). This resets if a shot is not fired to full charge or after 3 seconds. Crits have a chance to stun enemies.
+				DisplayName: Power Bank
+				Tooltip:
+					'''
+					Increase max charge by {0}%
+					Charged weapons stun enemies on critical hits
+					Increase max charge by {1}% for each consecutive 
+					shot fired at full charge (max {2})
+					'''
 			}
 
 			RedDot: {
 				DisplayName: Red Dot
-				Tooltip: Increase crit chance by 1% per charge level
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			Respirator: {
 				DisplayName: Respirator
-				Tooltip: Increases charge speed of blowing weapons by 15%.
+				Tooltip: Increases blowing damage by {0}%
 			}
 
 			SecretStimulants: {
-				DisplayName: SecretStimulants
-				Tooltip: Chance to increase charge level by 1 (crit chance)
+				DisplayName: Secret Stimulants
+				Tooltip:
+					'''
+					Charged shots have a chance equal to their
+					crit chance to increase their charge level by 1
+					'''
 			}
 
 			ShootingGlove: {
 				DisplayName: Shooting Glove
-				Tooltip: Deal 2% extra damage per charge level
+				Tooltip: Charge Effect: +{0}% charge damage
 			}
 
 			TrackingSpecs: {
 				DisplayName: Tracking Specs
-				Tooltip: Increase crit chance by 2% per charge level
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			UltimateChargingGear: {
 				DisplayName: Ultimate Charging Gear
-				Tooltip: Increase damage and crit chance by 3% per charge level, and an additional chance to increase charge level by 1 (crit chance).
+				Tooltip:
+					'''
+					Charged shots have a chance equal to their
+					crit chance to increase their charge level by 1
+					Charge Effect: +{0}% damage & crit chance
+					'''
 			}
 
 			BouncyRock: {
 				DisplayName: Bouncy Rock
-				Tooltip: Bounces before braking apart
+				Tooltip: ""
 			}
 
 			HotRock: {
 				DisplayName: Hot Rock
-				Tooltip: Don't hold on for too long!'
+				Tooltip: ""
 			}
 
 			Rock: {
 				DisplayName: Rock
-				Tooltip: Great for slinging!
+				Tooltip: ""
 			}
 
 			Sinker: {
 				DisplayName: Sinker
-				Tooltip: This feels heavy.
+				Tooltip: ""
 			}
 
 			Splitter: {
 				DisplayName: Spltter
-				Tooltip: splits into two smaller rocks after a little while
+				Tooltip: ""
 			}
 
 			BlueCharge: {
 				DisplayName: BlueCharge
-				Tooltip: Pickup to gain 200 charge
+				Tooltip: +200 charge
 			}
 
 			Charge: {
 				DisplayName: Charge
-				Tooltip: Pickup to gain 100 charge
+				Tooltip: +100 charge
 			}
 
 			Rubber: {
 				DisplayName: Rubber
-				Tooltip: Great for slinging!
+				Tooltip: ""
 			}
 
 			Airgun: {
 				DisplayName: Airgun
-				Tooltip: "Extra damage against squirrels and rabbits "
+				Tooltip:
+					'''
+					Shots catch critters
+					Charge Effect: +{0}% crit chance
+					'''
 			}
 
 			BagpipeBlaster: {
 				DisplayName: Bagpipe Blaster
-				Tooltip: Shoots a barrage of darts. Number depends on the charge.
+				Tooltip: Charge Effect: +1 dart
 			}
 
 			Balloon: {
 				DisplayName: Balloon
-				Tooltip: Each charge level balloon has a chance to explode.
+				Tooltip: Don't fill it up too much!
 			}
 
 			HellfireBlowgun: {
 				DisplayName: Hellfire Blowgun
-				Tooltip: Sets projectiles aflame + 10% crit chance
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			Tronbone: {
 				DisplayName: Tronbone
-				Tooltip: Shoots out three sonic rings. Additionally shoot extra bone projectiles per charge.
+				Tooltip: Charge Effect: Shoot out additional bones
 			}
 
 			CopperCrossbow: {
 				DisplayName: Copper Crossbow
-				Tooltip: Projectiles move 25% faster in water (rain) +10% per charge
+				Tooltip:
+					'''
+					Projectiles move {0}% faster in water
+					Charge Effect: +{1}% velocity
+					'''
 			}
 
 			CrimtaneCrossbow: {
 				DisplayName: Crimtane Crossbow
-				Tooltip: Deal 3 extra damage per charge. Shots cause bleeding
+				Tooltip: Charge Effect: +{0} damage
 			}
 
 			DemoniteCrossbow: {
 				DisplayName: Demonite Crossbow
-				Tooltip: Increase projectile penetration by one per charge level.
+				Tooltip: Charge Effect: +1 penetration
 			}
 
 			GoldCrossbow: {
 				DisplayName: Gold Crossbow
-				Tooltip: Midas touch 5% (extra gold)
+				Tooltip: Charge Effect: enemies drop extra gold when hit
 			}
 
 			HellfireCrossbow: {
 				DisplayName: Hellfire Crossbow
-				Tooltip: Explode on contact (fire)
+				Tooltip: Charge Effect: Increased explosion size
 			}
 
 			IronCrossbow: {
 				DisplayName: Iron Crossbow
-				Tooltip: Chance to inflict enemies with tetnus
+				Tooltip: Charge Effect: {0}% chance to inflict tetnus
 			}
 
 			LeadCrossbow: {
 				DisplayName: Lead Crossbow
-				Tooltip: Increase knockback by 1
+				Tooltip: Charge Effect: +{0}% knockback
 			}
 
 			PlatinumCrossbow: {
 				DisplayName: Platinum Crossbow
-				Tooltip: 15% chance not to consume ammo.
+				Tooltip: Charge Effect: +{0}% chance not to consume ammo.
 			}
 
 			SilverCrossbow: {
 				DisplayName: Silver Crossbow
-				Tooltip: Increase projectile speed by 5%
+				Tooltip: Charge Effect: +{0}% velocity & crit chance
 			}
 
 			TinCrossbow: {
 				DisplayName: Tin Crossbow
-				Tooltip: Increase weak food drop chance
+				Tooltip: Charge Effect: +{0}% chance for enemies to drop tin cans when hit
 			}
 
 			TungstenCrossbow: {
 				DisplayName: Tungsten Crossbow
-				Tooltip: +5 damage
+				Tooltip: Charge Effect: +{0} velocity & crit chance
 			}
 
 			Rubberband: {
 				DisplayName: Rubberband
-				Tooltip: 5% chance to damage player
+				Tooltip: Charge Effect: +{0}% chance to snap
 			}
 
 			RubberbandGun: {
 				DisplayName: Rubberband Gun
-				Tooltip: Flurry of rubber bands + rare RED (en fuego) rubberband
+				Tooltip: Charge Effect: +1 rubberband
 			}
 
 			AntlerSlinger: {
 				DisplayName: Antler Slinger
-				Tooltip:
-					'''
-					Charges add a chance to shoot an icy rock. 
-					 On death enemies explode with ice spikes
-					'''
+				Tooltip: Charge Effect: shoot an ice spike
 			}
 
 			AshwoodSlingshot: {
 				DisplayName: Ashwood Slingshot
-				Tooltip: 10% chance to inflict hellfire
+				Tooltip: Charge Effect: +{0}% hellfire chance
 			}
 
 			BorealWoodSlingshot: {
 				DisplayName: Boreal Wood Slingshot
-				Tooltip: 5% chance to inflict frostburn
+				Tooltip: Charge Effect: +{0}% frostburn chance
 			}
 
 			EbonwoodSlingshot: {
 				DisplayName: Ebonwood Slingshot
-				Tooltip: Chance to shoot exploding projectiles
+				Tooltip: Charge Effect: increased explosion power
 			}
 
 			MultiShot: {
 				DisplayName: MultiShot
-				Tooltip: Shoots an extra projectile for each charge level
+				Tooltip: Charge Effect: +1 rock
 			}
 
 			PalmWoodSlingshot: {
 				DisplayName: Palm Wood Slingshot
-				Tooltip: 3% chance to shoot a coconut
+				Tooltip: Charge Effect: +{0}% chance to shoot coconut
 			}
 
 			PearlwoodSlingshot: {
 				DisplayName: Pearlwood Slingshot
-				Tooltip: 15% chance to confuse enemy
+				Tooltip: Charge Effect: +{0}% chance to confuse enemy
 			}
 
 			ReinforcedSlingshot: {
 				DisplayName: Reinforced Slingshot
-				Tooltip: Deal 3 extra damage per charge level
+				Tooltip: Charge Effect: +{0} damage
 			}
 
 			RichMahoganySlingshot: {
 				DisplayName: Rich Mahogany Slingshot
-				Tooltip: 5% chance to spawn a bee
+				Tooltip: Charge Effect: +{0}% bee chance
 			}
 
 			ShadewoodSlingshot: {
 				DisplayName: Shadewood Slingshot
-				Tooltip: 5% chance for Red projectiles stick to enemies
+				Tooltip: Charge Effect: projectiles stick to enemies longer
 			}
 
 			TripleShot: {
 				DisplayName: Triple Shot
-				Tooltip:
-					'''
-					Shoots three bullets. 
-					 10% chance not to consume ammo per charge
-					'''
+				Tooltip: Charge Effect: +{0}% chance not to consume ammo
 			}
 
 			WoodSlingshot: {
 				DisplayName: Wood Slingshot
-				Tooltip: Increase crit chance by 5% per charge level
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			SuperSoaker: {
 				DisplayName: Super Soaker
-				Tooltip: In ice the biome it freezes enemies & in the desert it evaporates.Charge increases the amount shot.
+				Tooltip: Charge Effect: Shoots more water
 			}
 
 			SuperSlimer: {
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots more slime
 				DisplayName: Super Slimer
 			}
 
 			ScorchingScream: {
-				Tooltip: ""
+				Tooltip: Charge Effect: Blow more flames
 				DisplayName: Scorching Scream
 			}
 
 			PremeCalamari: {
-				Tooltip: ""
+				Tooltip: Charge Effect: Increase laser time
 				DisplayName: Preme Calamari
 			}
 
 			PotatoCannon: {
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% chance to shoot hot potato
 				DisplayName: Potato Cannon
 			}
 
 			NectarNailGun: {
-				Tooltip: ""
-				DisplayName: Nectar Nail Gun
+				Tooltip: Charge Effect: +1 nectar nail
+				DisplayName: Nectar Nailgun
 			}
 
 			MolotovMortar: {
-				Tooltip: ""
+				Tooltip: Charge Effect: +1 molotov
 				DisplayName: Molotov Mortar
 			}
 
 			LongBow: {
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance
 				DisplayName: Long Bow
 			}
 
 			ConsumingLens: {
-				Tooltip: ""
+				Tooltip: Charge Effect: Increased laser time
 				DisplayName: Consuming Lens
 			}
 
 			CompoundBow: {
-				Tooltip: ""
+				Tooltip: Charge Effect: +1 penetration, +{0}% velocity
 				DisplayName: Compound Bow
 			}
 
 			HandCannon: {
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% chance to shoot cluster bombs
 				DisplayName: Hand Cannon
 			}
 
 			Bola: {
-				Tooltip: ""
+				Tooltip: Charge Effect: Increase slow time
 				DisplayName: Bola
 			}
 
 			Bellows: {
-				Tooltip: ""
+				Tooltip: Charge Effect: shoots extra air
 				DisplayName: Bellows
 			}
 
 			SealedTinCan: {
-				Tooltip: ""
+				Tooltip: Right click to open
 				DisplayName: Sealed Tin Can
 			}
 
@@ -549,23 +586,8 @@ Mods: {
 				DisplayName: Bottled Slime
 			}
 
-			TestWeapon: {
-				Tooltip: ""
-				DisplayName: Test Weapon
-			}
-
-			Test: {
-				DisplayName: Test
-				Tooltip: ""
-			}
-
 			BakedPotato: {
 				DisplayName: Baked Potato
-				Tooltip: ""
-			}
-
-			CentrifeugalGun: {
-				DisplayName: Centrifeugal Gun
 				Tooltip: ""
 			}
 
@@ -636,7 +658,7 @@ Mods: {
 
 			CustomDart: {
 				DisplayName: Custom Dart
-				Tooltip: Where did you get this?
+				Tooltip: How did you get this?
 			}
 
 			DartCannister: {
@@ -651,12 +673,16 @@ Mods: {
 
 			HypodermicNeedle: {
 				DisplayName: Hypodermic Needle
-				Tooltip: ""
+				Tooltip: Leaves the payload in for longer
 			}
 
 			UnholyTail: {
 				DisplayName: Unholy Tail
-				Tooltip: ""
+				Tooltip:
+					'''
+					Draws enemies in and inflicts cursed, 
+					increasing the detremental effects of debuffs
+					'''
 			}
 
 			DartAssemblyStation: {
@@ -666,92 +692,97 @@ Mods: {
 
 			ChargerEmblem: {
 				DisplayName: Charger Emblem
-				Tooltip: ""
+				Tooltip: Increase charge damage by {0}%
 			}
 
 			Haler: {
 				DisplayName: Haler
-				Tooltip: ""
+				Tooltip:
+					'''
+					Use inhaler keybind to instantly charge a charge weapon
+					Increase projectile speed by {0}%
+					Charge Effect: +{1}% charge damage
+					'''
 			}
 
 			Atomizer: {
 				DisplayName: Atomizer
-				Tooltip: ""
+				Tooltip: Even the atoms tremble in fear
 			}
 
 			CryoCannister: {
 				DisplayName: Cryo Cannister
-				Tooltip: ""
+				Tooltip: inflicts frostburn
 			}
 
 			CursedCannister: {
 				DisplayName: Cursed Cannister
-				Tooltip: ""
+				Tooltip: Inflicts cursed flame
 			}
 
 			DartFrogDabilitator: {
 				DisplayName: Dart Frog Dabilitator
-				Tooltip: ""
+				Tooltip: Dabilitates enemies, lowering their defense
 			}
 
 			DeathFactor: {
 				DisplayName: Death Factor
-				Tooltip: ""
+				Tooltip: contains a contagious plague
 			}
 
 			ExplosiveCannister: {
 				DisplayName: Explosive Cannister
-				Tooltip: ""
+				Tooltip: Handle with care
 			}
 
 			GodKillerCocktail: {
 				DisplayName: God Killer Cocktail
-				Tooltip: ""
+				Tooltip: A concoction so potent even gods may parish
 			}
 
 			IchorCannister: {
 				DisplayName: Ichor Cannister
-				Tooltip: ""
+				Tooltip: inflicts ichor
 			}
 
 			JellyfishCannister: {
 				DisplayName: Jellyfish Cannister
-				Tooltip: ""
+				Tooltip: Stuns enemies for a short duration
 			}
 
 			LavaCannister: {
 				DisplayName: Lava Cannister
-				Tooltip: ""
+				Tooltip: Lights enemies ablaze
 			}
 
 			LiquidLeadCannister: {
 				DisplayName: Liquid Lead Cannister
-				Tooltip: ""
+				Tooltip: Inflicts lead poisoning
 			}
 
 			RadioactiveParsel: {
 				DisplayName: Radioactive Parsel
-				Tooltip: ""
+				Tooltip: Damages nearby enemeis with radioactivity
 			}
 
 			BetsysBackwash: {
 				DisplayName: Betsys Backwash
-				Tooltip: ""
+				Tooltip: Leaves hoards of flames in its wake
 			}
 
 			BombingBay: {
 				DisplayName: Bombing Bay
-				Tooltip: ""
+				Tooltip: Great for dropping bombs or other payloads
 			}
 
 			CropDuster: {
 				DisplayName: Crop Duster
-				Tooltip: ""
+				Tooltip: Unloads payload wherever it flies
 			}
 
 			EagleEye: {
 				DisplayName: Eagle Eye
-				Tooltip: ""
+				Tooltip: Heat seeking darts
 			}
 
 			HolyLightTail: {
@@ -761,32 +792,32 @@ Mods: {
 
 			MagesTail: {
 				DisplayName: Mages Tail
-				Tooltip: ""
+				Tooltip: Shoots out ball of dark energy
 			}
 
 			PixieDuster: {
 				DisplayName: Pixie Duster
-				Tooltip: ""
+				Tooltip: Spits out a cloud of pixie dust
 			}
 
 			PrismaticTail: {
 				DisplayName: Prismatic Tail
-				Tooltip: ""
+				Tooltip: prismatic counterparts fly with projectiles
 			}
 
 			RocketJets: {
 				DisplayName: Rocket Jets
-				Tooltip: ""
+				Tooltip: Extreme speed
 			}
 
 			TheCorruptor: {
 				DisplayName: Cerulean Corruptor
-				Tooltip: ""
+				Tooltip: Engulfs enemies in blue lightning
 			}
 
 			ToxicTail: {
 				DisplayName: Toxic Tail
-				Tooltip: ""
+				Tooltip: Carpets the ground with toxic spores
 			}
 
 			AdamantiteTip: {
@@ -861,17 +892,17 @@ Mods: {
 
 			ChargePotion: {
 				DisplayName: Charge Potion
-				Tooltip: ""
+				Tooltip: Increases charge speed by {0}%
 			}
 
 			ImpatiencePotion: {
 				DisplayName: Impatience Potion
-				Tooltip: ""
+				Tooltip: Decreases charge level size by {0}%
 			}
 
 			StaminaPotion: {
 				DisplayName: Stamina Potion
-				Tooltip: ""
+				Tooltip: Increases max charge by {0}%
 			}
 
 			DartFrogExtract: {
@@ -886,36 +917,31 @@ Mods: {
 
 			OrangeCharge: {
 				DisplayName: Orange Charge
-				Tooltip: ""
+				Tooltip: + 150 charge
 			}
 
 			AncientDebris: {
 				DisplayName: Ancient Debris
-				Tooltip: ""
+				Tooltip: an artifact from a lost civilization
 			}
 
 			AncientTech: {
 				DisplayName: Ancient Tech
-				Tooltip: ""
+				Tooltip: It's humming quitely
 			}
 
 			UnstableChaosShard: {
 				DisplayName: Unstable Chaos Shard
-				Tooltip: ""
+				Tooltip: It whispers to you with a mysterious power
 			}
 
 			RadioactiveDebris: {
 				DisplayName: Radioactive Debris
-				Tooltip: ""
+				Tooltip: Best not to hold it for too long
 			}
 
 			LihzahrdTip: {
 				DisplayName: Lihzahrd Tip
-				Tooltip: ""
-			}
-
-			DartFrogDebilitator: {
-				DisplayName: Dart Frog Debilitator
 				Tooltip: ""
 			}
 
@@ -925,118 +951,168 @@ Mods: {
 			}
 
 			ElectrudiumHelmet: {
-				SetBonus: Mods.ChargerClass.Items.ElectrudiumHelmet.SetBonus
+				SetBonus:
+					'''
+					{0}% charge damage
+					{1}% max charge
+					'''
 				DisplayName: Electrudium Helmet
-				Tooltip: ""
-			}
-
-			ElectrudiumBreastplate: {
-				DisplayName: Electrudium Breastplate
-				Tooltip: ""
-			}
-
-			ElectrudiumLeggings: {
-				DisplayName: Electrudium Leggings
-				Tooltip: ""
+				Tooltip: "{0}% charge speed"
 			}
 
 			VoltaicNugget: {
 				DisplayName: Voltaic Nugget
-				Tooltip: ""
+				Tooltip: Permanently increase miximum charge by {0}
 			}
 
 			CosmicVoltaicFragment: {
 				DisplayName: Cosmic Voltaic Fragment
-				Tooltip: ""
+				Tooltip: Permanently increase charge speed by {0}
 			}
 
 			FragmentedQuasar: {
 				DisplayName: Fragmented Quasar
-				Tooltip: ""
+				Tooltip: Permanently increase charge level by 1
 			}
 
 			FrightfulVoltaicScrap: {
 				DisplayName: Frightful Voltaic Scrap
-				Tooltip: ""
+				Tooltip: Permanently increase charge speed by {0}
 			}
 
 			MightyVoltaicScrap: {
 				DisplayName: Mighty Voltaic Scrap
-				Tooltip: ""
+				Tooltip: Permanently increase miximum charge by {0}
 			}
 
 			OpticVoltaicScrap: {
 				DisplayName: Optic Voltaic Scrap
-				Tooltip: ""
+				Tooltip: Permanently decrease charge level size by {0}%
 			}
 
 			StellerVoltaicFragment: {
 				DisplayName: Steller Voltaic Fragment
-				Tooltip: ""
+				Tooltip: Permanently increase miximum charge by {0}
 			}
 
 			ElectrudiumChainmail: {
 				DisplayName: Electrudium Chainmail
-				Tooltip: ""
+				Tooltip: "{0}% charge speed"
 			}
 
 			ElectrudiumGreaves: {
 				DisplayName: Electrudium Greaves
-				Tooltip: ""
+				Tooltip: "{0}% charge speed"
 			}
 
 			ChaosHelmet: {
-				SetBonus: Mods.ChargerClass.Items.ChaosHelmet.SetBonus
+				SetBonus: Adds adrenaline ability
 				DisplayName: Chaos Helmet
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					{2}% charge damage
+					'''
 			}
 
 			FestiveHelmet: {
-				SetBonus: Mods.ChargerClass.Items.FestiveHelmet.SetBonus
+				SetBonus: Projectiles explode with fireworks
 				DisplayName: Festive Helmet
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% max charge
+					{1}% charge crit chance
+					{2}% charge speed
+					'''
 			}
 
 			MechLung: {
-				SetBonus: Mods.ChargerClass.Items.MechLung.SetBonus
+				SetBonus:
+					'''
+					{0}% blowing crit chance
+					{1}% blowing speed
+					{2}% blowing damage
+					{3}% blowing peirce
+					'''
 				DisplayName: Mech Lung
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% max charge
+					{1}% charge speed
+					'''
 			}
 
 			ChaosLeggings: {
 				DisplayName: Chaos Leggings
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					{2}% charge damage
+					{3}% move speed
+					'''
 			}
 
 			ChaosPlate: {
 				DisplayName: Chaos Plate
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					{2}% charge damage
+					Charge Effect: +{3}% crit chance (max {4}%)
+					'''
 			}
 
 			FestiveBreastplate: {
 				DisplayName: Festive Breastplate
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% max charge
+					{1}% charge damage
+					{1}% charge speed
+					'''
 			}
 
 			FestiveLeggings: {
 				DisplayName: Festive Leggings
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% charge damage
+					{1}% move speed
+					'''
 			}
 
 			MAD: {
-				DisplayName: M A D
-				Tooltip: ""
-				SetBonus: Mods.ChargerClass.Items.MAD.SetBonus
+				DisplayName: MAD
+				Tooltip:
+					'''
+					{0}% max charge
+					{1}% boss charge damage
+					'''
+				SetBonus: Adds a rocket storm ability
 			}
 
 			MechHelmet: {
 				DisplayName: Mech Helmet
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% max charge
+					{1}% charge speed
+					{2}% crit chance
+					'''
 			}
 
 			MechLeggings: {
 				DisplayName: Mech Leggings
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge damage
+					{1}% move speed
+					Allows flight
+					'''
 			}
 
 			ChristmasCheer: {
@@ -1045,62 +1121,229 @@ Mods: {
 			}
 
 			AdamantiteCasque: {
-				SetBonus: Mods.ChargerClass.Items.AdamantiteCasque.SetBonus
+				SetBonus: Charge Effect: +{0}% crit chance (max {1}%)
 				DisplayName: Adamantite Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			AncientHallowedCasque: {
-				SetBonus: Mods.ChargerClass.Items.AncientHallowedCasque.SetBonus
+				SetBonus: Charge Effect: +{0}% crit chance (max {1}%)
 				DisplayName: Ancient Hallowed Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			CobaltCasque: {
-				SetBonus: Mods.ChargerClass.Items.CobaltCasque.SetBonus
+				SetBonus: Charge Effect: +{0}% crit chance (max {1}%)
 				DisplayName: Cobalt Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			HallowedCasque: {
-				SetBonus: Mods.ChargerClass.Items.HallowedCasque.SetBonus
+				SetBonus: Charge Effect: +{0}% crit chance (max {1}%)
 				DisplayName: Hallowed Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			MythrilCasque: {
-				SetBonus: Mods.ChargerClass.Items.MythrilCasque.SetBonus
+				SetBonus: Charge Effect: +{0}% crit chance (max {1}%)
 				DisplayName: Mythril Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			ChlorophyteCasque: {
 				DisplayName: Chlorophyte Casque
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance & damage (max {1}%)
 			}
 
 			OrichalcumCasque: {
 				DisplayName: Orichalcum Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			PalladiumCasque: {
 				DisplayName: Palladium Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			TitaniumCasque: {
 				DisplayName: Titanium Casque
-				Tooltip: ""
+				Tooltip:
+					'''
+					{0}% charge speed
+					{1}% max charge
+					'''
 			}
 
 			OverCritter: {
 				DisplayName: Over Critter
-				Tooltip: ""
+				Tooltip: Crit Chances over 100% have a chance to crit multiple times
 			}
 
 			YellowCharge: {
 				DisplayName: Yellow Charge
+				Tooltip: ""
+			}
+
+			BunnyGun: {
+				DisplayName: Bunny Gun
+				Tooltip: Charge Effect: shoot bonus bunnies
+			}
+
+			SoulofBunnies: {
+				DisplayName: Soul of Bunnies
+				Tooltip: And now, they fight for you...
+			}
+
+			VoodooBunny: {
+				DisplayName: Voodoo Bunny
+				Tooltip: Likes to swim in the underworld
+			}
+
+			DartFrogDebilitator: {
+				Tooltip: ""
+				DisplayName: Dart Frog Debilitator
+			}
+
+			MonkeyDart: {
+				DisplayName: Monkey Dart
+				Tooltip: ""
+			}
+
+			DartlingGun: {
+				DisplayName: Dartling Gun
+				Tooltip: ""
+			}
+
+			RocketPod: {
+				Tooltip: ""
+				DisplayName: Rocket Pod
+			}
+
+			BloontoniumDart: {
+				Tooltip: ""
+				DisplayName: Bloontonium Dart
+			}
+
+			BloontoniumBlaster: {
+				DisplayName: Bloontonium Blaster
+				Tooltip: ""
+			}
+
+			HydraRocketLauncher: {
+				DisplayName: Hydra Rocket Launcher
+				Tooltip: ""
+			}
+
+			LaserDartlingGun: {
+				DisplayName: Laser Dartling Gun
+				Tooltip: ""
+			}
+
+			RayOfBloon: {
+				DisplayName: Ray Of Bloon
+				Tooltip: ""
+			}
+
+			TeslaCoil: {
+				DisplayName: Tesla Coil
+				Tooltip: ""
+			}
+
+			SnailGun: {
+				DisplayName: Snail Gun
+				Tooltip: ""
+			}
+
+			NikolasObliterator: {
+				DisplayName: Nikolas Obliterator
+				Tooltip: ""
+			}
+
+			Railgun: {
+				DisplayName: Railgun
+				Tooltip: ""
+			}
+
+			RailRailGun: {
+				DisplayName: Rail Rail Gun
+				Tooltip: ""
+			}
+
+			SpiderBow: {
+				Tooltip: ""
+				DisplayName: Spider Bow
+			}
+
+			RocketBalloon: {
+				Tooltip: ""
+				DisplayName: Rocket Balloon
+			}
+
+			MegaMortar: {
+				Tooltip: ""
+				DisplayName: Mega Mortar
+			}
+
+			DragonsBreath: {
+				Tooltip: ""
+				DisplayName: Dragons Breath
+			}
+
+			ConcentratedGelSolution: {
+				Tooltip: ""
+				DisplayName: Concentrated Gel Solution
+			}
+
+			ExoticEscargot: {
+				Tooltip: ""
+				DisplayName: Exotic Escargot
+			}
+
+			DepleatedBloontonium: {
+				DisplayName: Depleated Bloontonium
+				Tooltip: ""
+			}
+
+			LunarBlowgun: {
+				DisplayName: Lunar Blowgun
+				Tooltip: ""
+			}
+
+			HydrantHoser: {
+				DisplayName: Hydrant Hoser
+				Tooltip: ""
+			}
+
+			Refractinator: {
+				DisplayName: Refractinator
 				Tooltip: ""
 			}
 		}
@@ -1145,20 +1388,32 @@ Mods: {
 			PixieDust.DisplayName: Pixie Dust
 			LightningProjectile.DisplayName: Lightning Projectile
 			BombBayProjectile.DisplayName: Bomb Bay Projectile
+			MonkeyDartProjectile.DisplayName: Monkey Dart Projectile
+			RocketPodProjectile.DisplayName: Rocket Pod Projectile
+			BloontoniumDartProjectile.DisplayName: Bloontonium Dart Projectile
+			DartlingLaserProjectile.DisplayName: Dartling Laser Projectile
+			RayOfBloonLaser.DisplayName: Ray Of Bloon Laser
+			HolyCrossProjectile.DisplayName: Holy Cross Projectile
+			SnailProjectile.DisplayName: Snail Projectile
+			RocketBalloonProjectile.DisplayName: Rocket Balloon Projectile
+			DragonsBreathProjectile.DisplayName: Dragons Breath Projectile
+			HydrantHoserProjectile.DisplayName: Hydrant Hoser Projectile
+			MegaMortarProjectile.DisplayName: Mega Mortar Projectile
+			NikolasObliteratorLaser.DisplayName: Nikolas Obliterator Laser
+			RailgunLaser.DisplayName: Railgun Laser
+			RailRailGunProjectile.DisplayName: Rail Rail Gun Projectile
+			RefractinatorProjectile.DisplayName: Refractinator Projectile
 		}
 
 		Tiles: {
 			PotatoPlant.MapEntry: Potato Plant
 			ElectrudiumOre.MapEntry: Electrudium Ore
-			DartAssemblyStationTile.MapEntry: Dart Assembly Station Tile
+			DartAssemblyStationTile.MapEntry: Dart Assembly Station
 			AncientDebris.MapEntry: Ancient Debris
 			UnstableChaosShard.MapEntry: Unstable Chaos Shard
 		}
 
-		WorldGen: {
-			ElectrudiumOrePassMessage: Charging up Electrudium Ore
-			ChargerOrePassMessage: Mods.ChargerClass.WorldGen.ChargerOrePassMessage
-		}
+		WorldGen.ChargerOrePassMessage: Inserting Charged Ores
 
 		Configs: {
 			ChargerClassConfig: {
@@ -1167,9 +1422,27 @@ Mods: {
 
 				ShotInfoToggle: {
 					Label: Shot Info Toggle
+					Tooltip: Shows debug info relivant shooting
+				}
+
+				MaxChargeToggle: {
 					Tooltip: ""
+					Label: Max Charge Toggle
 				}
 			}
+		}
+
+		Prefixes: {
+			ChargedPrefix.DisplayName: Charged
+			Absurd.DisplayName: Absurd
+			Anxius.DisplayName: Anxius
+			Depleated.DisplayName: Depleated
+			Ecstatic.DisplayName: Ecstatic
+			Exuberant.DisplayName: Exuberant
+			Negative.DisplayName: Negative
+			Neutral.DisplayName: Neutral
+			Static.DisplayName: Static
+			SuperChargedPrefix.DisplayName: Super Charged
 		}
 	}
 }

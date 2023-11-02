@@ -4,11 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class PalmWoodSlingshot : ChargeWeapon
 	{
+        public static readonly int CoconutChance = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CoconutChance);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -36,10 +39,10 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-            if(Main.rand.NextBool(Utils.Clamp(3 * chargeLevel, 0, 100), 100)){
+            if(Main.rand.NextBool(Utils.Clamp(CoconutChance * chargeLevel, 0, 100), 100)){
                 type = ModContent.ProjectileType<CoconutProjectile>();
                 velocity *= 0.75f;
-                damage = (int)(1.5f * damage);
+                damage = (int)(2f * damage);
                 knockback *= 2;
             }
         }

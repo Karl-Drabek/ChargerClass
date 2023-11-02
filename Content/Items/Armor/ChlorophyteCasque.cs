@@ -13,11 +13,10 @@ namespace ChargerClass.Content.Items.Armor
 	[AutoloadEquip(EquipType.Head)]
 	public class ChlorophyteCasque : ModItem
 	{
-		public static int CritIncreasePerLevel = 3;
-        public static int DamageIncreasePerLevel = 3;
+		public static int StatIncreasePerLevel = 3;
 		public static int MaxLevels = 5;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CritIncreasePerLevel, DamageIncreasePerLevel, CritIncreasePerLevel * MaxLevels);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(StatIncreasePerLevel, StatIncreasePerLevel * MaxLevels);
 		public override void SetDefaults() {
 			Item.width = 18;
 			Item.height = 18;

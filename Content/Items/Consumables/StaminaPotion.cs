@@ -2,12 +2,15 @@ using ChargerClass.Common.ModSystems;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Consumables
 {
 	public class StaminaPotion : ModItem
 	{
+		public static readonly int MaxChargeIncrease = 20;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 20;
 

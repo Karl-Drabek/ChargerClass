@@ -1,16 +1,13 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Common.Extensions;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class ScorchingScreamProjectile : ModProjectile
+	public class RefractinatorProjectile : ModProjectile
 	{
 
 		public override void SetDefaults()
@@ -22,7 +19,7 @@ namespace ChargerClass.Content.Projectiles
             Projectile.hostile = false;
             Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 15;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;
             Projectile.ignoreWater = true;
@@ -31,10 +28,6 @@ namespace ChargerClass.Content.Projectiles
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
-			target.AddBuff(BuffID.OnFire, 180);
         }
 
         public override void Kill(int timeLeft) {

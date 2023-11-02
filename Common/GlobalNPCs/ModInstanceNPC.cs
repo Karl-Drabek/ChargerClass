@@ -1,4 +1,5 @@
 using ChargerClass.Content.Buffs;
+using ChargerClass.Content.Items.Ammo;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,11 +13,15 @@ namespace ChargerClass.Common.GlobalNPCs
 		public override bool InstancePerEntity => true;
 		private bool plagued = false, oldPlagued = false;
 
-		public bool Tetnus, Sticky, Stunned, LeadPoisoning, Bound, RadiationSickness, Slimed, Dabilitated, GodKiller;
+		public bool Tetnus, Stunned, LeadPoisoning, Bound, RadiationSickness, Slimed, Dabilitated, GodKiller, Cursed;
 
 		public bool Plagued{
 			get => plagued || oldPlagued;
 			set => plagued = oldPlagued = value;
+		}
+
+		public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers){
+			if(Dabilitated) modifiers.Defense -= npc.defense / 5;
 		}
 
 		public override void AI(NPC npc){
@@ -57,6 +62,9 @@ namespace ChargerClass.Common.GlobalNPCs
 				dust.scale = Main.rand.NextFloat(1f, 1.5f);
 			}if(GodKiller){
 				Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.WitherLightning);
+			}if(Cursed){
+				Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.SpookyWood);
+				if(Main.rand.NextBool(1, 3)) dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Venom);
 			}
 		}
 
@@ -80,12 +88,49 @@ namespace ChargerClass.Common.GlobalNPCs
 					}
 				}
 			}
+			if(IsBunny(npc.type) && !Main.LocalPlayer.HasItem(ModContent.ItemType<SoulofBunnies>()) && BunnyKillCount() % 100 == 0 ){
+				Item.NewItem(new EntitySource_Parent(npc), npc.Center, new Vector2(npc.width, npc.height), ModContent.ItemType<SoulofBunnies>());
+			}
 		}
+
+		bool IsBunny(int type) => 
+			type == NPCID.Bunny ||
+			type == NPCID.ExplosiveBunny ||
+			type == NPCID.GoldBunny ||
+			type == NPCID.BunnySlimed ||
+			type == NPCID.BunnyXmas ||
+			type == NPCID.PartyBunny ||
+			type == NPCID.GemBunnyAmethyst ||
+			type == NPCID.GemBunnyAmber ||
+			type == NPCID.GemBunnyDiamond ||
+			type == NPCID.GemBunnyEmerald ||
+			type == NPCID.GemBunnyRuby ||
+			type == NPCID.GemBunnySapphire ||
+			type == NPCID.GemBunnyTopaz ||
+			type == NPCID.CorruptBunny||
+			type == NPCID.CrimsonBunny;
+		int BunnyKillCount() =>
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.Bunny])+
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.ExplosiveBunny]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GoldBunny]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.BunnySlimed]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.BunnyXmas]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.PartyBunny]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyAmethyst]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyAmber]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyDiamond]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyEmerald]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyRuby]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnySapphire]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.GemBunnyTopaz]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.CorruptBunny]) +
+			Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcPersistentIdsByNetIds[NPCID.CrimsonBunny]);
+
 
 		public override void ResetEffects(NPC npc){
 			//if(oldPlagued == true && plagued == false) npc.BecomeImmuneTo(ModContent.BuffType<Plague>());
 			oldPlagued = plagued;
-			plagued = Tetnus = Slimed = Stunned = LeadPoisoning = Bound = RadiationSickness = Dabilitated = GodKiller = false;
+			plagued = Tetnus = Slimed = Stunned = LeadPoisoning = Bound = RadiationSickness = Dabilitated = GodKiller = Cursed = false;
 		}
 
 		public override void UpdateLifeRegen(NPC npc, ref int damage){
@@ -104,6 +149,11 @@ namespace ChargerClass.Common.GlobalNPCs
 			}if(GodKiller){
 				npc.lifeRegen -= 600;
 				damage += 60;
+			}if(Cursed){
+				if(npc.lifeRegen < 0){
+					npc.lifeRegen *= 2;
+					damage *= 2;
+				}else npc.lifeRegen = 0;
 			}
 		}
 	}

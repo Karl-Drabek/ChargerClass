@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Content;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class Rubberband : ChargeWeapon
 	{
+            public static readonly int SnapChance = 1 ;
+	      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SnapChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 99;
             }
@@ -39,7 +42,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel, 0, 100), 100)){
+                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel * SnapChance, 0, 100), 100)){
                         player.Hurt(PlayerDeathReason.ByPlayerItem(player.whoAmI, Item), damage, player.direction);
                         return false;
                   }

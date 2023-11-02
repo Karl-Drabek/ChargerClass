@@ -37,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer) {
-                  chargerProj.GoldBonusCount = chargeLevel;
+                  chargerProj.GoldBonusCount = chargeLevel * 2;
             }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

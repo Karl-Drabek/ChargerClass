@@ -5,11 +5,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class GripTape : ModItem
 	{
+		public static readonly int ChargeDamageIncrease = 1;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeDamageIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -25,7 +29,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().GripTape = true;
+			player.GetModPlayer<ChargeModPlayer>().HasGripTape = true;
 		}
 
 		public override void AddRecipes()

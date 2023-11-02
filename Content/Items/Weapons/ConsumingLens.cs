@@ -6,6 +6,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.ModSystems;
+using ChargerClass.Content.DamageClasses;
+using ChargerClass.Content.Dusts;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -51,6 +54,25 @@ namespace ChargerClass.Content.Items.Weapons
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                  modPlayer.Player.itemAnimation = proj.timeLeft = Item.useAnimation = 20 * chargeLevel;
+            }
+
+            int damageDealt = 0;
+            public override void WhileCharging(Player player) {
+                  for (int k = 0; k < Main.maxNPCs; k++) {
+                        NPC target = Main.npc[k];
+                        if(target.friendly || !target.active || target.dontTakeDamage) continue;
+                        float distanceToNPC = Vector2.DistanceSquared(target.Center, Main.MouseScreen + Main.screenPosition);
+                        if (distanceToNPC < 90_000){
+                              if(Main.rand.NextBool(90_000 - (int)distanceToNPC, 90_000 * 5)){
+                                    player.ApplyDamageToNPC(target, 1, 0, 0, false, ChargerDamageClass.Instance);
+                                    if(++damageDealt > 10){
+                                          player.Heal(1);
+                                          damageDealt = 0;
+                                    }
+                                    Dust.NewDust(target.Center, target.width, target.height, ModContent.DustType<ConsumingDust>());
+                              }
+                        }
+                  }
             }
 
 		public override void AddRecipes()

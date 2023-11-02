@@ -34,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 0;
             Item.knockBack = 0f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.SuperSoakerProjectile>();
+            Item.shoot = ProjectileID.WaterGun;
             Item.shootSpeed = 8f;
             Item.useAmmo = ItemID.BottledWater;
 		}
@@ -47,6 +47,7 @@ namespace ChargerClass.Content.Items.Weapons
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   if(modPlayer.Player.ZoneDesert || modPlayer.Player.ZoneSnow) proj.timeLeft /= 4;
+                  proj.friendly = true;
             }
 
             public override void AddRecipes()

@@ -25,7 +25,7 @@ namespace ChargerClass.Content.Items.Ammo
             Item.knockBack = 0f;
             Item.value = Item.sellPrice(0, 0, 0, 99);
             Item.rare = ItemRarityID.White;
-            Item.shoot = ModContent.ProjectileType<Projectiles.MiniCannonballProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.HandCannonBombProjectile>();
             Item.shootSpeed = 4f;
 
             Item.ammo = Item.type;

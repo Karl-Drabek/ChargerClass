@@ -13,8 +13,6 @@ namespace ChargerClass.Content.Projectiles
 {
 	public class BolaProjectile : ModProjectile
 	{
-        public int SlowTime;
-
 		public override void SetDefaults()
 		{
             Projectile.width = 15;
@@ -24,7 +22,7 @@ namespace ChargerClass.Content.Projectiles
             Projectile.hostile = false;
             Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 120;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;
             Projectile.ignoreWater = true;
@@ -36,9 +34,7 @@ namespace ChargerClass.Content.Projectiles
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
-            if(hitInfo.Crit){
-                target.AddBuff(ModContent.BuffType<Bound>(), SlowTime);
-            }
+            if(hitInfo.Crit)target.AddBuff(ModContent.BuffType<Bound>(), (int)Projectile.ai[2]);
         
         }
 

@@ -1,33 +1,27 @@
-Charger Class adds a new Charger class to Terraria.
+WARNING: This mod is still in devlopment so some sprites and features are missing or incomplete!
 
-THIS MOD IS STILL IN ITS EARLIEST STAGES OF DEVELOPMENT:
+Charger class adds a new class to Terraria that charges up weapons to shoot them. Content spans a full play-through from pre-bosses to post-moon lord including weapons, ammo, armor, accessories, potions, ect... This class is meant to be stand alone and shouldn't need to supplement from any other classes.
 
-most projectiles and some items are still missing sprites.
-some Items are also not functioning fully as intended.
-The mod will usually work with multiplayer, but it's not designed for it.
-I am continually working on balancing the mod but almost everything is bound to change.
+PLEASE NOTE: While this mod will work for the most part with multiplayer, it's NOT designed with that in mind. We are continually working on balancing the mod so almost everything is bound to change.
 
-With that being said, this mod includes:
-    25 new Accessories
-    43 new Weapons
-    9 new Ammos
-    & 5 other new Items
+Features:
+    1. 192 items
+    2. 61 weapons
+    3. 27 accessories
+    4. 13 armor sets
+    5. 9 Ammos
+    6. 3 ores
+    7. 2198+ custom darts combinations
+    8. 4 buffs & 11 debuffs
+    9. 3 potions
+    10. 7 perminant consumables
+    11. 8 placeable blocks
+    12. 32 projectiles
 
-Charge Weapons charge up to increase crit chance, knockback and damage.
-Each player has a max charge that can be increased throughout the game.
-Each weapon also has charge levels that grant bonus effects.
 
-For example, if the player has 1000 max charge and a charge weapon with charge levels of 300,
-if the weapon is charged to 500 it will do 50% total damage
-and activate one charge effect because 300 goes into 500 only once.
+Charge Weapons:
+Charge Weapons charge up to increase shooting stats like crit chance, knockback and damage. Each player has a max charge that can be increased throughout the game. Each weapon also has charge levels that grant bonus effects.
 
-The charger class is a subclass of ranged weapon so effects will carry over
+For example, if the player has 1000 max charge and a charge weapon with charge levels of 300, if the weapon is charged to 500 it will do 50% total damage and activate any charge effects once because 300 goes into 500 only once.
 
-If there are any Major glitches (or ideas) you notice in the mod you can comment in the steam page to let me know.
-There are a number of small bugs I am aware of, but here are the major ones to be aware of:
-    Tronbone drops from all npcs (enemies) instead of Skeletron.
-
-Plans for the future:
-I hope to make Charger Class an option for a full terraria playthrough that doesn't have to depend on other classes
-At the moment most of the pre hard mode content has been added and right now I'm working on spriting, effects. sounds, ect...
-After I feel that pre hard mode has been sufficiently polished I will move on to many of the hardmode items that I already have planned.
+The charger class is a subclass of ranged weapon so effects will carry over.

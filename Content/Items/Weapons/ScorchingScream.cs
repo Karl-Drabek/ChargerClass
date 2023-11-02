@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons
 {
@@ -31,21 +33,26 @@ namespace ChargerClass.Content.Items.Weapons
             Item.knockBack = 3f;
             ticsPerShot = 4;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.ScorchingScreamProjectile>();
+            Item.shoot = ProjectileID.FlamesTrap;
             Item.shootSpeed = 6f;
 		}
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
             }
+		public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  proj.hostile = false;
+                  proj.friendly = true;
+                  proj.scale = 0.25f;
+            }
 
-            public override void AddRecipes()
+		public override void AddRecipes()
 		{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.HellstoneBar, 14);
-            recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Bellows>(), 1);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
+                  Recipe recipe = CreateRecipe();
+                  recipe.AddIngredient(ItemID.HellstoneBar, 14);
+                  recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Bellows>(), 1);
+                  recipe.AddTile(TileID.Anvils);
+                  recipe.Register();
 		}
 	}
 }

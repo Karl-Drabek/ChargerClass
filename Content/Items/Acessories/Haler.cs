@@ -7,21 +7,23 @@ using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Items.Consumables;
 using ChargerClass.Common.ModSystems;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class Haler : ModItem
 	{
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Exhaler.ChargeVelocityIncrease, Exhaler.ChargeDamageIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
 		}
 		public override void SetDefaults()
 		{
-            Item.width = 13;
-            Item.height = 19;
+            Item.width = 36;
+            Item.height = 40;
             Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 6, 30, 0);
+            Item.value = Item.sellPrice(0, 4, 10, 0);
             Item.rare =  ItemRarityID.LightRed;
 			Item.accessory = true;
 		}
@@ -36,7 +38,6 @@ namespace ChargerClass.Content.Items.Acessories
             recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
 			recipe.AddIngredient(ModContent.ItemType<Exhaler>());
 			recipe.AddIngredient(ModContent.ItemType<Inhaler>());
-			recipe.AddIngredient(ModContent.ItemType<HydrogenGas>());
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
 		}

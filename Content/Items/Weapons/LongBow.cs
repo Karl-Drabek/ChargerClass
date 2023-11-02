@@ -6,11 +6,15 @@ using Terraria.ModLoader;
 using ChargerClass.Content;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class LongBow : ChargeWeapon
 	{
+            public static readonly int CritChanceIncrease = 10;
+            public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CritChanceIncrease);
+
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -39,7 +43,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override void SafeModifyWeaponCrit(Player player, ref float crit) {
-                  crit += 10 * chargeLevel;
+                  crit += CritChanceIncrease * chargeLevel;
             }
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){

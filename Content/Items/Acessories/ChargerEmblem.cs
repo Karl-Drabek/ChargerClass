@@ -7,11 +7,14 @@ using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
 using ChargerClass.Content.Items.Placeable;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class ChargerEmblem : ModItem
 	{
+		public static readonly int DamageIncrease = 20;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -19,8 +22,8 @@ namespace ChargerClass.Content.Items.Acessories
 
 		public override void SetDefaults()
 		{
-            Item.width = 9;
-            Item.height = 20;
+            Item.width = 28;
+            Item.height = 28;
             Item.maxStack = 1;
             Item.value = Item.sellPrice(0, 24, 0, 0);
             Item.rare = ItemRarityID.Pink;	
@@ -28,7 +31,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().ChargerEmblem = true;
+			player.GetModPlayer<ChargeModPlayer>().HasChargerEmblem = true;
 		}
 
 		public override void AddRecipes()

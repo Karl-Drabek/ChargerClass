@@ -5,11 +5,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class CopperCrossbow : ChargeWeapon
 	{
+            public static readonly int VelocityChangeEffect = 10;
+            public static readonly int VelocityChangeRain = 25;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(VelocityChangeRain, VelocityChangeEffect);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -38,10 +42,13 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   proj.ignoreWater = true;
-                  chargerProj.RainSpeed = 1 + 0.25f * chargeLevel;
+                  chargerProj.RainSpeed = true;
+            }
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+                  velocity *= VelocityChangeEffect / 100f * chargeLevel;
             }
 
-            public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
+		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
 		public override void AddRecipes()
 		{

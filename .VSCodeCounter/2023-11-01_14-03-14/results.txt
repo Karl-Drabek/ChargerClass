@@ -1,0 +1,343 @@
+Date : 2023-11-01 14:03:14
+Directory : c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content
+Total : 281 files,  11652 codes, 106 comments, 1532 blanks, all 13290 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |        281 |     11,652 |        106 |      1,532 |     13,290 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                         |        281 |     11,652 |        106 |      1,532 |     13,290 |
+| Buffs                                                                                                                                     |         16 |        260 |          0 |         30 |        290 |
+| DamageClasses                                                                                                                             |          1 |         14 |          0 |          4 |         18 |
+| Dusts                                                                                                                                     |          1 |         24 |          0 |          5 |         29 |
+| Items                                                                                                                                     |        205 |      8,555 |         51 |      1,132 |      9,738 |
+| Items (Files)                                                                                                                             |         15 |        466 |          0 |         51 |        517 |
+| Items\Acessories                                                                                                                          |         27 |      1,141 |          0 |         93 |      1,234 |
+| Items\Ammo                                                                                                                                |         54 |      2,010 |          0 |        244 |      2,254 |
+| Items\Ammo (Files)                                                                                                                        |          8 |        262 |          0 |         45 |        307 |
+| Items\Ammo\Darts                                                                                                                          |         41 |      1,563 |          0 |        168 |      1,731 |
+| Items\Ammo\Darts (Files)                                                                                                                  |          2 |        172 |          0 |         35 |        207 |
+| Items\Ammo\Darts\Payloads                                                                                                                 |         13 |        459 |          0 |         40 |        499 |
+| Items\Ammo\Darts\Tails                                                                                                                    |         13 |        526 |          0 |         52 |        578 |
+| Items\Ammo\Darts\Tips                                                                                                                     |         13 |        406 |          0 |         41 |        447 |
+| Items\Ammo\Rocks                                                                                                                          |          5 |        185 |          0 |         31 |        216 |
+| Items\Armor                                                                                                                               |         22 |        938 |         44 |        133 |      1,115 |
+| Items\Armor (Files)                                                                                                                       |          9 |        398 |         18 |         55 |        471 |
+| Items\Armor\ChaosArmor                                                                                                                    |          3 |        126 |          6 |         16 |        148 |
+| Items\Armor\ElectrudiumArmor                                                                                                              |          3 |        109 |          6 |         15 |        130 |
+| Items\Armor\FestiveArmor                                                                                                                  |          3 |        123 |          6 |         17 |        146 |
+| Items\Armor\MechArmor                                                                                                                     |          4 |        182 |          8 |         30 |        220 |
+| Items\Consumables                                                                                                                         |         10 |        402 |          3 |         38 |        443 |
+| Items\Placeable                                                                                                                           |          6 |        144 |          2 |         16 |        162 |
+| Items\Weapons                                                                                                                             |         71 |      3,454 |          2 |        557 |      4,013 |
+| Items\Weapons (Files)                                                                                                                     |         34 |      1,708 |          2 |        273 |      1,983 |
+| Items\Weapons\Blowers                                                                                                                     |         14 |        605 |          0 |        101 |        706 |
+| Items\Weapons\Blowers (Files)                                                                                                             |          3 |        149 |          0 |         22 |        171 |
+| Items\Weapons\Blowers\Blowguns                                                                                                            |         11 |        456 |          0 |         79 |        535 |
+| Items\Weapons\Crossbows                                                                                                                   |         11 |        523 |          0 |         88 |        611 |
+| Items\Weapons\Slingshots                                                                                                                  |         12 |        618 |          0 |         95 |        713 |
+| Prefixes                                                                                                                                  |         10 |        350 |         22 |         17 |        389 |
+| Projectiles                                                                                                                               |         37 |      1,862 |         13 |        254 |      2,129 |
+| Projectiles (Files)                                                                                                                       |         29 |      1,491 |          9 |        200 |      1,700 |
+| Projectiles\Rocks                                                                                                                         |          8 |        371 |          4 |         54 |        429 |
+| Tiles                                                                                                                                     |          8 |        348 |         15 |         53 |        416 |
+| UI                                                                                                                                        |          3 |        239 |          5 |         37 |        281 |
+| UI (Files)                                                                                                                                |          1 |         38 |          2 |          5 |         45 |
+| UI\ChargeMeter                                                                                                                            |          1 |         72 |          3 |         20 |         95 |
+| UI\DartAssemblyStation                                                                                                                    |          1 |        129 |          0 |         12 |        141 |
++-------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                                  | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Adrenaline.cs                                  | C#       |         16 |          0 |          2 |         18 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Bound.cs                                       | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Charge.cs                                      | C#       |         13 |          0 |          1 |         14 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Cursed.cs                                      | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Dabilitated.cs                                 | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\GodKiller.cs                                   | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Impatience.cs                                  | C#       |         13 |          0 |          1 |         14 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\LeadPoisoning.cs                               | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\LightHeaded.cs                                 | C#       |         16 |          0 |          2 |         18 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Plague.cs                                      | C#       |         15 |          0 |          2 |         17 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\RadiationSickness.cs                           | C#       |         21 |          0 |          3 |         24 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\RocketStormCooldown.cs                         | C#       |         16 |          0 |          2 |         18 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Stamina.cs                                     | C#       |         13 |          0 |          1 |         14 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Stunned.cs                                     | C#       |         18 |          0 |          2 |         20 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\SuperSlimed.cs                                 | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Buffs\Tetnus.cs                                      | C#       |         17 |          0 |          2 |         19 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\DamageClasses\ChargerDamageClass.cs                  | C#       |         14 |          0 |          4 |         18 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Dusts\ConsumingDust.cs                               | C#       |         24 |          0 |          5 |         29 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\AAABattery.cs                       | C#       |         44 |          0 |          4 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\BreathingAid.cs                     | C#       |         46 |          0 |          3 |         49 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Capacitor.cs                        | C#       |         37 |          0 |          3 |         40 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\CarBattery.cs                       | C#       |         44 |          0 |          4 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\ChargeRepository.cs                 | C#       |         44 |          0 |          4 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Charger.cs                          | C#       |         41 |          0 |          3 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\ChargerEmblem.cs                    | C#       |         43 |          0 |          4 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Diaphragm.cs                        | C#       |         42 |          0 |          4 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Exhaler.cs                          | C#       |         43 |          0 |          3 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\ExtensionCord.cs                    | C#       |         43 |          0 |          3 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Generator.cs                        | C#       |         48 |          0 |          4 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\GripTape.cs                         | C#       |         41 |          0 |          4 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Haler.cs                            | C#       |         42 |          0 |          3 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\HydrogenGas.cs                      | C#       |         37 |          0 |          3 |         40 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Inhaler.cs                          | C#       |         39 |          0 |          3 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\IronLung.cs                         | C#       |         44 |          0 |          4 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\LeatherGlove.cs                     | C#       |         37 |          0 |          3 |         40 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\LightningRod.cs                     | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\OverCritter.cs                      | C#       |         38 |          0 |          3 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Overcharger.cs                      | C#       |         44 |          0 |          4 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\PowerBank.cs                        | C#       |         46 |          0 |          5 |         51 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\RedDot.cs                           | C#       |         44 |          0 |          3 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\Respirator.cs                       | C#       |         41 |          0 |          3 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\SecretStimulants.cs                 | C#       |         42 |          0 |          3 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\ShootingGlove.cs                    | C#       |         42 |          0 |          3 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\TrackingSpecs.cs                    | C#       |         42 |          0 |          3 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Acessories\UltimateChargingGear.cs             | C#       |         47 |          0 |          3 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\BloontoniumDart.cs                        | C#       |         28 |          0 |          5 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\BottledSlime.cs                           | C#       |         35 |          0 |          6 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\CustomDart.cs                       | C#       |        139 |          0 |         29 |        168 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\DartComponent.cs                    | C#       |         33 |          0 |          6 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\Atomizer.cs                | C#       |         28 |          0 |          3 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\CryoCannister.cs           | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\CursedCannister.cs         | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\DartCannister.cs           | C#       |         27 |          0 |          2 |         29 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\DartFrogDebilitator.cs     | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\DeathFactor.cs             | C#       |         34 |          0 |          3 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\ExplosiveCannister.cs      | C#       |         27 |          0 |          3 |         30 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\GodKillerCocktail.cs       | C#       |         75 |          0 |          4 |         79 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\IchorCannister.cs          | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\JellyfishCannister.cs      | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\LavaCannister.cs           | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\LiquidLeadCannister.cs     | C#       |         33 |          0 |          3 |         36 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Payloads\RadioactiveParsel.cs       | C#       |         52 |          0 |          4 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\BetsysBackwash.cs             | C#       |         32 |          0 |          3 |         35 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\BombingBay.cs                 | C#       |         37 |          0 |          4 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\CropDuster.cs                 | C#       |         33 |          0 |          4 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\EagleEye.cs                   | C#       |         58 |          0 |          7 |         65 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\FeatheredTail.cs              | C#       |         27 |          0 |          3 |         30 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\HolyLightTail.cs              | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\MagesTail.cs                  | C#       |         36 |          0 |          2 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\PixieDuster.cs                | C#       |         33 |          0 |          4 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\PrismaticTail.cs              | C#       |         58 |          0 |          5 |         63 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\RocketJets.cs                 | C#       |         47 |          0 |          5 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\TheCorruptor.cs               | C#       |         45 |          0 |          5 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\ToxicTail.cs                  | C#       |         32 |          0 |          2 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tails\UnholyTail.cs                 | C#       |         48 |          0 |          4 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\AdamantiteTip.cs               | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\BoneTip.cs                     | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\ChlorophyteTip.cs              | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\HallowedTip.cs                 | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\HellstoneTip.cs                | C#       |         34 |          0 |          4 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\HypodermicNeedle.cs            | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\LihzahrdTip.cs                 | C#       |         33 |          0 |          4 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\LunarTip.cs                    | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\MeteorTip.cs                   | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\ShroomiteTip.cs                | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\SpectreTip.cs                  | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\TitaniumTip.cs                 | C#       |         31 |          0 |          3 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Darts\Tips\UnicornTip.cs                  | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\MiniCannonball.cs                         | C#       |         35 |          0 |          6 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\MonkeyDart.cs                             | C#       |         28 |          0 |          5 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\NectarNail.cs                             | C#       |         36 |          0 |          6 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Potato.cs                                 | C#       |         41 |          0 |          6 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\RocketPod.cs                              | C#       |         28 |          0 |          5 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Rocks\BouncyRock.cs                       | C#       |         40 |          0 |          6 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Rocks\HotRock.cs                          | C#       |         39 |          0 |          7 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Rocks\Rock.cs                             | C#       |         35 |          0 |          6 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Rocks\Sinker.cs                           | C#       |         36 |          0 |          6 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\Rocks\Splitter.cs                         | C#       |         35 |          0 |          6 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Ammo\SoulofBunnies.cs                          | C#       |         31 |          0 |          6 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\AdamantiteCasque.cs                      | C#       |         47 |          2 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\AncientHallowedCasque.cs                 | C#       |         47 |          2 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ChaosArmor\ChaosHelmet.cs                | C#       |         46 |          2 |          7 |         55 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ChaosArmor\ChaosLeggings.cs              | C#       |         39 |          2 |          4 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ChaosArmor\ChaosPlate.cs                 | C#       |         41 |          2 |          5 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ChlorophyteCasque.cs                     | C#       |         40 |          2 |          5 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\CobaltCasque.cs                          | C#       |         47 |          2 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ElectrudiumArmor\ElectrudiumChainmail.cs | C#       |         32 |          2 |          5 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ElectrudiumArmor\ElectrudiumGreaves.cs   | C#       |         32 |          2 |          4 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\ElectrudiumArmor\ElectrudiumHelmet.cs    | C#       |         45 |          2 |          6 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\FestiveArmor\FestiveBreastplate.cs       | C#       |         37 |          2 |          5 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\FestiveArmor\FestiveHelmet.cs            | C#       |         49 |          2 |          6 |         57 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\FestiveArmor\FestiveLeggings.cs          | C#       |         37 |          2 |          6 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\HallowedCasque.cs                        | C#       |         47 |          2 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\MechArmor\MAD.cs                         | C#       |         46 |          2 |          8 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\MechArmor\MechHelmet.cs                  | C#       |         39 |          2 |          4 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\MechArmor\MechLeggings.cs                | C#       |         45 |          2 |          7 |         54 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\MechArmor\MechLung.cs                    | C#       |         52 |          2 |         11 |         65 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\MythrilCasque.cs                         | C#       |         47 |          2 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\OrichalcumCasque.cs                      | C#       |         41 |          2 |          5 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\PalladiumCasque.cs                       | C#       |         41 |          2 |          5 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Armor\TitaniumCasque.cs                        | C#       |         41 |          2 |          5 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\BakedPotato.cs                                 | C#       |         34 |          0 |          4 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\BasicCircuitry.cs                              | C#       |         30 |          0 |          4 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\BlueCharge.cs                                  | C#       |         29 |          0 |          2 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\ChargedComponents.cs                           | C#       |         30 |          0 |          4 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\ChristmasCheer.cs                              | C#       |         22 |          0 |          3 |         25 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\ConcentratedGelSolution.cs                     | C#       |         27 |          0 |          4 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\ChargePotion.cs                    | C#       |         46 |          1 |          4 |         51 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\CosmicVoltaicFragment.cs           | C#       |         39 |          0 |          4 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\FragmentedQuasar.cs                | C#       |         27 |          0 |          2 |         29 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\FrightfulVoltaicScrap.cs           | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\ImpatiencePotion.cs                | C#       |         47 |          1 |          4 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\MightyVoltaicScrap.cs              | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\OpticVoltaicScrap.cs               | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\StaminaPotion.cs                   | C#       |         45 |          1 |          4 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\StellerVoltaicFragment.cs          | C#       |         39 |          0 |          4 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Consumables\VoltaicNugget.cs                   | C#       |         39 |          0 |          4 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\DartFrogExtract.cs                             | C#       |         21 |          0 |          3 |         24 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\ExoticEscargot.cs                              | C#       |         28 |          0 |          4 |         32 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\JellyfishTentacle.cs                           | C#       |         21 |          0 |          3 |         24 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\OrangeCharge.cs                                | C#       |         29 |          0 |          2 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\AncientDebris.cs                     | C#       |         20 |          0 |          2 |         22 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\AncientTech.cs                       | C#       |         20 |          0 |          2 |         22 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\DartAssemblyStation.cs               | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\ElectrudiumBar.cs                    | C#       |         30 |          0 |          4 |         34 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\ElectrudiumOre.cs                    | C#       |         21 |          2 |          3 |         26 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Placeable\UnstableChaosShard.cs                | C#       |         23 |          0 |          2 |         25 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\RadioactiveDebris.cs                           | C#       |         25 |          0 |          4 |         29 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Rubber.cs                                      | C#       |         27 |          0 |          4 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\SealedTinCan.cs                                | C#       |         73 |          0 |          3 |         76 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\VoodooBunny.cs                                 | C#       |         41 |          0 |          5 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Airgun.cs                              | C#       |         44 |          0 |          8 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Bellows.cs                             | C#       |         45 |          0 |          8 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\BloontoniumBlaster.cs                  | C#       |         41 |          0 |          9 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\BagpipeBlaster.cs              | C#       |         49 |          0 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Balloon.cs                     | C#       |         50 |          0 |          9 |         59 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\AdamantiteBlowgun.cs  | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\BlowgunRevolver.cs    | C#       |         42 |          0 |          7 |         49 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\ChlorophyteBlowgun.cs | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\CobaltBlowgun.cs      | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\HallowedBlowgun.cs    | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\HellfireBlowgun.cs    | C#       |         52 |          0 |          9 |         61 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\MythrilBlowgun.cs     | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\OrichalcumBlowgun.cs  | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\PalladiumBlowgun.cs   | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\PhantomBlowgun.cs     | C#       |         42 |          0 |          7 |         49 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Blowguns\TitaniumBlowgun.cs    | C#       |         40 |          0 |          7 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Blowers\Tronbone.cs                    | C#       |         50 |          0 |          6 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Bola.cs                                | C#       |         46 |          0 |          7 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\BunnyGun.cs                            | C#       |         59 |          0 |          6 |         65 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\CentrifugalGun.cs                      | C#       |         39 |          0 |          9 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\ChargeWeapon.cs                        | C#       |        194 |          2 |         27 |        223 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\CompoundBow.cs                         | C#       |         53 |          0 |          9 |         62 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\ConsumingLens.cs                       | C#       |         78 |          0 |         10 |         88 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\CopperCrossbow.cs            | C#       |         53 |          0 |          8 |         61 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\CrimtaneCrossbow.cs          | C#       |         51 |          0 |          9 |         60 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\DemoniteCrossbow.cs          | C#       |         45 |          0 |          8 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\GoldCrossbow.cs              | C#       |         45 |          0 |          8 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\HellfireCrossbow.cs          | C#       |         46 |          0 |          7 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\IronCrossbow.cs              | C#       |         48 |          0 |          7 |         55 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\LeadCrossbow.cs              | C#       |         46 |          0 |          8 |         54 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\PlatinumCrossbow.cs          | C#       |         46 |          0 |          8 |         54 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\SilverCrossbow.cs            | C#       |         49 |          0 |          9 |         58 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\TinCrossbow.cs               | C#       |         48 |          0 |          8 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Crossbows\TungstenCrossbow.cs          | C#       |         46 |          0 |          8 |         54 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\DartlingGun.cs                         | C#       |         41 |          0 |          9 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\DragonsBreath.cs                       | C#       |         42 |          0 |          6 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\HandCannon.cs                          | C#       |         42 |          0 |          6 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\HydraRocketLauncher.cs                 | C#       |         41 |          0 |          9 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\LaserDartlingGun.cs                    | C#       |         48 |          0 |         10 |         58 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\LongBow.cs                             | C#       |         44 |          0 |          9 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\MegaMortar.cs                          | C#       |         40 |          0 |          6 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\MolotovMortar.cs                       | C#       |         34 |          0 |          7 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\NectarNailGun.cs                       | C#       |         34 |          0 |          5 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\NikolasObliterator.cs                  | C#       |         40 |          0 |          6 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\PotatoCannon.cs                        | C#       |         50 |          0 |          6 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\PremeCalamari.cs                       | C#       |         57 |          0 |         10 |         67 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\RailRailGun.cs                         | C#       |         49 |          0 |          6 |         55 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Railgun.cs                             | C#       |         30 |          0 |          5 |         35 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\RayOfBloon.cs                          | C#       |         55 |          0 |         11 |         66 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\RocketBalloon.cs                       | C#       |         41 |          0 |          6 |         47 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Rubberband.cs                          | C#       |         53 |          0 |          7 |         60 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\RubberbandGun.cs                       | C#       |         43 |          0 |          9 |         52 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\ScorchingScream.cs                     | C#       |         51 |          0 |          7 |         58 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\AntlerSlinger.cs            | C#       |         58 |          0 |          7 |         65 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\AshwoodSlingshot.cs         | C#       |         52 |          0 |          8 |         60 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\BorealWoodSlingshot.cs      | C#       |         51 |          0 |          8 |         59 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\EbonwoodSlingshot.cs        | C#       |         52 |          0 |          9 |         61 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\MultiShot.cs                | C#       |         52 |          0 |          8 |         60 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\PalmWoodSlingshot.cs        | C#       |         55 |          0 |          8 |         63 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\PearlwoodSlingshot.cs       | C#       |         51 |          0 |          8 |         59 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\ReinforcedSlingshot.cs      | C#       |         49 |          0 |          8 |         57 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\RichMahoganySlingshot.cs    | C#       |         51 |          0 |          8 |         59 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\ShadewoodSlingshot.cs       | C#       |         52 |          0 |          9 |         61 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\TripleShot.cs               | C#       |         46 |          0 |          7 |         53 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\Slingshots\WoodSlingshot.cs            | C#       |         49 |          0 |          7 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\SnailGun.cs                            | C#       |         38 |          0 |          6 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\SpiderBow.cs                           | C#       |         39 |          0 |          6 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\SuperSlimer.cs                         | C#       |         43 |          0 |          6 |         49 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\SuperSoaker.cs                         | C#       |         53 |          0 |          9 |         62 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\SupremeCalamari.cs                     | C#       |         43 |          0 |          7 |         50 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\Weapons\TeslaCoil.cs                           | C#       |         58 |          0 |          6 |         64 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Items\YellowCharge.cs                                | C#       |         29 |          0 |          2 |         31 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Absurd.cs                                   | C#       |         38 |          1 |          1 |         40 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Anxius.cs                                   | C#       |         36 |          1 |          2 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\ChargedPrefix.cs                            | C#       |         29 |          7 |          1 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Depleated.cs                                | C#       |         35 |          1 |          2 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Ecstatic.cs                                 | C#       |         36 |          1 |          2 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Exuberant.cs                                | C#       |         39 |          1 |          2 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Negative.cs                                 | C#       |         36 |          1 |          2 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Neutral.cs                                  | C#       |         36 |          1 |          2 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\Static.cs                                   | C#       |         36 |          1 |          2 |         39 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Prefixes\SuperChargedPrefix.cs                       | C#       |         29 |          7 |          1 |         37 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\BalloonProjectile.cs                     | C#       |         37 |          0 |          6 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\BellowsAirProjectile.cs                  | C#       |         36 |          0 |          5 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\BloontoniumDartProjectile.cs             | C#       |         39 |          0 |          4 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\BolaProjectile.cs                        | C#       |         40 |          0 |          6 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\BombBayProjectile.cs                     | C#       |         86 |          0 |          8 |         94 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\CoconutProjectile.cs                     | C#       |         36 |          0 |          4 |         40 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\ConsumingLensLaser.cs                    | C#       |         57 |          0 |          6 |         63 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\CropDusterProjectile.cs                  | C#       |         55 |          0 |          8 |         63 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\CustomDartProjectile.cs                  | C#       |         93 |          0 |         18 |        111 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\DragonsBreathProjectile.cs               | C#       |         33 |          0 |          5 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\HandCannonBombProjectile.cs              | C#       |         50 |          0 |          6 |         56 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\HolyCrossProjectile.cs                   | C#       |         88 |          0 |         10 |         98 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\LaserProjectile.cs                       | C#       |        103 |          0 |         19 |        122 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\LightningProjectile.cs                   | C#       |        121 |          6 |         15 |        142 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\MonkeyDartProjectile.cs                  | C#       |         39 |          0 |          4 |         43 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\NectarNailProjectile.cs                  | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\PixieDust.cs                             | C#       |         43 |          0 |          3 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\PotatoProjectile.cs                      | C#       |         39 |          0 |          6 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\PremeCalamariLaser.cs                    | C#       |         33 |          0 |          3 |         36 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\RayOfBloonLaser.cs                       | C#       |         57 |          0 |          6 |         63 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\RocketBalloonProjectile.cs               | C#       |         37 |          0 |          5 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\RocketPodProjectile.cs                   | C#       |         41 |          0 |          5 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\RocketStormProjectile.cs                 | C#       |         54 |          0 |          8 |         62 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\BouncyRockProjectile.cs            | C#       |         55 |          2 |         13 |         70 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\ExplodingRockProjectile.cs         | C#       |         35 |          0 |          3 |         38 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\HotRockProjectile.cs               | C#       |         42 |          0 |          6 |         48 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\RockProjectile.cs                  | C#       |         38 |          0 |          4 |         42 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\SinkerProjectile.cs                | C#       |         39 |          0 |          6 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\SpikyRockProjectile.cs             | C#       |         69 |          2 |         11 |         82 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\SplitterBrokenProjectile.cs        | C#       |         39 |          0 |          5 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\Rocks\SplitterProjectile.cs              | C#       |         54 |          0 |          6 |         60 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\RubberbandProjectile.cs                  | C#       |         52 |          2 |         13 |         67 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\SnailProjectile.cs                       | C#       |         36 |          0 |          5 |         41 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\SuperSlimerProjectile.cs                 | C#       |         40 |          0 |          6 |         46 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\SuperSoakerProjectile.cs                 | C#       |         39 |          1 |          5 |         45 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\SupremeCalamariProjectile.cs             | C#       |         27 |          0 |          3 |         30 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Projectiles\TronboneSonicProjectile.cs               | C#       |         40 |          0 |          4 |         44 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\AncientDebris.cs                               | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\AncientTech.cs                                 | C#       |         23 |          0 |          3 |         26 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\DartAssembleStationTileEntity.cs               | C#       |         49 |          0 |          5 |         54 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\DartAssemblyStationTile.cs                     | C#       |         68 |          2 |         11 |         81 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\ElectrudiumBar.cs                              | C#       |         23 |          0 |          3 |         26 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\ElectrudiumOre.cs                              | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\PotatoPlant.cs                                 | C#       |         95 |         13 |         22 |        130 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\Tiles\UnstableChaosShard.cs                          | C#       |         30 |          0 |          3 |         33 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\UI\ChargeMeter\ChargeMeter.cs                        | C#       |         72 |          3 |         20 |         95 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\UI\DartAssemblyStation\DartAssemblyState.cs          | C#       |        129 |          0 |         12 |        141 |
+| c:\Users\Karl\Documents\My Games\Terraria\tModLoader\ModSources\ChargerClass\Content\UI\VanillaItemSlotWrapper.cs                         | C#       |         38 |          2 |          5 |         45 |
+| Total                                                                                                                                     |          |     11,652 |        106 |      1,532 |     13,290 |
++-------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

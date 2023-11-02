@@ -28,7 +28,7 @@ namespace ChargerClass.Content.Projectiles
 			Projectile.hostile = false;
 			Projectile.ignoreWater = false;
 			Projectile.tileCollide = true;
-			Projectile.timeLeft = 600;
+			Projectile.timeLeft = 240;
 		}
 
 		public override void OnSpawn(IEntitySource source){

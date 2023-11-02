@@ -40,18 +40,22 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}     
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-
-                  int projectile = ModContent.ProjectileType<IceSpikeProjectile>();
                   StatModifier modifier = player.GetTotalDamage(ChargerDamageClass.Instance); //chargedamage class damage modifier
                   player.GetModPlayer<ChargeModPlayer>().ModifyWeaponDamage(Item, ref modifier); //I'm not using CombinedHooks/Item to avoid scaling with charge percent            
                   for(int i = 0; i < chargeLevel; i++){
                         Projectile proj = Projectile.NewProjectileDirect(source, position,
                               Vector2.Normalize(Main.MouseWorld - player.Center)
-                              .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 2 + 5f + (float)Main.rand.NextDouble() * 1.5f),
-                              projectile, (int)modifier.ApplyTo(41), 1f);
+                              .RotatedByRandom(MathHelper.ToRadians(15)) * (chargeLevel * 4 + 5f + (float)Main.rand.NextDouble() * 1.5f),
+                              ProjectileID.IceSpike, (int)modifier.ApplyTo(41), 1f);
+                        proj.hostile = false;
+                        proj.friendly = true;
                         CombinedPostProjectileEffects(proj, player.GetModPlayer<ChargeModPlayer>());
                   }
                   return true;
+            }
+
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  chargerProj.IceOnDeath = true;
             }
 
 		public override Vector2? HoldoutOffset() {

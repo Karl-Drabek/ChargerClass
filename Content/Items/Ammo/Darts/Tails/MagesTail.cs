@@ -6,6 +6,9 @@ using ChargerClass.Content.Projectiles;
 using Terraria.DataStructures;
 using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Common.Extensions;
+using System;
+using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails
 {
@@ -19,6 +22,17 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             Item.rare = ItemRarityID.Orange;
             
             Item.shootSpeed = 4f;
+        }
+        public override void AI(Projectile projectile, int payloadType){
+            if(Main.rand.NextBool()) projectile.ai[2]++;
+            if(projectile.ai[2] < 10) return;
+            NPC closestNPC = Targeting.FindClosestNPC(projectile.Center, 1000);
+            if(closestNPC is null) return;
+            Vector2 distanceToNPC = closestNPC.Center - projectile.Center;
+            Projectile bolt = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(distanceToNPC) * 34, ProjectileID.DD2DarkMageBolt, projectile.damage, 1);
+            bolt.friendly = true;
+            bolt.hostile = false;
+            projectile.ai[2] = 0;
         }
     }
 }

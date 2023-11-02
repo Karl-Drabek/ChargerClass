@@ -6,11 +6,14 @@ using Terraria.ModLoader;
 using ChargerClass.Content;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class Airgun : ChargeWeapon
 	{
+            public static readonly int CritChanceIncreases = 3;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CritChanceIncreases);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -39,7 +42,11 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel * 5, 0, 100), 100)) chargerProj.CatchCritters = true;
+                  chargerProj.CatchCritters = true;
+            }
+
+            public override void SafeModifyWeaponCrit(Player player, ref float crit){
+                  crit += chargeLevel * CritChanceIncreases;
             }
 	}
 }

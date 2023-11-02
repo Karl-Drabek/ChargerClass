@@ -38,8 +38,7 @@ namespace ChargerClass.Content.Items.Weapons
 		}
             
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-                  var bolaProj = proj.ModProjectile as Projectiles.BolaProjectile;
-                  bolaProj.SlowTime = 30 * chargeLevel;
+                  proj.ai[2] = 30 * chargeLevel;
             }
 
 		public override void AddRecipes()

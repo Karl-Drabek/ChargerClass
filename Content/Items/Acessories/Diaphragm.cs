@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class Diaphragm : ModItem
 	{
+		public static readonly int ChargeSpeedIncrease = 15;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;

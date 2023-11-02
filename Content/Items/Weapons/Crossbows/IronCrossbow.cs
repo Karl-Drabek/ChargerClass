@@ -3,11 +3,16 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class IronCrossbow : ChargeWeapon
 	{
+            public static readonly int InflictChance = 15;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(InflictChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -33,6 +38,9 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
 		}
+            public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  chargerProj.Hellfire = Main.rand.NextBool(Utils.Clamp(InflictChance * chargeLevel, 0, 100), 100);
+            }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 		

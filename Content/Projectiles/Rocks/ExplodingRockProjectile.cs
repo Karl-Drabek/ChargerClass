@@ -31,9 +31,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
         public override Color? GetAlpha(Color lightColor) {
             return new Color(155, 155, 155, 0) * Projectile.Opacity;
         }
-
-        public override void Kill(int timeLeft) {
-            Explosions.ExplodeCircle(Projectile.position, 60, 18, ChargerDamageClass.Instance, Projectile, knockback: 0.2f);
+		public override void Kill(int timeLeft) {
+            Explosions.ExplodeCircle(Projectile.position, (int)(Projectile.ai[2] * 20), (int)(Projectile.ai[2] * 3), ChargerDamageClass.Instance, Projectile, knockback: (int)(Projectile.ai[2] * 0.1f));
         }
 	}
 }

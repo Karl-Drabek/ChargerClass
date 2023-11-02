@@ -2,6 +2,7 @@ using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Acessories;
 using ChargerClass.Content.Items.Placeable;
+using ChargerClass.Content.Items.Weapons;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -48,7 +49,7 @@ namespace ChargerClass.Content.Items.Armor.MechArmor
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 30);
 			recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 15);
-			recipe.AddIngredient(ModContent.ItemType<Overcharger>());
+			recipe.AddIngredient(ModContent.ItemType<HydraRocketLauncher>());
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

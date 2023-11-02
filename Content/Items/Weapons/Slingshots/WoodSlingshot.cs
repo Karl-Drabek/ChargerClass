@@ -3,13 +3,16 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class WoodSlingshot : ChargeWeapon
 	{
+        public static readonly int CritChanceIncrease = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CritChanceIncrease);
         public override void SetStaticDefaults() {
-                Item.ResearchUnlockCount = 1;
+            Item.ResearchUnlockCount = 1;
         }
 		public override void SafeSetDefaults()
 		{
@@ -34,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void SafeModifyWeaponCrit(Player player, ref float crit){
-            crit += chargeLevel * 5f;
+            crit += chargeLevel * CritChanceIncrease;
         }
 
 		public override Vector2? HoldoutOffset() {

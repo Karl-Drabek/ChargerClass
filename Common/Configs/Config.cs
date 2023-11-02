@@ -16,6 +16,7 @@ namespace ChargerClass.Common.Configs
 		// [Label("$Some.Key")] // A label is the text displayed next to the option. This should usually be a short description of what it does. By default all ModConfig fields and properties have an automatic label translation key, but modders can specify a specific translation key.
 		[DefaultValue(false)]
 		public bool ShotInfoToggle;
+		public bool MaxChargeToggle;
 
 	}
 }

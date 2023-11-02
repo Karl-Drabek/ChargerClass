@@ -6,11 +6,14 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class ChargeRepository : ModItem
 	{
+		public static readonly int RetainedCharge = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RetainedCharge);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -29,7 +32,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().ChargeRepository = true;
+			player.GetModPlayer<ChargeModPlayer>().HasChargeRepository = true;
 		}
 
 		public override void AddRecipes()

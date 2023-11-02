@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles.Rocks;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
@@ -36,7 +38,11 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-            if(Main.rand.NextBool(Utils.Clamp(13 * chargeLevel, 0, 100), 100)) type = ModContent.ProjectileType<SpikyRockProjectile>();
+            type = ModContent.ProjectileType<SpikyRockProjectile>();
+        }
+
+		public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2){
+            ai2 = chargeLevel;
         }
 
 		public override Vector2? HoldoutOffset() {

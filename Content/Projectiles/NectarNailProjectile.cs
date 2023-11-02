@@ -15,22 +15,25 @@ namespace ChargerClass.Content.Projectiles
 
 		public override void SetDefaults()
 		{
-            Projectile.width = 15;
-            Projectile.height = 15;
-            Projectile.aiStyle = 1;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 120;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
+            Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
+        }
 
-            
-            AIType = ProjectileID.WoodenArrowFriendly;
+        public override void AI(){
+            Projectile.rotation = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90)).ToRotation();
         }
 
         public override void Kill(int timeLeft) {

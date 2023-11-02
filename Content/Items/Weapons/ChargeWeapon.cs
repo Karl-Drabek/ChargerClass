@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.DataStructures;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
-using ChargerClass.Common.GlobalNPCs;
 using ChargerClass.Common.Configs;
 
 namespace ChargerClass.Content.Items.Weapons
@@ -18,7 +16,6 @@ namespace ChargerClass.Content.Items.Weapons
 	{
 	    public int charge = 0;
 	    public int chargeAmount = 10;
-        public string chargeEffect = "";
         public bool blowWeapon;
         public int bonusCharge = 0;
         public int chargeLevel; //only accurate after GetChargeLevel has been called
@@ -69,6 +66,7 @@ namespace ChargerClass.Content.Items.Weapons
                     charge = 0; //resets the charge after shooting or if not greater than minimum charge. Then let animation play out.
                 }
                 else{ //it is assumed the player is charging the weapon
+                    WhileCharging(player);
                     int maxCharge = modPlayer.GetMaxCharge();
                     if(bonusCharge > 0){
                         charge += bonusCharge;
@@ -118,7 +116,7 @@ namespace ChargerClass.Content.Items.Weapons
                 usedAmmoItemId = Item.consumable ? Item.type : Item.useAmmo;
             }
             Vector2 position = player.Center;
-            float chargeSpeed = speed * (((float)charge / ChargeModPlayer.DefaultCharge) + 0.25f);
+            float chargeSpeed = (Math.Clamp((float)charge / ChargeModPlayer.DefaultCharge, 0, 1) + 1) / 2f * speed;
             Vector2 velocity = Vector2.Normalize(Main.MouseWorld/*doesnt work with zoom*/ - player.Center) * chargeSpeed;
             var source = new EntitySource_ItemUse_WithAmmo(player, Item, usedAmmoItemId);
 
@@ -140,7 +138,8 @@ namespace ChargerClass.Content.Items.Weapons
 
             ChargedShoot(player, modPlayer, source, position, velocity, type, damage, knockBack); //Shoot Projectile
 
-            player.ConsumeItem(usedAmmoItemId);
+            Item ammo = ContentSamples.ItemsByType[usedAmmoItemId];
+            if(ammo.consumable && !player.IsAmmoFreeThisShot(Item, ammo, type)) player.ConsumeItem(usedAmmoItemId);
             modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
         }
 
@@ -189,11 +188,16 @@ namespace ChargerClass.Content.Items.Weapons
             SafeModifyWeaponKnockback(player, ref knockback);
         }
 
-       public override void ModifyTooltips(List<TooltipLine> tooltips) {
-			var line = new TooltipLine(Mod, "Charge Value", $"{ChargeAmountDescription(chargeAmount)} charge levels");
-			tooltips.Add(line);
-            line = new TooltipLine(Mod, "Charge Effect", $"Charge Effect: {chargeEffect}");
-			tooltips.Add(line);
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            for(int i = 0; i < tooltips.Count; i++){
+                if(blowWeapon && tooltips[i].Name == "Damage"){
+                    tooltips.Insert(i + 1, new TooltipLine(Mod, "BlowWeapon", $"Blowing weapon"));
+                }
+                if(tooltips[i].Name == "Speed"){
+                    tooltips.Insert(i, new TooltipLine(Mod, "ChargeValue", $"{ChargeAmountDescription(chargeAmount)} charge levels"));
+                    return;
+                }
+            }
         }
 
         public string ChargeAmountDescription(int chargeAmount) => chargeAmount switch{
@@ -205,6 +209,8 @@ namespace ChargerClass.Content.Items.Weapons
             _ => "Ginormous"
         };
 
+
+        public virtual void WhileCharging(Player player) {}
         public virtual void ItemAnimation(Player player) {}
         public virtual void ModifyMuzzleOffset(ref Vector2 muzzleOffset) {}
         public virtual void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) {}

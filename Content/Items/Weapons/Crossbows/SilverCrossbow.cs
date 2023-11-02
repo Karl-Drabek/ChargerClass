@@ -3,11 +3,14 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class SilverCrossbow : ChargeWeapon
 	{
+        public static readonly int StatIncrease = 7;
+	    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(StatIncrease);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -35,7 +38,11 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            velocity *= chargeLevel * 1.05f;
+            velocity *= 1 + chargeLevel * StatIncrease / 100f;
+        }
+
+		public override void SafeModifyWeaponCrit(Player player, ref float crit){
+            crit += chargeLevel * StatIncrease;
         }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

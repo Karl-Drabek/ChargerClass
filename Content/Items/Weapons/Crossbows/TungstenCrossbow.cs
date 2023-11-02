@@ -3,11 +3,14 @@ using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TungstenCrossbow : ChargeWeapon
 	{
+        public static readonly int DamageIncrease = 5;
+	    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -35,7 +38,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            damage += 5 * chargeLevel;
+            damage += DamageIncrease * chargeLevel;
         }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

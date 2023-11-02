@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Items.Weapons.Slingshots;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class PlatinumCrossbow : ChargeWeapon
 	{
+            public static readonly int AmmoChance = 15;
+	      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AmmoChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -36,7 +39,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.useAmmo = AmmoID.Arrow;
 		}
 
-            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(15 * chargeLevel, 0, 100), 100);
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(AmmoChance * chargeLevel, 0, 100), 100);
 
             public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 

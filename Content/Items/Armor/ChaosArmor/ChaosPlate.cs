@@ -19,7 +19,7 @@ namespace ChargerClass.Content.Items.Armor.ChaosArmor
         public static int ChargeCritChanceIncreasePerLevel = 5;
 		public static int MaxCritIncrease = 5;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease, ChargeDamageIncrease, ChargeCritChanceIncreasePerLevel, ChargeCritChanceIncreasePerLevel * MaxCritIncrease);
 
 		public override void SetDefaults() {
 			Item.width = 18;

@@ -26,7 +26,7 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.hostile = false;
             Projectile.DamageType = ChargerDamageClass.Instance;
             Projectile.penetrate = 2;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 180;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;
             Projectile.ignoreWater = true;
@@ -45,8 +45,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.aiStyle = 0; //remove gravity
             _target = target;
             _offset = Projectile.Center - _target.Center;
-            _damage = hit.Damage;
-            Projectile.timeLeft = 1200;
+            _damage = hit.Damage / 6;
+            Projectile.timeLeft = (int)Projectile.ai[2] * 20;
             Projectile.tileCollide = false;
         }
 
@@ -66,10 +66,10 @@ namespace ChargerClass.Content.Projectiles.Rocks
                 return;
             }
 
-            _timer += _damage; //increment the timer by the original damage
-            if(_timer >= 100){ //if the timer is greater than the limit, remove the max and deal damage for each removal.
-                _target.SimpleStrikeNPC(_damage / 100, _offset.X > 0 ? 0 : 1);
-                _timer = _damage % 100;
+            _timer++;
+            if(_timer >= 20){ //if the timer is greater than the limit, remove the max and deal damage for each removal.
+                _target.SimpleStrikeNPC((int)_timer / 20 * _damage, _offset.X > 0 ? 0 : 1);
+                _timer %= 20;
             }
             Projectile.Center = _target.Center + _offset;
         }

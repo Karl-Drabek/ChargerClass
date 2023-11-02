@@ -3,12 +3,15 @@ using ChargerClass.Content.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Consumables
 {
 	public class ImpatiencePotion : ModItem
 	{
+		public static readonly int ChargeLevelDecrease = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeLevelDecrease);
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 20;
 

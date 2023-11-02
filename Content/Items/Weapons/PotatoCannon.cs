@@ -4,11 +4,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
+using Terraria.Localization;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class PotatoCannon : ChargeWeapon
 	{
+            public static readonly int HotPotatoChance = 10;
+            public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(HotPotatoChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -34,13 +39,18 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 8f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Potato>();
 		}
+            bool hotPotato = false;
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-                  if(Main.rand.NextBool(Utils.Clamp(10 * chargeLevel, 0, 100), 100)){
-                        type = ModContent.ProjectileType<Projectiles.HotPotatoProjectile>();
+                  if(Main.rand.NextBool(Utils.Clamp(HotPotatoChance * chargeLevel, 0, 100), 100)){
+                        hotPotato = true;
                         damage = (int)(3f * damage);
                         knockback *= 3f;
                   }
+            }
+		public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2){
+                  if(hotPotato) ai2 = 1f;
+                  hotPotato = false;
             }
 	}
 }

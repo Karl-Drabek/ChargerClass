@@ -13,7 +13,7 @@ namespace ChargerClass.Content.Items.Consumables
 	{
 		public static readonly int MaxCosmicVoltaicFragment = 10;
 		public static readonly int ChargeSpeedIncrease = 5;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxCosmicVoltaicFragment);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
 
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 10;

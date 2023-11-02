@@ -6,11 +6,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class TripleShot : ChargeWeapon
 	{
+            public static readonly int AmmoChance = 10;
+            public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AmmoChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -43,7 +46,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   return false;
             }
 
-            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(10 * chargeLevel, 0, 100), 100);
+            public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(AmmoChance * chargeLevel, 0, 100), 100);
 
 		public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 	}

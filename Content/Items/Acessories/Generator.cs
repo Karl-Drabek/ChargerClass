@@ -6,11 +6,15 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Items.Placeable;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class Generator : ModItem
 	{
+		public static readonly int ChargeSpeedIncrease = 15;
+		public static readonly int RetainedCharge = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, RetainedCharge);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -29,7 +33,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().Generator = true;
+			player.GetModPlayer<ChargeModPlayer>().HasGenerator = true;
 		}
 
 		public override void AddRecipes()

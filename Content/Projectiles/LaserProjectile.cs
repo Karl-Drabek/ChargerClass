@@ -111,7 +111,7 @@ namespace ChargerClass.Content.Projectiles
 		public void UpdateDistance(Player player){
 			for (Distance = InitialOffset; Distance <= 2200f; Distance += Spacing) {
 				Vector2 projEnd = player.Center + Projectile.velocity * (Distance + 5f);
-				if (!Collision.CanHit(player.Center, 1, 1, projEnd, 1, 1)) break;
+				if (!Collision.CanHitLine(player.Center + InitialOffset * Projectile.velocity, 1, 1, projEnd, 1, 1)) break;
 			}
 		}
 		

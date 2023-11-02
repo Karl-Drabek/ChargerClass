@@ -20,14 +20,20 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             
             Item.shootSpeed = 6;
         }
+        Player player;
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source){
+            var parentSource = source as EntitySource_Parent;
+            player = parentSource.Entity as Player;
+        }
+
 
         public override void AI(Projectile projectile, int payloadType){
             projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI /2).ToRotation();
             projectile.ai[0] += 5;
-            NPC closestNPC = Targeting.FindClosestNPC(projectile.Center, 50 * (float)Math.Sqrt(projectile.ai[0]));
+            NPC closestNPC = Targeting.FindClosestLineOfSightNPC(projectile.Center, 50 * (float)Math.Sqrt(projectile.ai[0]));
             if(closestNPC is null) return;
-            Main.NewText(projectile.ai[0]);
-            Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, default, ModContent.ProjectileType<LightningProjectile>(), (int)projectile.ai[0] * 10, 0, -1, closestNPC.whoAmI);
+            Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, default, ModContent.ProjectileType<LightningProjectile>(), (int)projectile.ai[0] * 10, 0, player.whoAmI, closestNPC.whoAmI, 1f);
             projectile.ai[0] = 0;
         }
         public override void AddRecipes() {

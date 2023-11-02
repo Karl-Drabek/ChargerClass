@@ -6,11 +6,14 @@ using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Items;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class AshwoodSlingshot : ChargeWeapon
 	{
+        public static readonly int HellfireChance = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(HellfireChance);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -38,7 +41,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-            if (Main.rand.NextBool(Utils.Clamp(10 * chargeLevel, 0, 100), 100)) chargerProj.Hellfire = true;
+            if (Main.rand.NextBool(Utils.Clamp(HellfireChance * (chargeLevel + 1), 0, 100), 100)) chargerProj.Hellfire = true;
         }
 
 		public override Vector2? HoldoutOffset() {

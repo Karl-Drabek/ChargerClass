@@ -6,11 +6,14 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class IronLung : ModItem
 	{
+		public static readonly int MaxChargeIncrease = 15;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -29,7 +32,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().IronLung = true;
+			player.GetModPlayer<ChargeModPlayer>().HasIronLung = true;
 		}
 
 		public override void AddRecipes()

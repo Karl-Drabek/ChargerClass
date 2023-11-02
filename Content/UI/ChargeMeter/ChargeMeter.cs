@@ -9,6 +9,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using System;
 using Terraria.ModLoader;
+using ChargerClass.Common.Configs;
 
 namespace ChargerClass.Content.UI.ChargeMeter
 {
@@ -52,6 +53,7 @@ namespace ChargerClass.Content.UI.ChargeMeter
             Player player = Main.CurrentPlayer;
 
             int MaxCharge = player.GetModPlayer<ChargeModPlayer>().GetMaxCharge();
+            if(ChargerClassConfig.Instance.MaxChargeToggle) Main.NewText(MaxCharge);
             float chargePercentage = (float)chargeWeapon.GetTotalCharge() / MaxCharge;
             chargePercentage = Utils.Clamp(chargePercentage, 0f, 1f);
 

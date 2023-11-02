@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Crossbows
 {
 	public class TinCrossbow : ChargeWeapon
 	{
+            public static readonly int TinCanChance = 10;
+	      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TinCanChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -37,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 		}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer) {
-                  chargerProj.TinCanChance = Utils.Clamp(10 * chargeLevel, 0, 100);
+                  chargerProj.TinCanChance = Utils.Clamp(TinCanChance * chargeLevel, 0, 100);
             }
 
 		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);

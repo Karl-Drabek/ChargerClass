@@ -6,39 +6,34 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ChargerClass.Content.Buffs;
 using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Projectiles
 {
-	public class IceSpikeProjectile : ModProjectile
+	public class MonkeyDartProjectile : ModProjectile
 	{
-
 		public override void SetDefaults()
 		{
-            Projectile.width = 8;
-            Projectile.height = 8;
-            Projectile.aiStyle = 0;
+            Projectile.width = 7;
+            Projectile.height = 7;
+            Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = ChargerDamageClass.Instance;
-            Projectile.penetrate = 2;
-            Projectile.timeLeft = 600;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 120;
             Projectile.alpha = 0;
             Projectile.light = 0.0f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
+            Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
 
+            
             AIType = ProjectileID.WoodenArrowFriendly;
         }
-
-        public override Color? GetAlpha(Color lightColor) {
-            return new Color(155, 155, 155, 0) * Projectile.Opacity;
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damage){
-            target.AddBuff(BuffID.Frostburn, 180);
-		}
 
         public override void Kill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);

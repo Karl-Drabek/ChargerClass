@@ -13,7 +13,7 @@ namespace ChargerClass.Content.Items.Consumables
 	{
 		public static readonly int MaxStellerVoltaicFragments = 10;
 		public static readonly int MaxChargeIncrease = 25;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease, MaxStellerVoltaicFragments);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
 
 		public override void SetStaticDefaults() {
 			Item.ResearchUnlockCount = 10;

@@ -5,11 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories
 {
 	public class Respirator : ModItem
 	{
+		public static readonly int DamageIncrease = 15;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
 		public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 1;
@@ -25,7 +28,7 @@ namespace ChargerClass.Content.Items.Acessories
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().Respirator = true;
+			player.GetModPlayer<ChargeModPlayer>().HasRespirator = true;
 		}
 
 		public override void AddRecipes()

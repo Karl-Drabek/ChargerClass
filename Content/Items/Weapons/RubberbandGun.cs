@@ -38,10 +38,6 @@ namespace ChargerClass.Content.Items.Weapons
 		}
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-                  if(Main.rand.NextBool(Utils.Clamp(chargeLevel * 3, 0, 100), 100)){
-                        type = ModContent.ProjectileType<Projectiles.FlamingRubberbandProjectile>();
-                        damage = (int)(1.5f * damage);
-                  }
                   velocity = velocity.RotatedByRandom(MathHelper.ToRadians(2));
             }
 

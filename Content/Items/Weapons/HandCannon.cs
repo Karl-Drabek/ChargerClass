@@ -5,11 +5,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content;
 using ChargerClass.Content.Projectiles;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons
 {
 	public class HandCannon : ChargeWeapon
 	{
+            public static readonly int FragChance = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(FragChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
@@ -31,17 +36,13 @@ namespace ChargerClass.Content.Items.Weapons
             Item.crit = 5;
             Item.knockBack = 10f;
 
-            Item.shoot = ModContent.ProjectileType<Projectiles.MiniCannonballProjectile>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.HandCannonBombProjectile>();
             Item.shootSpeed = 8f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.MiniCannonball>();
 		}
 
-            public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
-                  if(Main.rand.NextBool(Utils.Clamp(20 * chargeLevel, 0, 100), 100)){
-                        type = ModContent.ProjectileType<Projectiles.HandCannonBombProjectile>();
-                        damage = (int)(3f * damage);
-                        knockback *= 3f;
-                  }
+		public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+                  if(Main.rand.NextBool(Utils.Clamp(FragChance * chargeLevel, 0, 100), 100)) proj.ai[2] = 1f;
             }
 	}
 }

@@ -5,11 +5,14 @@ using Terraria.ID;
 using ChargerClass.Common.Players;
 using Terraria.ModLoader;
 using ChargerClass.Common.GlobalProjectiles;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Weapons.Slingshots
 {
 	public class PearlwoodSlingshot : ChargeWeapon
 	{
+        public static readonly int ConfuseChance = 15;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ConfuseChance);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
@@ -37,7 +40,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 		}
 
         public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
-            if (Main.rand.NextBool(Utils.Clamp(15 * chargeLevel, 0, 100), 100)) chargerProj.Confused = true;
+            if (Main.rand.NextBool(Utils.Clamp(ConfuseChance * chargeLevel, 0, 100), 100)) chargerProj.Confused = true;
         }
 
 		public override Vector2? HoldoutOffset() {
