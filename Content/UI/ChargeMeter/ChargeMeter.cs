@@ -2,18 +2,15 @@ using ReLogic.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using ChargerClass.Content.UI;
 using ChargerClass.Content.Items.Weapons;
 using ChargerClass.Common.Players;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using System;
 using Terraria.ModLoader;
 using ChargerClass.Common.Configs;
 
-namespace ChargerClass.Content.UI.ChargeMeter
-{
-    class ChargeMeter : UIState
+namespace ChargerClass.Content.UI.ChargeMeter;
+
+class ChargeMeter : UIState
     {
         private ChargeWeapon chargeWeapon;
         private Color gradientA, gradientB;
@@ -22,8 +19,8 @@ namespace ChargerClass.Content.UI.ChargeMeter
         private int outerWidth, outerHeight, innerWidth, innerHeight, yOffset;
 
         public override void OnInitialize() {
-			gradientA = new Color(229, 130, 43); // Orange
-			gradientB = new Color(204, 74, 202); // Purple
+		gradientA = new Color(229, 130, 43); // Orange
+		gradientB = new Color(204, 74, 202); // Purple
 
             outerWidth = 200;
             outerHeight = 30;
@@ -91,5 +88,4 @@ namespace ChargerClass.Content.UI.ChargeMeter
 
             }
         }
-	}
 }

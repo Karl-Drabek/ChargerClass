@@ -1,24 +1,21 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Ammo.Darts;
 using Terraria.DataStructures;
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class BombBayProjectile : ModProjectile
 {
-	public class BombBayProjectile : ModProjectile
-	{
         DartComponent Payload;
         float rotation = 0;
 
-		public override void SetDefaults()
-		{
+	public override void SetDefaults()
+	{
             Projectile.width = 15;
             Projectile.height = 15;
             Projectile.aiStyle = -1;
@@ -41,21 +38,21 @@ namespace ChargerClass.Content.Projectiles
             Payload = (DartComponent)ItemLoader.GetItem((int)Projectile.ai[0]);
         }
 
-		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone){
+	public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone){
             Payload.OnHitNPC(Projectile, target, hit, damageDone, 1);
         }
 
-		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers){
+	public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers){
             modifiers.SetMaxDamage(0);
         }
-		public override void AI(){
+	public override void AI(){
             Projectile.velocity.Y += 0.35f;
             Projectile.velocity.X *= 0.98f;
             Projectile.rotation += rotation;
         }
 
         
-		public override void OnKill(int timeLeft){
+	public override void OnKill(int timeLeft){
             Payload.OnKill(Projectile, timeLeft);
             int distanceSquared = 1600;
             for (int k = 0; k < Main.maxNPCs; k++) {
@@ -90,5 +87,4 @@ namespace ChargerClass.Content.Projectiles
                 dust.velocity *= 3f;
             }
         }
-	}
 }

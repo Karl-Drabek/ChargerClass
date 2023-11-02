@@ -1,24 +1,22 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Weapons.Crossbows
+namespace ChargerClass.Content.Items.Weapons.Crossbows;
+
+public class CopperCrossbow : ChargeWeapon
 {
-	public class CopperCrossbow : ChargeWeapon
-	{
             public static readonly int VelocityChangeEffect = 10;
             public static readonly int VelocityChangeRain = 25;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(VelocityChangeRain, VelocityChangeEffect);
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(VelocityChangeRain, VelocityChangeEffect);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 37;
             Item.height = 13;
             Item.scale = 1f;
@@ -38,24 +36,23 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
-		}
+	}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   proj.ignoreWater = true;
                   chargerProj.RainSpeed = true;
             }
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
+	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   velocity *= VelocityChangeEffect / 100f * chargeLevel;
             }
 
-		public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
+	public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.CopperBar, 7);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

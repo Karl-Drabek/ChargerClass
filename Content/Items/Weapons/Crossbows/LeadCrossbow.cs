@@ -1,21 +1,20 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Weapons.Crossbows
+namespace ChargerClass.Content.Items.Weapons.Crossbows;
+
+public class LeadCrossbow : ChargeWeapon
 {
-	public class LeadCrossbow : ChargeWeapon
-	{
         public static readonly int KnockbackIncrease = 15;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(KnockbackIncrease);
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(KnockbackIncrease);
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 37;
             Item.height = 13;
             Item.scale = 1f;
@@ -35,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
-		}
+	}
 
         public override void SafeModifyWeaponKnockback(Player player, ref StatModifier knockback){
             knockback += chargeLevel * KnockbackIncrease / 100f;
@@ -43,12 +42,11 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
 
         public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.LeadBar, 7);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

@@ -1,16 +1,13 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
 using Terraria.DataStructures;
-using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo.Rocks
+namespace ChargerClass.Content.Items.Ammo.Rocks;
+
+public class BouncyRock : ModItem
 {
-	public class BouncyRock : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 6)); //(tics, frames)
@@ -43,4 +40,3 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
             recipe.Register();
         }
     }
-}

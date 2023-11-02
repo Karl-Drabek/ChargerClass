@@ -10,12 +10,12 @@ using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Configs;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public abstract class ChargeWeapon : ModItem
 {
-	public abstract class ChargeWeapon : ModItem
-	{
-	    public int charge = 0;
-	    public int chargeAmount = 10;
+    public int charge = 0;
+    public int chargeAmount = 10;
         public bool blowWeapon;
         public int bonusCharge = 0;
         public int chargeLevel; //only accurate after GetChargeLevel has been called
@@ -220,4 +220,3 @@ namespace ChargerClass.Content.Items.Weapons
         public virtual void SafeModifyWeaponDamage(Player player, ref StatModifier damage) {}
         public virtual void SafeModifyWeaponKnockback(Player player, ref StatModifier knockback) {}
     }
-}

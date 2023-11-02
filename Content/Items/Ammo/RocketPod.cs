@@ -5,10 +5,10 @@ using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.ModSystems;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class RocketPod : ModItem
 {
-	public class RocketPod : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
@@ -31,12 +31,11 @@ namespace ChargerClass.Content.Items.Ammo
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe(1);
             recipe.AddIngredient(ModContent.ItemType<BloontoniumDart>());
             recipe.AddRecipeGroup(ChargerClassGeneralSystem.Rockets);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

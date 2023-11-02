@@ -1,13 +1,11 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items
+namespace ChargerClass.Content.Items;
+
+public class Rubber : ModItem
 {
-	public class Rubber : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
         }
@@ -28,4 +26,3 @@ namespace ChargerClass.Content.Items
             recipe.Register();
         }
     }
-}

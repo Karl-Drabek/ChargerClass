@@ -1,21 +1,16 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Buffs;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Extensions;
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class RocketPodProjectile : ModProjectile
 {
-	public class RocketPodProjectile : ModProjectile
+	public override void SetDefaults()
 	{
-		public override void SetDefaults()
-		{
             Projectile.width = 14;
             Projectile.height = 14;
             Projectile.aiStyle = -1;
@@ -39,8 +34,7 @@ namespace ChargerClass.Content.Projectiles
             Dust.NewDustPerfect(Projectile.Center, DustID.GreenTorch);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Explosions.ExplodeCircle(Projectile.position, 100, Projectile.damage, ChargerDamageClass.Instance, Projectile, Projectile.knockBack);
         }
-	}
 }

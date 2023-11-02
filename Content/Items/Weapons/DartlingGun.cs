@@ -1,25 +1,22 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
-using ChargerClass.Common.Players;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Ammo;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class DartlingGun : ChargeWeapon
 {
-	public class DartlingGun : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 54;
             Item.height = 22;
             Item.scale = 1f;
@@ -47,4 +44,3 @@ namespace ChargerClass.Content.Items.Weapons
             velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
         }
     }
-}

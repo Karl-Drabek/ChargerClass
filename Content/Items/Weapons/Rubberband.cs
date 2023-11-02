@@ -1,23 +1,21 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using ChargerClass.Content;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class Rubberband : ChargeWeapon
 {
-	public class Rubberband : ChargeWeapon
-	{
             public static readonly int SnapChance = 1 ;
-	      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SnapChance);
+      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SnapChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 99;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 36;
             Item.height = 22;
             Item.scale = 1f;
@@ -39,7 +37,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
             Item.shootSpeed = 6f;
             Item.ammo = Item.type;
-		}
+	}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   if(Main.rand.NextBool(Utils.Clamp(chargeLevel * SnapChance, 0, 100), 100)){
@@ -49,12 +47,11 @@ namespace ChargerClass.Content.Items.Weapons
                   return true;
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 1);
             recipe.AddTile(TileID.Furnaces);
             recipe.Register();
-		}
 	}
 }

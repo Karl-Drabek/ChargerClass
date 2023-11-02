@@ -1,26 +1,22 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
 using ChargerClass.Common.Players;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Ammo;
 using ChargerClass.Common.GlobalProjectiles;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class LaserDartlingGun : ChargeWeapon
 {
-	public class LaserDartlingGun : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 82;
             Item.height = 36;
             Item.scale = 1f;
@@ -48,7 +44,7 @@ namespace ChargerClass.Content.Items.Weapons
             proj.friendly = true;
             proj.penetrate = 6;
             proj.usesLocalNPCImmunity = true;
-			proj.localNPCHitCooldown = 10;
+		proj.localNPCHitCooldown = 10;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
@@ -56,12 +52,11 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<BloontoniumBlaster>());
             recipe.AddIngredient(ItemID.LihzahrdPowerCell, 4);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

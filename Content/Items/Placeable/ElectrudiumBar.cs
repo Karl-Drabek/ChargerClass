@@ -1,14 +1,12 @@
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items.Placeable
+namespace ChargerClass.Content.Items.Placeable;
+
+public class ElectrudiumBar : ModItem
 {
-	public class ElectrudiumBar : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
 
@@ -31,4 +29,3 @@ namespace ChargerClass.Content.Items.Placeable
             recipe.Register();
         }
     }
-}

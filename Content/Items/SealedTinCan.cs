@@ -1,49 +1,47 @@
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items
+namespace ChargerClass.Content.Items;
+
+public class SealedTinCan : ModItem
 {
-	public class SealedTinCan : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 10;
         }
 
         public override void SetDefaults() {
             Item.maxStack = Item.CommonMaxStack;
-			Item.consumable = true;
+		Item.consumable = true;
             Item.value = Item.sellPrice(0, 0, 0, 24);
-			Item.width = 22;
-			Item.height = 32;
-			Item.rare = ItemRarityID.Purple;
+		Item.width = 22;
+		Item.height = 32;
+		Item.rare = ItemRarityID.Purple;
         }
         public override bool CanRightClick() => true;
 
-		public override void ModifyItemLoot(ItemLoot itemLoot){
+	public override void ModifyItemLoot(ItemLoot itemLoot){
             IItemDropRule[] coins = new IItemDropRule[]{
-				new CommonDrop(ItemID.CopperCoin, 100, 1, 99, 75), //%75
+			new CommonDrop(ItemID.CopperCoin, 100, 1, 99, 75), //%75
                 new CommonDrop(ItemID.SilverCoin, 5, 1, 9),        //%20
                 new CommonDrop(ItemID.GoldCoin, 10, 1, 1, 9),      //%4.5
                 new CommonDrop(ItemID.PlatinumCoin, 1)              //%0.5
             };
             IItemDropRule[] ores = new IItemDropRule[]{
-				ItemDropRule.Common(ItemID.CopperOre, 1, 17, 33),
-				ItemDropRule.Common(ItemID.TinOre, 1, 17, 33),
-				ItemDropRule.Common(ItemID.IronOre, 1, 15, 29),
-				ItemDropRule.Common(ItemID.LeadOre, 1, 15, 29),
-				ItemDropRule.Common(ItemID.SilverOre, 1, 11, 21),
-				ItemDropRule.Common(ItemID.TungstenOre, 1, 11, 21),
-				ItemDropRule.Common(ItemID.GoldOre, 1, 7, 13),
-				ItemDropRule.Common(ItemID.PlatinumOre, 1, 7, 13),
+			ItemDropRule.Common(ItemID.CopperOre, 1, 17, 33),
+			ItemDropRule.Common(ItemID.TinOre, 1, 17, 33),
+			ItemDropRule.Common(ItemID.IronOre, 1, 15, 29),
+			ItemDropRule.Common(ItemID.LeadOre, 1, 15, 29),
+			ItemDropRule.Common(ItemID.SilverOre, 1, 11, 21),
+			ItemDropRule.Common(ItemID.TungstenOre, 1, 11, 21),
+			ItemDropRule.Common(ItemID.GoldOre, 1, 7, 13),
+			ItemDropRule.Common(ItemID.PlatinumOre, 1, 7, 13),
             };
             IItemDropRule[] food = new IItemDropRule[]{
-				ItemDropRule.Common(ItemID.Apple, 1, 1, 3),
-				ItemDropRule.Common(ItemID.Apricot, 1, 1, 3),
-				ItemDropRule.Common(ItemID.Banana, 1, 1, 3),
+			ItemDropRule.Common(ItemID.Apple, 1, 1, 3),
+			ItemDropRule.Common(ItemID.Apricot, 1, 1, 3),
+			ItemDropRule.Common(ItemID.Banana, 1, 1, 3),
                 ItemDropRule.Common(ItemID.BlackCurrant, 1, 1, 3),
                 ItemDropRule.Common(ItemID.BloodOrange, 1, 1, 3),
                 ItemDropRule.Common(ItemID.Cherry, 1, 1, 3),
@@ -71,6 +69,5 @@ namespace ChargerClass.Content.Items
             }));
             itemLoot.Add(ItemDropRule.SequentialRulesNotScalingWithLuck(1, coins));
             itemLoot.Add(ItemDropRule.Common(ItemID.TinCan));
-		}
+	}
     }
-}

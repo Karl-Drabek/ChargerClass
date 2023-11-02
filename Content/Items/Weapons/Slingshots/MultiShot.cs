@@ -1,20 +1,19 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons.Slingshots
+namespace ChargerClass.Content.Items.Weapons.Slingshots;
+
+public class MultiShot : ChargeWeapon
 {
-	public class MultiShot : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 60;
             Item.scale = 1f;
@@ -34,7 +33,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.shoot = ModContent.ProjectileType<Projectiles.Rocks.RockProjectile>();
             Item.shootSpeed = 9f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
-		}
+	}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   int count = chargeLevel + 1;
@@ -47,14 +46,13 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   return false;
             }
 
-		public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
+	public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Slingshots.TripleShot>(), 3);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

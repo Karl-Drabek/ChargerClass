@@ -4,15 +4,15 @@ using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Weapons.Blowers;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class RocketBalloon : ChargeWeapon
 {
-	public class RocketBalloon : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
                   Item.width = 60;
                   Item.height = 30;
                   Item.scale = 1f;
@@ -33,15 +33,14 @@ namespace ChargerClass.Content.Items.Weapons
 
                   Item.shoot = ModContent.ProjectileType<RocketBalloonProjectile>();
                   Item.shootSpeed = 20f;
-		}
+	}
 
             public override void AddRecipes()
-		{
+	{
                   Recipe recipe = CreateRecipe();
                   recipe.AddIngredient(ItemID.SoulofFright, 16);
                   recipe.AddIngredient(ModContent.ItemType<Balloon>());
                   recipe.AddTile(TileID.MythrilAnvil);
                   recipe.Register();
-		}
 	}
 }

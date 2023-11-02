@@ -9,17 +9,17 @@ using System.Linq;
 
 // Taken from: https://code.tutsplus.com/how-to-generate-shockingly-good-2d-lightning-effects--gamedev-2681t
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class LightningProjectile : ModProjectile
 {
-	public class LightningProjectile : ModProjectile
-	{
         private static Texture2D LightningTexture = ModContent.Request<Texture2D>("ChargerClass/Content/Projectiles/LightningProjectile").Value;
         private List<Bolt> Bolts;
         public const float lightningMaxLength = 1000;
         private Color color;
         private float alpha = 1f;
-		public override void SetDefaults()
-		{
+	public override void SetDefaults()
+	{
             Projectile.width = 1;
             Projectile.height = 4;
             Projectile.aiStyle = -1;
@@ -72,7 +72,7 @@ namespace ChargerClass.Content.Projectiles
         public override bool PreDraw(ref Color lightColor) {
             if(Bolts is not null) foreach (Bolt bolt in Bolts) bolt.Draw(color * alpha, Projectile.scale);
             return false;
-		}
+	}
         class Segment
         {
             public Vector2 StartPos;
@@ -91,7 +91,7 @@ namespace ChargerClass.Content.Projectiles
                 Main.EntitySpriteDraw(LightningTexture, EndPos - Main.screenPosition, new Rectangle(0,0,2,LightningTexture.Width), color, rotation, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, 0f);
 
                 DelegateMethods.v3_1 = color.ToVector3();
-			    Utils.PlotTileLine(StartPos, EndPos, LightningTexture.Height * 6, DelegateMethods.CastLight);
+		    Utils.PlotTileLine(StartPos, EndPos, LightningTexture.Height * 6, DelegateMethods.CastLight);
             }
         }
 
@@ -138,5 +138,4 @@ namespace ChargerClass.Content.Projectiles
                 foreach(Segment segment in Segments) segment.Draw(color, scale);
             }
         }
-	}
 }

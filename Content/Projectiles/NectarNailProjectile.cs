@@ -1,20 +1,17 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Projectiles
-{
-	public class NectarNailProjectile : ModProjectile
-	{
+namespace ChargerClass.Content.Projectiles;
 
-		public override void SetDefaults()
-		{
+public class NectarNailProjectile : ModProjectile
+{
+
+	public override void SetDefaults()
+	{
             Projectile.width = 10;
             Projectile.height = 10;
             Projectile.aiStyle = 0;
@@ -29,16 +26,15 @@ namespace ChargerClass.Content.Projectiles
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
             Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 10;
+		Projectile.localNPCHitCooldown = 10;
         }
 
         public override void AI(){
             Projectile.rotation = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90)).ToRotation();
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

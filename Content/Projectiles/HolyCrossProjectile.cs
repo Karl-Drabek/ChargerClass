@@ -1,23 +1,21 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Extensions;
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class HolyCrossProjectile : ModProjectile
 {
-	public class HolyCrossProjectile : ModProjectile
-	{
 
         public static readonly float rotationSpeed = 7.5f;
 
-		public override void SetDefaults()
-		{
+	public override void SetDefaults()
+	{
             Projectile.width = 30;
             Projectile.height = 30;
             Projectile.aiStyle = -1;
@@ -90,9 +88,8 @@ namespace ChargerClass.Content.Projectiles
             return angle;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

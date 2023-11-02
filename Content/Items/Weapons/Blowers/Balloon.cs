@@ -1,22 +1,19 @@
-using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
 
-namespace ChargerClass.Content.Items.Weapons.Blowers
+namespace ChargerClass.Content.Items.Weapons.Blowers;
+
+public class Balloon : ChargeWeapon
 {
-	public class Balloon : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
@@ -37,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
 
             Item.shoot = ModContent.ProjectileType<Projectiles.BalloonProjectile>();
             Item.shootSpeed = 4f;
-		}
+	}
 
             public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   proj.timeLeft += chargeLevel * 30;
@@ -48,12 +45,11 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             }
 
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 3);
             recipe.AddTile(TileID.Furnaces);
             recipe.Register();
-		}
 	}
 }

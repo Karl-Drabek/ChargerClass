@@ -1,23 +1,19 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
-using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class CentrifugalGun : ChargeWeapon
 {
-	public class CentrifugalGun : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 82;
             Item.height = 36;
             Item.scale = 1f;
@@ -45,4 +41,3 @@ namespace ChargerClass.Content.Items.Weapons
             velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
         }
     }
-}

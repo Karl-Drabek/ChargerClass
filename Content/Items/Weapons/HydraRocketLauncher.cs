@@ -1,25 +1,22 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
-using ChargerClass.Common.Players;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Ammo;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class HydraRocketLauncher : ChargeWeapon
 {
-	public class HydraRocketLauncher : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 54;
             Item.height = 26;
             Item.scale = 1f;
@@ -48,12 +45,11 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<BloontoniumBlaster>());
             recipe.AddIngredient(ItemID.ProximityMineLauncher);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

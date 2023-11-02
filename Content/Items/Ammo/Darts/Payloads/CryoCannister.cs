@@ -1,16 +1,11 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
-using Terraria.DataStructures;
-using ChargerClass.Content.Items;
-using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
+namespace ChargerClass.Content.Items.Ammo.Darts.Payloads;
+
+public class CryoCannister : DartComponent
 {
-	public class CryoCannister : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
@@ -31,4 +26,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             recipe.Register();
         }
     }
-}

@@ -1,16 +1,13 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Tiles;
-using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class Potato : ModItem
 {
-	public class Potato : ModItem
-	{
         public override void SetStaticDefaults() {
             ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
             Item.ResearchUnlockCount = 99;
@@ -19,7 +16,7 @@ namespace ChargerClass.Content.Items.Ammo
         public override void SetDefaults() {
             Item.createTile = ModContent.TileType<PotatoPlant>();
             Item.placeStyle = 0;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.useAnimation = 15;
             Item.useTime = 10;
             Item.maxStack = Item.CommonMaxStack;
@@ -44,4 +41,3 @@ namespace ChargerClass.Content.Items.Ammo
 
         public override bool CanShoot(Player player) => false;
     }
-}

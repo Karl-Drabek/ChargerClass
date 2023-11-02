@@ -1,20 +1,18 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Projectiles.Rocks
-{
-	public class BouncyRockProjectile : ModProjectile
-	{
+namespace ChargerClass.Content.Projectiles.Rocks;
 
-		public override void SetDefaults()
-		{
+public class BouncyRockProjectile : ModProjectile
+{
+
+	public override void SetDefaults()
+	{
             Projectile.width = 8;
             Projectile.height = 8;
             Projectile.aiStyle = 1;
@@ -40,31 +38,30 @@ namespace ChargerClass.Content.Projectiles.Rocks
 
         public override bool OnTileCollide(Vector2 oldVelocity) {
 
-			bounces--;
+		bounces--;
 
-			if (bounces <= 0) Projectile.Kill();
+		if (bounces <= 0) Projectile.Kill();
 
-			else {
-				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
-				SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		else {
+			Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
-				// If the projectile hits the left or right side of the tile, reverse the X velocity
-				if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) {
-					Projectile.velocity.X = -oldVelocity.X;
-				}
-
-				// If the projectile hits the top or bottom side of the tile, reverse the Y velocity
-				if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) {
-					Projectile.velocity.Y = -oldVelocity.Y;
-				}
+			// If the projectile hits the left or right side of the tile, reverse the X velocity
+			if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) {
+				Projectile.velocity.X = -oldVelocity.X;
 			}
 
-			return false;
+			// If the projectile hits the top or bottom side of the tile, reverse the Y velocity
+			if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) {
+				Projectile.velocity.Y = -oldVelocity.Y;
+			}
 		}
 
-        public override void Kill(int timeLeft) {
+		return false;
+	}
+
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

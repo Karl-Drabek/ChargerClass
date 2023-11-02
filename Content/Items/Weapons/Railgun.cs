@@ -3,15 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class Railgun : ChargeWeapon
 {
-	public class Railgun : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
                   Item.width = 60;
                   Item.height = 30;
                   Item.scale = 1f;
@@ -30,6 +30,5 @@ namespace ChargerClass.Content.Items.Weapons
 
                   Item.shoot = ModContent.ProjectileType<RailgunLaser>();
                   Item.shootSpeed = 0f;
-		}
 	}
 }

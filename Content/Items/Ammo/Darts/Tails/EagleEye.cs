@@ -1,20 +1,15 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
 using Terraria.DataStructures;
-using ChargerClass.Content.Items;
-using ChargerClass.Content.DamageClasses;
-using ChargerClass.Common.ModSystems;
 using Microsoft.Xna.Framework;
 using System;
 using ChargerClass.Common.Extensions;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
+
+public class EagleEye : DartComponent
 {
-	public class EagleEye : DartComponent
-	{
         const float detectRaidus = 350;
         const float rotationSpeed = 0.3f;
         const float speed = 15;
@@ -37,8 +32,8 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
 
         public override void AI(Projectile projectile, int payloadType){
 
-			NPC closestNPC = Targeting.FindClosestNPC(projectile.position, detectRaidus);
-			if (closestNPC != null) {
+		NPC closestNPC = Targeting.FindClosestNPC(projectile.position, detectRaidus);
+		if (closestNPC != null) {
                 float directionToNPC = (closestNPC.Center - projectile.Center).ToRotation();
                 float difference = directionToNPC - projectile.velocity.ToRotation();
                 if(difference > Math.PI) difference = -(float)Math.PI * 2 + difference;
@@ -51,7 +46,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
                 projectile.velocity = projectile.velocity.RotatedBy(rotation);
                 Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.TintableDustLighted, default, default, default, Color.Red);
             }
-			projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
+		projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
         }
 
         public override void AddRecipes() {
@@ -62,4 +57,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             recipe.Register();
         }
     }
-}

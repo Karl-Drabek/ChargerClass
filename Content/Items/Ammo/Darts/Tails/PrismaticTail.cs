@@ -1,18 +1,14 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
 using Terraria.DataStructures;
-using ChargerClass.Content.Items;
-using ChargerClass.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
+
+public class PrismaticTail : DartComponent
 {
-	public class PrismaticTail : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 10;
             Item.height = 10;
@@ -29,7 +25,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             projectile.light = 1f;
         }
 
-		public override void AI(Projectile projectile, int payloadType){
+	public override void AI(Projectile projectile, int payloadType){
             projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI /2).ToRotation();
             if(projectile.penetrate <= 1){
                 Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.PinkTorch : DustID.BlueTorch, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
@@ -52,7 +48,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             }
         }
 
-		public override void AddRecipes() {
+	public override void AddRecipes() {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ItemID.Geode);
             recipe.AddIngredient(ItemID.CrystalShard, 5);
@@ -60,4 +56,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             recipe.Register();
         }
     }
-}

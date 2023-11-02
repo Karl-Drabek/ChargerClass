@@ -4,8 +4,8 @@ using ChargerClass.Content.Items.Ammo.Darts.Tips;
 using ChargerClass.Content.Items.Ammo.Darts.Payloads;
 using ChargerClass.Content.Items.Ammo.Darts.Tails;
 
-namespace ChargerClass.Common.Sets
-{
+namespace ChargerClass.Common.Sets;
+
     public class Sets
     {
         public static bool[] IsDartTip = ItemID.Sets.Factory.CreateBoolSet(false,
@@ -53,4 +53,3 @@ namespace ChargerClass.Common.Sets
             ModContent.ItemType<ToxicTail>(),
             ModContent.ItemType<UnholyTail>());
     }
-}

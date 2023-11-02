@@ -1,15 +1,13 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 using Terraria.DataStructures;
 using ChargerClass.Content.Items.Weapons;
 
-namespace ChargerClass.Content.Items
+namespace ChargerClass.Content.Items;
+
+public class VoodooBunny : ModItem
 {
-	public class VoodooBunny : ModItem
-	{
         public override string Texture => $"Terraria/Images/Item_{ItemID.Bunny}";
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
@@ -36,11 +34,10 @@ namespace ChargerClass.Content.Items
             recipe.Register();
         }
 
-		public override void Update(ref float gravity, ref float maxFallSpeed){
+	public override void Update(ref float gravity, ref float maxFallSpeed){
             if(Item.lavaWet){
                 if(Main.LocalPlayer.ZoneUnderworldHeight) for(int i = 0; i < Item.stack; i++) Item.NewItem(new EntitySource_Parent(Item), Item.position, ModContent.ItemType<BunnyGun>());
                 Item.active = false;
             }
         }
-	}
 }

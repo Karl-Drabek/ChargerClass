@@ -6,10 +6,10 @@ using Terraria.DataStructures;
 using ChargerClass.Common.Extensions;
 using System;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
+
+public class TheCorruptor : DartComponent
 {
-	public class TheCorruptor : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 10;
             Item.height = 10;
@@ -47,4 +47,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             recipe.Register();
         }
     }
-}

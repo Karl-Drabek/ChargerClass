@@ -1,24 +1,21 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
-using ChargerClass.Content.Projectiles.Rocks;
 using ChargerClass.Content.DamageClasses;
-using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items.Weapons.Slingshots
+namespace ChargerClass.Content.Items.Weapons.Slingshots;
+
+public class AntlerSlinger : ChargeWeapon
 {
-	public class AntlerSlinger : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 22;
             Item.height = 44;
             Item.scale = 1f;
@@ -37,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 10f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
-		}     
+	}     
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   StatModifier modifier = player.GetTotalDamage(ChargerDamageClass.Instance); //chargedamage class damage modifier
@@ -58,8 +55,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
                   chargerProj.IceOnDeath = true;
             }
 
-		public override Vector2? HoldoutOffset() {
-			return new Vector2(0f, 0f);
-		}
+	public override Vector2? HoldoutOffset() {
+		return new Vector2(0f, 0f);
 	}
 }

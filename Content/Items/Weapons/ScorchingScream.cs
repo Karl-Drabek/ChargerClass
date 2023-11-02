@@ -1,21 +1,19 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content;
 using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class ScorchingScream : ChargeWeapon
 {
-	public class ScorchingScream : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 58;
             Item.height = 22;
             Item.scale = 1f;
@@ -35,24 +33,23 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ProjectileID.FlamesTrap;
             Item.shootSpeed = 6f;
-		}
+	}
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
             }
-		public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
+	public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer){
                   proj.hostile = false;
                   proj.friendly = true;
                   proj.scale = 0.25f;
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
                   Recipe recipe = CreateRecipe();
                   recipe.AddIngredient(ItemID.HellstoneBar, 14);
                   recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Bellows>(), 1);
                   recipe.AddTile(TileID.Anvils);
                   recipe.Register();
-		}
 	}
 }

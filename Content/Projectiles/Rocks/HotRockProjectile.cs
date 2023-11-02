@@ -1,20 +1,17 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Projectiles.Rocks
-{
-	public class HotRockProjectile : ModProjectile
-	{
+namespace ChargerClass.Content.Projectiles.Rocks;
 
-		public override void SetDefaults()
-		{
+public class HotRockProjectile : ModProjectile
+{
+
+	public override void SetDefaults()
+	{
             Projectile.width = 8;
             Projectile.height = 8;
             Projectile.aiStyle = 1;
@@ -40,9 +37,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
             target.AddBuff(BuffID.OnFire, 30);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

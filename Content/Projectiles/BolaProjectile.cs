@@ -1,20 +1,16 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Buffs;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class BolaProjectile : ModProjectile
 {
-	public class BolaProjectile : ModProjectile
+	public override void SetDefaults()
 	{
-		public override void SetDefaults()
-		{
             Projectile.width = 15;
             Projectile.height = 15;
             Projectile.aiStyle = 1;
@@ -38,9 +34,8 @@ namespace ChargerClass.Content.Projectiles
         
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

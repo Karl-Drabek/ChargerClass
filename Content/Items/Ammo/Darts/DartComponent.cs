@@ -1,18 +1,12 @@
 using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
 using Terraria.DataStructures;
-using ChargerClass.Content.Items;
 using ChargerClass.Content.DamageClasses;
-using Terraria.Localization;
-using System;
 
-namespace ChargerClass.Content.Items.Ammo.Darts
+namespace ChargerClass.Content.Items.Ammo.Darts;
+
+public abstract class DartComponent : ModItem
 {
-	public abstract class DartComponent : ModItem
-	{
         public int Pen, DartSheetPlacement, AIStyle;
 
         public override void SetStaticDefaults() {
@@ -35,5 +29,4 @@ namespace ChargerClass.Content.Items.Ammo.Darts
         public virtual void OnSpawn(Projectile projectile, IEntitySource source){}
 
         public virtual void ModifyHitNPC(Projectile projetile, NPC target, ref NPC.HitModifiers modifiers){}
-	}
 }

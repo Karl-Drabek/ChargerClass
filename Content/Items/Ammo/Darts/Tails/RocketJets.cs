@@ -5,10 +5,10 @@ using ChargerClass.Common.ModSystems;
 using System;
 using Microsoft.Xna.Framework;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
+
+public class RocketJets : DartComponent
 {
-	public class RocketJets : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 10;
             Item.height = 10;
@@ -33,8 +33,8 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             Dust.NewDustPerfect(projectile.Center, DustID.Torch, particleVect.RotatedByRandom(MathHelper.ToRadians(10)) * Main.rand.NextFloat(1f, 1.1f), 100, default, 1f);
             for(int i = 0; i < 4; i++){
                 Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Smoke, particleVect.X, particleVect.Y, 100, default, Main.rand.NextFloat(1f, 2f));
-			    dust.fadeIn = 1.5f;
-			    dust.noGravity = true;
+		    dust.fadeIn = 1.5f;
+		    dust.noGravity = true;
             }
             if(projectile.velocity.Length() < 25){
                 projectile.velocity *= 1.02f;
@@ -49,4 +49,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
             recipe.Register();
         }
     }
-}

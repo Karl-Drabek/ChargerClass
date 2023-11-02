@@ -1,24 +1,21 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 //Todo have the projectile stay where it hit the npc with correct orientation
-namespace ChargerClass.Content.Projectiles.Rocks
+namespace ChargerClass.Content.Projectiles.Rocks;
+
+public class SpikyRockProjectile : ModProjectile
 {
-	public class SpikyRockProjectile : ModProjectile
-	{
         private NPC _target;
 
         private int _damage;
         private Vector2 _offset;
 
-		public override void SetDefaults()
-		{
+	public override void SetDefaults()
+	{
             Projectile.width = 8;
             Projectile.height = 8;
             Projectile.aiStyle = 1;
@@ -54,9 +51,9 @@ namespace ChargerClass.Content.Projectiles.Rocks
 
         //stand in for ai[0]
         private float _timer{
-			get => Projectile.ai[0];
-			set => Projectile.ai[0] = value;
-		}
+		get => Projectile.ai[0];
+		set => Projectile.ai[0] = value;
+	}
 
         public override void AI(){
             if(_target is null) return; //should be aiStyle 1 if there is no target;
@@ -74,9 +71,8 @@ namespace ChargerClass.Content.Projectiles.Rocks
             Projectile.Center = _target.Center + _offset;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

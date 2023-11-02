@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Extensions;
 
-namespace ChargerClass.Content.Projectiles
-{
-	public class BalloonProjectile : ModProjectile
-	{
+namespace ChargerClass.Content.Projectiles;
 
-		public override void SetDefaults()
-		{
+public class BalloonProjectile : ModProjectile
+{
+
+	public override void SetDefaults()
+	{
             Projectile.width = 15;
             Projectile.height = 15;
             Projectile.aiStyle = 0;
@@ -30,7 +30,7 @@ namespace ChargerClass.Content.Projectiles
             AIType = ProjectileID.WoodenArrowFriendly;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
 
             if(timeLeft > 15){
                 Explosions.ExplodeCircle(Projectile.position, timeLeft - 15, timeLeft - 15, ChargerDamageClass.Instance, Projectile, knockback: (timeLeft - 15) / 3);
@@ -39,5 +39,4 @@ namespace ChargerClass.Content.Projectiles
                 SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             }
         }
-	}
 }

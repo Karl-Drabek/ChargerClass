@@ -1,15 +1,12 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo.Rocks
+namespace ChargerClass.Content.Items.Ammo.Rocks;
+
+public class Sinker : ModItem
 {
-	public class Sinker : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
@@ -39,4 +36,3 @@ namespace ChargerClass.Content.Items.Ammo.Rocks
             recipe.Register();
         }
     }
-}

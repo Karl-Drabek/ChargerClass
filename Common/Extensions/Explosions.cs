@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
-namespace ChargerClass.Common.Extensions
-{
+namespace ChargerClass.Common.Extensions;
+
     public static class Explosions{
 
         public static void ExplodeSquare(this Projectile projectile, int explosionHeight, int explosionWidth, int damage = -1){
@@ -22,14 +22,14 @@ namespace ChargerClass.Common.Extensions
             projectile.tileCollide = false;
             if(damage != -1) projectile.damage = damage;
             projectile.Damage();
-			SoundEngine.PlaySound(SoundID.Item14, projectile.position);
-			for (int i = 0; i < explosionHeight * explosionWidth / 100; i++) {
-				Dust dust = Dust.NewDustDirect(projectile.position, explosionWidth, explosionHeight, DustID.Smoke, 0f, 0f, 100, default, 2f);
+		SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+		for (int i = 0; i < explosionHeight * explosionWidth / 100; i++) {
+			Dust dust = Dust.NewDustDirect(projectile.position, explosionWidth, explosionHeight, DustID.Smoke, 0f, 0f, 100, default, 2f);
                 dust = Dust.NewDustDirect(projectile.position, explosionHeight, explosionHeight, DustID.Torch, 0f, 0f, 100, default, 3f);
-				dust.noGravity = true;
-				dust = Dust.NewDustDirect(projectile.position, explosionHeight, explosionHeight, DustID.Torch, 0f, 0f, 100, default, 2f);
+			dust.noGravity = true;
+			dust = Dust.NewDustDirect(projectile.position, explosionHeight, explosionHeight, DustID.Torch, 0f, 0f, 100, default, 2f);
                 dust.noGravity = true;
-			}
+		}
             if(damage != -1) projectile.damage = tempDamage;
             projectile.tileCollide = true;
             projectile.penetrate = tempPen;
@@ -69,4 +69,3 @@ namespace ChargerClass.Common.Extensions
             }
         }
     }
-}

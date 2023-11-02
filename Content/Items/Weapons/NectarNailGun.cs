@@ -1,19 +1,16 @@
-using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class NectarNailGun : ChargeWeapon
 {
-	public class NectarNailGun : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
@@ -34,6 +31,5 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shoot = ModContent.ProjectileType<Projectiles.NectarNailProjectile>();
             Item.shootSpeed = 12f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.NectarNail>();
-		}
 	}
 }

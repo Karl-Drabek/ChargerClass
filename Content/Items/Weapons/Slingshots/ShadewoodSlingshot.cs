@@ -1,21 +1,18 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles.Rocks;
-using ChargerClass.Common.GlobalProjectiles;
-using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons.Slingshots
+namespace ChargerClass.Content.Items.Weapons.Slingshots;
+
+public class ShadewoodSlingshot : ChargeWeapon
 {
-	public class ShadewoodSlingshot : ChargeWeapon
-	{
         public override void SetStaticDefaults() {
                 Item.ResearchUnlockCount = 1;
         }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
@@ -35,27 +32,26 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 6f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
-		}
+	}
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
             type = ModContent.ProjectileType<SpikyRockProjectile>();
         }
 
-		public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2){
+	public override void ModifyOtherStats(Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2){
             ai2 = chargeLevel;
         }
 
-		public override Vector2? HoldoutOffset() {
-			return new Vector2(0f, 0f);
-		}
+	public override Vector2? HoldoutOffset() {
+		return new Vector2(0f, 0f);
+	}
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Shadewood, 10);
             recipe.AddIngredient(ModContent.ItemType<Items.Rubber>(), 5);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
-		}
 	}
 }

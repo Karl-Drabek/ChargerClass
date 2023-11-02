@@ -1,24 +1,22 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
-using ChargerClass.Common.GlobalProjectiles;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Weapons.Slingshots
+namespace ChargerClass.Content.Items.Weapons.Slingshots;
+
+public class TripleShot : ChargeWeapon
 {
-	public class TripleShot : ChargeWeapon
-	{
             public static readonly int AmmoChance = 10;
             public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AmmoChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 40;
             Item.scale = 1f;
@@ -36,7 +34,7 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 8f;
             Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
-		}
+	}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   for(int i = 0; i < 3; i++){
@@ -48,6 +46,5 @@ namespace ChargerClass.Content.Items.Weapons.Slingshots
 
             public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(AmmoChance * chargeLevel, 0, 100), 100);
 
-		public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
-	}
+	public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 }

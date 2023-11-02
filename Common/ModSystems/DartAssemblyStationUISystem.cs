@@ -1,29 +1,13 @@
 using Terraria;
 using Terraria.ModLoader;
-using System.Linq;
 using System.Collections.Generic;
 using ChargerClass.Content.UI.DartAssemblyStation;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Steamworks;
-using Terraria.Audio;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
-using Terraria.GameInput;
-using Terraria.Localization;
-using Terraria.ModLoader.Core;
-using Terraria.ModLoader.UI.ModBrowser;
-using Terraria.Social.Steam;
 using Terraria.UI;
-using ChargerClass.Content.UI;
-using Terraria.UI.Gamepad;
-using System;
 
-namespace ChargerClass.Common.ModSystems
-{
-    class DartAssemblyStationUISystem : ModSystem
+namespace ChargerClass.Common.ModSystems;
+
+class DartAssemblyStationUISystem : ModSystem
     {   
         internal DartAssemblyState DartAssemblyState;
         private UserInterface UI;
@@ -74,5 +58,4 @@ namespace ChargerClass.Common.ModSystems
                 );
             }
         }
-	}
 }

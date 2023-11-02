@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,15 +6,15 @@ using Terraria.DataStructures;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Players;
 
-namespace ChargerClass.Content.Items.Weapons.Blowers
+namespace ChargerClass.Content.Items.Weapons.Blowers;
+
+public class Tronbone : ChargeWeapon
 {
-	public class Tronbone : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 76;
             Item.height = 32;
             Item.scale = 1f;
@@ -36,7 +35,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             blowWeapon = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.TronboneSonicProjectile>();
             Item.shootSpeed = 8f;
-		}
+	}
 
             public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
                   if(ShotsRemaining != chargeLevel) return true;
@@ -52,5 +51,4 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
                   }
                   return true;
             }
-	}
 }

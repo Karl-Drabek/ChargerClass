@@ -3,24 +3,22 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Ammo;
 using ChargerClass.Common.GlobalProjectiles;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class RayOfBloon : ChargeWeapon
 {
-	public class RayOfBloon : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 84;
             Item.height = 38;
             Item.scale = 1f;
@@ -64,12 +62,11 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<LaserDartlingGun>());
             recipe.AddIngredient(ItemID.FragmentSolar, 16);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

@@ -5,18 +5,18 @@ using Terraria.ID;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Ammo;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class BloontoniumBlaster : ChargeWeapon
 {
-	public class BloontoniumBlaster : ChargeWeapon
-	{
 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 54;
             Item.height = 22;
             Item.scale = 1f;
@@ -45,12 +45,11 @@ namespace ChargerClass.Content.Items.Weapons
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<DartlingGun>());
             recipe.AddIngredient(ModContent.ItemType<DepleatedBloontonium>(), 40);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

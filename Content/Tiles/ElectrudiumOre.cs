@@ -1,33 +1,29 @@
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 
-namespace ChargerClass.Content.Tiles
+namespace ChargerClass.Content.Tiles;
+
+public class ElectrudiumOre : ModTile
 {
-	public class ElectrudiumOre : ModTile
-	{
-		public override void SetStaticDefaults() {
-			TileID.Sets.Ore[Type] = true;
-			Main.tileSpelunker[Type] = true; // The tile will be affected by spelunker highlighting
-			Main.tileOreFinderPriority[Type] = 330; // Metal Detector value, see https://terraria.wiki.gg/wiki/Metal_Detector
-			Main.tileShine2[Type] = true; // Modifies the draw color slightly.
-			Main.tileShine[Type] = 450; // How often tiny dust appear off this tile. Larger is less frequently
-			Main.tileMergeDirt[Type] = true;
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
+	public override void SetStaticDefaults() {
+		TileID.Sets.Ore[Type] = true;
+		Main.tileSpelunker[Type] = true; // The tile will be affected by spelunker highlighting
+		Main.tileOreFinderPriority[Type] = 330; // Metal Detector value, see https://terraria.wiki.gg/wiki/Metal_Detector
+		Main.tileShine2[Type] = true; // Modifies the draw color slightly.
+		Main.tileShine[Type] = 450; // How often tiny dust appear off this tile. Larger is less frequently
+		Main.tileMergeDirt[Type] = true;
+		Main.tileSolid[Type] = true;
+		Main.tileBlockLight[Type] = true;
 
-			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(152, 171, 198), name);
+		LocalizedText name = CreateMapEntryName();
+		AddMapEntry(new Color(152, 171, 198), name);
 
-			DustType = 84;
-			HitSound = SoundID.Tink;
-			MineResist = 2f;
-			MinPick = 65;
-		}
+		DustType = 84;
+		HitSound = SoundID.Tink;
+		MineResist = 2f;
+		MinPick = 65;
 	}
 }

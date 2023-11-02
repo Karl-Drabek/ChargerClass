@@ -4,10 +4,10 @@ using Terraria.ModLoader;
 using ChargerClass.Common.Extensions;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
+namespace ChargerClass.Content.Items.Ammo.Darts.Payloads;
+
+public class ExplosiveCannister : DartComponent
 {
-	public class ExplosiveCannister : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 14;
             Item.height = 6;
@@ -27,4 +27,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Payloads
             recipe.Register();
         }
     }
-}

@@ -1,18 +1,17 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ChargerClass.Content.Items.Weapons.Blowers
+namespace ChargerClass.Content.Items.Weapons.Blowers;
+
+public class BagpipeBlaster : ChargeWeapon
 {
-	public class BagpipeBlaster : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 52;
             Item.height = 42;
             Item.scale = 1f;
@@ -34,7 +33,7 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 12f;
             Item.useAmmo = AmmoID.Dart;
-		}
+	}
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   Vector2 dir = velocity.RotatedBy(MathHelper.ToRadians(90));
@@ -42,8 +41,8 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
                   position += (float)Main.rand.NextDouble() * 18 * dir * player.direction;
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Leather, 5);
             recipe.AddIngredient(ItemID.BreathingReed, 1);
@@ -51,6 +50,5 @@ namespace ChargerClass.Content.Items.Weapons.Blowers
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Blowers.Balloon>(), 1);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
-		}
 	}
 }

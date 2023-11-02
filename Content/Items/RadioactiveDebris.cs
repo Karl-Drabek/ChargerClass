@@ -1,14 +1,12 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Buffs;
 
-namespace ChargerClass.Content.Items
+namespace ChargerClass.Content.Items;
+
+public class RadioactiveDebris : ModItem
 {
-	public class RadioactiveDebris : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
         }
@@ -26,4 +24,3 @@ namespace ChargerClass.Content.Items
             player.AddBuff(ModContent.BuffType<RadiationSickness>(), 60);
         }
     }
-}

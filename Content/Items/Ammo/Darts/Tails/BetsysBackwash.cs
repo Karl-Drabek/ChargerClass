@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System;
 
-namespace ChargerClass.Content.Items.Ammo.Darts.Tails
+namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
+
+public class BetsysBackwash : DartComponent
 {
-	public class BetsysBackwash : DartComponent
-	{
         public override void SafeSetDefaults() {
             Item.width = 10;
             Item.height = 10;
@@ -28,8 +28,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails
                 fireball.scale = Main.rand.NextFloat(1f, 2.5f);
                 fireball.timeLeft = Main.rand.Next(15, 25);
                 fireball.usesLocalNPCImmunity = true;
-			    fireball.localNPCHitCooldown = 10;
+		    fireball.localNPCHitCooldown = 10;
             }
         }
     }
-}

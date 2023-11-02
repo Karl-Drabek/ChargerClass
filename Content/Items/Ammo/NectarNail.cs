@@ -1,14 +1,12 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class NectarNail : ModItem
 {
-	public class NectarNail : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
@@ -39,4 +37,3 @@ namespace ChargerClass.Content.Items.Ammo
             recipe.Register();
         }
     }
-}

@@ -1,24 +1,22 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
-using ChargerClass.Common.ModSystems;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Dusts;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class ConsumingLens : ChargeWeapon
 {
-	public class ConsumingLens : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
@@ -37,7 +35,7 @@ namespace ChargerClass.Content.Items.Weapons
 
             Item.shoot = ModContent.ProjectileType<Projectiles.ConsumingLensLaser>();
             Item.shootSpeed = 16f;
-		}
+	}
 
             public override bool SafeCanShoot(Player player) => GetChargeLevel(player) > 0;
 
@@ -75,14 +73,13 @@ namespace ChargerClass.Content.Items.Weapons
                   }
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.BlackLens, 4);
             recipe.AddIngredient(ItemID.Lens, 4);
             recipe.AddIngredient(ItemID.DemoniteBar, 6);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

@@ -2,13 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
-namespace ChargerClass.Content.Projectiles
-{
-	public class SupremeCalamariProjectile : ModProjectile
-	{
+namespace ChargerClass.Content.Projectiles;
 
-		public override void SetDefaults()
-		{
+public class SupremeCalamariProjectile : ModProjectile
+{
+
+	public override void SetDefaults()
+	{
             Projectile.width = 25;
             Projectile.height = 25;
             Projectile.aiStyle = 0;
@@ -26,5 +26,4 @@ namespace ChargerClass.Content.Projectiles
             
             AIType = ProjectileID.WoodenArrowFriendly;
         }
-	}
 }

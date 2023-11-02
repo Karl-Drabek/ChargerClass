@@ -8,7 +8,6 @@ using Terraria.DataStructures;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Ammo.Darts;
 using ChargerClass.Common.Players;
-using System;
 
 namespace ChargerClass.Content.Projectiles;
 

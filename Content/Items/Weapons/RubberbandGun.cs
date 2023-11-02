@@ -1,19 +1,18 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class RubberbandGun : ChargeWeapon
 {
-	public class RubberbandGun : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 24;
             Item.height = 32;
             Item.scale = 1f;
@@ -35,18 +34,17 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
             Item.shootSpeed = 4f;
             Item.useAmmo = ModContent.ItemType<Items.Weapons.Rubberband>();
-		}
+	}
 
             public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback){
                   velocity = velocity.RotatedByRandom(MathHelper.ToRadians(2));
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Wood, 15);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,41 +6,40 @@ using ChargerClass.Common.Players;
 using ChargerClass.Common.ModSystems;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Acessories
-{
-	public class ChargeRepository : ModItem
-	{
-		public static readonly int RetainedCharge = 10;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RetainedCharge);
-		public override void SetStaticDefaults()
-		{
-			Item.ResearchUnlockCount = 1;
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 6)); //(tics, frames)
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-		}
+namespace ChargerClass.Content.Items.Acessories;
 
-		public override void SetDefaults()
-		{
+public class ChargeRepository : ModItem
+{
+	public static readonly int RetainedCharge = 10;
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RetainedCharge);
+	public override void SetStaticDefaults()
+	{
+		Item.ResearchUnlockCount = 1;
+		Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 6)); //(tics, frames)
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+	}
+
+	public override void SetDefaults()
+	{
             Item.width = 11;
             Item.height = 20;
             Item.maxStack = 1;
             Item.value = Item.sellPrice(0, 1, 20, 0);
             Item.rare = ItemRarityID.Orange;
-			Item.accessory = true;
-		}
+		Item.accessory = true;
+	}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetModPlayer<ChargeModPlayer>().HasChargeRepository = true;
-		}
+	public override void UpdateAccessory(Player player, bool hideVisual) {
+		player.GetModPlayer<ChargeModPlayer>().HasChargeRepository = true;
+	}
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
-			recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
-			recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 8);
-			recipe.AddRecipeGroup(ChargerClassGeneralSystem.GoldBarRecipeGroup, 10);
+		recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
+		recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 8);
+		recipe.AddRecipeGroup(ChargerClassGeneralSystem.GoldBarRecipeGroup, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
 	}
 }

@@ -1,14 +1,11 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Placeable;
 
-namespace ChargerClass.Content.Items
+namespace ChargerClass.Content.Items;
+
+public class ChristmasCheer : ModItem
 {
-	public class ChristmasCheer : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 100;
         }
@@ -22,4 +19,3 @@ namespace ChargerClass.Content.Items
             Item.rare = ItemRarityID.White;
         }
     }
-}

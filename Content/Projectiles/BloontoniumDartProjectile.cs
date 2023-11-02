@@ -1,20 +1,15 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Buffs;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Projectiles
+namespace ChargerClass.Content.Projectiles;
+
+public class BloontoniumDartProjectile : ModProjectile
 {
-	public class BloontoniumDartProjectile : ModProjectile
+	public override void SetDefaults()
 	{
-		public override void SetDefaults()
-		{
             Projectile.width = 7;
             Projectile.height = 7;
             Projectile.aiStyle = 1;
@@ -29,15 +24,14 @@ namespace ChargerClass.Content.Projectiles
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
             Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 10;
+		Projectile.localNPCHitCooldown = 10;
 
             
             AIType = ProjectileID.WoodenArrowFriendly;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
-	}
 }

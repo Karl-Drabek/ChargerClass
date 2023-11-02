@@ -2,17 +2,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Weapons.Blowers;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class DragonsBreath : ChargeWeapon
 {
-	public class DragonsBreath : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
                   Item.width = 60;
                   Item.height = 30;
                   Item.scale = 1f;
@@ -34,15 +33,14 @@ namespace ChargerClass.Content.Items.Weapons
 
                   Item.shoot = ModContent.ProjectileType<DragonsBreathProjectile>();
                   Item.shootSpeed = 12f;
-		}
+	}
 
             public override void AddRecipes()
-		{
+	{
                   Recipe recipe = CreateRecipe();
                   recipe.AddIngredient(ItemID.MolotovCocktail);
                   recipe.AddIngredient(ModContent.ItemType<ConcentratedGelSolution>());
                   recipe.AddTile(TileID.MythrilAnvil);
                   recipe.Register();
-		}
 	}
 }

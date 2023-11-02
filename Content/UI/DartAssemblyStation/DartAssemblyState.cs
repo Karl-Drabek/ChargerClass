@@ -1,31 +1,23 @@
-using ReLogic.Content;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using ChargerClass.Content.UI;
-using ChargerClass.Content.Items.Weapons;
-using ChargerClass.Common.Players;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Terraria.ID;
-using System;
 using ChargerClass.Common.Sets;
 using Terraria.ModLoader;
 using ChargerClass.Content.Items.Ammo.Darts;
-using ChargerClass.Common.ModSystems;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace ChargerClass.Content.UI.DartAssemblyStation
-{
-    class DartAssemblyState : UIState
+namespace ChargerClass.Content.UI.DartAssemblyStation;
+
+class DartAssemblyState : UIState
     {
         private VanillaItemSlotWrapper dartTailSlot, dartPayloadSlot, dartTipSlot, dartResultSlot;
         private Item oldItem;
 
         public int[] ComponentTypes{
-			get => new int[3]{dartTailSlot.Item?.type ?? 0,
+		get => new int[3]{dartTailSlot.Item?.type ?? 0,
                             dartPayloadSlot.Item?.type ?? 0,
                             dartTipSlot.Item?.type ?? 0};
         }
@@ -38,7 +30,7 @@ namespace ChargerClass.Content.UI.DartAssemblyStation
             oldItem = dartResultSlot.Item.Clone();
         }
         public int[] ComponentCounts{
-			get => new int[3]{dartTailSlot.Item?.stack ?? 0,
+		get => new int[3]{dartTailSlot.Item?.stack ?? 0,
                             dartPayloadSlot.Item?.stack ?? 0,
                             dartTipSlot.Item?.stack ?? 0};
         }
@@ -137,5 +129,4 @@ namespace ChargerClass.Content.UI.DartAssemblyStation
             dartPayloadSlot.Item.stack -= amount;
             dartTipSlot.Item.stack -= amount;
         }
-	}
 }

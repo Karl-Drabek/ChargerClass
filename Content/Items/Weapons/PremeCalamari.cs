@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -7,15 +6,15 @@ using Terraria.ModLoader;
 using ChargerClass.Common.Players;
 using ChargerClass.Common.GlobalProjectiles;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class PremeCalamari : ChargeWeapon
 {
-	public class PremeCalamari : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 26;
             Item.height = 82;
             Item.scale = 1f;
@@ -36,7 +35,7 @@ namespace ChargerClass.Content.Items.Weapons
             Item.shootSpeed = 6f;
 
             Item.noUseGraphic = true;
-		}
+	}
 
             public override bool SafeCanShoot(Player player) => GetChargeLevel(player) > 0;
 
@@ -55,13 +54,12 @@ namespace ChargerClass.Content.Items.Weapons
                  modPlayer.Player.itemAnimation = proj.timeLeft = Item.useAnimation = 20 * chargeLevel;
             }
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Lens, 4);
             recipe.AddIngredient(ItemID.DemoniteBar, 6);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

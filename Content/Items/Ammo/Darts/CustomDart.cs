@@ -1,12 +1,8 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles; 
-using Terraria.DataStructures;
-using ChargerClass.Content.Items;
-using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.DamageClasses;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -14,12 +10,11 @@ using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 using Terraria.GameContent;
 using ChargerClass.Common.Players;
-using System;
 
-namespace ChargerClass.Content.Items.Ammo.Darts
+namespace ChargerClass.Content.Items.Ammo.Darts;
+
+public class CustomDart : ModItem
 {
-	public class CustomDart : ModItem
-	{
         public DartComponent Tail, Payload, Tip;
 
         private int[] ComponentTypes;
@@ -68,19 +63,19 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             pen = ((DartComponent)tip.Item.ModItem).Pen;
         }
 
-		public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback){
+	public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback){
             ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
             modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
             modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
             modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
         }
 
-		public override void SaveData(TagCompound tag) {
-			tag["Components"] = ComponentTypes;
-		}
+	public override void SaveData(TagCompound tag) {
+		tag["Components"] = ComponentTypes;
+	}
 
-		public override void LoadData(TagCompound tag) {
-			ComponentTypes = tag.Get<int[]>("Components");
+	public override void LoadData(TagCompound tag) {
+		ComponentTypes = tag.Get<int[]>("Components");
             var tail = new Item();
             tail.SetDefaults(ComponentTypes[0]);
             var payload = new Item();
@@ -89,7 +84,7 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             tip.SetDefaults(ComponentTypes[2]);
 
             ResetDefaults(tail.ModItem as DartComponent, payload.ModItem as DartComponent, tip.ModItem as DartComponent);
-		}
+	}
 
         public override void ModifyTooltips(List<TooltipLine> tooltips){
             if(!HasComponents) return;
@@ -165,4 +160,3 @@ namespace ChargerClass.Content.Items.Ammo.Darts
             return false;
         }
     }
-}

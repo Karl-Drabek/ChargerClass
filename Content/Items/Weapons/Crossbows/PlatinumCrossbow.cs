@@ -1,23 +1,19 @@
 using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using ChargerClass.Common.Players;
-using ChargerClass.Content.Items.Weapons.Slingshots;
 using Terraria.Localization;
 
-namespace ChargerClass.Content.Items.Weapons.Crossbows
+namespace ChargerClass.Content.Items.Weapons.Crossbows;
+
+public class PlatinumCrossbow : ChargeWeapon
 {
-	public class PlatinumCrossbow : ChargeWeapon
-	{
             public static readonly int AmmoChance = 15;
-	      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AmmoChance);
+      public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AmmoChance);
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 37;
             Item.height = 15;
             Item.scale = 1f;
@@ -37,18 +33,17 @@ namespace ChargerClass.Content.Items.Weapons.Crossbows
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Arrow;
-		}
+	}
 
             public override bool CanConsumeAmmo(Item item, Player player) => !Main.rand.NextBool(Utils.Clamp(AmmoChance * chargeLevel, 0, 100), 100);
 
             public override Vector2? HoldoutOffset() => new Vector2(-2f, 0f);
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.PlatinumBar, 7);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-		}
 	}
 }

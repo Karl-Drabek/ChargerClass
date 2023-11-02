@@ -1,17 +1,16 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
-namespace ChargerClass.Content.Items.Weapons
+namespace ChargerClass.Content.Items.Weapons;
+
+public class SpiderBow : ChargeWeapon
 {
-	public class SpiderBow : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
                   Item.width = 60;
                   Item.height = 30;
                   Item.scale = 1f;
@@ -31,15 +30,14 @@ namespace ChargerClass.Content.Items.Weapons
                   Item.shoot = ProjectileID.WoodenArrowFriendly;
                   Item.shootSpeed = 16f;
                   Item.useAmmo = AmmoID.Arrow;
-		}
+	}
 
             public override void AddRecipes()
-		{
+	{
                   Recipe recipe = CreateRecipe();
                   recipe.AddIngredient(ItemID.SpiderFang, 28);
                   recipe.AddIngredient(ModContent.ItemType<CompoundBow>());
                   recipe.AddTile(TileID.Anvils);
                   recipe.Register();
-		}
 	}
 }

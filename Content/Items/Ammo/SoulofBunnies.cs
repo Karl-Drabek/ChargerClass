@@ -1,20 +1,15 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.DamageClasses;
-using ChargerClass.Content.Tiles;
-using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class SoulofBunnies : ModItem
 {
-	public class SoulofBunnies : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
             ItemID.Sets.ItemIconPulse[Item.type] = true;
-			ItemID.Sets.ItemNoGravity[Item.type] = true;
+		ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void SetDefaults() {
@@ -32,6 +27,5 @@ namespace ChargerClass.Content.Items.Ammo
             Item.ammo = Item.type;
         }
 
-		public override bool CanConsumeAmmo(Item ammo, Player player) => false;
+	public override bool CanConsumeAmmo(Item ammo, Player player) => false;
     }
-}

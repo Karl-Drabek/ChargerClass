@@ -1,14 +1,13 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class MonkeyDart : ModItem
 {
-	public class MonkeyDart : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
@@ -30,4 +29,3 @@ namespace ChargerClass.Content.Items.Ammo
             Item.ammo = Item.type;
         }
     }
-}

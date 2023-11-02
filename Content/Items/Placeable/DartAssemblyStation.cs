@@ -1,15 +1,12 @@
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Common.ModSystems;
 
-namespace ChargerClass.Content.Items.Placeable
+namespace ChargerClass.Content.Items.Placeable;
+
+public class DartAssemblyStation : ModItem
 {
-	public class DartAssemblyStation : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
         }
@@ -30,4 +27,3 @@ namespace ChargerClass.Content.Items.Placeable
             recipe.Register();
         }
     }
-}

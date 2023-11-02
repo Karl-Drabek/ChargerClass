@@ -1,14 +1,13 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.DamageClasses;
 
-namespace ChargerClass.Content.Items.Ammo
+namespace ChargerClass.Content.Items.Ammo;
+
+public class BloontoniumDart : ModItem
 {
-	public class BloontoniumDart : ModItem
-	{
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
@@ -31,12 +30,11 @@ namespace ChargerClass.Content.Items.Ammo
         }
 
         public override void AddRecipes()
-		{
+	{
             Recipe recipe = CreateRecipe(4);
             recipe.AddIngredient(ModContent.ItemType<MonkeyDart>(), 4);
             recipe.AddIngredient(ModContent.ItemType<DepleatedBloontonium>());
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
-		}
+	}
     }
-}

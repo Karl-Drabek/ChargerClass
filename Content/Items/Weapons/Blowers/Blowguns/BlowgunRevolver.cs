@@ -1,20 +1,17 @@
-using Microsoft.Xna.Framework;
-using ChargerClass;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using ChargerClass.Common.ModSystems;
 
-namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
+namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
+
+public class BlowgunRevolver : ChargeWeapon
 {
-	public class BlowgunRevolver : ChargeWeapon
-	{
             public override void SetStaticDefaults() {
                   Item.ResearchUnlockCount = 1;
             }
 
-		public override void SafeSetDefaults()
-		{
+	public override void SafeSetDefaults()
+	{
             Item.width = 82;
             Item.height = 20;
             Item.scale = 1f;
@@ -35,15 +32,14 @@ namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 18f;
             Item.useAmmo = AmmoID.Dart;
-		}
+	}
 
-		public override void AddRecipes()
-		{
+	public override void AddRecipes()
+	{
                   Recipe recipe = CreateRecipe();
                   recipe.AddRecipeGroup(ChargerClassGeneralSystem.HardmodeOreBlowguns);
                   recipe.AddIngredient(ItemID.Revolver);
                   recipe.AddTile(TileID.AdamantiteForge);
                   recipe.Register();
-		}
 	}
 }
