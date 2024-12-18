@@ -75,7 +75,7 @@ public class BossBagLoot : GlobalItem
 	}
 
 	public override void ExtractinatorUse(int extractType, int extractinatorBlockType, ref int resultType, ref int resultStack) {
-		if(extractType == ItemID.GoldFrog || extractType != ItemID.Frog){
+		if(extractType == ItemID.GoldFrog || extractType == ItemID.Frog){
 			if (extractinatorBlockType == TileID.ChlorophyteExtractinator){
 				resultType = ModContent.ItemType<DartFrogExtract>();
 				resultStack = (extractType == ItemID.GoldFrog) ? (int)Main.rand.NextFloat(2, 5) : 1;
