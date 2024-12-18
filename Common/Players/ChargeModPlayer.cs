@@ -149,11 +149,11 @@ public class ChargeModPlayer : ModPlayer
 		}
 	}
 
-	public void PostProjectileEffects(ChargeWeapon modItem, Projectile proj, ChargerProjectile chargerProj){
-		if(MechLungSet && modItem.blowWeapon) proj.penetrate += MechLung.SetPierceIncrease;
-		chargerProj.Hydrogenized = modItem.blowWeapon && HydrogenBreath;
-            if(HasChargeRepository || HasGenerator) chargerProj.Repository = modItem.charge;
-		if(LeatherGlove) chargerProj.LeatherGloveChargeLevel = modItem.chargeLevel;
+	public void PostProjectileEffects(bool blowWeapon, int charge, int chargeLevel, Projectile proj, ChargerProjectile chargerProj){
+		if(MechLungSet && blowWeapon) proj.penetrate += MechLung.SetPierceIncrease;
+		chargerProj.Hydrogenized = blowWeapon && HydrogenBreath;
+            if(HasChargeRepository || HasGenerator) chargerProj.Repository = charge;
+		if(LeatherGlove) chargerProj.LeatherGloveChargeLevel = chargeLevel;
 		PostProjectileEffects(proj, chargerProj);
 	}
 
@@ -208,7 +208,7 @@ public class ChargeModPlayer : ModPlayer
 		}
 	}
 
-	public void ShootInfo(ChargeWeapon weapon, int charge){
+	public void ShootInfo(Item item, int charge){
 		if(HasOvercharger || HasPowerBank){
 			if(charge >= GetMaxCharge()){ //if the corrent accessories are equiped, the weapon has shot and it was fully charged.
 				if(overChargeCount < Overcharger.OverChargeMax){
@@ -221,7 +221,7 @@ public class ChargeModPlayer : ModPlayer
 			}
 		}
 		if(ChaosSet && !Adrenaline){
-			AdrenalineCharge += (int)(Math.Pow(charge, 1.25d) * weapon.Item.useTime / 1000d);
+			AdrenalineCharge += (int)(Math.Pow(charge, 1.25d) * item.useTime / 1000d);
 			if(AdrenalineCharge > MaxAdrenaline) AdrenalineCharge = MaxAdrenaline;
 		}
 	}

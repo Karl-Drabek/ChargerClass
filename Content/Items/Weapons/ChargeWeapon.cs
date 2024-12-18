@@ -9,6 +9,7 @@ using ChargerClass.Common.GlobalProjectiles;
 using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Common.Configs;
+using ChargerClass.Content.Projectiles.Holdouts;
 
 namespace ChargerClass.Content.Items.Weapons;
 
@@ -49,6 +50,7 @@ public abstract class ChargeWeapon : ModItem
         public sealed override bool CanShoot(Player player) => false; //we have our own shooting system so Projectile is not necessary
         
         public override void HoldItem(Player player){
+            Main.NewText(Main.netMode);
             if(player.whoAmI != Main.myPlayer) return;
             if(player.itemAnimation == player.itemAnimationMax - 1){ //use style for some reason does not update charge. really confusing stuff
                 ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
@@ -140,7 +142,7 @@ public abstract class ChargeWeapon : ModItem
 
             Item ammo = ContentSamples.ItemsByType[usedAmmoItemId];
             if(ammo.consumable && !player.IsAmmoFreeThisShot(Item, ammo, type)) player.ConsumeItem(usedAmmoItemId);
-            modPlayer.ShootInfo(this, charge); //give info about the shot for ChargerClass Items.
+            modPlayer.ShootInfo(Item, charge); //give info about the shot for ChargerClass Items.
         }
 
         private void ChargedShoot(Player player, ChargeModPlayer modPlayer, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
@@ -162,7 +164,7 @@ public abstract class ChargeWeapon : ModItem
         public void CombinedPostProjectileEffects(Projectile proj, ChargeModPlayer modPlayer){
             ChargerProjectile chargerProj = proj.GetGlobalProjectile<ChargerProjectile>();
             PostProjectileEffects(proj, chargerProj, modPlayer); //allow children to apply effects to projectiles.
-            modPlayer.PostProjectileEffects(this, proj, chargerProj);
+            modPlayer.PostProjectileEffects(blowWeapon, charge, chargeLevel, proj, chargerProj);
         }
 
         public sealed override void ModifyWeaponCrit(Player player, ref float crit){
