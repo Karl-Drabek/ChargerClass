@@ -104,6 +104,7 @@ public abstract class LaserProjectile : ModProjectile
 			Projectile.rotation = player.itemRotation;
 			Projectile.netUpdate = true;
 		}
+		player.itemAnimation = Projectile.timeLeft;	
 	}
 
 	public void UpdateDistance(Player player){

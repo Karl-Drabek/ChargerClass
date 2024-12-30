@@ -64,11 +64,11 @@ public class CustomDart : ModItem
         }
 
 	public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback){
-            ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
-            modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
-            modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
-            modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
-        }
+        ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
+        modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
+        modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
+        modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
+    }
 
 	public override void SaveData(TagCompound tag) {
 		tag["Components"] = ComponentTypes;
@@ -76,14 +76,14 @@ public class CustomDart : ModItem
 
 	public override void LoadData(TagCompound tag) {
 		ComponentTypes = tag.Get<int[]>("Components");
-            var tail = new Item();
-            tail.SetDefaults(ComponentTypes[0]);
-            var payload = new Item();
-            payload.SetDefaults(ComponentTypes[1]);
-            var tip = new Item();
-            tip.SetDefaults(ComponentTypes[2]);
+        var tail = new Item();
+        tail.SetDefaults(ComponentTypes[0]);
+        var payload = new Item();
+        payload.SetDefaults(ComponentTypes[1]);
+        var tip = new Item();
+        tip.SetDefaults(ComponentTypes[2]);
 
-            ResetDefaults(tail.ModItem as DartComponent, payload.ModItem as DartComponent, tip.ModItem as DartComponent);
+        ResetDefaults(tail.ModItem as DartComponent, payload.ModItem as DartComponent, tip.ModItem as DartComponent);
 	}
 
         public override void ModifyTooltips(List<TooltipLine> tooltips){

@@ -1,4 +1,4 @@
-WARNING: This mod is still in devlopment so some sprites and features are missing or incomplete!
+WARNING: This mod is still in devlopment so some sprites and features are missing or incomplete! Not reccommended for full playthrough yet!
 
 Charger class adds a new class to Terraria that charges up weapons to shoot them. Content spans a full play-through from pre-bosses to post-moon lord including weapons, ammo, armor, accessories, potions, ect... This class is meant to be stand alone and shouldn't need to supplement from any other classes.
 

@@ -24,6 +24,6 @@ public class ElectrudiumOre : ModTile
 		DustType = 84;
 		HitSound = SoundID.Tink;
 		MineResist = 2f;
-		MinPick = 65;
+		MinPick = 55;
 	}
 }

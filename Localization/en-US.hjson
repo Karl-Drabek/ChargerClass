@@ -1346,6 +1346,11 @@ Mods: {
 				DisplayName: Refractinator
 				Tooltip: ""
 			}
+
+			TestChargeWeapon: {
+				DisplayName: Test Charge Weapon
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -1403,6 +1408,7 @@ Mods: {
 			RailgunLaser.DisplayName: Railgun Laser
 			RailRailGunProjectile.DisplayName: Rail Rail Gun Projectile
 			RefractinatorProjectile.DisplayName: Refractinator Projectile
+			TestChargeWeaponProjectile.DisplayName: Test Charge Weapon Projectile
 		}
 
 		Tiles: {
@@ -1413,7 +1419,10 @@ Mods: {
 			UnstableChaosShard.MapEntry: Unstable Chaos Shard
 		}
 
-		WorldGen.ChargerOrePassMessage: Inserting Charged Ores
+		WorldGen: {
+			ChargerOrePassMessage: Inserting Charged Ores
+			ChargerJungleOrePassMessage: Mods.ChargerClass.WorldGen.ChargerJungleOrePassMessage
+		}
 
 		Configs: {
 			ChargerClassConfig: {

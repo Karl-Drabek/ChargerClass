@@ -12,6 +12,7 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 	public int[] ComponentTypes = new int[3], ComponentCounts = new int[3];
 
 	public void UpdateData(){
+		if(DartAssemblyStationUISystem.Instance is null) return;
 		ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
 		ComponentCounts = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentCounts;
 	}

@@ -26,6 +26,7 @@ public class MagesTail : DartComponent
             Projectile bolt = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(distanceToNPC) * 34, ProjectileID.DD2DarkMageBolt, projectile.damage, 1);
             bolt.friendly = true;
             bolt.hostile = false;
+            bolt.netUpdate = true;
             projectile.ai[2] = 0;
         }
     }
