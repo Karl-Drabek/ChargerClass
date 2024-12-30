@@ -1449,6 +1449,9 @@ Mods: {
 			PalladiumBlowgunHoldout.DisplayName: Palladium Blowgun Holdout
 			PhantomBlowgunHoldout.DisplayName: Phantom Blowgun Holdout
 			TitaniumBlowgunHoldout.DisplayName: Titanium Blowgun Holdout
+			BagpipeBlasterHoldout.DisplayName: Bagpipe Blaster Holdout
+			BalloonHoldout.DisplayName: Balloon Holdout
+			TronboneHoldout.DisplayName: Tronbone Holdout
 		}
 
 		Tiles: {

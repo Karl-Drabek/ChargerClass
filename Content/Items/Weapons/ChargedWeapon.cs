@@ -12,9 +12,13 @@ namespace ChargerClass.Content.Items.Weapons;
 public abstract class ChargedWeapon : ModItem
 {
 	public int bonusCharge = 0;
+	public bool repeatShot;
+	public int noAmmoProjectile = 0;
+	public int ticsBetweenShots = 1;
 	public int chargeAmount;
 	public bool blowWeapon;
-
+	public bool shootSelf = false;
+	public bool consumeNext = false;
 	public int shootID;
 	public int lastConsumedProjectileType;
 	public Item lastConsumedAmmo;
@@ -24,6 +28,12 @@ public abstract class ChargedWeapon : ModItem
 		Item.ResearchUnlockCount = 1;
 		SafeSetStaticDefualts();
 	}
+
+	public float GetChargeAmount(Player player) =>
+		player
+			.GetModPlayer<ChargeModPlayer>()
+			.GetChargeAmountModifier()
+			.ApplyTo(((ChargedWeapon)player.HeldItem.ModItem).chargeAmount);
 
 	public sealed override void ModifyShootStats(Player player, ref Vector2 position,
 		ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -38,6 +48,16 @@ public abstract class ChargedWeapon : ModItem
 		return false;
 	}
 
+	public override bool ConsumeItem(Player player)
+	{
+		if(shootSelf){
+			if(consumeNext){
+				consumeNext = false;
+				return true;
+			}return false;
+		}else return true;
+	}
+
 	public virtual void SafeSetStaticDefualts() { }
 
 	public sealed override void SetDefaults()
@@ -46,6 +66,7 @@ public abstract class ChargedWeapon : ModItem
 		chargeAmount = 10;
 		Item.useAnimation = 10;
 		Item.useTime = 10;
+		repeatShot = false;
 		SafeSetDefaults(); //allows members to set defualts here
 		Item.noMelee = true;
 		Item.channel = true;

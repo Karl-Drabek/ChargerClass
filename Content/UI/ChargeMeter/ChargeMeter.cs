@@ -7,12 +7,13 @@ using ChargerClass.Common.Players;
 using Terraria.UI;
 using Terraria.ModLoader;
 using ChargerClass.Common.Configs;
+using ChargerClass.Content.Projectiles.Holdouts;
 
 namespace ChargerClass.Content.UI.ChargeMeter;
 
 class ChargeMeter : UIState
 {
-	private ChargeWeapon chargeWeapon;
+	private ChargedWeapon chargeWeapon;
 	private Color gradientA, gradientB;
 	private Rectangle outerHitbox, innerHitbox;
 	private Texture2D pixel, devider, frame;
@@ -36,7 +37,7 @@ class ChargeMeter : UIState
 
 	public override void Draw(SpriteBatch spriteBatch)
 	{ //only draw if the weapon is a charge weapon.
-		if (Main.LocalPlayer.HeldItem.ModItem is ChargeWeapon weapon) {
+		if (Main.LocalPlayer.HeldItem.ModItem is ChargedWeapon weapon) {
 			chargeWeapon = weapon;
 			base.Draw(spriteBatch);
 		}
@@ -48,14 +49,16 @@ class ChargeMeter : UIState
 		base.DrawSelf(spriteBatch);
 
 		outerHitbox = new Rectangle((Main.screenWidth - outerWidth) / 2, (Main.screenHeight - outerHeight) / 2 + yOffset, outerWidth, outerHeight);
-		innerHitbox = new Rectangle((Main.screenWidth - innerWidth) / 2, (Main.screenHeight - innerHeight) / 2 + yOffset - 1, innerWidth, innerHeight);
+		innerHitbox = new Rectangle((Main.screenWidth - innerWidth) / 2, (Main.screenHeight - innerHeight) / 2 + yOffset, innerWidth, innerHeight);
 
 		Player player = Main.CurrentPlayer;
+		float totalCharge;
+		if(player.heldProj == -1) totalCharge = chargeWeapon.bonusCharge;
+		else totalCharge = ((ChargeWeaponHoldout)Main.projectile[player.heldProj].ModProjectile).Charge;
 
 		int MaxCharge = player.GetModPlayer<ChargeModPlayer>().GetMaxCharge();
-		if (ChargerClassConfig.Instance.MaxChargeToggle)
-			Main.NewText(MaxCharge);
-		float chargePercentage = (float)chargeWeapon.GetTotalCharge() / MaxCharge;
+		if (ChargerClassConfig.Instance.MaxChargeToggle) Main.NewText(MaxCharge);
+		float chargePercentage = totalCharge / MaxCharge;
 		chargePercentage = Utils.Clamp(chargePercentage, 0f, 1f);
 
 		int fillPixels = (int)(innerHitbox.Width * chargePercentage); //how many pixels of charge to fill the meter with

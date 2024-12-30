@@ -33,7 +33,7 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 		get => Projectile.ai[0];
 		set => Projectile.ai[0] = value;
 	}
-	private float Shots
+	public float Shots
 	{
 		get => Projectile.ai[1];
 		set => Projectile.ai[1] = value;
@@ -43,6 +43,7 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 		get => Projectile.ai[2];
 		set => Projectile.ai[2] = value;
 	}
+
 	public int GetChargeLevel(Player player) => (int)(Charge / GetChargeAmount(player));
 
 	public float GetChargeAmount(Player player) =>
@@ -72,7 +73,8 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 						Projectile.Kill();
 					else
 						Shoot(player, modPlayer, heldItem, rrp);
-					Timer = heldItem.useTime;
+					if(Shots == 0) Timer = heldItem.useTime;
+					else Timer = chargedWeapon.ticsBetweenShots;
 				}
 			}
 			else { //charging
@@ -89,6 +91,7 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 					Charge = maxCharge;
 				if (Charge > (chargedWeapon.chargeAmount / 4)){
 					Shots = 1;
+					if(chargeWeapon.repeatShot) Shots += GetChargeLevel(player);
 					Timer = 1;
 				}else{
 					Shots = 0;
@@ -107,20 +110,34 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 
 		ChargedWeapon chargedWeapon = (ChargedWeapon)item.ModItem;
 
-		float shootSpeed = item.shootSpeed + chargedWeapon.lastConsumedAmmo.shootSpeed;
+		float shootSpeed = item.shootSpeed;
+		int damage = player.GetWeaponDamage(item);
+		float knockback = player.GetWeaponKnockback(item);
+		int shotType;
+		int ammoToConsume;
+
+		if(item.useAmmo != AmmoID.None){
+			shootSpeed += chargedWeapon.lastConsumedAmmo.shootSpeed;
+			damage += chargedWeapon.lastConsumedAmmo.damage;
+			knockback += chargedWeapon.lastConsumedAmmo.knockBack;
+			shotType = chargedWeapon.lastConsumedProjectileType;
+			ammoToConsume = chargedWeapon.lastConsumedAmmo.type;
+		}else{
+			ammoToConsume = item.consumable ? item.type : AmmoID.None;
+			shotType = chargedWeapon.noAmmoProjectile;
+		}
+
 		float chargeSpeed = shootSpeed * (float)Math.Clamp((float)Charge / ChargeModPlayer.DefaultCharge, 0.5, 1.0);
 		Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * chargeSpeed;
-
-		int damage = player.GetWeaponDamage(item) + chargedWeapon.lastConsumedAmmo.damage;
-		float knockback = player.GetWeaponKnockback(item) + chargedWeapon.lastConsumedAmmo.knockBack;
 
 		modPlayer.ModifyProjectileSpeed(ref velocity);
 		modPlayer.ModifyChargeLevel(ref chargeLevel, player.GetWeaponCrit(item));
 		EntitySource_ItemUse_WithAmmo source = new(player, item, item.useAmmo);
 
-		if (chargedWeapon.lastConsumedAmmo.consumable && CanConsumeAmmo(item, player, chargeLevel))
+		if (ammoToConsume != AmmoID.None && CanConsumeAmmo(item, player, chargeLevel))
 		{
-			player.ConsumeItem(chargedWeapon.lastConsumedAmmo.type);
+			if(item.consumable) chargedWeapon.consumeNext = true;
+			player.ConsumeItem(ammoToConsume);
 		}
 
 		ChargedShoot(
@@ -129,7 +146,7 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 			source,
 			pos,
 			velocity,
-			chargedWeapon.lastConsumedProjectileType,
+			shotType,
 			damage,
 			knockback,
 			item,
