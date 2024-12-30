@@ -23,7 +23,8 @@ public abstract class LaserProjectile : ModProjectile
 		set => Projectile.ai[0] = value;
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		InitialOffset = 50;
 		TotalFrames = 1;
 		TicsPerFrame = 1;
@@ -37,23 +38,26 @@ public abstract class LaserProjectile : ModProjectile
 		ticCounter = 0;
 	}
 
-	public virtual void SafeSetDefaults() {}
-	
+	public virtual void SafeSetDefaults() { }
+
 	public override bool ShouldUpdatePosition() => false;
 
-	public override void CutTiles() {
+	public override void CutTiles()
+	{
 		Player player = Main.player[Projectile.owner];
 		DelegateMethods.tilecut_0 = TileCuttingContext.AttackProjectile;
 		Utils.PlotTileLine(player.Center + InitialOffset * Projectile.velocity, player.Center + Projectile.velocity * Distance, (Projectile.width + 16) * Projectile.scale, DelegateMethods.CutTiles);
 	}
 
-	public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
+	public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+	{
 		Player player = Main.player[Projectile.owner];
 		float point = default;
 		return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center + InitialOffset * Projectile.velocity, player.Center + Projectile.velocity * Distance, Projectile.width, ref point);
 	}
 
-	public override bool PreDraw(ref Color lightColor) {
+	public override bool PreDraw(ref Color lightColor)
+	{
 		Player player = Main.player[Projectile.owner];
 		Vector2 origin = new Vector2(Projectile.width, Projectile.height) / 2;
 		SpriteEffects effects = player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -62,15 +66,16 @@ public abstract class LaserProjectile : ModProjectile
 		Rectangle? sourceRectangle;
 		Vector2 offset;
 
-		if(TotalFrames > 1){
-			if(++ticCounter >= TicsPerFrame){
+		if (TotalFrames > 1) {
+			if (++ticCounter >= TicsPerFrame) {
 				ticCounter -= TicsPerFrame;
-				if(++frame >= TotalFrames) frame -= TotalFrames;
+				if (++frame >= TotalFrames)
+					frame -= TotalFrames;
 			}
 		}
 
 		sourceRectangle = new Rectangle(Projectile.width, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
-		for(int i = InitialOffset + Spacing; i < Distance; i += Spacing){
+		for (int i = InitialOffset + Spacing; i < Distance; i += Spacing) {
 			offset = Projectile.velocity * i;
 			Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
 		}
@@ -78,7 +83,7 @@ public abstract class LaserProjectile : ModProjectile
 		sourceRectangle = new Rectangle(0, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
 		offset = Projectile.velocity * InitialOffset;
 		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
-		
+
 		sourceRectangle = new Rectangle(Projectile.width * 2, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
 		offset = Projectile.velocity * Distance;
 		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
@@ -88,7 +93,8 @@ public abstract class LaserProjectile : ModProjectile
 
 	public virtual Color GetLaserColor(Color lightColor) => lightColor;
 
-	public override void AI() {
+	public override void AI()
+	{
 		Player player = Main.player[Projectile.owner];
 		Projectile.position = player.Center + Projectile.velocity * InitialOffset;
 		UpdateProjectile(player);
@@ -97,7 +103,8 @@ public abstract class LaserProjectile : ModProjectile
 		CastLights(player);
 	}
 
-	public void UpdateProjectile(Player player) {
+	public void UpdateProjectile(Player player)
+	{
 		if (Projectile.owner == Main.myPlayer) {
 			Projectile.velocity = Vector2.UnitX.RotatedBy(player.itemRotation) * player.direction;
 			Projectile.direction = player.direction;
@@ -106,14 +113,16 @@ public abstract class LaserProjectile : ModProjectile
 		}
 	}
 
-	public void UpdateDistance(Player player){
+	public void UpdateDistance(Player player)
+	{
 		for (Distance = InitialOffset; Distance <= 2200f; Distance += Spacing) {
 			Vector2 projEnd = player.Center + Projectile.velocity * (Distance + 5f);
-			if (!Collision.CanHitLine(player.Center + InitialOffset * Projectile.velocity, 1, 1, projEnd, 1, 1)) break;
+			if (!Collision.CanHitLine(player.Center + InitialOffset * Projectile.velocity, 1, 1, projEnd, 1, 1))
+				break;
 		}
 	}
-	
-	public virtual void SpawnDusts(Player player){}
 
-	public virtual void CastLights(Player player) {}
+	public virtual void SpawnDusts(Player player) { }
+
+	public virtual void CastLights(Player player) { }
 }

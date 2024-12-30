@@ -27,11 +27,13 @@ public class MechLung : ModItem
 
 	public static LocalizedText SetBonusText { get; private set; }
 
-	public override void SetStaticDefaults() { 
+	public override void SetStaticDefaults()
+	{
 		SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SetCritChanceIncrease, SetShootSpeedIncrease, SetChargeDamageIncrase, SetPierceIncrease);
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
@@ -39,26 +41,30 @@ public class MechLung : ModItem
 		Item.defense = 27;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
 
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return head.type == ModContent.ItemType<MechHelmet>() && legs.type == ModContent.ItemType<MechLeggings>();
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = SetBonusText.Value;
 		player.GetModPlayer<ChargeModPlayer>().MechLungSet = true;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 34);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 34);
 		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 17);
 		recipe.AddIngredient(ModContent.ItemType<IronLung>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

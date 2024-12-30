@@ -11,7 +11,8 @@ public class StaminaPotion : ModItem
 {
 	public static readonly int MaxChargeIncrease = 20;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 20;
 
 		// Dust that will appear in these colors when the item with ItemUseStyleID.DrinkLiquid is used
@@ -22,7 +23,8 @@ public class StaminaPotion : ModItem
 		};
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 20;
 		Item.height = 26;
 		Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -38,12 +40,13 @@ public class StaminaPotion : ModItem
 		Item.buffTime = 5400;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Daybloom);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddRecipeGroup(ChargerClassGeneralSystem.CopperOreRecipeGroup);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.Daybloom);
+		recipe.AddIngredient(ItemID.BottledWater);
+		recipe.AddRecipeGroup(ChargerClassGeneralSystem.CopperOreRecipeGroup);
 		recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-        }
+		recipe.Register();
+	}
 }

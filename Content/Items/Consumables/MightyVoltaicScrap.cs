@@ -13,25 +13,30 @@ public class MightyVoltaicScrap : ModItem
 	public static readonly int MaxChargeIncrease = 25;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease);
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 10;
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.CloneDefaults(ItemID.LifeFruit);
 		Item.width = 34;
-            Item.height = 48;
+		Item.height = 48;
 		Item.rare = ItemRarityID.LightRed;
 		Item.value = Item.sellPrice(0, 1, 25, 0);
 	}
-	public override bool? UseItem(Player player) {
-		if (player.GetModPlayer<ChargeModPlayer>().MightyVoltaicScrapCount >= MaxMightyVoltaicScrap) return null;
+	public override bool? UseItem(Player player)
+	{
+		if (player.GetModPlayer<ChargeModPlayer>().MightyVoltaicScrapCount >= MaxMightyVoltaicScrap)
+			return null;
 		player.GetModPlayer<ChargeModPlayer>().MightyVoltaicScrapCount++;
 		CombatText.NewText(player.getRect(), new Color(254, 205, 76, 255), MaxChargeIncrease);
 		return true;
 	}
 
-	public override void AddRecipes() {
+	public override void AddRecipes()
+	{
 		CreateRecipe()
 			.AddIngredient<VoltaicNugget>(1)
 			.AddIngredient(ItemID.SoulofMight)

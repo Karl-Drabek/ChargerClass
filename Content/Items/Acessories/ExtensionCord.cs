@@ -16,27 +16,28 @@ public class ExtensionCord : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 19;
-            Item.height = 17;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 5, 0, 0);
-            Item.rare = ItemRarityID.Pink;
+		Item.width = 19;
+		Item.height = 17;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 5, 0, 0);
+		Item.rare = ItemRarityID.Pink;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasExtensionCord = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
+		Recipe recipe = CreateRecipe();
 		recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 10);
 		recipe.AddIngredient(ModContent.ItemType<Charger>());
 		recipe.AddIngredient(ModContent.ItemType<LightningRod>());
-            recipe.AddIngredient(ItemID.SoulofSight, 4);
+		recipe.AddIngredient(ItemID.SoulofSight, 4);
 		recipe.AddIngredient(ItemID.SoulofLight, 4);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.AddTile(TileID.TinkerersWorkbench);
+		recipe.Register();
 	}
 }

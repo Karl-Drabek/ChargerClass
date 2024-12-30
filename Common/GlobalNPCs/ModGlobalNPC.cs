@@ -16,7 +16,8 @@ namespace ChargerClass.Common.GlobalNPCs;
 
 public class ModGlobalNPC : GlobalNPC
 {
-	public override void SetStaticDefaults(){
+	public override void SetStaticDefaults()
+	{
 		NPCID.Sets.MPAllowedEnemies[NPCID.ExplosiveBunny] = true;
 		NPCID.Sets.MPAllowedEnemies[NPCID.GoldBunny] = true;
 		NPCID.Sets.MPAllowedEnemies[NPCID.Bunny] = true;
@@ -31,21 +32,23 @@ public class ModGlobalNPC : GlobalNPC
 		NPCID.Sets.MPAllowedEnemies[NPCID.GemBunnySapphire] = true;
 		NPCID.Sets.MPAllowedEnemies[NPCID.GemBunnyTopaz] = true;
 	}
-	public override void ModifyGlobalLoot(GlobalLoot globalLoot){
+	public override void ModifyGlobalLoot(GlobalLoot globalLoot)
+	{
 		globalLoot.Add(ItemDropRule.ByCondition(new ChargeDropCondition(), ModContent.ItemType<YellowCharge>(), 5));
 		globalLoot.Add(ItemDropRule.ByCondition(new OrangeChargeDropCondition(), ModContent.ItemType<OrangeCharge>(), 4));
 		globalLoot.Add(ItemDropRule.ByCondition(new BlueChargeDropCondition(), ModContent.ItemType<BlueCharge>(), 3));
 	}
 
-	public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot){
-		switch(npc.type){
+	public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+	{
+		switch (npc.type) {
 			case NPCID.Deerclops:
 				foreach (var rule in npcLoot.Get()) {
-					if (rule is LeadingConditionRule lcr){
-						foreach(var chainedRule in lcr.ChainedRules){
-							if(chainedRule.RuleToChain is OneFromRulesRule OFRR){
-								foreach(var subRule in OFRR.options){
-									if(subRule is OneFromOptionsNotScaledWithLuckDropRule rules && rules.dropIds.Contains(ItemID.PewMaticHorn)){
+					if (rule is LeadingConditionRule lcr) {
+						foreach (var chainedRule in lcr.ChainedRules) {
+							if (chainedRule.RuleToChain is OneFromRulesRule OFRR) {
+								foreach (var subRule in OFRR.options) {
+									if (subRule is OneFromOptionsNotScaledWithLuckDropRule rules && rules.dropIds.Contains(ItemID.PewMaticHorn)) {
 										var original = rules.dropIds.ToList();
 										original.Add(ModContent.ItemType<AntlerSlinger>());
 										rules.dropIds = original.ToArray();
@@ -69,11 +72,11 @@ public class ModGlobalNPC : GlobalNPC
 				break;
 			case NPCID.DukeFishron:
 				foreach (var rule in npcLoot.Get()) {
-					if (rule is LeadingConditionRule lcr){
-						foreach(var chainedRule in lcr.ChainedRules){
-							if (chainedRule.RuleToChain is LeadingConditionRule lcr2){
-								foreach(var chainedRule2 in lcr2.ChainedRules){
-									if(chainedRule2.RuleToChain is OneFromOptionsDropRule OFOR && OFOR.dropIds.Contains(ItemID.Flairon)){
+					if (rule is LeadingConditionRule lcr) {
+						foreach (var chainedRule in lcr.ChainedRules) {
+							if (chainedRule.RuleToChain is LeadingConditionRule lcr2) {
+								foreach (var chainedRule2 in lcr2.ChainedRules) {
+									if (chainedRule2.RuleToChain is OneFromOptionsDropRule OFOR && OFOR.dropIds.Contains(ItemID.Flairon)) {
 										var original = OFOR.dropIds.ToList();
 										original.Add(ModContent.ItemType<HydrantHoser>());
 										OFOR.dropIds = original.ToArray();
@@ -87,9 +90,9 @@ public class ModGlobalNPC : GlobalNPC
 				break;
 			case NPCID.HallowBoss:
 				foreach (var rule in npcLoot.Get()) {
-					if (rule is LeadingConditionRule lcr){
-						foreach(var chainedRule in lcr.ChainedRules){
-							if(chainedRule.RuleToChain is OneFromOptionsDropRule OFOR && OFOR.dropIds.Contains(ItemID.PiercingStarlight)){
+					if (rule is LeadingConditionRule lcr) {
+						foreach (var chainedRule in lcr.ChainedRules) {
+							if (chainedRule.RuleToChain is OneFromOptionsDropRule OFOR && OFOR.dropIds.Contains(ItemID.PiercingStarlight)) {
 								var original = OFOR.dropIds.ToList();
 								original.Add(ModContent.ItemType<Refractinator>());
 								OFOR.dropIds = original.ToArray();
@@ -101,11 +104,11 @@ public class ModGlobalNPC : GlobalNPC
 				break;
 			case NPCID.SkeletronHead:
 				foreach (var rule in npcLoot.Get()) {
-					if (rule is ItemDropWithConditionRule IDWC && IDWC.itemId == ItemID.SkeletronMask){
-						foreach(var chainedRule in IDWC.ChainedRules){
-							if(chainedRule.RuleToChain is CommonDrop cDrop && cDrop.itemId == ItemID.SkeletronHand ){ 
-								foreach(var chainedRule2 in cDrop.ChainedRules){
-									if(chainedRule2.RuleToChain is CommonDrop cDrop2 && cDrop2.itemId == ItemID.BookofSkulls){
+					if (rule is ItemDropWithConditionRule IDWC && IDWC.itemId == ItemID.SkeletronMask) {
+						foreach (var chainedRule in IDWC.ChainedRules) {
+							if (chainedRule.RuleToChain is CommonDrop cDrop && cDrop.itemId == ItemID.SkeletronHand) {
+								foreach (var chainedRule2 in cDrop.ChainedRules) {
+									if (chainedRule2.RuleToChain is CommonDrop cDrop2 && cDrop2.itemId == ItemID.BookofSkulls) {
 										IDWC.OnFailedRoll(ItemDropRule.Common(ModContent.ItemType<Tronbone>(), 7));
 										return;
 									}
@@ -129,10 +132,10 @@ public class ModGlobalNPC : GlobalNPC
 			case NPCID.MartianTurret:
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TeslaCoil>(), 20));
 				return;
-			case NPCID.PresentMimic or NPCID.Flocko or 
-				NPCID.GingerbreadMan or NPCID.ZombieElf or 
-				NPCID.ElfArcher or NPCID.Nutcracker or 
-				NPCID.Yeti or NPCID.ElfCopter or 
+			case NPCID.PresentMimic or NPCID.Flocko or
+				NPCID.GingerbreadMan or NPCID.ZombieElf or
+				NPCID.ElfArcher or NPCID.Nutcracker or
+				NPCID.Yeti or NPCID.ElfCopter or
 				NPCID.Krampus or NPCID.Everscream or
 				NPCID.SantaNK1 or NPCID.IceQueen:
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChristmasCheer>(), 10));
@@ -142,8 +145,9 @@ public class ModGlobalNPC : GlobalNPC
 		}
 	}
 
-	public override void ModifyShop(NPCShop shop) {
-		switch(shop.NpcType){
+	public override void ModifyShop(NPCShop shop)
+	{
+		switch (shop.NpcType) {
 			case NPCID.Dryad:
 				shop.Add<Potato>();
 				break;
@@ -167,7 +171,8 @@ public class ModGlobalNPC : GlobalNPC
 		}
 	}
 
-	public override void SetupTravelShop(int[] shop, ref int nextSlot){
+	public override void SetupTravelShop(int[] shop, ref int nextSlot)
+	{
 		shop[nextSlot] = ModContent.ItemType<Airgun>();
 	}
 }

@@ -29,7 +29,8 @@ public class PotatoPlant : ModTile
 {
 	private const int FrameWidth = 18; // A constant for readability and to kick out those magic numbers
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Main.tileFrameImportant[Type] = true;
 		Main.tileObsidianKill[Type] = true;
 		Main.tileCut[Type] = true;
@@ -43,7 +44,7 @@ public class PotatoPlant : ModTile
 		AddMapEntry(new Color(128, 128, 128), name);
 
 		TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
-		TileObjectData.newTile.AnchorValidTiles = new int[] {TileID.Grass};
+		TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.Grass };
 		TileObjectData.newTile.AnchorAlternateTiles = new int[] {
 			TileID.ClayPot,
 			TileID.PlanterBox
@@ -54,7 +55,8 @@ public class PotatoPlant : ModTile
 		DustType = DustID.Ambient_DarkBrown;
 	}
 
-	public override bool CanPlace(int i, int j) {
+	public override bool CanPlace(int i, int j)
+	{
 		Tile tile = Framing.GetTileSafely(i, j); // Safe way of getting a tile instance
 
 		if (tile.HasTile) {
@@ -89,22 +91,26 @@ public class PotatoPlant : ModTile
 		return true;
 	}
 
-	public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
-		if (i % 2 == 0) spriteEffects = SpriteEffects.FlipHorizontally;
+	public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
+	{
+		if (i % 2 == 0)
+			spriteEffects = SpriteEffects.FlipHorizontally;
 	}
 
-	public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+	public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
+	{
 		offsetY = -2; // This is -1 for tiles using StyleAlch, but vanilla sets to -2 for herbs, which causes a slight visual offset between the placement preview and the placed tile. 
 	}
 
 	public override bool CanDrop(int i, int j) => GetStage(i, j) != PlantStage.Planted;
 
 	public override IEnumerable<Item> GetItemDrops(int i, int j) =>
-            new List<Item>(){new Item(ModContent.ItemType<Potato>(), GetStage(i, j) == PlantStage.Grown ? Main.rand.Next(2, 4) : 1)};
+			new List<Item>() { new Item(ModContent.ItemType<Potato>(), GetStage(i, j) == PlantStage.Grown ? Main.rand.Next(2, 4) : 1) };
 
 	public override bool IsTileSpelunkable(int i, int j) => GetStage(i, j) == PlantStage.Grown;
 
-	public override void RandomUpdate(int i, int j) {
+	public override void RandomUpdate(int i, int j)
+	{
 		Tile tile = Framing.GetTileSafely(i, j);
 		PlantStage stage = GetStage(i, j);
 
@@ -121,7 +127,8 @@ public class PotatoPlant : ModTile
 	}
 
 	// A helper method to quickly get the current stage of the herb (assuming the tile at the coordinates is our herb)
-	private static PlantStage GetStage(int i, int j) {
+	private static PlantStage GetStage(int i, int j)
+	{
 		Tile tile = Framing.GetTileSafely(i, j);
 		return (PlantStage)(tile.TileFrameX / FrameWidth);
 	}

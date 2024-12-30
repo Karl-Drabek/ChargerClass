@@ -13,24 +13,25 @@ public class HydrogenGas : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 11;
-            Item.height = 23;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 2, 20, 0);
-            Item.rare =  ItemRarityID.Green;
+		Item.width = 11;
+		Item.height = 23;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 2, 20, 0);
+		Item.rare = ItemRarityID.Green;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HydrogenBreath = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.CloudinaBottle);
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.CloudinaBottle);
 		recipe.AddIngredient(ItemID.MeteoriteBar);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.AddTile(TileID.TinkerersWorkbench);
+		recipe.Register();
 	}
 }

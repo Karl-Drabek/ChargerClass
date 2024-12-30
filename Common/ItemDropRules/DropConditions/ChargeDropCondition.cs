@@ -1,7 +1,7 @@
-﻿﻿using Terraria;
+﻿﻿using ChargerClass.Common.Players;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using ChargerClass.Common.Players;
 
 namespace ChargerClass.Common.ItemDropRules.DropConditions;
 
@@ -9,11 +9,13 @@ public class ChargeDropCondition : IItemDropRuleCondition //I dont know what any
 {
 	private static LocalizedText Description;
 
-	public ChargeDropCondition() {
+	public ChargeDropCondition()
+	{
 		Description ??= Language.GetText("Mods.ChargerClass.DropConditions.Charge");
 	}
 
-	public bool CanDrop(DropAttemptInfo info) => Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 1;
+	public bool CanDrop(DropAttemptInfo info) =>
+		Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 1;
 
 	public bool CanShowItemDropInUI() => true;
 

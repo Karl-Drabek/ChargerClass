@@ -16,7 +16,8 @@ public abstract class AnimatedDrawLayer : PlayerDrawLayer
 	private int frame, ticCounter, xOffSet, yOffSet;
 	protected float scale;
 
-	public override void SetStaticDefaults(){
+	public override void SetStaticDefaults()
+	{
 		frame = ticCounter = xOffSet = yOffSet = 0;
 		height = width = ticsPerFrame = totalFrames = 1;
 		scale = 1f;
@@ -26,15 +27,16 @@ public abstract class AnimatedDrawLayer : PlayerDrawLayer
 		rect = new Rectangle(0, 0, width, height);
 	}
 
-	public virtual void SafeSetStaticDefaults() {}
+	public virtual void SafeSetStaticDefaults() { }
 
 	public sealed override bool GetDefaultVisibility(PlayerDrawSet drawInfo) => drawInfo.drawPlayer.HeldItem?.type == itemType && drawInfo.drawPlayer.ItemAnimationActive;
 
 	public sealed override Position GetDefaultPosition() => new AfterParent(PlayerDrawLayers.Head);
 
-	protected sealed override void Draw(ref PlayerDrawSet drawInfo) {
+	protected sealed override void Draw(ref PlayerDrawSet drawInfo)
+	{
 		PreDraw(ref drawInfo);
-		if(++ticCounter >= ticsPerFrame) {
+		if (++ticCounter >= ticsPerFrame) {
 			ticCounter -= ticsPerFrame;
 			frame = ++frame % totalFrames;
 		}
@@ -45,10 +47,11 @@ public abstract class AnimatedDrawLayer : PlayerDrawLayer
 
 		Vector2 origin;
 		SpriteEffects effects;
-		if(drawInfo.drawPlayer.direction == 1){
+		if (drawInfo.drawPlayer.direction == 1) {
 			origin = new Vector2(0, height / 2);
 			effects = SpriteEffects.None;
-		}else{
+		}
+		else {
 			origin = new Vector2(width, height / 2);
 			effects = SpriteEffects.FlipHorizontally;
 		}
@@ -63,9 +66,9 @@ public abstract class AnimatedDrawLayer : PlayerDrawLayer
 		drawInfo.DrawDataCache.Add(new DrawData(texture, drawPosition, rect, color, rotation, origin, scale, effects));
 	}
 
-	public virtual void PreDraw(ref PlayerDrawSet drawInfo) {}
+	public virtual void PreDraw(ref PlayerDrawSet drawInfo) { }
 
 	public virtual Vector2 WeaponOffset() => Vector2.Zero;
-	public virtual void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {}
+	public virtual void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) { }
 
 }

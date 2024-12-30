@@ -8,7 +8,8 @@ namespace ChargerClass.Content.Tiles;
 
 public class ElectrudiumBar : ModTile
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Main.tileShine[Type] = 900;
 		Main.tileSolid[Type] = true;
 		Main.tileSolidTop[Type] = true;

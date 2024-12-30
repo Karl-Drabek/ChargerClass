@@ -16,25 +16,26 @@ public class Haler : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 36;
-            Item.height = 40;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 4, 10, 0);
-            Item.rare =  ItemRarityID.LightRed;
+		Item.width = 36;
+		Item.height = 40;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 4, 10, 0);
+		Item.rare = ItemRarityID.LightRed;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().Haler = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
+		Recipe recipe = CreateRecipe();
+		recipe.AddRecipeGroup(ChargerClassGeneralSystem.TitaniumBarRecipeGroup, 6);
 		recipe.AddIngredient(ModContent.ItemType<Exhaler>());
 		recipe.AddIngredient(ModContent.ItemType<Inhaler>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.AddTile(TileID.TinkerersWorkbench);
+		recipe.Register();
 	}
 }

@@ -16,7 +16,8 @@ public class ElectrudiumChainmail : ModItem
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Blue;
@@ -24,14 +25,16 @@ public class ElectrudiumChainmail : ModItem
 		Item.defense = 6;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += 0.05f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += 0.05f;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 24);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 24);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

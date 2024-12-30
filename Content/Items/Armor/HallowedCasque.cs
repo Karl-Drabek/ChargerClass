@@ -13,18 +13,20 @@ namespace ChargerClass.Content.Items.Armor;
 public class HallowedCasque : ModItem
 {
 	public static int ChargeSpeedIncrease = 13;
-        public static int MaxChargeIncrease = 14;
+	public static int MaxChargeIncrease = 14;
 
 	public static int SetCritIncreasePerLevel = 6;
 	public static int MaxCritIncrease = 4;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease);
-        public static LocalizedText SetBonusText { get; private set; }
+	public static LocalizedText SetBonusText { get; private set; }
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SetCritIncreasePerLevel, SetCritIncreasePerLevel * MaxCritIncrease);
 	}
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Pink;
@@ -32,23 +34,27 @@ public class HallowedCasque : ModItem
 		Item.defense = 8;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ItemID.HallowedPlateMail && legs.type == ItemID.HallowedGreaves;
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = SetBonusText.Value;
 		player.GetModPlayer<ChargeModPlayer>().HallowedArmorSet = true;
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.HallowedBar, 12);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.HallowedBar, 12);
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

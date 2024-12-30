@@ -11,7 +11,8 @@ public class ChargePotion : ModItem
 {
 	public static readonly int ChargeSpeedIncrease = 20;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 20;
 
 		// Dust that will appear in these colors when the item with ItemUseStyleID.DrinkLiquid is used
@@ -22,7 +23,8 @@ public class ChargePotion : ModItem
 		};
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 20;
 		Item.height = 26;
 		Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -38,12 +40,13 @@ public class ChargePotion : ModItem
 		Item.buffTime = 5400;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Blinkroot);
-            recipe.AddIngredient(ItemID.BottledWater);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.Blinkroot);
+		recipe.AddIngredient(ItemID.BottledWater);
 		recipe.AddIngredient(ModContent.ItemType<ElectrudiumOre>());
 		recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-        }
+		recipe.Register();
+	}
 }

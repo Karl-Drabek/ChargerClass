@@ -16,12 +16,13 @@ public class ChaosPlate : ModItem
 	public static int ChargeSpeedIncrease = 18;
 	public static int MaxChargeIncrease = 12;
 	public static int ChargeDamageIncrease = 16;
-        public static int ChargeCritChanceIncreasePerLevel = 5;
+	public static int ChargeCritChanceIncreasePerLevel = 5;
 	public static int MaxCritIncrease = 5;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease, ChargeDamageIncrease, ChargeCritChanceIncreasePerLevel, ChargeCritChanceIncreasePerLevel * MaxCritIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Red;
@@ -29,19 +30,21 @@ public class ChaosPlate : ModItem
 		Item.defense = 27;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
 		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		var modPlayer = player.GetModPlayer<ChargeModPlayer>();
 		modPlayer.MaxCharge += MaxChargeIncrease / 100f;
 		modPlayer.HasChaosPlate = true;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 24);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 24);
 		recipe.AddIngredient(ItemID.LunarBar, 16);
-            recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.LunarCraftingStation);
+		recipe.Register();
+	}
 }

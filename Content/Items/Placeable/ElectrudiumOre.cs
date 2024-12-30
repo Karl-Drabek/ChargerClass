@@ -6,7 +6,8 @@ namespace ChargerClass.Content.Items.Placeable;
 
 public class ElectrudiumOre : ModItem
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 100;
 		ItemID.Sets.SortingPriorityMaterials[Item.type] = ItemID.Sets.SortingPriorityMaterials[ItemID.Meteorite];
 
@@ -15,7 +16,8 @@ public class ElectrudiumOre : ModItem
 		ItemID.Sets.OreDropsFromSlime[Type] = (3, 13);
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ElectrudiumOre>());
 		Item.width = 12;
 		Item.height = 12;

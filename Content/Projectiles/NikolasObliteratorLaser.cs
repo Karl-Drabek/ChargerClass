@@ -6,7 +6,8 @@ namespace ChargerClass.Content.Projectiles;
 
 public class NikolasObliteratorLaser : LaserProjectile
 {
-	public override void SafeSetDefaults() {
+	public override void SafeSetDefaults()
+	{
 		Projectile.width = 26;
 		Projectile.height = 28;
 		Projectile.timeLeft = 60;
@@ -14,7 +15,8 @@ public class NikolasObliteratorLaser : LaserProjectile
 		TextureAsset = ModContent.Request<Texture2D>("ChargerClass/Content/Projectiles/RailgunLaser");
 	}
 
-	public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+	public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+	{
 		target.immune[Projectile.owner] = 5;
 	}
 }

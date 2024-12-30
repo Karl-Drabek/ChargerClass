@@ -15,7 +15,8 @@ public class ChlorophyteCasque : ModItem
 	public static int MaxLevels = 5;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(StatIncreasePerLevel, StatIncreasePerLevel * MaxLevels);
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Lime;
@@ -23,22 +24,26 @@ public class ChlorophyteCasque : ModItem
 		Item.defense = 11;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetModPlayer<ChargeModPlayer>().HasChlorophyteCasque = true;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetModPlayer<ChargeModPlayer>().HasChlorophyteCasque = true;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ItemID.ChlorophytePlateMail && legs.type == ItemID.ChlorophyteGreaves;
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = Language.GetTextValue("ArmorSetBonus.Chlorophyte");
 		player.AddBuff(BuffID.LeafCrystal, 18000);
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

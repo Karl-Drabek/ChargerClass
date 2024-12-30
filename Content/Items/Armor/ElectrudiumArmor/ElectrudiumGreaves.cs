@@ -16,21 +16,24 @@ public class ElectrudiumGreaves : ModItem
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Blue;
 		Item.value = Item.sellPrice(0, 3, 20, 0);
 		Item.defense = 5;
 	}
-	public override void UpdateEquip(Player player) {
-            player.GetDamage<ChargerDamageClass>() += 0.05f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetDamage<ChargerDamageClass>() += 0.05f;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 25);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 25);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

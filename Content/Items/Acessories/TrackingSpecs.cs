@@ -16,26 +16,27 @@ public class TrackingSpecs : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 26;
-            Item.height = 24;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 12, 0, 0);
-            Item.rare = ItemRarityID.Lime;
+		Item.width = 26;
+		Item.height = 24;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 12, 0, 0);
+		Item.rare = ItemRarityID.Lime;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasTrackingSpecs = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
+		Recipe recipe = CreateRecipe();
 		recipe.AddIngredient(ModContent.ItemType<RedDot>());
 		recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 12);
-            recipe.AddIngredient(ItemID.HallowedBar, 6);
+		recipe.AddIngredient(ItemID.HallowedBar, 6);
 		recipe.AddIngredient(ItemID.SniperScope);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.AddTile(TileID.TinkerersWorkbench);
+		recipe.Register();
 	}
 }

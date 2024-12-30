@@ -16,25 +16,26 @@ public class Respirator : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 20;
-            Item.height = 15;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 1, 70, 0);
-            Item.rare =  ItemRarityID.Pink;
+		Item.width = 20;
+		Item.height = 15;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 1, 70, 0);
+		Item.rare = ItemRarityID.Pink;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasRespirator = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.HallowedBar, 4);
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.HallowedBar, 4);
 		recipe.AddIngredient(ItemID.PixieDust, 6);
 		recipe.AddIngredient(ItemID.Cloud, 60);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
 	}
 }

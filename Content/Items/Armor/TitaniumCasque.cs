@@ -13,10 +13,11 @@ namespace ChargerClass.Content.Items.Armor;
 public class TitaniumCasque : ModItem
 {
 	public static int ChargeSpeedIncrease = 17;
-        public static int MaxChargeIncrease = 7;
+	public static int MaxChargeIncrease = 7;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease);
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.LightRed;
@@ -24,23 +25,27 @@ public class TitaniumCasque : ModItem
 		Item.defense = 7;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings;
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = Language.GetTextValue("ArmorSetBonus.Titanium");
 		player.onHitTitaniumStorm = true;
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.TitaniumBar, 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.TitaniumBar, 12);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

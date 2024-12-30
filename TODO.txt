@@ -10,10 +10,10 @@ Quality:
     Lighting
 
 Long Term:
+    consume ammo effects are not considered by charge weapons
     make debuffs/projectiles work on players/pvp
     update chargeMeter ui
     go over projectile code, IgnoreWater?
     Spikyrock projectile
     weapon offset while rotating in not considered by lasers (preme Calamari)
-    Spikyrock projectile
     Update Tootips (including charge effects within ChargeWeapon)

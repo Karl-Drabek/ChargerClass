@@ -15,31 +15,32 @@ public class CarBattery : ModItem
 	{
 		Item.ResearchUnlockCount = 1;
 		Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(16, 3)); //(tics, frames)
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+		ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 	}
 
 	public override void SetDefaults()
 	{
-            Item.width = 15;
-            Item.height = 17;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 2, 60, 0);
-            Item.rare = ItemRarityID.Green;
+		Item.width = 15;
+		Item.height = 17;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 2, 60, 0);
+		Item.rare = ItemRarityID.Green;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasCarBattery = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.HellstoneBar, 4);
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.HellstoneBar, 4);
 		recipe.AddIngredient(ModContent.ItemType<BasicCircuitry>(), 4);
 		recipe.AddIngredient(ModContent.ItemType<Capacitor>());
 		recipe.AddIngredient(ModContent.ItemType<AAABattery>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.AddTile(TileID.TinkerersWorkbench);
+		recipe.Register();
 	}
 }

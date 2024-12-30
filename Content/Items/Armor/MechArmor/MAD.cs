@@ -19,7 +19,8 @@ public class MAD : ModItem
 	public static int ChargeBossDamageIncrease = 15;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease, ChargeBossDamageIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
@@ -27,26 +28,30 @@ public class MAD : ModItem
 		Item.defense = 23;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetModPlayer<ChargeModPlayer>().MADChest = true;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetModPlayer<ChargeModPlayer>().MADChest = true;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
 
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return head.type == ModContent.ItemType<MechHelmet>() && legs.type == ModContent.ItemType<MechLeggings>();
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = this.GetLocalization("SetBonus").Value;
 		player.GetModPlayer<ChargeModPlayer>().MADSet = true;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 30);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 30);
 		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 15);
 		recipe.AddIngredient(ModContent.ItemType<HydraRocketLauncher>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

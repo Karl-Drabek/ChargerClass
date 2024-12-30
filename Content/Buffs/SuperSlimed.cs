@@ -1,16 +1,18 @@
-﻿﻿using Terraria;
+﻿﻿using ChargerClass.Common.GlobalNPCs;
+using Terraria;
 using Terraria.ModLoader;
-using ChargerClass.Common.GlobalNPCs;
 
 namespace ChargerClass.Content.Buffs;
 
 public class SuperSlimed : ModBuff
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Main.debuff[Type] = true;
 	}
 
-	public override void Update(NPC npc, ref int buffIndex) {
+	public override void Update(NPC npc, ref int buffIndex)
+	{
 		npc.GetGlobalNPC<ModInstanceNPC>().Slimed = true;
 	}
 }

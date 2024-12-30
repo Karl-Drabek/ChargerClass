@@ -14,7 +14,8 @@ namespace ChargerClass.Content.Tiles;
 
 public class DartAssemblyStationTile : ModTile
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Main.tileFrameImportant[Type] = true;
 		Main.tileNoAttach[Type] = true;
 		TileID.Sets.HasOutlines[Type] = true;
@@ -22,7 +23,7 @@ public class DartAssemblyStationTile : ModTile
 		TileID.Sets.AvoidedByNPCs[Type] = true;
 		TileID.Sets.InteractibleByNPCs[Type] = true;
 
-            AddMapEntry(new Color(200, 200, 200), CreateMapEntryName());
+		AddMapEntry(new Color(200, 200, 200), CreateMapEntryName());
 
 		// Placement
 		TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
@@ -45,9 +46,10 @@ public class DartAssemblyStationTile : ModTile
 
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
-	public override void NumDust(int i, int j, bool fail, ref int num) {num = 1;} //dust particles when hit
+	public override void NumDust(int i, int j, bool fail, ref int num) { num = 1; } //dust particles when hit
 
-	public override bool RightClick(int i, int j) {
+	public override bool RightClick(int i, int j)
+	{
 		Player player = Main.LocalPlayer;
 		Tile tile = Main.tile[i, j];
 		var pos = new Point16(i - tile.TileFrameX % 36 / 18, j - tile.TileFrameY / 18);
@@ -63,13 +65,15 @@ public class DartAssemblyStationTile : ModTile
 		return true;
 	}
 
-	public override IEnumerable<Item> GetItemDrops (int i, int j) => DartAssemblyStationUISystem.Instance.DartAssemblyState.GetItemDrops();
+	public override IEnumerable<Item> GetItemDrops(int i, int j) => DartAssemblyStationUISystem.Instance.DartAssemblyState.GetItemDrops();
 
-	public override void KillTile (int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem){
+	public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+	{
 		DartAssemblyStationUISystem.Instance.HideUI();
 	}
 
-	public override void MouseOver(int i, int j) {
+	public override void MouseOver(int i, int j)
+	{
 		Player player = Main.LocalPlayer;
 		player.cursorItemIconID = ModContent.ItemType<DartAssemblyStation>();
 		player.noThrow = 2;

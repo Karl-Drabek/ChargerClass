@@ -12,7 +12,8 @@ public class ChargerClass : Mod
 	{
 		StatIncreasePlayerSync
 	}
-	public override void HandlePacket(BinaryReader reader, int whoAmI) {
+	public override void HandlePacket(BinaryReader reader, int whoAmI)
+	{
 		MessageType msgType = (MessageType)reader.ReadByte();
 
 		switch (msgType) {

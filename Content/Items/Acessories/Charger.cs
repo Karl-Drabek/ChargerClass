@@ -17,24 +17,25 @@ public class Charger : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 14;
-            Item.height = 19;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 0, 10, 0);
-            Item.rare = ItemRarityID.Green;
+		Item.width = 14;
+		Item.height = 19;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 0, 10, 0);
+		Item.rare = ItemRarityID.Green;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasCharger = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Wire, 8);
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.Wire, 8);
 		recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
 	}
 }

@@ -8,7 +8,8 @@ namespace ChargerClass.Content.Tiles;
 
 public class UnstableChaosShard : ModTile
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		TileID.Sets.Ore[Type] = true;
 		Main.tileSpelunker[Type] = true; // The tile will be affected by spelunker highlighting
 		Main.tileOreFinderPriority[Type] = 800; // Metal Detector value, see https://terraria.wiki.gg/wiki/Metal_Detector

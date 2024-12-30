@@ -7,14 +7,16 @@ namespace ChargerClass.Content.Items.Placeable;
 
 public class UnstableChaosShard : ModItem
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 100;
 		ItemID.Sets.SortingPriorityMaterials[Item.type] = ItemID.Sets.SortingPriorityMaterials[ItemID.SpectreBar];
 		Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(15, 4)); //(tics, frames)
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+		ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.UnstableChaosShard>());
 		Item.width = 90;
 		Item.height = 46;

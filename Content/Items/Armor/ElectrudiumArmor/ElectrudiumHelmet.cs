@@ -15,15 +15,17 @@ public class ElectrudiumHelmet : ModItem
 {
 	public static int ChargeSpeedIncrease = 2;
 	public static int SetDamageIncrease = 10;
-        public static int SetMaxChargeIncrease = 5;
+	public static int SetMaxChargeIncrease = 5;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease);
-        public static LocalizedText SetBonusText { get; private set; }
+	public static LocalizedText SetBonusText { get; private set; }
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SetDamageIncrease, SetMaxChargeIncrease);
 	}
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Blue;
@@ -31,22 +33,26 @@ public class ElectrudiumHelmet : ModItem
 		Item.defense = 4;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += 0.05f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += 0.05f;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ModContent.ItemType<ElectrudiumChainmail>() && legs.type == ModContent.ItemType<ElectrudiumGreaves>();
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = SetBonusText.Value;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += 0.1f;
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ElectrudiumBar>(), 20);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

@@ -11,7 +11,8 @@ public class ImpatiencePotion : ModItem
 {
 	public static readonly int ChargeLevelDecrease = 10;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeLevelDecrease);
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		Item.ResearchUnlockCount = 20;
 
 		// Dust that will appear in these colors when the item with ItemUseStyleID.DrinkLiquid is used
@@ -22,7 +23,8 @@ public class ImpatiencePotion : ModItem
 		};
 	}
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 20;
 		Item.height = 26;
 		Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -38,13 +40,14 @@ public class ImpatiencePotion : ModItem
 		Item.buffTime = 5400;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Waterleaf);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.Waterleaf);
 		recipe.AddIngredient(ItemID.Shiverthorn);
-            recipe.AddIngredient(ItemID.BottledWater);
+		recipe.AddIngredient(ItemID.BottledWater);
 		recipe.AddIngredient(ModContent.ItemType<AncientDebris>());
 		recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-        }
+		recipe.Register();
+	}
 }

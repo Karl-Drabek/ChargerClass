@@ -14,11 +14,12 @@ public class FestiveBreastplate : ModItem
 {
 	public static int MaxChargeIncrease = 3;
 	public static int ChargeDamageIncrease = 10;
-        public static int ChargeSpeedIncrease = 5;
+	public static int ChargeSpeedIncrease = 5;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease, ChargeDamageIncrease, ChargeSpeedIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
@@ -26,17 +27,19 @@ public class FestiveBreastplate : ModItem
 		Item.defense = 24;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChristmasCheer>(), 800);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChristmasCheer>(), 800);
 		recipe.AddIngredient(ItemID.ChlorophyteBar, 24);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

@@ -8,54 +8,55 @@ using Terraria.UI;
 namespace ChargerClass.Common.ModSystems;
 
 class DartAssemblyStationUISystem : ModSystem
-    {   
-        internal DartAssemblyState DartAssemblyState;
-        private UserInterface UI;
-        public static DartAssemblyStationUISystem Instance = ModContent.GetInstance<DartAssemblyStationUISystem>();
+{
+	internal DartAssemblyState DartAssemblyState;
+	private UserInterface UI;
+	public static DartAssemblyStationUISystem Instance = ModContent.GetInstance<DartAssemblyStationUISystem>();
 
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                UI = new UserInterface();
-                DartAssemblyState = new DartAssemblyState();
-                DartAssemblyState.Activate();
-                UI.SetState(null);
-            }
-        }
-        
-        internal void ShowUI() {
-            UI?.SetState(DartAssemblyState);
-        }
+	public override void Load()
+	{
+		if (!Main.dedServ) {
+			UI = new UserInterface();
+			DartAssemblyState = new DartAssemblyState();
+			DartAssemblyState.Activate();
+			UI.SetState(null);
+		}
+	}
 
-        internal void HideUI() {
-            UI?.SetState(null);
-        }
+	internal void ShowUI()
+	{
+		UI?.SetState(DartAssemblyState);
+	}
 
-        private GameTime _lastUpdateUiGameTime;
+	internal void HideUI()
+	{
+		UI?.SetState(null);
+	}
 
-        public override void UpdateUI(GameTime gameTime) {
-            _lastUpdateUiGameTime = gameTime;
-            if (UI?.CurrentState != null) {
-                UI.Update(gameTime);
-            }
-        }
+	private GameTime _lastUpdateUiGameTime;
 
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex != -1){
-                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "ChargerClass: Allows player to craft custom darts",
-                    delegate
-                    {
-                        if ( _lastUpdateUiGameTime != null && UI?.CurrentState != null) {
-                            UI.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
-                        }
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
-        }
+	public override void UpdateUI(GameTime gameTime)
+	{
+		_lastUpdateUiGameTime = gameTime;
+		if (UI?.CurrentState != null) {
+			UI.Update(gameTime);
+		}
+	}
+
+	public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+	{
+		int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+		if (mouseTextIndex != -1) {
+			layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+				"ChargerClass: Allows player to craft custom darts",
+				delegate {
+					if (_lastUpdateUiGameTime != null && UI?.CurrentState != null) {
+						UI.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+					}
+					return true;
+				},
+				InterfaceScaleType.UI)
+			);
+		}
+	}
 }

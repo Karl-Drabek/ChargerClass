@@ -1,19 +1,21 @@
-﻿﻿using Terraria;
+﻿﻿using ChargerClass.Common.Players;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using ChargerClass.Common.Players;
 
 namespace ChargerClass.Common.ItemDropRules.DropConditions;
 
-public class BlueChargeDropCondition : IItemDropRuleCondition  //I dont know what anything in this class does, just make sure CanDrop returns true when you want a drop
+public class BlueChargeDropCondition : IItemDropRuleCondition //I dont know what anything in this class does, just make sure CanDrop returns true when you want a drop
 {
 	private static LocalizedText Description;
 
-	public BlueChargeDropCondition() {
+	public BlueChargeDropCondition()
+	{
 		Description ??= Language.GetText("Mods.ChargerClass.DropConditions.BlueCharge");
 	}
 
-	public bool CanDrop(DropAttemptInfo info) => Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 3;
+	public bool CanDrop(DropAttemptInfo info) =>
+		Main.LocalPlayer.GetModPlayer<ChargeModPlayer>().GetLightningRod() == 3;
 
 	public bool CanShowItemDropInUI() => true;
 

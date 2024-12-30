@@ -13,18 +13,20 @@ namespace ChargerClass.Content.Items.Armor;
 public class CobaltCasque : ModItem
 {
 	public static int ChargeSpeedIncrease = 10;
-        public static int MaxChargeIncrease = 5;
+	public static int MaxChargeIncrease = 5;
 
 	public static int SetCritIncreasePerLevel = 4;
 	public static int MaxCritIncrease = 3;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease);
-        public static LocalizedText SetBonusText { get; private set; }
+	public static LocalizedText SetBonusText { get; private set; }
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SetCritIncreasePerLevel, SetCritIncreasePerLevel * MaxCritIncrease);
 	}
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.LightRed;
@@ -32,23 +34,27 @@ public class CobaltCasque : ModItem
 		Item.defense = 3;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings;
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = SetBonusText.Value;
 		player.GetModPlayer<ChargeModPlayer>().CobaltArmorSet = true;
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.CobaltBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ItemID.CobaltBar, 10);
+		recipe.AddTile(TileID.Anvils);
+		recipe.Register();
+	}
 }

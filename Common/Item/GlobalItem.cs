@@ -13,17 +13,18 @@ namespace ChargerClass.Common.GlobalItems;
 
 public class BossBagLoot : GlobalItem
 {
-	public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
-		switch(item.type){
+	public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+	{
+		switch (item.type) {
 			case ItemID.DeerclopsBossBag:
 				foreach (var rule in itemLoot.Get()) {
-					if(rule is OneFromOptionsNotScaledWithLuckDropRule OptionsDropRule){
+					if (rule is OneFromOptionsNotScaledWithLuckDropRule OptionsDropRule) {
 						var original = OptionsDropRule.dropIds.ToList();
 						original.Add(ModContent.ItemType<AntlerSlinger>());
 						OptionsDropRule.dropIds = original.ToArray();
 					}
 				}
-				break;	
+				break;
 			case ItemID.QueenBeeBossBag:
 				foreach (var rule in itemLoot.Get()) {
 					if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
@@ -42,7 +43,7 @@ public class BossBagLoot : GlobalItem
 					}
 				}
 				break;
-			case ItemID.FairyQueenBossBag :
+			case ItemID.FairyQueenBossBag:
 				foreach (var rule in itemLoot.Get()) {
 					if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
 						var original = OFONSWLDR.dropIds.ToList();
@@ -51,7 +52,7 @@ public class BossBagLoot : GlobalItem
 					}
 				}
 				break;
-			case ItemID.FishronBossBag :
+			case ItemID.FishronBossBag:
 				foreach (var rule in itemLoot.Get()) {
 					if (rule is OneFromOptionsNotScaledWithLuckDropRule OFONSWLDR) {
 						var original = OFONSWLDR.dropIds.ToList();
@@ -74,24 +75,28 @@ public class BossBagLoot : GlobalItem
 		}
 	}
 
-	public override void ExtractinatorUse(int extractType, int extractinatorBlockType, ref int resultType, ref int resultStack) {
-		if(extractType == ItemID.GoldFrog || extractType == ItemID.Frog){
-			if (extractinatorBlockType == TileID.ChlorophyteExtractinator){
+	public override void ExtractinatorUse(int extractType, int extractinatorBlockType, ref int resultType, ref int resultStack)
+	{
+		if (extractType == ItemID.GoldFrog || extractType == ItemID.Frog) {
+			if (extractinatorBlockType == TileID.ChlorophyteExtractinator) {
 				resultType = ModContent.ItemType<DartFrogExtract>();
 				resultStack = (extractType == ItemID.GoldFrog) ? (int)Main.rand.NextFloat(2, 5) : 1;
-			}else{
+			}
+			else {
 				resultType = ItemID.FrogLeg;
 				resultStack = 1;
 			}
-		}else if(extractType == ModContent.ItemType<AncientDebris>()){
-			if(Main.rand.NextBool(16)){
+		}
+		else if (extractType == ModContent.ItemType<AncientDebris>()) {
+			if (Main.rand.NextBool(16)) {
 				resultType = ModContent.ItemType<AncientTech>();
 				resultStack = (int)Main.rand.NextFloat(3, 7);
 			}
 		}
 	}
-	public override void SetDefaults(Item item) {
-		switch(item.type){
+	public override void SetDefaults(Item item)
+	{
+		switch (item.type) {
 			case ItemID.BottledWater:
 				item.ammo = item.type;
 				item.shoot = ProjectileID.WaterGun;

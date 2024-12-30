@@ -15,7 +15,8 @@ internal class VanillaItemSlotWrapper : UIElement
 	private readonly float _scale;
 	internal Func<Item, bool> ValidItemFunc;
 
-	public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f) {
+	public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f)
+	{
 		_context = context;
 		_scale = scale;
 		Item = new Item();
@@ -25,7 +26,8 @@ internal class VanillaItemSlotWrapper : UIElement
 		Height.Set(TextureAssets.InventoryBack9.Value.Height * scale, 0f);
 	}
 
-	protected override void DrawSelf(SpriteBatch spriteBatch) {
+	protected override void DrawSelf(SpriteBatch spriteBatch)
+	{
 		float oldScale = Main.inventoryScale;
 		Main.inventoryScale = _scale;
 		Rectangle rectangle = GetDimensions().ToRectangle();

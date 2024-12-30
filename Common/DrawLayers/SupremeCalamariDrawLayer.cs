@@ -11,7 +11,8 @@ namespace ChargerClass.Common.DrawLayers;
 
 public class SupremeCalamariDrawLayer : AnimatedDrawLayer
 {
-	public override void SafeSetStaticDefaults(){
+	public override void SafeSetStaticDefaults()
+	{
 		height = 40;
 		width = 122;
 		totalFrames = 4;
@@ -21,11 +22,14 @@ public class SupremeCalamariDrawLayer : AnimatedDrawLayer
 		itemType = ModContent.ItemType<SupremeCalamari>();
 	}
 
-	public override void PreDraw(ref PlayerDrawSet drawInfo) {
+	public override void PreDraw(ref PlayerDrawSet drawInfo)
+	{
 		var chargeWeapon = drawInfo.drawPlayer.HeldItem.ModItem as ChargeWeapon;
-		if(chargeWeapon.charge > 0) ticsPerFrame = 20 - (int)Math.Sqrt(100 * ((float)chargeWeapon.charge / drawInfo.drawPlayer.GetModPlayer<ChargeModPlayer>().GetMaxCharge()));
+		if (chargeWeapon.charge > 0)
+			ticsPerFrame = 20 - (int)Math.Sqrt(100 * ((float)chargeWeapon.charge / drawInfo.drawPlayer.GetModPlayer<ChargeModPlayer>().GetMaxCharge()));
 	}
-	public override void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects) {
+	public override void PreQueue(Player player, ref Texture2D texture, ref Vector2 drawPosition, ref Rectangle rect, ref Color color, ref float rotation, ref Vector2 origin, ref float scale, ref SpriteEffects effects)
+	{
 		drawPosition.Y -= 4;
 	}
 

@@ -9,32 +9,34 @@ namespace ChargerClass.Content.Projectiles;
 
 public class PixieDust : ModProjectile
 {
-        float rotation = 0;
+	float rotation = 0;
 	public override void SetDefaults()
 	{
-            Projectile.width = 15;
-            Projectile.height = 15;
-            Projectile.aiStyle = -1;
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-            Projectile.DamageType = ChargerDamageClass.Instance;
-            Projectile.penetrate = 10;
-            Projectile.timeLeft = 255;
-            Projectile.alpha = 0;
-            Projectile.light = 1.0f;
-            Projectile.ignoreWater = true;
-            Projectile.tileCollide = true;
-            Projectile.extraUpdates = 0;
-            
-            AIType = ProjectileID.WoodenArrowFriendly;
-        }
+		Projectile.width = 15;
+		Projectile.height = 15;
+		Projectile.aiStyle = -1;
+		Projectile.friendly = true;
+		Projectile.hostile = false;
+		Projectile.DamageType = ChargerDamageClass.Instance;
+		Projectile.penetrate = 10;
+		Projectile.timeLeft = 255;
+		Projectile.alpha = 0;
+		Projectile.light = 1.0f;
+		Projectile.ignoreWater = true;
+		Projectile.tileCollide = true;
+		Projectile.extraUpdates = 0;
 
-        public override void OnSpawn(IEntitySource source){
-            rotation = Main.rand.NextFloat(MathHelper.ToRadians(-5f), MathHelper.ToRadians(5f));
-        }
-	public override void AI(){
-            Projectile.velocity.Y = 2.5f;
-            Projectile.alpha += 1;
-            Projectile.rotation += rotation;
-        }
+		AIType = ProjectileID.WoodenArrowFriendly;
+	}
+
+	public override void OnSpawn(IEntitySource source)
+	{
+		rotation = Main.rand.NextFloat(MathHelper.ToRadians(-5f), MathHelper.ToRadians(5f));
+	}
+	public override void AI()
+	{
+		Projectile.velocity.Y = 2.5f;
+		Projectile.alpha += 1;
+		Projectile.rotation += rotation;
+	}
 }

@@ -1415,6 +1415,40 @@ Mods: {
 			RefractinatorProjectile.DisplayName: Refractinator Projectile
 			TestChargeWeaponHoldout.DisplayName: Test Charge Weapon Holdout
 			WoodSlingshotHoldout.DisplayName: Wood Slingshot Holdout
+			AshwoodSlingshotHoldout.DisplayName: Ashwood Slingshot Holdout
+			AntlerSlingerHoldout.DisplayName: Antler Slinger Holdout
+			BorealWoodSlingshotHoldout.DisplayName: Boreal Wood Slingshot Holdout
+			EbonwoodSlingshotHoldout.DisplayName: Ebonwood Slingshot Holdout
+			MultiShotHoldout.DisplayName: Multi Shot Holdout
+			PalmWoodSlingshotHoldout.DisplayName: Palm Wood Slingshot Holdout
+			PearlwoodSlingshotHoldout.DisplayName: Pearlwood Slingshot Holdout
+			ReinforcedSlingshotHoldout.DisplayName: Reinforced Slingshot Holdout
+			RichMahoganySlingshotHoldout.DisplayName: Rich Mahogany Slingshot Holdout
+			ShadeWoodSlingshotHoldout.DisplayName: Shade Wood Slingshot Holdout
+			TripleShotHoldout.DisplayName: Triple Shot Holdout
+			CopperCrossbowHoldout.DisplayName: Copper Crossbow Holdout
+			CrimtaneCrossbowHoldout.DisplayName: Crimtane Crossbow Holdout
+			DemoniteCrossbowHoldout.DisplayName: Demonite Crossbow Holdout
+			GoldCrossbowHoldout.DisplayName: Gold Crossbow Holdout
+			HellfireCrossbowHoldout.DisplayName: Hellfire Crossbow Holdout
+			IronCrossbowHoldout.DisplayName: Iron Crossbow Holdout
+			LeadCrossbowHoldout.DisplayName: Lead Crossbow Holdout
+			PlatinumCrossbowHoldout.DisplayName: Platinum Crossbow Holdout
+			SilverCrossbowHoldout.DisplayName: Silver Crossbow Holdout
+			TinCrossbowHoldout.DisplayName: Tin Crossbow Holdout
+			TungstenCrossbowHoldout.DisplayName: Tungsten Crossbow Holdout
+			AdamantiteBlowgunHoldout.DisplayName: Adamantite Blowgun Holdout
+			BlowgunRevolverHoldout.DisplayName: Blowgun Revolver Holdout
+			ChlorophyteBlowgunHoldout.DisplayName: Chlorophyte Blowgun Holdout
+			CobaltBlowgunHoldout.DisplayName: Cobalt Blowgun Holdout
+			HallowedBlowgunHoldout.DisplayName: Hallowed Blowgun Holdout
+			HellfireBlowgunHoldout.DisplayName: Hellfire Blowgun Holdout
+			LunarBlowgunHoldout.DisplayName: Lunar Blowgun Holdout
+			MythrilBlowgunHoldout.DisplayName: Mythril Blowgun Holdout
+			OrichalcumBlowgunHoldout.DisplayName: Orichalcum Blowgun Holdout
+			PalladiumBlowgunHoldout.DisplayName: Palladium Blowgun Holdout
+			PhantomBlowgunHoldout.DisplayName: Phantom Blowgun Holdout
+			TitaniumBlowgunHoldout.DisplayName: Titanium Blowgun Holdout
 		}
 
 		Tiles: {

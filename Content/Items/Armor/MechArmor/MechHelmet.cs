@@ -20,25 +20,28 @@ public class MechHelmet : ModItem
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxChargeIncrease, ChargeSpeedIncrease, CritChanceIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
 		Item.value = Item.sellPrice(0, 17, 50, 0);
 		Item.defense = 13;
 	}
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += MaxChargeIncrease / 100f;
 		player.GetCritChance<ChargerDamageClass>() += CritChanceIncrease / 100f;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 16);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 16);
 		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 8);
 		recipe.AddIngredient(ModContent.ItemType<Respirator>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

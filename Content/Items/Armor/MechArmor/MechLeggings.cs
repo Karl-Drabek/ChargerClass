@@ -17,37 +17,43 @@ public class MechLeggings : ModItem
 
 	public static int wingsSlot = -1;
 
-	public override void Load(){
-            wingsSlot = EquipLoader.AddEquipTexture(Mod, $"{Texture}", EquipType.Wings, name: $"{Name}"); //add _wings for animation
-        }
+	public override void Load()
+	{
+		wingsSlot = EquipLoader.AddEquipTexture(Mod, $"{Texture}", EquipType.Wings, name: $"{Name}"); //add _wings for animation
+	}
 
-	public override void SetStaticDefaults() { 
-		if(wingsSlot != -1) ArmorIDs.Wing.Sets.Stats[wingsSlot] = new WingStats(120, 8f, 3f);
+	public override void SetStaticDefaults()
+	{
+		if (wingsSlot != -1)
+			ArmorIDs.Wing.Sets.Stats[wingsSlot] = new WingStats(120, 8f, 3f);
 	}
 	public static int ChargeDamageIncrease = 8;
 	public static int MoveSpeedIncrease = 25;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeDamageIncrease, MoveSpeedIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
 		Item.value = Item.sellPrice(0, 26, 25, 0);
 		Item.defense = 17;
 	}
-	public override void UpdateEquip(Player player) {
-            player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
 		player.moveSpeed += MoveSpeedIncrease / 100f;
 		player.GetModPlayer<ChargeModPlayer>().MechLegs = true;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 24);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChargedComponents>(), 24);
 		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 12);
 		recipe.AddIngredient(ItemID.RocketBoots);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

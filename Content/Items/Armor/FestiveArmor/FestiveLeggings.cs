@@ -19,24 +19,27 @@ public class FestiveLeggings : ModItem
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, ChargeDamageIncrease, MoveSpeedIncrease);
 
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Yellow;
 		Item.value = Item.sellPrice(0, 12, 0, 0);
 		Item.defense = 5;
 	}
-	public override void UpdateEquip(Player player) {
-            player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetAttackSpeed<ChargerDamageClass>() += ChargeSpeedIncrease / 100f;
 		player.GetDamage<ChargerDamageClass>() += ChargeDamageIncrease / 100f;
 		player.moveSpeed += MoveSpeedIncrease / 100f;
 	}
 
-	public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<ChristmasCheer>(), 600);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<ChristmasCheer>(), 600);
 		recipe.AddIngredient(ItemID.ChlorophyteBar, 18);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.MythrilAnvil);
+		recipe.Register();
+	}
 }

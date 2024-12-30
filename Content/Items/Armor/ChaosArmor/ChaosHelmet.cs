@@ -18,12 +18,14 @@ public class ChaosHelmet : ModItem
 	public static int ChargeDamageIncrease = 8;
 
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeSpeedIncrease, MaxChargeIncrease, ChargeDamageIncrease);
-        public static LocalizedText SetBonusText { get; private set; }
+	public static LocalizedText SetBonusText { get; private set; }
 
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		SetBonusText = this.GetLocalization("SetBonus");
 	}
-	public override void SetDefaults() {
+	public override void SetDefaults()
+	{
 		Item.width = 18;
 		Item.height = 18;
 		Item.rare = ItemRarityID.Red;
@@ -31,23 +33,27 @@ public class ChaosHelmet : ModItem
 		Item.defense = 14;
 	}
 
-	public override void UpdateEquip(Player player) {
-            player.GetModPlayer<ChargeModPlayer>().ChaosSet = true;
+	public override void UpdateEquip(Player player)
+	{
+		player.GetModPlayer<ChargeModPlayer>().ChaosSet = true;
 	}
-	public override bool IsArmorSet(Item head, Item body, Item legs) {
+	public override bool IsArmorSet(Item head, Item body, Item legs)
+	{
 		return body.type == ModContent.ItemType<ChaosPlate>() && legs.type == ModContent.ItemType<ChaosLeggings>();
 	}
 
-	public override void UpdateArmorSet(Player player) {
+	public override void UpdateArmorSet(Player player)
+	{
 		player.setBonus = SetBonusText.Value;
 		player.GetModPlayer<ChargeModPlayer>().MaxCharge += 0.1f;
 	}
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 12);
+	public override void AddRecipes()
+	{
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<UnstableChaosShard>(), 12);
 		recipe.AddIngredient(ItemID.LunarBar, 8);
-            recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.Register();
-        }
+		recipe.AddTile(TileID.LunarCraftingStation);
+		recipe.Register();
+	}
 }

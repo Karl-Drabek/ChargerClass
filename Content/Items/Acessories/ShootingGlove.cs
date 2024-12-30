@@ -17,25 +17,26 @@ public class ShootingGlove : ModItem
 	}
 	public override void SetDefaults()
 	{
-            Item.width = 16;
-            Item.height = 14;
-            Item.maxStack = 1;
-            Item.value = Item.sellPrice(0, 0, 24, 0);
-            Item.rare = ItemRarityID.Green;
+		Item.width = 16;
+		Item.height = 14;
+		Item.maxStack = 1;
+		Item.value = Item.sellPrice(0, 0, 24, 0);
+		Item.rare = ItemRarityID.Green;
 		Item.accessory = true;
 	}
 
-	public override void UpdateAccessory(Player player, bool hideVisual) {
+	public override void UpdateAccessory(Player player, bool hideVisual)
+	{
 		player.GetModPlayer<ChargeModPlayer>().HasShootingGlove = true;
 	}
 
 	public override void AddRecipes()
 	{
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<LeatherGlove>());
-            recipe.AddIngredient(ModContent.ItemType<GripTape>());
+		Recipe recipe = CreateRecipe();
+		recipe.AddIngredient(ModContent.ItemType<LeatherGlove>());
+		recipe.AddIngredient(ModContent.ItemType<GripTape>());
 		recipe.AddRecipeGroup(ChargerClassGeneralSystem.ShadowScaleRecipeGroup, 6);
 		recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+		recipe.Register();
 	}
 }
