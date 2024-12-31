@@ -10,6 +10,8 @@ Quality:
     Lighting
 
 Long Term:
+    If player dies dart assembly station ui stays open
+    error with chargeweapon holdout accessing the wrong projectile
     consume ammo effects are not considered by charge weapons
     make debuffs/projectiles work on players/pvp
     update chargeMeter ui

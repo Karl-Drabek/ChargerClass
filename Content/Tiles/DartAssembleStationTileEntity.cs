@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using ChargerClass.Common.ModSystems;
 using ChargerClass.Content.Tiles;
 using Microsoft.Xna.Framework.Input;
@@ -10,12 +11,39 @@ using Terraria.ModLoader.IO;
 public class DartAssemblyStationTileEntity : ModTileEntity
 {
 	public int[] ComponentTypes = new int[3], ComponentCounts = new int[3];
+	public bool inUse = false;
 
 	public void UpdateData()
 	{
 		ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
 		ComponentCounts = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentCounts;
+		netUpdate();
 	}
+
+	public void netUpdate(){
+		NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID, Position.X, Position.Y);
+	}
+
+	public override void NetReceive(BinaryReader reader) {
+		inUse = reader.ReadBoolean();
+		ComponentTypes[0] = reader.ReadInt32();
+		ComponentTypes[1] = reader.ReadInt32();
+		ComponentTypes[2] = reader.ReadInt32();
+		ComponentCounts[0] = reader.ReadInt32();
+		ComponentCounts[1] = reader.ReadInt32();
+		ComponentCounts[2] = reader.ReadInt32();
+	}
+
+	public override void NetSend(BinaryWriter writer) {
+		writer.Write(inUse);
+		writer.Write(ComponentTypes[0]);
+		writer.Write(ComponentTypes[1]);
+		writer.Write(ComponentTypes[2]);
+		writer.Write(ComponentCounts[0]);
+		writer.Write(ComponentCounts[1]);
+		writer.Write(ComponentCounts[2]);
+	}
+
 	public override void SaveData(TagCompound tag)
 	{
 		UpdateData();
@@ -27,30 +55,26 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 	{
 		ComponentTypes = tag.Get<int[]>("Types");
 		ComponentCounts = tag.Get<int[]>("Counts");
-		UpdateData();
+		inUse = false;
+		netUpdate();
+	}
+
+	public override void OnNetPlace()
+	{
+		if (Main.netMode == NetmodeID.Server)
+		{
+			NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
+		}
 	}
 
 	public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alterate)
 	{
 		if (Main.netMode == NetmodeID.MultiplayerClient) {
 			NetMessage.SendTileSquare(Main.myPlayer, i, j, 3);
-			NetMessage.SendData(MessageID.TileEntityPlacement, -1, -1, null, i, j, Type, 0f, 0, 0, 0);
+			NetMessage.SendData(MessageID.TileEntityPlacement, number: i, number2: j, number3: Type);
 			return -1;
 		}
 		return Place(i, j);
-	}
-	public override void OnPlayerUpdate(Player player)
-	{
-		if (player.whoAmI != Main.myPlayer)
-			return;
-		float x = player.position.X - Position.X * 16;
-		float y = player.position.Y - Position.Y * 16;
-		if (Main.keyState.IsKeyDown(Keys.Escape) && !Main.oldKeyState.IsKeyDown(Keys.Escape) || Math.Sqrt(x * x + y * y) > 150 || !player.active) {
-			BasicOpenCloseInteraction(player, Position.X, Position.Y, ID);
-			DartAssemblyStationUISystem.Instance.HideUI();
-			ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
-			ComponentCounts = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentCounts;
-		}
 	}
 
 	public override bool IsTileValidForEntity(int x, int y)

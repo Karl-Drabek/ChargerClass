@@ -1,25 +1,47 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using Terraria.ID;
-using ChargerClass.Common.Sets;
-using Terraria.ModLoader;
-using ChargerClass.Content.Items.Ammo.Darts;
+using System;
 using System.Collections.Generic;
+using ChargerClass.Common.ModSystems;
+using ChargerClass.Common.Sets;
+using ChargerClass.Content.Items.Ammo.Darts;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace ChargerClass.Content.UI.DartAssemblyStation;
 
 class DartAssemblyState : UIState
 {
-	private VanillaItemSlotWrapper dartTailSlot, dartPayloadSlot, dartTipSlot, dartResultSlot;
+	private VanillaItemSlotWrapper dartTailSlot,
+		dartPayloadSlot,
+		dartTipSlot,
+		dartResultSlot;
 	private Item oldItem;
 
-	public int[] ComponentTypes {
-		get => new int[3]{dartTailSlot.Item?.type ?? 0,
-							dartPayloadSlot.Item?.type ?? 0,
-							dartTipSlot.Item?.type ?? 0};
+	public DartAssemblyStationTileEntity dartStation;
+
+	public int[] ComponentTypes
+	{
+		get =>
+			[
+				dartTailSlot.Item?.type ?? 0,
+				dartPayloadSlot.Item?.type ?? 0,
+				dartTipSlot.Item?.type ?? 0,
+			];
+	}
+
+	public int[] ComponentCounts
+	{
+		get =>
+			[
+				dartTailSlot.Item?.stack ?? 0,
+				dartPayloadSlot.Item?.stack ?? 0,
+				dartTipSlot.Item?.stack ?? 0,
+			];
 	}
 
 	public void UpdateItems(int[] types, int[] counts)
@@ -29,11 +51,6 @@ class DartAssemblyState : UIState
 		dartTipSlot.Item = new Item(types[2], counts[2]);
 		dartResultSlot.Item = new Item(ItemID.None);
 		oldItem = dartResultSlot.Item.Clone();
-	}
-	public int[] ComponentCounts {
-		get => new int[3]{dartTailSlot.Item?.stack ?? 0,
-							dartPayloadSlot.Item?.stack ?? 0,
-							dartTipSlot.Item?.stack ?? 0};
 	}
 
 	public override void OnInitialize()
@@ -56,7 +73,8 @@ class DartAssemblyState : UIState
 		panel.Append(dartTailSlot);
 
 		dartPayloadSlot = new VanillaItemSlotWrapper();
-		dartPayloadSlot.ValidItemFunc = item => Sets.IsDartPayload[item.type] || item.type == ItemID.None;
+		dartPayloadSlot.ValidItemFunc = item =>
+			Sets.IsDartPayload[item.type] || item.type == ItemID.None;
 		dartPayloadSlot.VAlign = 0.5f;
 		dartPayloadSlot.Left = new StyleDimension(70, 0f);
 		panel.Append(dartPayloadSlot);
@@ -68,7 +86,8 @@ class DartAssemblyState : UIState
 		panel.Append(dartTipSlot);
 
 		dartResultSlot = new VanillaItemSlotWrapper();
-		dartResultSlot.ValidItemFunc = item => item.type == ItemID.None || item.ModItem is CustomDart;// item.type == ModContent.ItemType<CustomDart>();
+		dartResultSlot.ValidItemFunc = item =>
+			item.type == ItemID.None || item.ModItem is CustomDart; // item.type == ModContent.ItemType<CustomDart>();
 		dartResultSlot.VAlign = 0.5f;
 		dartResultSlot.Left = new StyleDimension(-60f, 1f);
 		panel.Append(dartResultSlot);
@@ -88,24 +107,56 @@ class DartAssemblyState : UIState
 
 	public override void Update(GameTime gameTime)
 	{
-		if (dartResultSlot.Item.type == ItemID.None && oldItem.type == ModContent.ItemType<CustomDart>())
+		float x = Main.LocalPlayer.position.X - dartStation.Position.X * 16;
+		float y = Main.LocalPlayer.position.Y - dartStation.Position.Y * 16;
+		if ((Main.keyState.IsKeyDown(Keys.Escape) && !Main.oldKeyState.IsKeyDown(Keys.Escape))
+			|| (Math.Sqrt((x * x) + (y * y)) > 150)
+			|| Main.LocalPlayer.dead)
+		{
+			TileEntity.BasicOpenCloseInteraction(Main.LocalPlayer, dartStation.Position.X, dartStation.Position.Y, dartStation.ID);
+			dartStation.inUse = false;
+			dartStation.UpdateData();
+			DartAssemblyStationUISystem.Instance.HideUI();
+		}
+
+		if (
+			dartResultSlot.Item.type == ItemID.None
+			&& oldItem.type == ModContent.ItemType<CustomDart>()
+		)
 			SubstractComponents(oldItem.stack);
-		else if (dartResultSlot.Item.ModItem is CustomDart dart) {
+		else if (dartResultSlot.Item.ModItem is CustomDart dart)
+		{
 			if (oldItem.type == ItemID.None)
 				SetComponents(dart); //put new dart in empty station
 			else if (dart.CanStack(oldItem))
 				SubstractComponents(oldItem.stack - dartResultSlot.Item.stack); //increase or decrease dart stack (same dart type)
-			else {
+			else
+			{
 				SubstractComponents(oldItem.stack);
 				SetComponents(dart);
 			} //replaced the dart with a new type of dart
 		}
-		if (dartTailSlot.Item.type != ItemID.None && dartPayloadSlot.Item.type != ItemID.None && dartTipSlot.Item.type != ItemID.None) { //otherise update the dart based on the components
+		if (
+			dartTailSlot.Item.type != ItemID.None
+			&& dartPayloadSlot.Item.type != ItemID.None
+			&& dartTipSlot.Item.type != ItemID.None
+		)
+		{ //otherise update the dart based on the components
 			dartResultSlot.Item = new Item(ModContent.ItemType<CustomDart>());
 			var dartComp = dartResultSlot.Item.ModItem as CustomDart;
-			dartComp.ResetDefaults(dartTailSlot.Item.ModItem as DartComponent, dartPayloadSlot.Item.ModItem as DartComponent, dartTipSlot.Item.ModItem as DartComponent);
-			dartResultSlot.Item.stack = dartTailSlot.Item.stack < dartPayloadSlot.Item.stack ? dartTailSlot.Item.stack : dartPayloadSlot.Item.stack;
-			dartResultSlot.Item.stack = dartTipSlot.Item.stack < dartResultSlot.Item.stack ? dartTipSlot.Item.stack : dartResultSlot.Item.stack;
+			dartComp.ResetDefaults(
+				dartTailSlot.Item.ModItem as DartComponent,
+				dartPayloadSlot.Item.ModItem as DartComponent,
+				dartTipSlot.Item.ModItem as DartComponent
+			);
+			dartResultSlot.Item.stack =
+				dartTailSlot.Item.stack < dartPayloadSlot.Item.stack
+					? dartTailSlot.Item.stack
+					: dartPayloadSlot.Item.stack;
+			dartResultSlot.Item.stack =
+				dartTipSlot.Item.stack < dartResultSlot.Item.stack
+					? dartTipSlot.Item.stack
+					: dartResultSlot.Item.stack;
 		}
 		else
 			dartResultSlot.Item = new Item(ItemID.None);
@@ -119,31 +170,49 @@ class DartAssemblyState : UIState
 			dartResultSlot.Item = new Item(ItemID.None);
 		oldItem = dartResultSlot.Item.Clone();
 	}
+
 	public void SetComponents(CustomDart dart)
 	{
 		Player player = Main.LocalPlayer;
-		if (dartTailSlot.Item.type != dart.Tail.Type) {
-			Item.NewItem(new EntitySource_OverfullInventory(player), player.getRect(), dartTailSlot.Item);
+
+		if (dartTailSlot.Item.type != dart.Tail.Type)
+		{
+			Item.NewItem(
+				new EntitySource_OverfullInventory(player),
+				player.getRect(),
+				dartTailSlot.Item
+			);
 			dartTailSlot.Item = new Item(dart.Tail.Type);
 			dartTailSlot.Item.stack = dartResultSlot.Item.stack;
 		}
 		else
 			dartTailSlot.Item.stack += dartResultSlot.Item.stack;
-		if (dartPayloadSlot.Item.type != dart.Payload.Type) {
-			Item.NewItem(new EntitySource_OverfullInventory(player), player.getRect(), dartPayloadSlot.Item);
+		if (dartPayloadSlot.Item.type != dart.Payload.Type)
+		{
+			Item.NewItem(
+				new EntitySource_OverfullInventory(player),
+				player.getRect(),
+				dartPayloadSlot.Item
+			);
 			dartPayloadSlot.Item = new Item(dart.Payload.Type);
 			dartPayloadSlot.Item.stack = dartResultSlot.Item.stack;
 		}
 		else
 			dartPayloadSlot.Item.stack += dartResultSlot.Item.stack;
-		if (dartTipSlot.Item.type != dart.Tip.Type) {
-			Item.NewItem(new EntitySource_OverfullInventory(player), player.getRect(), dartTipSlot.Item);
+		if (dartTipSlot.Item.type != dart.Tip.Type)
+		{
+			Item.NewItem(
+				new EntitySource_OverfullInventory(player),
+				player.getRect(),
+				dartTipSlot.Item
+			);
 			dartTipSlot.Item = new Item(dart.Tip.Type);
 			dartTipSlot.Item.stack = dartResultSlot.Item.stack;
 		}
 		else
 			dartTipSlot.Item.stack += dartResultSlot.Item.stack;
 	}
+
 	public void SubstractComponents(int amount)
 	{
 		dartTailSlot.Item.stack -= amount;
