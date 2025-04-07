@@ -1,16 +1,13 @@
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class SnailGun : ChargeWeapon
+public class SnailGun : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -29,8 +26,9 @@ public class SnailGun : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<SnailProjectile>();
+		Item.shoot = ModContent.ProjectileType<SnailGunHoldout>();
 		Item.shootSpeed = 14f;
+		noAmmoProjectile = ModContent.ProjectileType<SnailProjectile>();
 	}
 
 	public override void AddRecipes()

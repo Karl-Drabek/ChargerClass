@@ -15,8 +15,8 @@ public class AncientDebris : ModItem
 	public override void SetDefaults()
 	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.AncientDebris>());
-		Item.width = 12;
-		Item.height = 12;
+		Item.width = 28;
+		Item.height = 18;
 		Item.value = Item.sellPrice(0, 0, 20, 0);
 		Item.rare = ItemRarityID.Pink;
 	}

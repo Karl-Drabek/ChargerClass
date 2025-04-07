@@ -107,13 +107,15 @@ class DartAssemblyState : UIState
 
 	public override void Update(GameTime gameTime)
 	{
-		float x = Main.LocalPlayer.position.X - dartStation.Position.X * 16;
-		float y = Main.LocalPlayer.position.Y - dartStation.Position.Y * 16;
+		Player player = Main.LocalPlayer;
+
+		float x = player.position.X - dartStation.Position.X * 16;
+		float y = player.position.Y - dartStation.Position.Y * 16;
 		if ((Main.keyState.IsKeyDown(Keys.Escape) && !Main.oldKeyState.IsKeyDown(Keys.Escape))
 			|| (Math.Sqrt((x * x) + (y * y)) > 150)
-			|| Main.LocalPlayer.dead)
+			|| player.dead)
 		{
-			TileEntity.BasicOpenCloseInteraction(Main.LocalPlayer, dartStation.Position.X, dartStation.Position.Y, dartStation.ID);
+			TileEntity.BasicOpenCloseInteraction(player, dartStation.Position.X, dartStation.Position.Y, dartStation.ID);
 			dartStation.inUse = false;
 			dartStation.UpdateData();
 			DartAssemblyStationUISystem.Instance.HideUI();
@@ -122,12 +124,12 @@ class DartAssemblyState : UIState
 		if (
 			dartResultSlot.Item.type == ItemID.None
 			&& oldItem.type == ModContent.ItemType<CustomDart>()
-		)
-			SubstractComponents(oldItem.stack);
+		) SubstractComponents(oldItem.stack);
 		else if (dartResultSlot.Item.ModItem is CustomDart dart)
 		{
-			if (oldItem.type == ItemID.None)
+			if (oldItem.type == ItemID.None){
 				SetComponents(dart); //put new dart in empty station
+			}
 			else if (dart.CanStack(oldItem))
 				SubstractComponents(oldItem.stack - dartResultSlot.Item.stack); //increase or decrease dart stack (same dart type)
 			else
@@ -177,7 +179,8 @@ class DartAssemblyState : UIState
 
 		if (dartTailSlot.Item.type != dart.Tail.Type)
 		{
-			Item.NewItem(
+			Item remaining = player.GetItem(player.whoAmI, dartTailSlot.Item, GetItemSettings.InventoryUIToInventorySettings);
+			if(!remaining.IsAir) Item.NewItem(
 				new EntitySource_OverfullInventory(player),
 				player.getRect(),
 				dartTailSlot.Item
@@ -189,7 +192,8 @@ class DartAssemblyState : UIState
 			dartTailSlot.Item.stack += dartResultSlot.Item.stack;
 		if (dartPayloadSlot.Item.type != dart.Payload.Type)
 		{
-			Item.NewItem(
+			Item remaining = player.GetItem(player.whoAmI, dartPayloadSlot.Item, GetItemSettings.InventoryUIToInventorySettings);
+			if(!remaining.IsAir) Item.NewItem(
 				new EntitySource_OverfullInventory(player),
 				player.getRect(),
 				dartPayloadSlot.Item
@@ -201,7 +205,8 @@ class DartAssemblyState : UIState
 			dartPayloadSlot.Item.stack += dartResultSlot.Item.stack;
 		if (dartTipSlot.Item.type != dart.Tip.Type)
 		{
-			Item.NewItem(
+			Item remaining = player.GetItem(player.whoAmI, dartTipSlot.Item, GetItemSettings.InventoryUIToInventorySettings);
+			if(!remaining.IsAir) Item.NewItem(
 				new EntitySource_OverfullInventory(player),
 				player.getRect(),
 				dartTipSlot.Item

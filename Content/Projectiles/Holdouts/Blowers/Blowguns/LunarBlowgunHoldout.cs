@@ -1,6 +1,21 @@
+using ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+
 namespace ChargerClass.Content.Projectiles.Holdouts.Blowers.Blowguns;
 
 public class LunarBlowgunHoldout : ChargeWeaponHoldout
 {
 	public override void SafeSetDefaults() { }
+	
+	public override void SafeModifyShootStats(Player player, Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback, int chargeLevel) {
+		damage += chargeLevel * LunarBlowgun.DAMAGE_INCREASE;
+		knockback += chargeLevel * LunarBlowgun.KNOCKBACK_INCREASE;
+	}
+
+	public override void ModifyWeaponCrit(Player player, ref float crit)
+	{
+		crit += GetChargeLevel(player) * LunarBlowgun.CRIT_INCREASE;
+	}
 }

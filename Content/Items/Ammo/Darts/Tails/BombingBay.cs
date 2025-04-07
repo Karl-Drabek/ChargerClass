@@ -22,6 +22,7 @@ public class BombingBay : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		if (projectile.ai[2]++ > 5) {
 			Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.Zero, ModContent.ProjectileType<BombBayProjectile>(), 1, 0, -1, payloadType);
 			projectile.ai[2] = 0;

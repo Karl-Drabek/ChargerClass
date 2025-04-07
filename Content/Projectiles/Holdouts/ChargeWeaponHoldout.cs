@@ -5,9 +5,11 @@ using ChargerClass.Common.Players;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Weapons;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,10 +17,17 @@ namespace ChargerClass.Content.Projectiles.Holdouts;
 
 public abstract class ChargeWeaponHoldout : ModProjectile
 {
-	private const float AimResponsiveness = 1f;
-	private const int SoundInterval = 20;
+	protected float AimResponsiveness = 1f;
+	protected int SoundInterval = 20;
+
+	public int ticsPerFrame = 1;
+	public bool drawSelf = false;
+	public bool channeling;
+
+	public bool aimWhileShoot;
 	public sealed override void SetDefaults()
 	{
+		aimWhileShoot = true;
 		SafeSetDefaults();
 		Projectile.hide = true;
 		Projectile.tileCollide = false;
@@ -52,6 +61,17 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 			.GetChargeAmountModifier()
 			.ApplyTo(((ChargedWeapon)player.HeldItem.ModItem).chargeAmount);
 
+	public sealed override bool PreAI(){
+		Player player = Main.player[Projectile.owner];
+		Vector2 rrp = player.RotatedRelativePoint(player.MountedCenter, true);
+		UpdatePlayerVisuals(player, rrp);
+		Main.NewText("held True");
+		return true;
+	}
+
+	public void resetTimer(){
+		Timer = 2;
+	}
 	public sealed override void AI()
 	{
 		Player player = Main.player[Projectile.owner];
@@ -62,23 +82,26 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 
 		UpdateAnimation();
 		PlaySounds();
-		UpdatePlayerVisuals(player, rrp);
 
 		if (Projectile.owner == Main.myPlayer) { //this stuff only works for the projectiles owner
 			if (player.noItems || player.CCed)
 				Projectile.Kill(); // Cursed (player.noItems), "Crowd Controlled" (the Frozen debuff).
 			if (!player.channel) { //shooting
+				ShootingAI(player);
 				if (--Timer <= 0) {
 					if (--Shots < 0)
-						Projectile.Kill();
+						if(!channeling) Projectile.Kill();
+						else channeling = false;
 					else
 						Shoot(player, modPlayer, heldItem, rrp);
 					if(Shots == 0) Timer = heldItem.useTime;
 					else Timer = chargedWeapon.ticsBetweenShots;
 				}
+				if(aimWhileShoot) UpdateAim(rrp, player.HeldItem.shootSpeed);
 			}
 			else { //charging
 				if(!player.HasAmmo(heldItem)) Projectile.Kill();
+				ChargingAI(player);
 				int maxCharge = modPlayer.GetMaxCharge();
 				ChargedWeapon chargeWeapon = (ChargedWeapon)player.HeldItem.ModItem;
 				if (chargeWeapon.bonusCharge > 0) {
@@ -97,8 +120,8 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 					Shots = 0;
 					Timer = 1;
 				}
+				UpdateAim(rrp, player.HeldItem.shootSpeed);
 			}
-			UpdateAim(rrp, player.HeldItem.shootSpeed);
 		}
 
 		Projectile.timeLeft = 2; //keeps projectile alive
@@ -116,7 +139,10 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 		int shotType;
 		int ammoToConsume;
 
-		if(item.useAmmo != AmmoID.None){
+		if(chargedWeapon.ignoreAmmo){
+			ammoToConsume = AmmoID.None;
+			shotType = ContentSamples.ItemsByType[item.useAmmo].shoot;
+		}else if(item.useAmmo != AmmoID.None){
 			shootSpeed += chargedWeapon.lastConsumedAmmo.shootSpeed;
 			damage += chargedWeapon.lastConsumedAmmo.damage;
 			knockback += chargedWeapon.lastConsumedAmmo.knockBack;
@@ -129,15 +155,19 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 
 		float chargeSpeed = shootSpeed * (float)Math.Clamp((float)Charge / ChargeModPlayer.DefaultCharge, 0.5, 1.0);
 		Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * chargeSpeed;
-
+		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(chargedWeapon.innacuracy));
 		modPlayer.ModifyProjectileSpeed(ref velocity);
-		modPlayer.ModifyChargeLevel(ref chargeLevel, player.GetWeaponCrit(item));
-		EntitySource_ItemUse_WithAmmo source = new(player, item, item.useAmmo);
 
-		if (ammoToConsume != AmmoID.None && CanConsumeAmmo(item, player, chargeLevel))
+		modPlayer.ModifyChargeLevel(ref chargeLevel, player.GetWeaponCrit(item));
+		EntitySource_ItemUse_WithAmmo source = new(player, item, ammoToConsume);
+
+		if ((!chargedWeapon.repeatShot || Shots == chargeLevel)
+			&& ammoToConsume != AmmoID.None
+			&& CanConsumeAmmo(item, player, chargeLevel))
 		{
-			if(item.consumable) chargedWeapon.consumeNext = true;
+			if(ContentSamples.ItemsByType[ammoToConsume].consumable) chargedWeapon.consumeNext = true;
 			player.ConsumeItem(ammoToConsume);
+			CombinedHooks.OnConsumeAmmo(player, item, ContentSamples.ItemsByType[ammoToConsume]);
 		}
 
 		ChargedShoot(
@@ -200,7 +230,7 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 		// Place the Prism directly into the player's hand at all times.
 		Projectile.Center = playerHandPos;
 		// The beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
-		Projectile.rotation = Projectile.velocity.ToRotation(); // + MathHelper.PiOver2;
+		Projectile.rotation = Projectile.velocity.ToRotation();
 		Projectile.spriteDirection = Projectile.direction;
 
 		player.ChangeDir(Projectile.direction);
@@ -232,22 +262,35 @@ public abstract class ChargeWeaponHoldout : ModProjectile
 
 	public sealed override bool PreDraw(ref Color lightColor)
 	{
-		DrawSprite(ref lightColor);
-		return false;
-		/*SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+		Player player = Main.player[Projectile.owner];
+
+		if(!drawSelf) return false;
+		//DrawSprite(ref lightColor);
+		if (!SafePreDraw(ref lightColor)) return false;
+
+		if (++Projectile.frameCounter >= ticsPerFrame) {
+			Projectile.frameCounter = 0;
+			if (++Projectile.frame >= Main.projFrames[Projectile.type])
+				Projectile.frame = 0;
+		}
+
+		SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 		Texture2D texture = TextureAssets.Projectile[Type].Value;
 		int frameHeight = texture.Height / Main.projFrames[Projectile.type];
 		int spriteSheetOffset = frameHeight * Projectile.frame;
-		Vector2 sheetInsertPosition = (Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition).Floor();
+		Vector2 sheetInsertPosition = (player.MountedCenter + Vector2.UnitY * player.gfxOffY - Main.screenPosition).Floor();
+		sheetInsertPosition += (new Vector2(texture.Width, 0) / 2).RotatedBy(Projectile.rotation);
+		float rotation = Projectile.rotation - (Projectile.spriteDirection == -1 ? MathHelper.Pi : 0);
 
-		// The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
-		// It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
-		Color drawColor = Color.Green;
-		Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
-		return false;*/
+		Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), lightColor, rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
+		return false;
 	}
+
 	public virtual void SafeSetDefaults() { }
 	public virtual void UpdateAnimation() { }
+	public virtual void ChargingAI(Player player) { }
+	public virtual void ShootingAI(Player player) { }
+	public virtual bool SafePreDraw(ref Color lightColor) => true;
 	public virtual void DrawSprite(ref Color lightColor) { }
 	public virtual void ModifyMuzzleOffset(ref Vector2 muzzleOffset) { }
 	public virtual void ModifyOtherStats(int chargeLevel, Player player, ref int owner, ref float ai0, ref float ai1, ref float ai2) { }

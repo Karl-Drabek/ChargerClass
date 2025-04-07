@@ -1,17 +1,12 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Common.Players;
-using ChargerClass.Common.GlobalProjectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class Bola : ChargeWeapon
+public class Bola : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 99;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 32;
@@ -31,14 +26,11 @@ public class Bola : ChargeWeapon
 		Item.knockBack = 0f;
 		Item.maxStack = 999;
 		Item.consumable = true;
+		shootSelf = true;
 
-		Item.shoot = ModContent.ProjectileType<Projectiles.BolaProjectile>();
+		Item.shoot = ModContent.ProjectileType<BolaHoldout>();
 		Item.shootSpeed = 10f;
-	}
-
-	public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
-	{
-		proj.ai[2] = 30 * chargeLevel;
+		noAmmoProjectile = ModContent.ProjectileType<Projectiles.BolaProjectile>();
 	}
 
 	public override void AddRecipes()

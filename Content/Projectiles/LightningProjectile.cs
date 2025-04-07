@@ -6,6 +6,8 @@ using ChargerClass.Content.DamageClasses;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using System.Linq;
+using Terraria.ID;
+using Mono.Cecil;
 
 // Taken from: https://code.tutsplus.com/how-to-generate-shockingly-good-2d-lightning-effects--gamedev-2681t
 
@@ -62,6 +64,32 @@ public class LightningProjectile : ModProjectile
 			}
 		}
 		Main.player[Projectile.owner].addDPS(Main.npc[(int)Projectile.ai[0]].SimpleStrikeNPC(Projectile.damage, Projectile.position.X > Main.npc[(int)Projectile.ai[0]].position.X ? -1 : 1, damageVariation: true));
+		if(Projectile.ai[2] > 0) Chain(end);
+	}
+
+	public void Chain(Vector2 position) { 
+		NPC closestNPC = null;
+		float sqrMaxDetectDistance = 100_00_00;
+		float currentDistanceSquared = float.MaxValue;
+		for (int k = 0; k < Main.maxNPCs; k++) {
+			NPC target = Main.npc[k];
+			if(target.whoAmI == Projectile.ai[0]) continue;
+			if (Collision.CanHit(position, 1, 1, target.position, 1, 1) && target.CanBeChasedBy()) {
+				float squareDistanceToNPC = Vector2.DistanceSquared(target.Center, position);
+				if (squareDistanceToNPC < sqrMaxDetectDistance) {
+					squareDistanceToNPC = Vector2.DistanceSquared(target.Center, Main.MouseScreen + Main.screenPosition);
+					if (squareDistanceToNPC < currentDistanceSquared) {
+						closestNPC = target;
+						currentDistanceSquared = squareDistanceToNPC;
+					}
+				}
+			}
+		}
+		if (closestNPC is not null) {
+			Projectile projectile = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<LightningProjectile>(), 
+				Projectile.damage, Projectile.knockBack, Projectile.owner, closestNPC.whoAmI, 0f, Projectile.ai[2] - 1);
+			projectile.scale = 2f;
+		}
 	}
 
 

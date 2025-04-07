@@ -1,17 +1,12 @@
-using Microsoft.Xna.Framework;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class CentrifugalGun : ChargeWeapon
+public class CentrifugalGun : ChargedWeapon
 {
-
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 82;
@@ -28,17 +23,14 @@ public class CentrifugalGun : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ProjectileID.PurificationPowder;
+		Item.shoot = ModContent.ProjectileType<CentrifugalGunHoldout>();
 		Item.shootSpeed = 15f;
 		Item.useAmmo = AmmoID.Bullet;
 
-		ticsPerShot = 5;
+		ticsBetweenShots = 5;
+		repeatShot = true;
+		innacuracy = 5;
 
 		Item.noUseGraphic = true;
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
 	}
 }

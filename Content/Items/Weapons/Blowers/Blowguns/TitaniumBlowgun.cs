@@ -1,12 +1,15 @@
 using ChargerClass.Content.Projectiles.Holdouts.Blowers.Blowguns;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 
 public class TitaniumBlowgun : ChargedWeapon
 {
+	public const int CRIT_INCREASE = 12;
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CRIT_INCREASE);
 	public override void SafeSetDefaults()
 	{
 		Item.width = 82;

@@ -41,7 +41,7 @@ public static class Explosions
 		projectile.Resize(height, width);
 	}
 
-	public static void ExplodeCircle(Vector2 position, int explosionRadius, int damage, DamageClass damageType, Entity source, float critChance = 0, float knockback = 0f, bool damageVariation = false, float luck = 0, bool noPlayerInteraction = false)
+	public static void ExplodeCircle(Vector2 position, int explosionRadius, int damage, DamageClass damageType, Entity source, float critChance = 0, float knockback = 0f, bool damageVariation = false, float luck = 0, bool noPlayerInteraction = false, bool redParticles = true)
 	{
 		int distanceSquared = explosionRadius * explosionRadius;
 		for (int k = 0; k < Main.maxNPCs; k++) {
@@ -68,11 +68,13 @@ public static class Explosions
 		{
 			Dust dust = Dust.NewDustDirect(position, 0, 0, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
 			dust.velocity *= 1.4f;
-			dust = Dust.NewDustDirect(position, 0, 0, DustID.Torch, 0f, 0f, 100, default, 3.5f);
-			dust.noGravity = true;
-			dust.velocity *= 7f;
-			dust = Dust.NewDustDirect(position, 0, 0, DustID.Torch, 0f, 0f, 100, default, 1.5f);
-			dust.velocity *= 3f;
+			if(redParticles){
+				dust = Dust.NewDustDirect(position, 0, 0, DustID.Torch, 0f, 0f, 100, default, 3.5f);
+				dust.noGravity = true;
+				dust.velocity *= 7f;
+				dust = Dust.NewDustDirect(position, 0, 0, DustID.Torch, 0f, 0f, 100, default, 1.5f);
+				dust.velocity *= 3f;
+			}
 		}
 	}
 }

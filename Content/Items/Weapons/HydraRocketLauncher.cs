@@ -1,20 +1,14 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Ammo;
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class HydraRocketLauncher : ChargeWeapon
+public class HydraRocketLauncher : ChargedWeapon
 {
-
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 54;
@@ -31,18 +25,15 @@ public class HydraRocketLauncher : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 1f;
 
-		Item.shoot = ModContent.ProjectileType<RocketPodProjectile>();
+		Item.shoot = ModContent.ProjectileType<HydraRocketLauncherHoldout>();
 		Item.shootSpeed = 16f;
 		Item.useAmmo = ModContent.ItemType<RocketPod>();
 
-		ticsPerShot = 2;
+		ticsBetweenShots = 2;
+		repeatShot = true;
+		innacuracy = 5;
 
 		Item.noUseGraphic = true;
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
 	}
 
 	public override void AddRecipes()

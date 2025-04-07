@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 using Terraria.GameContent;
 using ChargerClass.Common.Players;
+using System.IO;
+using System;
 
 namespace ChargerClass.Content.Items.Ammo.Darts;
 
@@ -31,11 +33,10 @@ public class CustomDart : ModItem
 	{
 		Item.ResearchUnlockCount = 0;
 	}
-
 	public override void SetDefaults()
 	{
-		Item.width = 20;
-		Item.height = 42;
+		Item.width = width;
+		Item.height = tailHeight + payloadHeight + tipHeight;
 		Item.DamageType = ChargerDamageClass.Instance;
 		Item.maxStack = 999;
 		Item.consumable = true;
@@ -45,33 +46,62 @@ public class CustomDart : ModItem
 
 		ComponentTypes = new int[3];
 	}
-
 	public void ResetDefaults(DartComponent tail, DartComponent payload, DartComponent tip)
 	{
 		Tail = tail;
 		Payload = payload;
 		Tip = tip;
 
-		ComponentTypes[0] = Tail.Item.type;
-		ComponentTypes[1] = Payload.Item.type;
-		ComponentTypes[2] = Tip.Item.type;
+		ComponentTypes[0] = tail.Item.type;
+		ComponentTypes[1] = payload.Item.type;
+		ComponentTypes[2] = tip.Item.type;
+		syncComponents();
 
-		Item.shootSpeed = tail.Item.shootSpeed;
-		Item.damage = tip.Item.damage;
-		Item.knockBack = tip.Item.knockBack;
-		Item.rare = tail.Item.rare > payload.Item.rare ? tail.Item.rare : payload.Item.rare;
-		Item.rare = Item.rare > tip.Item.rare ? Item.rare : tip.Item.rare;
-		Item.value = tail.Item.value + payload.Item.value + tip.Item.value;
+		InternalResetDefaults();
+	}
+	public void ResetDefaults()
+	{
+		var tail = new Item();
+		tail.SetDefaults(ComponentTypes[0]);
+		Tail = tail.ModItem as DartComponent;
+		var payload = new Item();
+		payload.SetDefaults(ComponentTypes[1]);
+		Payload = payload.ModItem as DartComponent;
+		var tip = new Item();
+		tip.SetDefaults(ComponentTypes[2]);
+		Tip = tip.ModItem as DartComponent;
 
-		pen = ((DartComponent)tip.Item.ModItem).Pen;
+		InternalResetDefaults();
 	}
 
-	public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
-	{
-		ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
-		modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
-		modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
-		modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
+	private void InternalResetDefaults(){
+		Item.shootSpeed = Tail.Item.shootSpeed;
+		Item.damage = Tip.Item.damage;
+		Item.knockBack = Tip.Item.knockBack;
+		Item.rare = Tail.Item.rare > Payload.Item.rare ? Tail.Item.rare : Payload.Item.rare;
+		Item.rare = Item.rare > Tip.Item.rare ? Item.rare : Tip.Item.rare;
+		Item.value = Tail.Item.value + Payload.Item.value + Tip.Item.value;
+
+		pen = ((DartComponent)Tip.Item.ModItem).Pen;
+		
+		Item.NetStateChanged();
+	}
+
+	public override void NetSend(BinaryWriter writer){
+		writer.Write(ComponentTypes[0]);
+		writer.Write(ComponentTypes[1]);
+		writer.Write(ComponentTypes[2]);
+	}
+
+	public override void NetReceive(BinaryReader reader){
+		ComponentTypes[0] = reader.ReadInt32();
+		ComponentTypes[1] = reader.ReadInt32();
+		ComponentTypes[2] = reader.ReadInt32();
+		ResetDefaults();
+	}
+
+	public void syncComponents(){
+		NetMessage.SendData(MessageID.SyncItem, -1, -1, null, Item.whoAmI, 1f);
 	}
 
 	public override void SaveData(TagCompound tag)
@@ -82,14 +112,17 @@ public class CustomDart : ModItem
 	public override void LoadData(TagCompound tag)
 	{
 		ComponentTypes = tag.Get<int[]>("Components");
-		var tail = new Item();
-		tail.SetDefaults(ComponentTypes[0]);
-		var payload = new Item();
-		payload.SetDefaults(ComponentTypes[1]);
-		var tip = new Item();
-		tip.SetDefaults(ComponentTypes[2]);
+		syncComponents();
+		ResetDefaults();
+		syncComponents();
+	}
 
-		ResetDefaults(tail.ModItem as DartComponent, payload.ModItem as DartComponent, tip.ModItem as DartComponent);
+	public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
+	{
+		ChargeModPlayer modPlayer = player.GetModPlayer<ChargeModPlayer>();
+		modPlayer.TailForCustomDart = Tail is null ? 0 : Tail.Type;
+		modPlayer.PayloadForCustomDart = Payload is null ? 0 : Payload.Type;
+		modPlayer.TipForCustomDart = Tip is null ? 0 : Tip.Type;
 	}
 
 	public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -122,7 +155,6 @@ public class CustomDart : ModItem
 			i++;
 		}
 	}
-
 
 	public override bool CanStack(Item source)
 	{
@@ -158,21 +190,22 @@ public class CustomDart : ModItem
 	public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
 	{
 		var origin = new Vector2(width, tipHeight + payloadHeight + tailHeight) / 2;
-		Vector2 position = Item.position;
+		Vector2 position = Item.position + origin;
+		Vector2 normal = new(-(float)Math.Sin(rotation), (float)Math.Cos(rotation));
 
-		int id = Tip is null ? 0 : Tip.Item.type - ModContent.ItemType<Tips.HypodermicNeedle>();
+		int id = Tip is null ? 0 : Tip.DartSheetPlacement;
 		var frame = new Rectangle(id * (width + 2), 0, width, tipHeight);
-		spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+		spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
 
-		position.Y += tipHeight * Item.scale;
-		id = Payload is null ? 0 : Payload.Item.type - ModContent.ItemType<Payloads.DartCannister>();
+		position += normal*(tipHeight * Item.scale);
+		id = Payload is null ? 0 : Payload.DartSheetPlacement;
 		frame = new Rectangle(id * (width + 2), tipHeight + 2, width, payloadHeight);
-		spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+		spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
 
-		position.Y += payloadHeight * Item.scale;
-		id = Tail is null ? 0 : Tail.Item.type - ModContent.ItemType<Tails.FeatheredTail>();
+		position += normal*(payloadHeight * Item.scale);
+		id = Tail is null ? 0 : Tail.DartSheetPlacement;
 		frame = new Rectangle(id * (width + 2), payloadHeight + tipHeight + 4, width, tailHeight);
-		spriteBatch.Draw(texture, position - Main.screenPosition, frame, Color.White, rotation, origin, Item.scale, SpriteEffects.None, 0f);
+		spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
 
 		return false;
 	}

@@ -1,12 +1,15 @@
 using ChargerClass.Content.Projectiles.Holdouts.Blowers.Blowguns;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 
 public class OrichalcumBlowgun : ChargedWeapon
 {
+	public const int DAMAGE_INCREASE = 5;
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DAMAGE_INCREASE);
 	public override void SafeSetDefaults()
 	{
 		Item.width = 84;

@@ -22,6 +22,8 @@ public abstract class ChargedWeapon : ModItem
 	public int shootID;
 	public int lastConsumedProjectileType;
 	public Item lastConsumedAmmo;
+	public bool ignoreAmmo = false;
+	public int innacuracy = 0;
 
 	public sealed override void SetStaticDefaults()
 	{
@@ -67,6 +69,7 @@ public abstract class ChargedWeapon : ModItem
 		Item.useAnimation = 10;
 		Item.useTime = 10;
 		repeatShot = false;
+		innacuracy = 0;
 		SafeSetDefaults(); //allows members to set defualts here
 		Item.noMelee = true;
 		Item.channel = true;

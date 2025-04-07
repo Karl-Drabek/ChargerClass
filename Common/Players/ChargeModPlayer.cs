@@ -18,6 +18,8 @@ using Terraria.DataStructures;
 using ChargerClass.Content.Projectiles;
 using static Terraria.NPC;
 using ChargerClass.Content.Items.Acessories;
+using ChargerClass.Content.Projectiles.Holdouts;
+using Terraria.GameContent.Creative;
 
 namespace ChargerClass.Common.Players;
 
@@ -42,6 +44,30 @@ public class ChargeModPlayer : ModPlayer
 	public bool FragmentedQuaser = false;
 
 	public int TailForCustomDart, PayloadForCustomDart, TipForCustomDart;
+
+	private int LungCancer = 0;
+	private int LungCancerTimer = 0;
+	public bool LungCancerBuff = false;
+
+	public void UseKarosene(){
+		if(!(Haler || HasRespirator || HasBreathingAid)){
+			if(++LungCancer > 10){
+				Player.AddBuff(ModContent.BuffType<LungCancer>(), 3600);
+			}
+		}
+	}
+
+	public void UseSteroids(){
+		LungCancer = 0;
+	}
+
+	public override void ModifyNursePrice(NPC nurse, int health, bool removeDebuffs, ref int price){
+		if(removeDebuffs) price += 100 * LungCancer;
+	}
+
+	public override void PostNurseHeal(NPC nurse, int health, bool removeDebuffs, int price){
+		LungCancer = 0;
+	}
 
 	public StatModifier GetChargeAmountModifier()
 	{
@@ -69,7 +95,7 @@ public class ChargeModPlayer : ModPlayer
 			maxCharge += AAABattery.maxChargeIncrease / 100f;
 
 
-		if (Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon) {
+		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon) {
 			if (HasBreathingAid)
 				maxCharge += BreathingAid.StatIncrease / 100f;
 			else if (HasIronLung)
@@ -85,7 +111,7 @@ public class ChargeModPlayer : ModPlayer
 
 	public override float UseTimeMultiplier(Item item)
 	{
-		if (item.ModItem is ChargeWeapon weapon) {
+		if (item.ModItem is ChargedWeapon weapon) {
 			StatModifier speed = StatModifier.Default;
 
 			speed += (FrightfulVoltaicScrapCount + CosmicVoltaicFragmentCount) * 0.05f;
@@ -95,14 +121,16 @@ public class ChargeModPlayer : ModPlayer
 			else if (HasExtensionCord)
 				speed += ExtensionCord.ChargeSpeedIncrease / 100f;
 			else if (HasCharger)
-				speed += Charger.ChargeSpeedIncrease / 100f;
-
+				speed += Content.Items.Acessories.Charger.ChargeSpeedIncrease / 100f;
 
 			if (weapon.blowWeapon) {
 				if (HasBreathingAid)
 					speed += BreathingAid.StatIncrease / 100f;
 				else if (IronDiaphragm)
 					speed += Diaphragm.ChargeSpeedIncrease / 100f;
+				if(LungCancerBuff){
+					speed -= 0.5f;
+				}
 			}
 
 			if (Charge)
@@ -118,33 +146,38 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
 	{
-		if (item.ModItem is not ChargeWeapon chargeWeapon)
-			return;
+		if (item.ModItem is not ChargedWeapon chargeWeapon)return;
+		if(Player.heldProj == -1) return;
+		ChargeWeaponHoldout holdout = Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
+		if(holdout is null) return;
 
 		if (HasChargerEmblem)
 			damage += ChargerEmblem.DamageIncrease / 100f;
 
 		if (chargeWeapon.blowWeapon) {
 			if (HasExhaler)
-				damage += Exhaler.ChargeDamageIncrease / 100f * chargeWeapon.chargeLevel;
+				damage += Exhaler.ChargeDamageIncrease / 100f * holdout.GetChargeLevel(Player);
 			else if (Haler)
-				damage += 0.03f * chargeWeapon.chargeLevel;
+				damage += 0.03f * holdout.GetChargeLevel(Player);
 
 			if (HasRespirator)
 				damage += Respirator.DamageIncrease / 100f;
 			else if (HasBreathingAid)
 				damage += BreathingAid.StatIncrease / 100f;
+
+			if(HydrogenBreath)
+				damage += HydrogenGas.DamageIncrease / 100f;
 		}
 
 		if (HasUltimateChargingGear)
-			damage += UltimateChargingGear.StatIncrease / 100f * chargeWeapon.chargeLevel;
+			damage += UltimateChargingGear.StatIncrease / 100f * holdout.GetChargeLevel(Player);
 		else if (HasShootingGlove)
-			damage += ShootingGlove.ChargeDamageIncrease / 100f * chargeWeapon.chargeLevel;
+			damage += ShootingGlove.ChargeDamageIncrease / 100f * holdout.GetChargeLevel(Player);
 		else if (HasGripTape)
-			damage += GripTape.ChargeDamageIncrease / 100f * chargeWeapon.chargeLevel;
+			damage += GripTape.ChargeDamageIncrease / 100f * holdout.GetChargeLevel(Player);
 
 		if (HasChlorophyteCasque)
-			damage += ChlorophyteCasque.StatIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
+			damage += ChlorophyteCasque.StatIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : holdout.GetChargeLevel(Player));
 
 		if (MechLungSet && chargeWeapon.blowWeapon)
 			damage += MechLung.SetCritChanceIncrease / 100f;
@@ -156,28 +189,30 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ModifyWeaponCrit(Item item, ref float crit)
 	{
-		if (item.ModItem is not ChargeWeapon chargeWeapon)
-			return;
+		if (item.ModItem is not ChargedWeapon chargeWeapon)return;
+		if(Player.heldProj == -1) return;
+		ChargeWeaponHoldout holdout = Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
+		if(holdout is null) return;
 
 		if (HasUltimateChargingGear)
-			crit += UltimateChargingGear.StatIncrease / 100f * chargeWeapon.chargeLevel;
+			crit += UltimateChargingGear.StatIncrease / 100f * holdout.GetChargeLevel(Player);
 		else if (HasTrackingSpecs)
-			crit += TrackingSpecs.CritChanceIncrease / 100f * chargeWeapon.chargeLevel;
+			crit += TrackingSpecs.CritChanceIncrease / 100f * holdout.GetChargeLevel(Player);
 		else if (HasRedDot)
-			crit += RedDot.CritChanceIncrease / 100f * chargeWeapon.chargeLevel;
+			crit += RedDot.CritChanceIncrease / 100f * holdout.GetChargeLevel(Player);
 
 		if (HasChaosPlate)
-			crit += ChaosPlate.ChargeCritChanceIncreasePerLevel * ((chargeWeapon.chargeLevel > ChaosPlate.MaxCritIncrease) ? ChaosPlate.MaxCritIncrease : chargeWeapon.chargeLevel);
+			crit += ChaosPlate.ChargeCritChanceIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChaosPlate.MaxCritIncrease) ? ChaosPlate.MaxCritIncrease : holdout.GetChargeLevel(Player));
 		if (CobaltArmorSet)
-			crit += CobaltCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > CobaltCasque.MaxCritIncrease) ? CobaltCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
+			crit += CobaltCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > CobaltCasque.MaxCritIncrease) ? CobaltCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
 		if (MythrilArmorSet)
-			crit += MythrilCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > MythrilCasque.MaxCritIncrease) ? MythrilCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
+			crit += MythrilCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > MythrilCasque.MaxCritIncrease) ? MythrilCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
 		if (AdamantiteArmorSet)
-			crit += AdamantiteCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > AdamantiteCasque.MaxCritIncrease) ? AdamantiteCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
+			crit += AdamantiteCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > AdamantiteCasque.MaxCritIncrease) ? AdamantiteCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
 		if (HasChlorophyteCasque)
-			crit += ChlorophyteCasque.StatIncreasePerLevel * ((chargeWeapon.chargeLevel > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : chargeWeapon.chargeLevel);
+			crit += ChlorophyteCasque.StatIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : holdout.GetChargeLevel(Player));
 		if (HallowedArmorSet)
-			crit += HallowedCasque.SetCritIncreasePerLevel * ((chargeWeapon.chargeLevel > HallowedCasque.MaxCritIncrease) ? HallowedCasque.MaxCritIncrease : chargeWeapon.chargeLevel);
+			crit += HallowedCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > HallowedCasque.MaxCritIncrease) ? HallowedCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
 
 		if (MechLungSet && chargeWeapon.blowWeapon)
 			crit += MechLung.SetCritChanceIncrease / 100f;
@@ -187,7 +222,7 @@ public class ChargeModPlayer : ModPlayer
 
 	public void ModifyProjectileSpeed(ref Vector2 velocity)
 	{
-		if (Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon) {
+		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon) {
 			if (HasExhaler || Haler)
 				velocity *= 1 + Exhaler.ChargeVelocityIncrease / 100f;
 			if (MechLungSet)
@@ -228,7 +263,7 @@ public class ChargeModPlayer : ModPlayer
 
 	public void RepositorySuccess(int totalCharge)
 	{
-		if (Player.HeldItem.ModItem is ChargeWeapon weapon) {
+		if (Player.HeldItem.ModItem is ChargedWeapon weapon) {
 			weapon.bonusCharge += (int)(totalCharge * ChargeRepository.RetainedCharge / 100f);
 		}
 	}
@@ -303,7 +338,7 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ProcessTriggers(TriggersSet triggersSet)
 	{
-		if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargeWeapon weapon && weapon.blowWeapon && (Inhaler || Haler) && !LightHeaded) {
+		if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon && (Inhaler || Haler) && !LightHeaded) {
 			Player.AddBuff(ModContent.BuffType<LightHeaded>(), 1200); //debuff to stop the player from using the ability for a 20 seconds.
 			weapon.bonusCharge += GetMaxCharge();
 		}
@@ -330,7 +365,7 @@ public class ChargeModPlayer : ModPlayer
 		SecretStimulants = HasUltimateChargingGear = Haler = HasChargerEmblem = OverCritter = HydrogenBreath = false; //reset accessory effects.
 		LightHeaded = RadiationSickness = Charge = Impatience = Stamina = RocketStormCooldown = Adrenaline = false; //reset buff effects.
 		FestiveSet = ChaosSet = HasChaosPlate = MechLegs = MechLungSet = MADChest = MADSet =
-		CobaltArmorSet = MythrilArmorSet = AdamantiteArmorSet = false;
+		CobaltArmorSet = MythrilArmorSet = AdamantiteArmorSet = LungCancerBuff = false;
 		MaxCharge = StatModifier.Default;
 	}
 
@@ -341,6 +376,19 @@ public class ChargeModPlayer : ModPlayer
 				Player.lifeRegen = 0;
 			Player.lifeRegenTime = 0;
 			Player.lifeRegen -= 30;
+		}
+		if (LungCancerBuff) {
+			if (Player.lifeRegen > 0)
+				Player.lifeRegen = 0;
+			Player.lifeRegenTime = 0;
+			Player.lifeRegen -= 5;
+		}
+	}
+
+	public override void PreUpdate(){
+		if(++LungCancerTimer > 600){
+			LungCancerTimer = 0;
+			if(LungCancer > 0) --LungCancer;
 		}
 	}
 

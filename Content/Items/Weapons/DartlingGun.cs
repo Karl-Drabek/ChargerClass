@@ -1,20 +1,13 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Items.Ammo;
+using ChargerClass.Content.Projectiles.Holdouts;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class DartlingGun : ChargeWeapon
+public class DartlingGun : ChargedWeapon
 {
-
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 54;
@@ -31,17 +24,14 @@ public class DartlingGun : ChargeWeapon
 		Item.crit = 4;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<MonkeyDartProjectile>();
+		Item.shoot = ModContent.ProjectileType<DartlingGunHoldout>();
 		Item.shootSpeed = 14f;
 		Item.useAmmo = ModContent.ItemType<MonkeyDart>();
 
-		ticsPerShot = 2;
+		ticsBetweenShots = 2;
+		repeatShot = true;
+		innacuracy = 5;
 
 		Item.noUseGraphic = true;
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
 	}
 }

@@ -20,6 +20,7 @@ public class MagesTail : DartComponent
 	}
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		if (Main.rand.NextBool())
 			projectile.ai[2]++;
 		if (projectile.ai[2] < 10)
@@ -32,5 +33,6 @@ public class MagesTail : DartComponent
 		bolt.friendly = true;
 		bolt.hostile = false;
 		projectile.ai[2] = 0;
+		bolt.netUpdate = true;
 	}
 }

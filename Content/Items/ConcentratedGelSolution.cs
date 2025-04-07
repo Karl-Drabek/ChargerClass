@@ -13,8 +13,8 @@ public class ConcentratedGelSolution : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 20;
+		Item.height = 26;
 
 		Item.maxStack = 999;
 		Item.value = Item.sellPrice(0, 0, 0, 12);

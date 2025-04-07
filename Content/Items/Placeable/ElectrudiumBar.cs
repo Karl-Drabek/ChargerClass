@@ -18,8 +18,8 @@ public class ElectrudiumBar : ModItem
 	public override void SetDefaults()
 	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ElectrudiumBar>());
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 30;
+		Item.height = 24;
 		Item.value = Item.sellPrice(0, 0, 20, 0);
 		Item.rare = ItemRarityID.Green;
 	}

@@ -20,7 +20,7 @@ Mods: {
 			}
 
 			Tetnus: {
-				DisplayName: Tetnus
+				DisplayName: Tetanus
 				Description: Didn't someone tell you not to step on nails?
 			}
 
@@ -92,6 +92,26 @@ Mods: {
 			Cursed: {
 				DisplayName: Cursed
 				Description: Mods.ChargerClass.Buffs.Cursed.Description
+			}
+
+			RailRailGunBuff: {
+				DisplayName: Rail Rail Gun Buff
+				Description: Mods.ChargerClass.Buffs.RailRailGunBuff.Description
+			}
+
+			ExampleMountBuff: {
+				DisplayName: Example Mount Buff
+				Description: Mods.ChargerClass.Buffs.ExampleMountBuff.Description
+			}
+
+			ExampleBuff: {
+				DisplayName: Example Buff
+				Description: Mods.ChargerClass.Buffs.ExampleBuff.Description
+			}
+
+			LungCancer: {
+				DisplayName: Lung Cancer
+				Description: Mods.ChargerClass.Buffs.LungCancer.Description
 			}
 		}
 
@@ -216,7 +236,7 @@ Mods: {
 
 			HydrogenGas: {
 				DisplayName: Hydrogen Breath
-				Tooltip: Blowing weapons explode on contact & balloons fly faster and higher (not only does it not do this right now, I can't imagine why we would ever want to do this...)
+				Tooltip: Blowing weapons fly higher and deal +{0}% damage
 			}
 
 			Inhaler: {
@@ -567,12 +587,12 @@ Mods: {
 			}
 
 			Potato: {
-				Tooltip: ""
+				Tooltip: Potatoe Potahto?
 				DisplayName: Potato
 			}
 
 			NectarNail: {
-				Tooltip: ""
+				Tooltip: DisplayName: Nectar Nail
 				DisplayName: Nectar Nail
 			}
 
@@ -593,67 +613,67 @@ Mods: {
 
 			CentrifugalGun: {
 				DisplayName: Centrifugal Gun
-				Tooltip: ""
+				Tooltip: Shoots a barrage of bullets
 			}
 
 			ElectrudiumOre: {
 				DisplayName: Electrudium Ore
-				Tooltip: ""
+				Tooltip: sparks with life
 			}
 
 			ElectrudiumBar: {
 				DisplayName: Electrudium Bar
-				Tooltip: ""
+				Tooltip: Sparks with life
 			}
 
 			AdamantiteBlowgun: {
 				DisplayName: Adamantite Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% damage
 			}
 
 			BlowgunRevolver: {
 				DisplayName: Blowgun Revolver
-				Tooltip: ""
+				Tooltip: Charge Effect:  +{0} knockback, shoots an additional bullet
 			}
 
 			ChlorophyteBlowgun: {
 				DisplayName: Chlorophyte Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect:  +{0}% crit chance, +{1}% damage
 			}
 
 			CobaltBlowgun: {
 				DisplayName: Cobalt Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			HallowedBlowgun: {
 				DisplayName: Hallowed Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance, +{1}% damage
 			}
 
 			MythrilBlowgun: {
 				DisplayName: Mythril Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			OrichalcumBlowgun: {
 				DisplayName: Orichalcum Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% damage
 			}
 
 			PalladiumBlowgun: {
 				DisplayName: Palladium Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% damage
 			}
 
 			PhantomBlowgun: {
 				DisplayName: Phantom Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect:  +{0}% crit chance, +{1}% damage
 			}
 
 			TitaniumBlowgun: {
 				DisplayName: Titanium Blowgun
-				Tooltip: ""
+				Tooltip: Charge Effect: +{0}% crit chance
 			}
 
 			CustomDart: {
@@ -687,7 +707,7 @@ Mods: {
 
 			DartAssemblyStation: {
 				DisplayName: Dart Assembly Station
-				Tooltip: ""
+				Tooltip: Used to assemble unique darts
 			}
 
 			ChargerEmblem: {
@@ -787,7 +807,7 @@ Mods: {
 
 			HolyLightTail: {
 				DisplayName: Holy Light Tail
-				Tooltip: ""
+				Tooltip: Leaves holy swords behind
 			}
 
 			MagesTail: {
@@ -882,12 +902,12 @@ Mods: {
 
 			BasicCircuitry: {
 				DisplayName: Basic Circuitry
-				Tooltip: ""
+				Tooltip: "1000101"
 			}
 
 			ChargedComponents: {
 				DisplayName: Charged Components
-				Tooltip: ""
+				Tooltip: The start of a new age
 			}
 
 			ChargePotion: {
@@ -907,12 +927,12 @@ Mods: {
 
 			DartFrogExtract: {
 				DisplayName: Dart Frog Extract
-				Tooltip: ""
+				Tooltip: Don't drink
 			}
 
 			JellyfishTentacle: {
 				DisplayName: Jellyfish Tentacle
-				Tooltip: ""
+				Tooltip: Careful!
 			}
 
 			OrangeCharge: {
@@ -1117,7 +1137,7 @@ Mods: {
 
 			ChristmasCheer: {
 				DisplayName: Christmas Cheer
-				Tooltip: ""
+				Tooltip: Ho ho ho
 			}
 
 			AdamantiteCasque: {
@@ -1209,7 +1229,7 @@ Mods: {
 
 			YellowCharge: {
 				DisplayName: Yellow Charge
-				Tooltip: ""
+				Tooltip: + 50 charge
 			}
 
 			BunnyGun: {
@@ -1239,7 +1259,7 @@ Mods: {
 
 			DartlingGun: {
 				DisplayName: Dartling Gun
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots more darts
 			}
 
 			RocketPod: {
@@ -1254,22 +1274,22 @@ Mods: {
 
 			BloontoniumBlaster: {
 				DisplayName: Bloontonium Blaster
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots more darts
 			}
 
 			HydraRocketLauncher: {
 				DisplayName: Hydra Rocket Launcher
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots more rockets
 			}
 
 			LaserDartlingGun: {
 				DisplayName: Laser Dartling Gun
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots more lasers
 			}
 
 			RayOfBloon: {
 				DisplayName: Ray Of Bloon
-				Tooltip: ""
+				Tooltip: Charge Effect: Shoots laser for longer
 			}
 
 			TeslaCoil: {
@@ -1334,7 +1354,7 @@ Mods: {
 
 			LunarBlowgun: {
 				DisplayName: Lunar Blowgun
-				Tooltip: ""
+				Tooltip: +{0}% crit chance, +{1}% damage, +{2} knockback
 			}
 
 			HydrantHoser: {
@@ -1349,12 +1369,32 @@ Mods: {
 
 			TestChargeWeapon: {
 				DisplayName: Test Charge Weapon
-				Tooltip: ""
+				Tooltip: Still testing
 			}
 
 			WoodSlingshotTest: {
 				DisplayName: Wood Slingshot Test
 				Tooltip: ""
+			}
+
+			ExampleMountItem: {
+				DisplayName: Example Mount Item
+				Tooltip: Just an example
+			}
+
+			ExampleItem: {
+				DisplayName: Example Item
+				Tooltip: Just an example
+			}
+
+			Kerosene: {
+				DisplayName: Kerosene
+				Tooltip: Warning: Known to cause lung cancer
+			}
+
+			Steroids: {
+				DisplayName: Salve
+				Tooltip: Helps prevent lung cancer
 			}
 		}
 
@@ -1452,6 +1492,44 @@ Mods: {
 			BagpipeBlasterHoldout.DisplayName: Bagpipe Blaster Holdout
 			BalloonHoldout.DisplayName: Balloon Holdout
 			TronboneHoldout.DisplayName: Tronbone Holdout
+			AirgunHoldout.DisplayName: Airgun Holdout
+			BellowsHoldout.DisplayName: Bellows Holdout
+			BloontoniumBlasterHoldout.DisplayName: Bloontonium Blaster Holdout
+			BolaHoldout.DisplayName: Bola Holdout
+			BunnyGunHoldout.DisplayName: Bunny Gun Holdout
+			CentrifugalGunHoldout.DisplayName: Centrifugal Gun Holdout
+			CompoundBowHoldout.DisplayName: Compound Bow Holdout
+			DartlingGunHoldout.DisplayName: Dartling Gun Holdout
+			DragonsBreathHoldout.DisplayName: Dragons Breath Holdout
+			HandCannonHoldout.DisplayName: Hand Cannon Holdout
+			HydrantHoserHoldout.DisplayName: Hydrant Hoser Holdout
+			HydraRocketLauncherHoldout.DisplayName: Hydra Rocket Launcher Holdout
+			LaserDartlingGunHoldout.DisplayName: Laser Dartling Gun Holdout
+			LongBowHoldout.DisplayName: Long Bow Holdout
+			MegaMortarHoldout.DisplayName: Mega Mortar Holdout
+			MolotovMortarHoldout.DisplayName: Molotov Mortar Holdout
+			NectarNailGunHoldout.DisplayName: Nectar Nail Gun Holdout
+			NikolasObliteratorHoldout.DisplayName: Nikolas Obliterator Holdout
+			PotatoCannonHoldout.DisplayName: Potato Cannon Holdout
+			RailgunHoldout.DisplayName: Railgun Holdout
+			RailRailGunHoldout.DisplayName: Rail Rail Gun Holdout
+			RefractinatorHoldout.DisplayName: Refractinator Holdout
+			RocketBalloonHoldout.DisplayName: Rocket Balloon Holdout
+			RubberbandGunHoldout.DisplayName: Rubberband Gun Holdout
+			RubberbandHoldout.DisplayName: Rubberband Holdout
+			ScorchingScreamHoldout.DisplayName: Scorching Scream Holdout
+			SnailGunHoldout.DisplayName: Snail Gun Holdout
+			SpiderBowHoldout.DisplayName: Spider Bow Holdout
+			SuperSlimerHoldout.DisplayName: Super Slimer Holdout
+			SuperSoakerHoldout.DisplayName: Super Soaker Holdout
+			SupremeCalamariHoldout.DisplayName: Supreme Calamari Holdout
+			TeslaCoilHoldout.DisplayName: Tesla Coil Holdout
+			ConsumingLensHoldout.DisplayName: Consuming Lens Holdout
+			RayOfBloonHoldout.DisplayName: Ray Of Bloon Holdout
+			PremeCalamariHoldout.DisplayName: Preme Calamari Holdout
+			HydrantHoserLaser.DisplayName: Hydrant Hoser Laser
+			RefractinatorLaser.DisplayName: Refractinator Laser
+			RailRailGunLaser.DisplayName: Rail Rail Gun Laser
 		}
 
 		Tiles: {

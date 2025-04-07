@@ -23,6 +23,7 @@ public class BetsysBackwash : DartComponent
 	public override void AI(Projectile projectile, int payloadType)
 	{
 		projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI / 2).ToRotation();
+		if(projectile.owner != Main.myPlayer) return;
 		for (int i = 0; i < 5; i++) {
 			Projectile fireball = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.Center - Vector2.Normalize(projectile.velocity), (Vector2.Normalize(projectile.velocity) * -10).RotatedByRandom(MathHelper.ToRadians(90)), ProjectileID.Fireball, projectile.damage / 25, 0f);
 			fireball.friendly = true;
@@ -31,6 +32,7 @@ public class BetsysBackwash : DartComponent
 			fireball.timeLeft = Main.rand.Next(15, 25);
 			fireball.usesLocalNPCImmunity = true;
 			fireball.localNPCHitCooldown = 10;
+			fireball.netUpdate = true;
 		}
 	}
 }

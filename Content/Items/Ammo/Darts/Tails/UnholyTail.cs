@@ -21,6 +21,7 @@ public class UnholyTail : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		projectile.light = -1f;
 		Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Wraith);
 		dust.noGravity = true;
@@ -32,6 +33,7 @@ public class UnholyTail : DartComponent
 			if (vectorToNPC.X * vectorToNPC.X + vectorToNPC.Y * vectorToNPC.Y < 90_000) {
 				target.velocity = (vectorToNPC + Vector2.Normalize(vectorToNPC) * 450) / 90 * target.knockBackResist;
 				target.AddBuff(ModContent.BuffType<Cursed>(), 300);
+				target.netUpdate = true;
 				dust = Dust.NewDustDirect(target.position, target.width, target.height, DustID.Wraith);
 				dust.noGravity = true;
 				dust.scale = Main.rand.Next(1, 2);

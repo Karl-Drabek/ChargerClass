@@ -1,20 +1,12 @@
-using Microsoft.Xna.Framework;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using ChargerClass.Common.Players;
-using ChargerClass.Common.GlobalProjectiles;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class LaserDartlingGun : ChargeWeapon
+public class LaserDartlingGun : ChargedWeapon
 {
-
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 82;
@@ -31,26 +23,15 @@ public class LaserDartlingGun : ChargeWeapon
 		Item.crit = 12;
 		Item.knockBack = 0f;
 
-		Item.shoot = ProjectileID.RayGunnerLaser;
+		Item.shoot = ModContent.ProjectileType<LaserDartlingGunHoldout>();
 		Item.shootSpeed = 16f;
+		noAmmoProjectile = ProjectileID.RayGunnerLaser;
 
-		ticsPerShot = 2;
+		ticsBetweenShots = 2;
+		repeatShot = true;
+		innacuracy = 5;
 
 		Item.noUseGraphic = true;
-	}
-
-	public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
-	{
-		proj.hostile = false;
-		proj.friendly = true;
-		proj.penetrate = 6;
-		proj.usesLocalNPCImmunity = true;
-		proj.localNPCHitCooldown = 10;
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
 	}
 
 	public override void AddRecipes()

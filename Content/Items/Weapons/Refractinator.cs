@@ -1,16 +1,13 @@
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class Refractinator : ChargeWeapon
+public class Refractinator : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -29,16 +26,8 @@ public class Refractinator : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 1f;
 
-		Item.shoot = ModContent.ProjectileType<RefractinatorProjectile>();
+		Item.shoot = ModContent.ProjectileType<RefractinatorHoldout>();
 		Item.shootSpeed = 15f;
-	}
-
-	public override void AddRecipes()
-	{
-		Recipe recipe = CreateRecipe();
-		recipe.AddIngredient(ModContent.ItemType<SuperSlimer>());
-		recipe.AddIngredient(ModContent.ItemType<ExoticEscargot>());
-		recipe.AddTile(TileID.Anvils);
-		recipe.Register();
+		noAmmoProjectile = ModContent.ProjectileType<RefractinatorLaser>();
 	}
 }

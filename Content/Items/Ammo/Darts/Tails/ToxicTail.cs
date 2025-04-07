@@ -20,6 +20,7 @@ public class ToxicTail : DartComponent
 	}
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10, Main.rand.Next(569, 572), 10, 0);
 	}
 	public override void AddRecipes()

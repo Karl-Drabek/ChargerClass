@@ -1,15 +1,12 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class SpiderBow : ChargeWeapon
+public class SpiderBow : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -28,7 +25,7 @@ public class SpiderBow : ChargeWeapon
 		Item.crit = 8;
 		Item.knockBack = 2f;
 
-		Item.shoot = ProjectileID.WoodenArrowFriendly;
+		Item.shoot = ModContent.ProjectileType<SpiderBowHoldout>();
 		Item.shootSpeed = 16f;
 		Item.useAmmo = AmmoID.Arrow;
 	}

@@ -34,7 +34,7 @@ public class EagleEye : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
-
+		if(projectile.owner != Main.myPlayer) return;
 		NPC closestNPC = Targeting.FindClosestNPC(projectile.position, detectRaidus);
 		if (closestNPC != null) {
 			float directionToNPC = (closestNPC.Center - projectile.Center).ToRotation();
@@ -52,6 +52,7 @@ public class EagleEye : DartComponent
 			Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.TintableDustLighted, default, default, default, Color.Red);
 		}
 		projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
+		projectile.netUpdate = true;
 	}
 
 	public override void AddRecipes()

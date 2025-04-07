@@ -1,15 +1,12 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class SuperSlimer : ChargeWeapon
+public class SuperSlimer : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 24;
@@ -23,15 +20,17 @@ public class SuperSlimer : ChargeWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 31, 0);
 		Item.useTime = 30;
-		ticsPerShot = 3;
+
+		ticsBetweenShots = 4;
+		repeatShot = true;
 
 		Item.damage = 6;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<Projectiles.SuperSlimerProjectile>();
+		Item.shoot = ModContent.ProjectileType<SuperSlimerHoldout>();
 		Item.shootSpeed = 8f;
-		Item.useAmmo = ModContent.ItemType<Items.Ammo.BottledSlime>();
+		Item.useAmmo = ModContent.ItemType<Ammo.BottledSlime>();
 	}
 
 	public override void AddRecipes()

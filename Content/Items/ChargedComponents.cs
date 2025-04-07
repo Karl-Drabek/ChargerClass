@@ -14,8 +14,8 @@ public class ChargedComponents : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 32;
+		Item.height = 40;
 
 		Item.maxStack = 999;
 		Item.value = Item.sellPrice(0, 1, 40, 0);

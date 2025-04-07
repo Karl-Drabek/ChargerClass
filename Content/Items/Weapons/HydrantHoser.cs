@@ -1,20 +1,17 @@
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class HydrantHoser : ChargeWeapon
+public class HydrantHoser : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
-		Item.width = 60;
-		Item.height = 30;
+		Item.width = 64;
+		Item.height = 28;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Yellow;
 
@@ -29,16 +26,8 @@ public class HydrantHoser : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 1f;
 
-		Item.shoot = ModContent.ProjectileType<HydrantHoserProjectile>();
+		Item.shoot = ModContent.ProjectileType<HydrantHoserHoldout>();
 		Item.shootSpeed = 14f;
-	}
-
-	public override void AddRecipes()
-	{
-		Recipe recipe = CreateRecipe();
-		recipe.AddIngredient(ModContent.ItemType<SuperSlimer>());
-		recipe.AddIngredient(ModContent.ItemType<ExoticEscargot>());
-		recipe.AddTile(TileID.Anvils);
-		recipe.Register();
+		noAmmoProjectile = ModContent.ProjectileType<HydrantHoserLaser>();
 	}
 }

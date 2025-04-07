@@ -1,17 +1,14 @@
+using ChargerClass.Content.Items.Weapons.Blowers;
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Weapons.Blowers;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class RocketBalloon : ChargeWeapon
+public class RocketBalloon : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -30,10 +27,13 @@ public class RocketBalloon : ChargeWeapon
 		Item.crit = 10;
 		Item.knockBack = 0f;
 		Item.maxStack = 999;
-		Item.consumable = true;
 
-		Item.shoot = ModContent.ProjectileType<RocketBalloonProjectile>();
-		Item.shootSpeed = 20f;
+		Item.consumable = true;
+		shootSelf = true;
+
+		Item.shoot = ModContent.ProjectileType<RocketBalloonHoldout>();
+		Item.shootSpeed = 14f;
+		noAmmoProjectile = ModContent.ProjectileType<RocketBalloonProjectile>();
 	}
 
 	public override void AddRecipes()

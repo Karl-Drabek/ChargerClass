@@ -5,11 +5,13 @@ using Terraria;
 using Terraria.Enums;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Content.Projectiles.Holdouts;
 
 namespace ChargerClass.Content.Projectiles;
 
 public abstract class LaserProjectile : ModProjectile
 {
+	private const float MAX_DISTANCE = 2200f;
 	public Asset<Texture2D> TextureAsset;
 	public int InitialOffset;
 	public int Spacing;
@@ -17,6 +19,8 @@ public abstract class LaserProjectile : ModProjectile
 	public int TicsPerFrame;
 	private int ticCounter;
 	public int frame;
+
+	public bool collide;
 
 	public float Distance {
 		get => Projectile.ai[0];
@@ -28,6 +32,7 @@ public abstract class LaserProjectile : ModProjectile
 		InitialOffset = 50;
 		TotalFrames = 1;
 		TicsPerFrame = 1;
+		collide = true;
 		SafeSetDefaults();
 		Spacing = 5;
 		Projectile.DamageType = ChargerDamageClass.Instance;
@@ -58,9 +63,10 @@ public abstract class LaserProjectile : ModProjectile
 
 	public override bool PreDraw(ref Color lightColor)
 	{
+		float rotation = Projectile.velocity.ToRotation();
 		Player player = Main.player[Projectile.owner];
 		Vector2 origin = new Vector2(Projectile.width, Projectile.height) / 2;
-		SpriteEffects effects = player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+		SpriteEffects effects = SpriteEffects.None;
 		Vector2 position = player.Center - Main.screenPosition;
 		Color color = GetLaserColor(lightColor);
 		Rectangle? sourceRectangle;
@@ -77,16 +83,16 @@ public abstract class LaserProjectile : ModProjectile
 		sourceRectangle = new Rectangle(Projectile.width, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
 		for (int i = InitialOffset + Spacing; i < Distance; i += Spacing) {
 			offset = Projectile.velocity * i;
-			Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
+			Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, rotation, origin, Projectile.scale, effects);
 		}
 
 		sourceRectangle = new Rectangle(0, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
 		offset = Projectile.velocity * InitialOffset;
-		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
+		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, rotation, origin, Projectile.scale, effects);
 
 		sourceRectangle = new Rectangle(Projectile.width * 2, frame * (Projectile.height + 1), Projectile.width, Projectile.height);
 		offset = Projectile.velocity * Distance;
-		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, Projectile.rotation, origin, Projectile.scale, effects);
+		Main.EntitySpriteDraw(TextureAsset.Value, position + offset, sourceRectangle, color, rotation, origin, Projectile.scale, effects);
 
 		return false;
 	}
@@ -97,6 +103,11 @@ public abstract class LaserProjectile : ModProjectile
 	{
 		Player player = Main.player[Projectile.owner];
 		Projectile.position = player.Center + Projectile.velocity * InitialOffset;
+		if(player.heldProj == -1){
+			Projectile.Kill();
+			return;
+		}
+		((ChargeWeaponHoldout)Main.projectile[player.heldProj].ModProjectile).resetTimer();
 		UpdateProjectile(player);
 		UpdateDistance(player);
 		SpawnDusts(player);
@@ -115,10 +126,13 @@ public abstract class LaserProjectile : ModProjectile
 
 	public void UpdateDistance(Player player)
 	{
-		for (Distance = InitialOffset; Distance <= 2200f; Distance += Spacing) {
-			Vector2 projEnd = player.Center + Projectile.velocity * (Distance + 5f);
-			if (!Collision.CanHitLine(player.Center + InitialOffset * Projectile.velocity, 1, 1, projEnd, 1, 1))
-				break;
+		if (!collide) Distance = MAX_DISTANCE;
+		else{
+			for (Distance = InitialOffset; Distance <= MAX_DISTANCE; Distance += Spacing) {
+				Vector2 projEnd = player.Center + Projectile.velocity * (Distance + 5f);
+				if (!Collision.CanHitLine(player.Center + InitialOffset * Projectile.velocity, 1, 1, projEnd, 1, 1))
+					break;
+			}
 		}
 	}
 

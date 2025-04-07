@@ -1,19 +1,15 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
-using ChargerClass.Common.Players;
-using ChargerClass.Common.GlobalProjectiles;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class Airgun : ChargeWeapon
+public class Airgun : ChargedWeapon
 {
 	public static readonly int CritChanceIncreases = 3;
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CritChanceIncreases);
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 
 	public override void SafeSetDefaults()
 	{
@@ -33,18 +29,8 @@ public class Airgun : ChargeWeapon
 		Item.crit = 1;
 		Item.knockBack = 0f;
 
-		Item.shoot = ProjectileID.PurificationPowder;
+		Item.shoot = ModContent.ProjectileType<AirgunHoldout>();
 		Item.shootSpeed = 10f;
 		Item.useAmmo = AmmoID.Bullet;
-	}
-
-	public override void PostProjectileEffects(Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
-	{
-		chargerProj.CatchCritters = true;
-	}
-
-	public override void SafeModifyWeaponCrit(Player player, ref float crit)
-	{
-		crit += chargeLevel * CritChanceIncreases;
 	}
 }

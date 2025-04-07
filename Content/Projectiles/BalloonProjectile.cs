@@ -30,11 +30,16 @@ public class BalloonProjectile : ModProjectile
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
 
+	public override void AI(){
+		float bias = Projectile.ai[0] * -1 / 5;
+		Projectile.ai[0] += Main.rand.NextFloat(-0.05f + bias, 0.05f + bias);
+		Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.ai[0]);
+	}
+
 	public override void OnKill(int timeLeft)
 	{
-
 		if (timeLeft > 15) {
-			Explosions.ExplodeCircle(Projectile.position, timeLeft - 15, timeLeft - 15, ChargerDamageClass.Instance, Projectile, knockback: (timeLeft - 15) / 3);
+			Explosions.ExplodeCircle(Projectile.position, timeLeft - 15, timeLeft - 15, ChargerDamageClass.Instance, Projectile, knockback: (timeLeft - 15) / 3, redParticles: false);
 		}
 		else {
 			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);

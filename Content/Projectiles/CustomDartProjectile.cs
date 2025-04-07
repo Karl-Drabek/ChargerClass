@@ -8,6 +8,8 @@ using Terraria.DataStructures;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Ammo.Darts;
 using ChargerClass.Common.Players;
+using System.IO;
+using Mono.CompilerServices.SymbolWriter;
 
 namespace ChargerClass.Content.Projectiles;
 
@@ -79,33 +81,43 @@ public class CustomDartProjectile : ModProjectile
 			Tip.ModifyHitNPC(Projectile, target, ref modifiers);
 	}
 
+	public override void SendExtraAI(BinaryWriter writer){
+		if(Tail is null || Tip is null || Payload is null) return;
+		writer.Write(Tail.Item.type);
+		writer.Write(Payload.Item.type);
+		writer.Write(Tip.Item.type);
+	}
+
+	public override void ReceiveExtraAI(BinaryReader reader){
+		int tail = reader.ReadInt32();
+		int payload = reader.ReadInt32();
+		int tip = reader.ReadInt32();
+		resetDefaults(tail, payload, tip);
+	}
+
 	public override void OnSpawn(IEntitySource source)
 	{
-		if (source is EntitySource_ItemUse_WithAmmo useAmmoSource && useAmmoSource.AmmoItemIdUsed == ModContent.ItemType<CustomDart>()) {
+		if(source is EntitySource_ItemUse_WithAmmo useAmmoSource){
+			if(useAmmoSource.Player.whoAmI != Main.myPlayer) return;
 			ChargeModPlayer modPlayer = useAmmoSource.Player.GetModPlayer<ChargeModPlayer>();
-			Tail = (DartComponent)ItemLoader.GetItem(modPlayer.TailForCustomDart);
-			Payload = (DartComponent)ItemLoader.GetItem(modPlayer.PayloadForCustomDart);
-			Tip = (DartComponent)ItemLoader.GetItem(modPlayer.TipForCustomDart);
+			resetDefaults(modPlayer.TailForCustomDart, modPlayer.PayloadForCustomDart, modPlayer.TipForCustomDart);
+		}else{
+			EntitySource_Parent parentSource = source as EntitySource_Parent;
+			CustomDartProjectile customDart = (CustomDartProjectile)((Projectile)((EntitySource_Parent)source).Entity).ModProjectile;
+			resetDefaults(customDart.Tail.Item.type, customDart.Payload.Item.type, customDart.Tip.Item.type);
 		}
-		else if (Projectile.owner >= 0) {
-			ChargeModPlayer modPlayer = Main.player[Projectile.owner].GetModPlayer<ChargeModPlayer>();
-			Tail = (DartComponent)ItemLoader.GetItem(modPlayer.TailForCustomDart);
-			Payload = (DartComponent)ItemLoader.GetItem(modPlayer.PayloadForCustomDart);
-			Tip = (DartComponent)ItemLoader.GetItem(modPlayer.TipForCustomDart);
-		}
+		if (Tail is not null) Tail.OnSpawn(Projectile, source);
+		if (Payload is not null) Payload.OnSpawn(Projectile, source);
+		if (Tip is not null) Tip.OnSpawn(Projectile, source);
+	}
 
-		if (Tip is not null)
-			Projectile.penetrate = Tip.Pen;
-		if (Tail is not null)
-			Projectile.aiStyle = Tail.AIStyle;
+	public void resetDefaults(int tail, int payload, int tip){
+		Tail = (DartComponent)ItemLoader.GetItem(tail);
+		Payload = (DartComponent)ItemLoader.GetItem(payload);
+		Tip = (DartComponent)ItemLoader.GetItem(tip);
 
-
-		if (Tail is not null)
-			Tail.OnSpawn(Projectile, source);
-		if (Payload is not null)
-			Payload.OnSpawn(Projectile, source);
-		if (Tip is not null)
-			Tip.OnSpawn(Projectile, source);
+		if (Tip is not null) Projectile.penetrate = Tip.Pen;
+		if (Tail is not null) Projectile.aiStyle = Tail.AIStyle;
 	}
 
 	public override bool PreDraw(ref Color lightColor)

@@ -22,6 +22,7 @@ public class CropDuster : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10, ModContent.ProjectileType<CropDusterProjectile>(), 1, 0, -1, payloadType);
 	}
 

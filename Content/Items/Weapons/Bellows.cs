@@ -1,16 +1,12 @@
-using Microsoft.Xna.Framework;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class Bellows : ChargeWeapon
+public class Bellows : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 54;
@@ -29,15 +25,13 @@ public class Bellows : ChargeWeapon
 		Item.knockBack = 2f;
 		Item.useTime = 26;
 
-		ticsPerShot = 4;
+		ticsBetweenShots = 4;
+		repeatShot = true;
+		innacuracy = 10;
 
-		Item.shoot = ModContent.ProjectileType<Projectiles.BellowsAirProjectile>();
+		Item.shoot = ModContent.ProjectileType<BellowsHoldout>();
+		noAmmoProjectile = ModContent.ProjectileType<Projectiles.BellowsAirProjectile>();
 		Item.shootSpeed = 6f;
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
 	}
 
 	public override void AddRecipes()

@@ -1,15 +1,12 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class SupremeCalamari : ChargeWeapon
+public class SupremeCalamari : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 26;
@@ -28,8 +25,9 @@ public class SupremeCalamari : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<Projectiles.SupremeCalamariProjectile>();
+		Item.shoot = ModContent.ProjectileType<SupremeCalamariHoldout>();
 		Item.shootSpeed = 20f;
+		noAmmoProjectile = ModContent.ProjectileType<Projectiles.SupremeCalamariProjectile>();
 
 		Item.noUseGraphic = true;
 	}

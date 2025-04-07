@@ -1,17 +1,12 @@
-using Microsoft.Xna.Framework;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class RubberbandGun : ChargeWeapon
+public class RubberbandGun : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 24;
@@ -25,21 +20,18 @@ public class RubberbandGun : ChargeWeapon
 
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 1, 20);
-		ticsPerShot = 8;
 
+		ticsBetweenShots = 8;
+		repeatShot = true;
+		innacuracy = 2;
 
 		Item.damage = 2;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<Projectiles.RubberbandProjectile>();
+		Item.shoot = ModContent.ProjectileType<RubberbandGunHoldout>();
 		Item.shootSpeed = 4f;
-		Item.useAmmo = ModContent.ItemType<Items.Weapons.Rubberband>();
-	}
-
-	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-	{
-		velocity = velocity.RotatedByRandom(MathHelper.ToRadians(2));
+		Item.useAmmo = ModContent.ItemType<Rubberband>();
 	}
 
 	public override void AddRecipes()

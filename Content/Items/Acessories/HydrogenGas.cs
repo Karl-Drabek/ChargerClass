@@ -2,11 +2,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Common.Players;
+using Terraria.Localization;
 
 namespace ChargerClass.Content.Items.Acessories;
 
 public class HydrogenGas : ModItem
 {
+	public static readonly int DamageIncrease = 10;
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
+	
 	public override void SetStaticDefaults()
 	{
 		Item.ResearchUnlockCount = 1;

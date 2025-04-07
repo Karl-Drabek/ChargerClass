@@ -10,8 +10,6 @@ Quality:
     Lighting
 
 Long Term:
-    If player dies dart assembly station ui stays open
-    error with chargeweapon holdout accessing the wrong projectile
     consume ammo effects are not considered by charge weapons
     make debuffs/projectiles work on players/pvp
     update chargeMeter ui
@@ -19,3 +17,5 @@ Long Term:
     Spikyrock projectile
     weapon offset while rotating in not considered by lasers (preme Calamari)
     Update Tootips (including charge effects within ChargeWeapon)
+
+    Lasers don't work with multiple other projectiles. something to do with player.heldProj.

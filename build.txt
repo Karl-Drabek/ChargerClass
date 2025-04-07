@@ -1,5 +1,8 @@
 displayName = ChargerClass
-author = SST
-version = 0.405.8
+author = SST Studios
+version = 0.406.1
 homepage = https://chargerclass.fandom.com/wiki/ChargerClass_Wiki
+hideCode = false
+hideResources = false
 includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Old\*, Test\*

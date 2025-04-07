@@ -1,12 +1,17 @@
 using ChargerClass.Content.Projectiles.Holdouts.Blowers.Blowguns;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 
 public class LunarBlowgun : ChargedWeapon
 {
+	public const int DAMAGE_INCREASE = 8;
+	public const int CRIT_INCREASE = 16;
+	public const int KNOCKBACK_INCREASE = 1;
+	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CRIT_INCREASE, DAMAGE_INCREASE, KNOCKBACK_INCREASE);
 	public override void SafeSetDefaults()
 	{
 		Item.width = 86;

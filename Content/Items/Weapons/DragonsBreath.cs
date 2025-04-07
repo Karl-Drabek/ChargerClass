@@ -1,16 +1,14 @@
+using ChargerClass.Content.Items.Ammo;
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class DragonsBreath : ChargeWeapon
+public class DragonsBreath : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -18,7 +16,7 @@ public class DragonsBreath : ChargeWeapon
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Orange;
 
-		chargeAmount = 500;
+		chargeAmount = 50;
 		Item.useStyle = ItemUseStyleID.Shoot;
 
 		Item.UseSound = SoundID.Item1;
@@ -28,11 +26,14 @@ public class DragonsBreath : ChargeWeapon
 		Item.damage = 80;
 		Item.crit = 0;
 		Item.knockBack = 0f;
-		Item.maxStack = 999;
-		Item.consumable = true;
-		ticsPerShot = 4;
+		Item.maxStack = 1;
+		Item.useAmmo = ModContent.ItemType<Kerosene>();
+		blowWeapon = true;
 
-		Item.shoot = ModContent.ProjectileType<DragonsBreathProjectile>();
+		ticsBetweenShots = 3;
+		repeatShot = true;
+
+		Item.shoot = ModContent.ProjectileType<DragonsBreathHoldout>();
 		Item.shootSpeed = 12f;
 	}
 

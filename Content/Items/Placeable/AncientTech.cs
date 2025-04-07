@@ -15,8 +15,8 @@ public class AncientTech : ModItem
 	public override void SetDefaults()
 	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.AncientTech>());
-		Item.width = 12;
-		Item.height = 12;
+		Item.width = 20;
+		Item.height = 35;
 		Item.value = Item.sellPrice(0, 1, 10, 0);
 		Item.rare = ItemRarityID.Lime;
 	}

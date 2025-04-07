@@ -87,12 +87,13 @@ public class DartAssemblyStationTile : ModTile
 
 		if (TileUtils.TryGetTileEntityAs(i, j, out DartAssemblyStationTileEntity AssemblyStation))
 		{
+			if(AssemblyStation.inUse) return false;
 			TileEntity.BasicOpenCloseInteraction(player, i * 16, j * 16, AssemblyStation.ID);
 			DartAssemblyStationUISystem.Instance.ShowUI();
 			DartAssemblyStationUISystem.Instance.DartAssemblyState.dartStation = AssemblyStation;
 			DartAssemblyStationUISystem.Instance.DartAssemblyState.UpdateItems(AssemblyStation.ComponentTypes, AssemblyStation.ComponentCounts);
 			AssemblyStation.inUse = true;
-			AssemblyStation.netUpdate();
+			AssemblyStation.SendToServer();
 		}
 		return true;
 	}

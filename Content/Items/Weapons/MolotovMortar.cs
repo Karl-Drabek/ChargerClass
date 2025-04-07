@@ -1,15 +1,12 @@
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class MolotovMortar : ChargeWeapon
+public class MolotovMortar : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
-
 	public override void SafeSetDefaults()
 	{
 		Item.width = 58;
@@ -28,9 +25,10 @@ public class MolotovMortar : ChargeWeapon
 		Item.knockBack = 0f;
 		Item.useTime = 48;
 
-		ticsPerShot = 10;
+		ticsBetweenShots = 2;
+		repeatShot = true;
 
-		Item.shoot = ProjectileID.MolotovCocktail;
+		Item.shoot = ModContent.ProjectileType<MolotovMortarHoldout>();
 		Item.shootSpeed = 5f;
 		Item.useAmmo = ItemID.MolotovCocktail;
 	}

@@ -53,7 +53,8 @@ class ChargeMeter : UIState
 
 		Player player = Main.CurrentPlayer;
 		float totalCharge;
-		if(player.heldProj == -1) totalCharge = chargeWeapon.bonusCharge;
+		if(player.heldProj == -1 
+		|| (Main.projectile[player.heldProj].ModProjectile as ChargeWeaponHoldout is null)) totalCharge = chargeWeapon.bonusCharge;
 		else totalCharge = ((ChargeWeaponHoldout)Main.projectile[player.heldProj].ModProjectile).Charge;
 
 		int MaxCharge = player.GetModPlayer<ChargeModPlayer>().GetMaxCharge();

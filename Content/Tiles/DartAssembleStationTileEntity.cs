@@ -15,13 +15,16 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 
 	public void UpdateData()
 	{
-		ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
-		ComponentCounts = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentCounts;
-		netUpdate();
+		if(DartAssemblyStationUISystem.Instance.DartAssemblyState is not null){
+			ComponentTypes = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentTypes;
+			ComponentCounts = DartAssemblyStationUISystem.Instance.DartAssemblyState.ComponentCounts;
+			SendToServer();
+		}
 	}
 
-	public void netUpdate(){
-		NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID, Position.X, Position.Y);
+	public void ServerUpdate(){
+		if(Main.netMode == NetmodeID.Server)
+			NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
 	}
 
 	public override void NetReceive(BinaryReader reader) {
@@ -44,6 +47,22 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 		writer.Write(ComponentCounts[2]);
 	}
 
+	public void SendToServer(){
+		if(Main.netMode == NetmodeID.MultiplayerClient){
+			ModPacket packet = Mod.GetPacket();
+			packet.Write((byte)ChargerClass.ChargerClass.MessageType.DartAssemblyStationSync);
+			packet.Write(ID); // id
+			packet.Write(inUse);
+			packet.Write(ComponentTypes[0]);
+			packet.Write(ComponentTypes[1]);
+			packet.Write(ComponentTypes[2]);
+			packet.Write(ComponentCounts[0]);
+			packet.Write(ComponentCounts[1]);
+			packet.Write(ComponentCounts[2]);
+			packet.Send();
+		}
+	}
+
 	public override void SaveData(TagCompound tag)
 	{
 		UpdateData();
@@ -56,16 +75,10 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 		ComponentTypes = tag.Get<int[]>("Types");
 		ComponentCounts = tag.Get<int[]>("Counts");
 		inUse = false;
-		netUpdate();
+		ServerUpdate();
 	}
 
-	public override void OnNetPlace()
-	{
-		if (Main.netMode == NetmodeID.Server)
-		{
-			NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
-		}
-	}
+	public override void OnNetPlace() { ServerUpdate(); }
 
 	public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alterate)
 	{

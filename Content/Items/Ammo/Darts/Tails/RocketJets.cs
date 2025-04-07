@@ -31,6 +31,7 @@ public class RocketJets : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI / 2).ToRotation();
 		Vector2 particleVect = projectile.velocity / -4;
 		Dust.NewDustPerfect(projectile.Center, DustID.Torch, particleVect.RotatedByRandom(MathHelper.ToRadians(10)) * Main.rand.NextFloat(1f, 1.1f), 100, default, 1f);
@@ -44,6 +45,7 @@ public class RocketJets : DartComponent
 			if (++projectile.ai[2] % 20 == 0)
 				projectile.penetrate++;
 		}
+		projectile.netUpdate = true;
 	}
 
 	public override void AddRecipes()

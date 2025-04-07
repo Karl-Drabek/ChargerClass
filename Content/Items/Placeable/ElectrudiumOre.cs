@@ -19,8 +19,8 @@ public class ElectrudiumOre : ModItem
 	public override void SetDefaults()
 	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.ElectrudiumOre>());
-		Item.width = 12;
-		Item.height = 12;
+		Item.width = 16;
+		Item.height = 16;
 		Item.value = Item.sellPrice(0, 0, 5, 0);
 		Item.rare = ItemRarityID.Green;
 	}

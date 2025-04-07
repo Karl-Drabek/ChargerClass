@@ -21,6 +21,7 @@ public class HolyLightTail : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		if (projectile.ai[2]++ > 10) {
 			projectile.ai[2] = 0;
 			Projectile.NewProjectileDirect(projectile.GetSource_FromThis(), projectile.position, Vector2.Normalize(projectile.velocity).RotatedBy(MathHelper.ToRadians(90 * (Main.rand.NextBool() ? -1 : 1))) * 3, ModContent.ProjectileType<HolyCrossProjectile>(), projectile.damage, 0);

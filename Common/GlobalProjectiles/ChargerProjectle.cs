@@ -12,15 +12,17 @@ using ChargerClass.Common.Extensions;
 using ChargerClass.Content.Items.Acessories;
 using ChargerClass.Content.Items.Weapons.Crossbows;
 using ChargerClass.Content.Items.Weapons.Slingshots;
+using System.Reflection.Metadata;
 
 namespace ChargerClass.Common.GlobalProjectiles;
 
 public class ChargerProjectile : GlobalProjectile
 {
+	public const float GRAVITY = 0.35f;
 	public override bool InstancePerEntity => true; //Needed for GlobalProjectile for some reason.
 
 	public int Repository, BeeAttempts, LeatherGloveChargeLevel, ExplosionSize;
-	public bool Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled, PenOnCrit, CatchCritters, Hydrogenized, BossBonus, SpawnRockets, RainSpeed, IceOnDeath;
+	public bool Frostburn, Hellfire, Confused, Electrified, Bleeding, Tetnus, Chilled, PenOnCrit, CatchCritters, Hydrogenized, BossBonus, SpawnRockets, RainSpeed, IceOnDeath, Venomous;
 	public bool _inWater = false;
 	public int GoldBonusCount, TinCanChance;
 	Player sourcePlayer;
@@ -51,6 +53,7 @@ public class ChargerProjectile : GlobalProjectile
 				this.BossBonus = modProj.BossBonus;
 				this.SpawnRockets = modProj.SpawnRockets;
 				this.IceOnDeath = modProj.IceOnDeath;
+				this.Venomous = modProj.Venomous;
 			}
 			else if (parentSource is EntitySource_ItemUse_WithAmmo ammoSource) {
 				sourcePlayer = ammoSource.Player;
@@ -59,7 +62,7 @@ public class ChargerProjectile : GlobalProjectile
 		}
 		else {
 			TinCanChance = GoldBonusCount = ExplosionSize = Repository = BeeAttempts = LeatherGloveChargeLevel = 0;
-			IceOnDeath = RainSpeed = SpawnRockets = BossBonus = Hydrogenized = CatchCritters = PenOnCrit = Bleeding = Chilled = Tetnus = Bleeding = Frostburn = Hellfire = Confused = Electrified = false;
+			IceOnDeath = RainSpeed = SpawnRockets = BossBonus = Hydrogenized = CatchCritters = PenOnCrit = Bleeding = Chilled = Tetnus = Bleeding = Frostburn = Hellfire = Confused = Electrified = Venomous = false;
 		}
 	}
 
@@ -75,8 +78,10 @@ public class ChargerProjectile : GlobalProjectile
 				projectile.velocity /= CopperCrossbow.VelocityChangeRain / 100f;
 			}
 		}
-		if (Hydrogenized)
-			projectile.velocity.Y -= (projectile.velocity.Y - projectile.oldVelocity.Y) / 2;
+		if (Hydrogenized){
+			projectile.velocity.Y -= GRAVITY / 8;
+			Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.MagicMirror, Scale: 0.6f);
+		}
 	}
 
 	public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hitInfo, int damage)
@@ -97,6 +102,10 @@ public class ChargerProjectile : GlobalProjectile
 			target.AddBuff(BuffID.OnFire, 180);
 		if (Confused)
 			target.AddBuff(BuffID.Confused, 240);
+		if(Hydrogenized)
+			target.AddBuff(BuffID.Frostburn, 45);
+		if(Venomous)
+			target.AddBuff(BuffID.Venom, 300);
 
 		if (target.value > 0) {
 			while (GoldBonusCount-- > 0) {

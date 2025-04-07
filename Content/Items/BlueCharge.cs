@@ -22,7 +22,7 @@ public class BlueCharge : ModItem
 
 	public override bool OnPickup(Player player)
 	{
-		if (player.HeldItem.ModItem is ChargeWeapon weapon)
+		if (player.HeldItem.ModItem is ChargedWeapon weapon)
 			weapon.bonusCharge += 200;
 		CombatText.NewText(player.getRect(), new Color(4, 158, 255, 255), 200);
 		return false;

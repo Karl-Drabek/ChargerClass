@@ -21,6 +21,7 @@ public class PixieDuster : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
+		if(projectile.owner != Main.myPlayer) return;
 		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, default, ModContent.ProjectileType<PixieDust>(), 35, 0);
 	}
 

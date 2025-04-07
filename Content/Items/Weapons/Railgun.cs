@@ -1,16 +1,13 @@
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class Railgun : ChargeWeapon
+public class Railgun : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -29,7 +26,8 @@ public class Railgun : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
-		Item.shoot = ModContent.ProjectileType<RailgunLaser>();
-		Item.shootSpeed = 0f;
+		Item.shoot = ModContent.ProjectileType<RailgunHoldout>();
+		Item.shootSpeed = 1f;
+		noAmmoProjectile = ModContent.ProjectileType<RailgunLaser>();
 	}
 }

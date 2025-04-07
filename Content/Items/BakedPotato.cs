@@ -1,5 +1,5 @@
-using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,11 +12,12 @@ public class BakedPotato : ModItem
 	{
 		Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 		Item.ResearchUnlockCount = 5;
-		ItemID.Sets.FoodParticleColors[Item.type] = new Color[3] {
-			new Color(249, 230, 136),
-			new Color(152, 93, 95),
-			new Color(174, 192, 192)
-		};
+		ItemID.Sets.FoodParticleColors[Item.type] =
+		[
+			new(249, 230, 136),
+			new(152, 93, 95),
+			new(174, 192, 192),
+		];
 
 		ItemID.Sets.IsFood[Type] = true; //This allows it to be placed on a plate and held correctly
 	}

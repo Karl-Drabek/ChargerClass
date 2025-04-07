@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System;
+using ChargerClass.Content.Projectiles;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -31,6 +32,7 @@ public class PrismaticTail : DartComponent
 	public override void AI(Projectile projectile, int payloadType)
 	{
 		projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI / 2).ToRotation();
+		if(projectile.owner != Main.myPlayer) return;
 		if (projectile.penetrate <= 1) {
 			Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.PinkTorch : DustID.BlueTorch, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
 			dust.noGravity = true;
@@ -39,17 +41,21 @@ public class PrismaticTail : DartComponent
 		if (projectile.ai[2]++ > 20) {
 			Projectile dart = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, projectile.velocity.RotatedBy(MathHelper.ToRadians(-20)) * 0.75f,
 				projectile.type, projectile.damage, projectile.knockBack, projectile.owner);
+			CustomDartProjectile customDart = dart.ModProjectile as CustomDartProjectile;
+			
 			projectile.ai[2] = 0;
 			dart.penetrate = 1;
 			dart.alpha = 255;
 			dart.timeLeft = 90;
+			dart.netUpdate = true;
 			dart = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, projectile.velocity.RotatedBy(MathHelper.ToRadians(20)) * 0.75f,
 				projectile.type, projectile.damage, projectile.knockBack, projectile.owner);
 			projectile.ai[2] = 0;
 			dart.penetrate = 1;
 			dart.alpha = 255;
 			dart.timeLeft = 90;
-		}
+			dart.netUpdate = true;
+			}
 	}
 
 	public override void AddRecipes()

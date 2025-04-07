@@ -167,6 +167,9 @@ public class ModGlobalNPC : GlobalNPC
 				shop.Add(ModContent.ItemType<DartlingGun>(), Condition.DownedSkeletron);
 				shop.Add(ModContent.ItemType<MonkeyDart>(), Condition.DownedSkeletron);
 				break;
+			case NPCID.WitchDoctor:
+				shop.Add(ModContent.ItemType<Steroids>(), Condition.Hardmode);
+				break;
 
 		}
 	}

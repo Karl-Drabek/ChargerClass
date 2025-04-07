@@ -1,17 +1,14 @@
+using ChargerClass.Content.Items.Placeable;
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class NikolasObliterator : ChargeWeapon
+public class NikolasObliterator : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -30,8 +27,9 @@ public class NikolasObliterator : ChargeWeapon
 		Item.crit = 4;
 		Item.knockBack = 1f;
 
-		Item.shoot = ModContent.ProjectileType<NikolasObliteratorLaser>();
-		Item.shootSpeed = 0f;
+		Item.shoot = ModContent.ProjectileType<NikolasObliteratorHoldout>();
+		Item.shootSpeed = 1f;
+		noAmmoProjectile = ModContent.ProjectileType<NikolasObliteratorLaser>();
 	}
 
 	public override void AddRecipes()

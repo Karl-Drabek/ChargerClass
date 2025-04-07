@@ -1,17 +1,14 @@
+using ChargerClass.Content.Items.Placeable;
+using ChargerClass.Content.Projectiles;
+using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using ChargerClass.Content.Items.Placeable;
 
 namespace ChargerClass.Content.Items.Weapons;
 
-public class MegaMortar : ChargeWeapon
+public class MegaMortar : ChargedWeapon
 {
-	public override void SetStaticDefaults()
-	{
-		Item.ResearchUnlockCount = 1;
-	}
 	public override void SafeSetDefaults()
 	{
 		Item.width = 60;
@@ -30,8 +27,9 @@ public class MegaMortar : ChargeWeapon
 		Item.crit = 0;
 		Item.knockBack = 6f;
 
-		Item.shoot = ModContent.ProjectileType<MegaMortarProjectile>();
+		Item.shoot = ModContent.ProjectileType<MegaMortarHoldout>();
 		Item.shootSpeed = 20f;
+		noAmmoProjectile = ModContent.ProjectileType<MegaMortarProjectile>();
 	}
 
 	public override void AddRecipes()
