@@ -1,5 +1,6 @@
 using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
+using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -25,12 +26,15 @@ public class Airgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 1, 40);
 		Item.useTime = 16;
 
-		Item.damage = 35;
+		Item.damage = 12;
 		Item.crit = 1;
 		Item.knockBack = 0f;
+		Item.scale = 0.75f;
 
 		Item.shoot = ModContent.ProjectileType<AirgunHoldout>();
 		Item.shootSpeed = 10f;
 		Item.useAmmo = AmmoID.Bullet;
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-6f, 4f);
 }

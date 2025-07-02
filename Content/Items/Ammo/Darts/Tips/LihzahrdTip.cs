@@ -14,13 +14,19 @@ public class LihzahrdTip : DartComponent
 		Item.rare = ItemRarityID.White;
 		DartSheetPlacement = 11;
 		Pen = 3;
-		Item.damage = 20;
+		Item.damage = 38;
 		Item.knockBack = 4f;
 	}
 
-	public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier)
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
 	{
-		target.AddBuff(BuffID.Poisoned, 600);
+		target.AddBuff(BuffID.Venom, 600);
 	}
 
 	public override void AddRecipes()

@@ -14,8 +14,19 @@ public class ChlorophyteTip : DartComponent
 		Item.rare = ItemRarityID.Lime;
 		DartSheetPlacement = 8;
 		Pen = 3;
-		Item.damage = 16;
+		Item.damage = 29;
 		Item.knockBack = 3f;
+	}
+
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
+	{
+		target.AddBuff(BuffID.Poisoned, 300);
 	}
 
 	public override void AddRecipes()

@@ -13,8 +13,8 @@ public class DepleatedBloontonium : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 14;
+		Item.height = 24;
 
 		Item.maxStack = 999;
 		Item.value = Item.buyPrice(0, 0, 30, 0);

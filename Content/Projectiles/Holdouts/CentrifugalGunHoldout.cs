@@ -18,4 +18,10 @@ public class CentrifugalGunHoldout : AnimatedChargeWeaponHoldout
 	{
 		Projectile.scale = 0.75f;
 	}
+
+	public override Vector2 HoldoutOffset(){
+		return new Vector2(-16, 12);
+	}
+
+	public override Vector2 GetMuzzleOffset() => new Vector2(56, 8);
 }

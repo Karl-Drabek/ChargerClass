@@ -14,7 +14,7 @@ public class OrichalcumBlowgun : ChargedWeapon
 	{
 		Item.width = 84;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +24,7 @@ public class OrichalcumBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 2, 20, 0);
 		Item.useTime = 28;
 
-		Item.damage = 362;
+		Item.damage = 36;
 		Item.crit = 0;
 		Item.knockBack = 2f;
 

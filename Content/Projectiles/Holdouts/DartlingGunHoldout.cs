@@ -14,4 +14,10 @@ public class DartlingGunHoldout : AnimatedChargeWeaponHoldout
 	{
 		Projectile.scale = 0.75f;
 	}
+
+	public override void ModifyMuzzleOffset(ref Vector2 muzzleOffset)
+	{
+		muzzleOffset *= 40;
+		muzzleOffset += new Vector2(0, 1);
+	}
 }

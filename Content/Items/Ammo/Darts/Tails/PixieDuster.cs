@@ -1,8 +1,8 @@
+using ChargerClass.Content.Projectiles;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using Terraria.DataStructures;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -21,8 +21,16 @@ public class PixieDuster : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
-		if(projectile.owner != Main.myPlayer) return;
-		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, default, ModContent.ProjectileType<PixieDust>(), 35, 0);
+		if (projectile.owner != Main.myPlayer)
+			return;
+		Projectile dust = Projectile.NewProjectileDirect(
+			new EntitySource_Misc("No Desired Inheritance"),
+			projectile.position,
+			default,
+			ModContent.ProjectileType<PixieDust>(),
+			35,
+			0
+		);
 	}
 
 	public override void AddRecipes()

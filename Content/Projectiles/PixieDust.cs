@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 using Terraria.DataStructures;
+using System;
 
 namespace ChargerClass.Content.Projectiles;
 
@@ -25,6 +26,7 @@ public class PixieDust : ModProjectile
 		Projectile.ignoreWater = true;
 		Projectile.tileCollide = true;
 		Projectile.extraUpdates = 0;
+		Projectile.hide = true;
 
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
@@ -35,8 +37,21 @@ public class PixieDust : ModProjectile
 	}
 	public override void AI()
 	{
-		Projectile.velocity.Y = 2.5f;
+		Projectile.velocity.Y = 5f;
 		Projectile.alpha += 1;
 		Projectile.rotation += rotation;
+		if (Main.rand.NextBool(6)){
+			Dust dust = Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.height,
+				Projectile.width,
+				57,
+				Projectile.velocity.X / 4,
+				Projectile.velocity.Y / 4,
+				Scale: Main.rand.NextFloat(1, 2)
+			);
+			dust.scale = Main.rand.NextFloat(0.8f, 1f);
+			//dust.noGravity = true;
+		}
 	}
 }

@@ -1,9 +1,9 @@
+using ChargerClass.Content.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.Projectiles;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -22,8 +22,18 @@ public class CropDuster : DartComponent
 
 	public override void AI(Projectile projectile, int payloadType)
 	{
-		if(projectile.owner != Main.myPlayer) return;
-		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10, ModContent.ProjectileType<CropDusterProjectile>(), 1, 0, -1, payloadType);
+		if (projectile.owner != Main.myPlayer)
+			return;
+		Projectile dust = Projectile.NewProjectileDirect(
+			new EntitySource_Misc("No Desired Inheritance"),
+			projectile.position,
+			Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10,
+			ModContent.ProjectileType<CropDusterProjectile>(),
+			1,
+			0,
+			-1,
+			payloadType
+		);
 	}
 
 	public override void AddRecipes()

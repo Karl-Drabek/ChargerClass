@@ -25,7 +25,7 @@ public class BottledSlime : ModItem
 		Item.knockBack = 1f;
 		Item.value = Item.sellPrice(0, 0, 0, 4);
 		Item.rare = ItemRarityID.White;
-		Item.shoot = ModContent.ProjectileType<Projectiles.SuperSlimerProjectile>();
+		Item.shoot = ProjectileID.SlimeGun;
 
 		Item.ammo = Item.type;
 	}

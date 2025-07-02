@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,6 +30,8 @@ public class Bellows : ChargedWeapon
 		repeatShot = true;
 		innacuracy = 10;
 
+		Item.scale = 0.75f;
+
 		Item.shoot = ModContent.ProjectileType<BellowsHoldout>();
 		noAmmoProjectile = ModContent.ProjectileType<Projectiles.BellowsAirProjectile>();
 		Item.shootSpeed = 6f;
@@ -43,4 +46,6 @@ public class Bellows : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-4f, 3f);
 }

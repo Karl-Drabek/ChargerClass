@@ -1,7 +1,3 @@
-ore bar resist values
-make hydrogen breath work for ballons
-on rubberband gun
-
 Quality:
     Sounds
     Collision.HitTiles();
@@ -9,13 +5,25 @@ Quality:
     Gore
     Lighting
 
-Long Term:
-    consume ammo effects are not considered by charge weapons
-    make debuffs/projectiles work on players/pvp
-    update chargeMeter ui
-    go over projectile code, IgnoreWater?
-    Spikyrock projectile
-    weapon offset while rotating in not considered by lasers (preme Calamari)
-    Update Tootips (including charge effects within ChargeWeapon)
+Problems:
+    Lasers don't work with multiple other projectiles. something to do with player.heldProj
+    Rubberband gun and maybe other weapons dont fire projectiles from the right spot especially when shooting up and down.
+    Lightning doesnt work in multiplayer
 
-    Lasers don't work with multiple other projectiles. something to do with player.heldProj.
+Unfinished:
+    PVP
+    ChargeMeter ui
+    go over projectile code, IgnoreWater?
+    Update Tootips (including charge effects within ChargeWeapon)
+    Lighting.AddLight for colored lighting
+    Finish Lasers
+    ore bar resist values
+    
+Ideas:
+    Coconut gore + drops coconut item
+    Varying damage from debuffs
+    Animate Belows
+    animate tronbone weapon
+    WTF are the rubber band and bola sprites. gotta do something about this.
+    Should the snail gun leave snails after hitting the ground
+    secret stims work with overcritter?

@@ -11,6 +11,8 @@ public class RailgunLaser : LaserProjectile
 	{
 		Projectile.width = 26;
 		Projectile.height = 28;
+		centerWidth = 30;
+		endsWidth = 22;
 		Projectile.timeLeft = 60;
 		InitialOffset = 70;
 		collide = false;

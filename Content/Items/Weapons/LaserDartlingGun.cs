@@ -19,7 +19,7 @@ public class LaserDartlingGun : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 
 		chargeAmount = 180;
-		Item.damage = 94;
+		Item.damage = 15;
 		Item.crit = 12;
 		Item.knockBack = 0f;
 

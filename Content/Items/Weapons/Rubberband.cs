@@ -25,7 +25,7 @@ public class Rubberband : ChargedWeapon
 		Item.useTime = 12;
 		Item.value = Item.sellPrice(0, 0, 0, 1);
 
-		Item.damage = 14;
+		Item.damage = 8;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 		Item.maxStack = 999;

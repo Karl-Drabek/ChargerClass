@@ -14,8 +14,19 @@ public class MeteorTip : DartComponent
 		Item.rare = ItemRarityID.Blue;
 		DartSheetPlacement = 1;
 		Pen = 1;
-		Item.damage = 8;
+		Item.damage = 9;
 		Item.knockBack = 1.5f;
+	}
+
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
+	{
+		target.AddBuff(BuffID.OnFire3, 300);
 	}
 
 	public override void AddRecipes()

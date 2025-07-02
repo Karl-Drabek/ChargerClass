@@ -26,7 +26,7 @@ public class StaminaPotion : ModItem
 	public override void SetDefaults()
 	{
 		Item.width = 20;
-		Item.height = 26;
+		Item.height = 30;
 		Item.useStyle = ItemUseStyleID.DrinkLiquid;
 		Item.useAnimation = 15;
 		Item.useTime = 15;

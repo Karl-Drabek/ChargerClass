@@ -1,8 +1,8 @@
+using ChargerClass.Common.Extensions;
+using ChargerClass.Content.DamageClasses;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Common.Extensions;
-using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads;
 
@@ -19,7 +19,14 @@ public class ExplosiveCannister : DartComponent
 
 	public override void OnKill(Projectile projectile, int timeLeft)
 	{
-		Explosions.ExplodeCircle(projectile.position, 100, 40, ChargerDamageClass.Instance, projectile, knockback: 2f);
+		Explosions.ExplodeCircle(
+			projectile.position,
+			75,
+			55,
+			ChargerDamageClass.Instance,
+			projectile,
+			knockback: 2f
+		);
 	}
 
 	public override void AddRecipes()

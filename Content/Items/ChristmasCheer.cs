@@ -13,8 +13,8 @@ public class ChristmasCheer : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 26;
+		Item.height = 34;
 
 		Item.maxStack = 999;
 		Item.value = Item.sellPrice(0, 0, 0, 10);

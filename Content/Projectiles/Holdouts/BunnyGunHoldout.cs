@@ -10,7 +10,18 @@ namespace ChargerClass.Content.Projectiles.Holdouts;
 public class BunnyGunHoldout : ChargeWeaponHoldout
 {
 	public override void SafeSetDefaults() { }
-	public override bool Shoot(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int chargeLevel)
+
+	public override bool Shoot(
+		Player player,
+		Item item,
+		EntitySource_ItemUse_WithAmmo source,
+		Vector2 position,
+		Vector2 velocity,
+		int type,
+		int damage,
+		float knockback,
+		int chargeLevel
+	)
 	{
 		if (Main.netMode == NetmodeID.SinglePlayer)
 		{
@@ -57,5 +68,10 @@ public class BunnyGunHoldout : ChargeWeaponHoldout
 				_ => NPCID.GemBunnyTopaz,
 			};
 		}
+	}
+
+	public override void ModifyMuzzleOffset(ref Vector2 muzzleOffset){
+		muzzleOffset *= 75;
+		muzzleOffset.Y += 18;
 	}
 }

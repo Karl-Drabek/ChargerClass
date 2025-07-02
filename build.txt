@@ -1,7 +1,7 @@
 displayName = ChargerClass
 author = SST Studios
-version = 0.406.1
-homepage = https://chargerclass.fandom.com/wiki/ChargerClass_Wiki
+version = 0.500.16
+homepage = https://charger-class.fandom.com/wiki/Charger_Class_Wiki
 hideCode = false
 hideResources = false
 includeSource = true

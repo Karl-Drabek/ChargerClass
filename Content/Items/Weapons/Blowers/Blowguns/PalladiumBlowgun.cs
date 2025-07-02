@@ -14,7 +14,7 @@ public class PalladiumBlowgun : ChargedWeapon
 	{
 		Item.width = 84;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +24,7 @@ public class PalladiumBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 1, 60, 0);
 		Item.useTime = 26;
 
-		Item.damage = 334;
+		Item.damage = 33;
 		Item.crit = 0;
 		Item.knockBack = 1f;
 

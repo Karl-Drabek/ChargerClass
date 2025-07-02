@@ -1,5 +1,6 @@
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,8 +11,8 @@ public class ConsumingLens : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 24;
-		Item.height = 32;
+		Item.width = 30;
+		Item.height = 34;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Blue;
 
@@ -40,4 +41,6 @@ public class ConsumingLens : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(4f, 0f);
 }

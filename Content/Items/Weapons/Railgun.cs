@@ -1,3 +1,4 @@
+using ChargerClass.Content.Mounts;
 using ChargerClass.Content.Projectiles;
 using ChargerClass.Content.Projectiles.Holdouts;
 using Terraria;
@@ -22,7 +23,7 @@ public class Railgun : ChargedWeapon
 		Item.value = Item.buyPrice(0, 16, 0, 0);
 		Item.useTime = 36;
 
-		Item.damage = 450;
+		Item.damage = 23;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 

@@ -12,21 +12,27 @@ public abstract class AnimatedChargeWeaponHoldout : ChargeWeaponHoldout
 	public sealed override void SetStaticDefaults()
 	{
 		Main.projFrames[Projectile.type] = 1;
-        SafestSetStaticDefaults();
+		SafestSetStaticDefaults();
 	}
 
 	public sealed override void SafeSetDefaults()
 	{
-        SafestSetDefaults();
+		SafestSetDefaults();
 		drawSelf = true;
 	}
 
 	public override void ChargingAI(Player player)
 	{
-		ticsPerFrame = 30 - (int)Math.Sqrt(784d * ((float)Charge / player.GetModPlayer<ChargeModPlayer>().GetMaxCharge()));
+		ticsPerFrame =
+			30
+			- (int)
+				Math.Sqrt(
+					784d * ((float)Charge / player.GetModPlayer<ChargeModPlayer>().GetMaxCharge())
+				);
 		framesAtShoot = ticsPerFrame;
 		shotsAtShoot = (int)Shots;
-		if (ticsPerFrame < 1) ticsPerFrame = 1;
+		if (ticsPerFrame < 1)
+			ticsPerFrame = 1;
 	}
 
 	public override void ShootingAI(Player player)
@@ -34,6 +40,7 @@ public abstract class AnimatedChargeWeaponHoldout : ChargeWeaponHoldout
 		ticsPerFrame = framesAtShoot + shotsAtShoot - (int)Shots;
 	}
 
-    public virtual void SafestSetStaticDefaults(){}
-    public virtual void SafestSetDefaults(){}
+	public virtual void SafestSetStaticDefaults() { }
+
+	public virtual void SafestSetDefaults() { }
 }

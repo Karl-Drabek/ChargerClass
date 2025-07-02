@@ -22,7 +22,7 @@ public class HydrantHoser : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 5, 0);
 		Item.useTime = 26;
 
-		Item.damage = 355;
+		Item.damage = 29;
 		Item.crit = 0;
 		Item.knockBack = 1f;
 

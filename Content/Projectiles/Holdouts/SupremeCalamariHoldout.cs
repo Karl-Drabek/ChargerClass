@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace ChargerClass.Content.Projectiles.Holdouts;
@@ -13,5 +14,9 @@ public class SupremeCalamariHoldout : AnimatedChargeWeaponHoldout
 	{
 		Projectile.scale = 0.75f;
 	}
+
+	public override Vector2 HoldoutOffset() => new Vector2(-50, 6);
+
+	public override Vector2 GetMuzzleOffset() => new Vector2(50, 0);
 
 }

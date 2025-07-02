@@ -1,5 +1,6 @@
 using ChargerClass.Content.Items.Ammo;
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,4 +37,6 @@ public class BunnyGun : ChargedWeapon
 		Item.useAmmo = ModContent.ItemType<SoulofBunnies>();
 		ignoreAmmo = true;
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-6f, 8f);
 }

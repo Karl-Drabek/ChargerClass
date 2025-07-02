@@ -1,13 +1,11 @@
+using System.Collections.Generic;
+using System.Linq;
+using ChargerClass.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ModLoader;
-using ChargerClass.Content.DamageClasses;
-using System.Collections.Generic;
 using Terraria.DataStructures;
-using System.Linq;
-using Terraria.ID;
-using Mono.Cecil;
+using Terraria.ModLoader;
 
 // Taken from: https://code.tutsplus.com/how-to-generate-shockingly-good-2d-lightning-effects--gamedev-2681t
 
@@ -15,11 +13,14 @@ namespace ChargerClass.Content.Projectiles;
 
 public class LightningProjectile : ModProjectile
 {
-	private static Texture2D LightningTexture = ModContent.Request<Texture2D>("ChargerClass/Content/Projectiles/LightningProjectile").Value;
+	private static Texture2D LightningTexture = ModContent
+		.Request<Texture2D>("ChargerClass/Content/Projectiles/LightningProjectile")
+		.Value;
 	private List<Bolt> Bolts;
 	public const float lightningMaxLength = 1000;
 	private Color color;
 	private float alpha = 1f;
+
 	public override void SetDefaults()
 	{
 		Projectile.width = 1;
@@ -35,103 +36,200 @@ public class LightningProjectile : ModProjectile
 		Projectile.ignoreWater = true;
 		Projectile.tileCollide = true;
 		Projectile.extraUpdates = 0;
+		Projectile.scale = 0.6f;
 	}
+
 	int originalTimeLeft;
+
 	public override void OnSpawn(IEntitySource source)
 	{
 		originalTimeLeft = Projectile.timeLeft;
-		color = Projectile.ai[1] == 1f ? new Color(0, 174, 238) : Color.MediumPurple;
+		color = Projectile.ai[1] switch
+		{
+			0 => Color.Yellow,
+			1 => new Color(0, 174, 238),
+			2 => new Color(0, 174, 238),
+			_ => Color.White,
+		};
 		Vector2 start = Projectile.position;
 		Vector2 end = Main.npc[(int)Projectile.ai[0]].Center;
 		Bolts = new();
 
 		var mainBolt = new Bolt(start, end);
 		Bolts.Add(mainBolt);
-		if (Projectile.ai[1] == 1f) {
+		if (Projectile.ai[1] == 1f || Projectile.ai[1] == 2f)
+		{
 			int numBranches = Main.rand.Next(3, 6);
 			Vector2 diff = end - start;
-			// pick a bunch of random points between 0 and 1 and sort them 
-			float[] branchPoints = Enumerable.Range(0, numBranches)
+			// pick a bunch of random points between 0 and 1 and sort them
+			float[] branchPoints = Enumerable
+				.Range(0, numBranches)
 				.Select(x => Main.rand.NextFloat(0, 1f))
-				.OrderBy(x => x).ToArray();
-			for (int i = 0; i < branchPoints.Length; i++) {
-				// Bolt.GetPoint() gets the position of the lightning bolt at specified fraction (0 = start of bolt, 1 = end) 
+				.OrderBy(x => x)
+				.ToArray();
+			for (int i = 0; i < branchPoints.Length; i++)
+			{
+				// Bolt.GetPoint() gets the position of the lightning bolt at specified fraction (0 = start of bolt, 1 = end)
 				Vector2 boltStart = mainBolt.GetPoint(branchPoints[i]);
-				// rotate 30 degrees. Alternate between rotating left and right. 
-				Quaternion rot = Quaternion.CreateFromAxisAngle(Vector3.UnitZ, MathHelper.ToRadians(30 * ((i & 1) == 0 ? 1 : -1)));
-				Vector2 boltEnd = Vector2.Transform(diff * (1 - branchPoints[i]) * Main.rand.NextFloat(0.25f, 0.75f), rot) + boltStart;
+				// rotate 30 degrees. Alternate between rotating left and right.
+				Quaternion rot = Quaternion.CreateFromAxisAngle(
+					Vector3.UnitZ,
+					MathHelper.ToRadians(30 * ((i & 1) == 0 ? 1 : -1))
+				);
+				Vector2 boltEnd =
+					Vector2.Transform(
+						diff * (1 - branchPoints[i]) * Main.rand.NextFloat(0.25f, 0.75f),
+						rot
+					) + boltStart;
 				Bolts.Add(new Bolt(boltStart, boltEnd));
 			}
 		}
-		Main.player[Projectile.owner].addDPS(Main.npc[(int)Projectile.ai[0]].SimpleStrikeNPC(Projectile.damage, Projectile.position.X > Main.npc[(int)Projectile.ai[0]].position.X ? -1 : 1, damageVariation: true));
-		if(Projectile.ai[2] > 0) Chain(end);
+		Main.player[Projectile.owner]
+			.addDPS(
+				Main.npc[(int)Projectile.ai[0]]
+					.SimpleStrikeNPC(
+						Projectile.damage,
+						Projectile.position.X > Main.npc[(int)Projectile.ai[0]].position.X ? -1 : 1,
+						damageVariation: true
+					)
+			);
+		if (Projectile.ai[2] > 0)
+			Chain(end);
 	}
 
-	public void Chain(Vector2 position) { 
+	public void Chain(Vector2 position)
+	{
 		NPC closestNPC = null;
 		float sqrMaxDetectDistance = 100_00_00;
 		float currentDistanceSquared = float.MaxValue;
-		for (int k = 0; k < Main.maxNPCs; k++) {
+		for (int k = 0; k < Main.maxNPCs; k++)
+		{
 			NPC target = Main.npc[k];
-			if(target.whoAmI == Projectile.ai[0]) continue;
-			if (Collision.CanHit(position, 1, 1, target.position, 1, 1) && target.CanBeChasedBy()) {
+			if (target.whoAmI == Projectile.ai[0])
+				continue;
+			if (Collision.CanHit(position, 1, 1, target.position, 1, 1) && target.CanBeChasedBy())
+			{
 				float squareDistanceToNPC = Vector2.DistanceSquared(target.Center, position);
-				if (squareDistanceToNPC < sqrMaxDetectDistance) {
-					squareDistanceToNPC = Vector2.DistanceSquared(target.Center, Main.MouseScreen + Main.screenPosition);
-					if (squareDistanceToNPC < currentDistanceSquared) {
+				if (squareDistanceToNPC < sqrMaxDetectDistance)
+				{
+					squareDistanceToNPC = Vector2.DistanceSquared(
+						target.Center,
+						Main.MouseScreen + Main.screenPosition
+					);
+					if (squareDistanceToNPC < currentDistanceSquared)
+					{
 						closestNPC = target;
 						currentDistanceSquared = squareDistanceToNPC;
 					}
 				}
 			}
 		}
-		if (closestNPC is not null) {
-			Projectile projectile = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<LightningProjectile>(), 
-				Projectile.damage, Projectile.knockBack, Projectile.owner, closestNPC.whoAmI, 0f, Projectile.ai[2] - 1);
-			projectile.scale = 2f;
+		if (closestNPC is not null)
+		{
+			Projectile projectile = Projectile.NewProjectileDirect(
+				Projectile.GetSource_FromThis(),
+				position,
+				Vector2.Zero,
+				ModContent.ProjectileType<LightningProjectile>(),
+				Projectile.damage,
+				Projectile.knockBack,
+				Projectile.owner,
+				closestNPC.whoAmI,
+				0f,
+				Projectile.ai[2] - 1
+			);
 		}
 	}
-
 
 	public override void AI()
 	{
 		alpha = (float)Projectile.timeLeft / originalTimeLeft;
+		if (Bolts is not null)
+			foreach (Bolt bolt in Bolts)
+				bolt.castLight(new Color(color.R, color.B, color.G, alpha) * alpha);
 	}
 
 	public override bool PreDraw(ref Color lightColor)
 	{
 		if (Bolts is not null)
 			foreach (Bolt bolt in Bolts)
-				bolt.Draw(color * alpha, Projectile.scale);
+				bolt.Draw(new Color(color.R, color.B, color.G, alpha) * alpha, Projectile.scale);
 		return false;
 	}
+
 	class Segment
 	{
 		public Vector2 StartPos;
 		public Vector2 EndPos;
+
 		public Segment(Vector2 startPos, Vector2 endPos)
 		{
 			StartPos = startPos;
 			EndPos = endPos;
 		}
+
 		public void Draw(Color color, float scale)
 		{
-			Vector2 tangent = EndPos - StartPos;
+			Vector2 tangent = StartPos - EndPos;
+			Vector2 normal = tangent;
+			normal.Normalize();
 			float rotation = tangent.ToRotation();
 			Vector2 newScale = new Vector2(tangent.Length(), scale);
 
-			Main.EntitySpriteDraw(LightningTexture, StartPos - Main.screenPosition, new Rectangle(2, 0, 1, LightningTexture.Width), color, rotation, Vector2.Zero, newScale, SpriteEffects.None, 0f);
-			Main.EntitySpriteDraw(LightningTexture, StartPos - Main.screenPosition, new Rectangle(0, 0, 2, LightningTexture.Width), color, rotation, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			Main.EntitySpriteDraw(LightningTexture, EndPos - Main.screenPosition, new Rectangle(0, 0, 2, LightningTexture.Width), color, rotation, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, 0f);
+			Main.EntitySpriteDraw(
+				LightningTexture,
+				EndPos - Main.screenPosition,
+				new Rectangle(2, 0, 1, LightningTexture.Height),
+				color,
+				rotation,
+				Vector2.Zero,
+				newScale,
+				SpriteEffects.None,
+				0f
+			);
+			Main.EntitySpriteDraw(
+				LightningTexture,
+				StartPos - Main.screenPosition,
+				new Rectangle(0, 0, 2, LightningTexture.Height),
+				color,
+				rotation,
+				Vector2.Zero,
+				scale,
+				SpriteEffects.FlipHorizontally,
+				0f
+			);
+			Main.EntitySpriteDraw(
+				LightningTexture,
+				EndPos - Main.screenPosition - normal * scale * 2,
+				new Rectangle(0, 0, 2, LightningTexture.Height),
+				color,
+				rotation,
+				Vector2.Zero,
+				scale,
+				SpriteEffects.None,
+				0f
+			);
 
 			DelegateMethods.v3_1 = color.ToVector3();
-			Utils.PlotTileLine(StartPos, EndPos, LightningTexture.Height * 6, DelegateMethods.CastLight);
+			/*Utils.PlotTileLine(
+				StartPos,
+				EndPos,
+				LightningTexture.Height * 6,
+				DelegateMethods.CastLight
+			);*/
+		}
+
+		public void castLight(Color color)
+		{
+			Vector2 position = (StartPos + EndPos) / 2;
+			Lighting.AddLight(position, color.R / 255, color.G / 255, color.B / 255);
 		}
 	}
 
 	class Bolt
 	{
 		public List<Segment> Segments;
+
 		public Bolt(Vector2 origin, Vector2 destination)
 		{
 			Segments = new List<Segment>();
@@ -151,7 +249,8 @@ public class LightningProjectile : ModProjectile
 			const float Jaggedness = 1 / Sway;
 			Vector2 prevPoint = origin;
 			float prevDisplacement = 0;
-			for (int i = 1; i < positions.Count; i++) {
+			for (int i = 1; i < positions.Count; i++)
+			{
 				float segmentPercent = positions[i] - positions[i - 1];
 				float scale = length * Jaggedness * segmentPercent;
 				// envelope approaches zero when position > 0.95. this negates displacement so the endpoint will be correct
@@ -168,12 +267,19 @@ public class LightningProjectile : ModProjectile
 			Segments.Add(new Segment(prevPoint, destination));
 		}
 
-		public Vector2 GetPoint(float percent) => Segments[(int)(Segments.Count * percent)].StartPos;
+		public Vector2 GetPoint(float percent) =>
+			Segments[(int)(Segments.Count * percent)].StartPos;
 
 		public void Draw(Color color, float scale)
 		{
 			foreach (Segment segment in Segments)
 				segment.Draw(color, scale);
+		}
+
+		public void castLight(Color color)
+		{
+			foreach (Segment segment in Segments)
+				segment.castLight(color);
 		}
 	}
 }

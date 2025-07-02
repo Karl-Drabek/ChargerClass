@@ -10,8 +10,8 @@ public class Balloon : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 24;
-		Item.height = 32;
+		Item.width = 16;
+		Item.height = 10;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.White;
 
@@ -22,7 +22,7 @@ public class Balloon : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 0, 3);
 		Item.useTime = 24;
 
-		Item.damage = 33;
+		Item.damage = 7;
 		Item.crit = 2;
 		Item.knockBack = 2f;
 		Item.maxStack = 999;

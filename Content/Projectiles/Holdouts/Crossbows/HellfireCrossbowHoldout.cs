@@ -11,6 +11,6 @@ public class HellfireCrossbowHoldout : ChargeWeaponHoldout
 	public override void PostProjectileEffects(int chargeLevel, Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
 	{
 		chargerProj.Hellfire = true;
-		chargerProj.ExplosionSize = 60 * chargeLevel;
+		chargerProj.ExplosionSize = 14 * chargeLevel;
 	}
 }

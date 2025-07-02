@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -15,7 +16,7 @@ public class HandCannon : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.85f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 650;
@@ -33,4 +34,6 @@ public class HandCannon : ChargedWeapon
 		Item.shootSpeed = 8f;
 		Item.useAmmo = ModContent.ItemType<Ammo.MiniCannonball>();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-24f, 4f);
 }

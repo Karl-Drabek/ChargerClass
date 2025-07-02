@@ -9,12 +9,16 @@ namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 public class CobaltBlowgun : ChargedWeapon
 {
 	public const int CRIT_INCREASE = 8;
-	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CRIT_INCREASE);
+
+	public const int SHOOT_SPEED_INCREASE = 15;
+	public override LocalizedText Tooltip =>
+		base.Tooltip.WithFormatArgs(CRIT_INCREASE, SHOOT_SPEED_INCREASE);
+
 	public override void SafeSetDefaults()
 	{
 		Item.width = 82;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +28,7 @@ public class CobaltBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 1, 20, 0);
 		Item.useTime = 24;
 
-		Item.damage = 312;
+		Item.damage = 31;
 		Item.crit = 0;
 		Item.knockBack = 1f;
 

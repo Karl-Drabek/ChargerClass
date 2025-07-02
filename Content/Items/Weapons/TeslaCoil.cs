@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +13,7 @@ public class TeslaCoil : ChargedWeapon
 	{
 		Item.width = 60;
 		Item.height = 28;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Yellow;
 
 		chargeAmount = 500;
@@ -22,11 +23,13 @@ public class TeslaCoil : ChargedWeapon
 		Item.value = Item.sellPrice(0, 8, 0, 0);
 		Item.useTime = 25;
 
-		Item.damage = 340;
+		Item.damage = 56;
 		Item.crit = 6;
 		Item.knockBack = 1f;
 
 		Item.shoot = ModContent.ProjectileType<TeslaCoilHoldout>();
 		Item.shootSpeed = 1f;
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
 }

@@ -21,7 +21,7 @@ public class BloontoniumBlaster : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 
 		chargeAmount = 180;
-		Item.damage = 76;
+		Item.damage = 11;
 		Item.crit = 12;
 		Item.knockBack = 0f;
 

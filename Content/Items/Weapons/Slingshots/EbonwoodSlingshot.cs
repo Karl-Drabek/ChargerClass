@@ -34,7 +34,7 @@ public class EbonwoodSlingshot : ChargedWeapon
 		Item.useAmmo = ModContent.ItemType<Items.Ammo.Rocks.Rock>();
 	}
 
-	public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
+	public override Vector2? HoldoutOffset() => new Vector2(4f, 0f);
 
 	public override void AddRecipes()
 	{

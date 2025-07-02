@@ -11,8 +11,8 @@ namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 public class EagleEye : DartComponent
 {
 	const float detectRaidus = 350;
-	const float rotationSpeed = 0.3f;
-	const float speed = 15;
+	const float rotationSpeed = 0.1f;
+	const float speed = 20;
 
 	public override void SafeSetDefaults()
 	{

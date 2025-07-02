@@ -22,6 +22,8 @@ public class StellerVoltaicFragment : ModItem
 	public override void SetDefaults()
 	{
 		Item.CloneDefaults(ItemID.LifeFruit);
+		Item.width = 46;
+		Item.height = 62;
 		Item.rare = ItemRarityID.Cyan;
 		Item.value = Item.sellPrice(0, 1, 65, 0);
 	}

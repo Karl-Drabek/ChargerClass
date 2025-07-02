@@ -1,10 +1,15 @@
+using System;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tips;
 
 public class ShroomiteTip : DartComponent
 {
+	private int bounces = 4;
+
 	public override void SafeSetDefaults()
 	{
 		Item.width = 10;
@@ -14,7 +19,8 @@ public class ShroomiteTip : DartComponent
 		Item.rare = ItemRarityID.Lime;
 		DartSheetPlacement = 9;
 		Pen = 2;
-		Item.damage = 18;
+		Bounce = true;
+		Item.damage = 34;
 		Item.knockBack = 3f;
 	}
 

@@ -5,5 +5,7 @@ namespace ChargerClass.Content.Projectiles.Holdouts;
 
 public class BellowsHoldout : ChargeWeaponHoldout
 {
-	public override void SafeSetDefaults() { }
+	public override void SafeSetDefaults() { 
+		Projectile.scale = 0.75f;
+	}
 }

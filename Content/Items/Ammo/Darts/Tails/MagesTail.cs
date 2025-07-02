@@ -1,8 +1,8 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.DataStructures;
 using ChargerClass.Common.Extensions;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -18,9 +18,11 @@ public class MagesTail : DartComponent
 
 		Item.shootSpeed = 4f;
 	}
+
 	public override void AI(Projectile projectile, int payloadType)
 	{
-		if(projectile.owner != Main.myPlayer) return;
+		if (projectile.owner != Main.myPlayer)
+			return;
 		if (Main.rand.NextBool())
 			projectile.ai[2]++;
 		if (projectile.ai[2] < 10)
@@ -29,7 +31,14 @@ public class MagesTail : DartComponent
 		if (closestNPC is null)
 			return;
 		Vector2 distanceToNPC = closestNPC.Center - projectile.Center;
-		Projectile bolt = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(distanceToNPC) * 34, ProjectileID.DD2DarkMageBolt, projectile.damage, 1);
+		Projectile bolt = Projectile.NewProjectileDirect(
+			new EntitySource_Parent(projectile),
+			projectile.Center,
+			Vector2.Normalize(distanceToNPC) * 34,
+			ProjectileID.DD2DarkMageBolt,
+			projectile.damage / 8,
+			1
+		);
 		bolt.friendly = true;
 		bolt.hostile = false;
 		projectile.ai[2] = 0;

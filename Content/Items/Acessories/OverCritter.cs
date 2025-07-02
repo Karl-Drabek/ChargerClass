@@ -14,8 +14,8 @@ public class OverCritter : ModItem
 	}
 	public override void SetDefaults()
 	{
-		Item.width = 14;
-		Item.height = 19;
+		Item.width = 46;
+		Item.height = 46;
 		Item.maxStack = 1;
 		Item.value = Item.sellPrice(0, 0, 10, 0);
 		Item.rare = ItemRarityID.Green;

@@ -1,10 +1,10 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
 using ChargerClass.Content.Items.Ammo.Darts;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Projectiles;
 
@@ -28,6 +28,7 @@ public class CropDusterProjectile : ModProjectile
 		Projectile.ignoreWater = true;
 		Projectile.tileCollide = true;
 		Projectile.extraUpdates = 0;
+		Projectile.hide = true;
 
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
@@ -47,17 +48,30 @@ public class CropDusterProjectile : ModProjectile
 	{
 		modifiers.SetMaxDamage(0);
 	}
+
 	public override void AI()
 	{
 		Projectile.velocity *= 0.98f;
 		Projectile.alpha += 5;
 		Projectile.rotation += rotation;
+		if (Main.rand.NextBool(2))
+			Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.height,
+				Projectile.width,
+				DustID.Smoke,
+				Scale: Main.rand.NextFloat(1, 2)
+			);
 	}
-
 
 	public override void OnKill(int timeLeft)
 	{
 		Dust.NewDustDirect(Projectile.position, 0, 0, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
-		Gore.NewGoreDirect(new EntitySource_Parent(Projectile), Projectile.position, default, Main.rand.Next(61, 64));
+		Gore.NewGoreDirect(
+			new EntitySource_Parent(Projectile),
+			Projectile.position,
+			default,
+			Main.rand.Next(61, 64)
+		);
 	}
 }

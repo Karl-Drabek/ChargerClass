@@ -4,6 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ChargerClass.Content.DamageClasses;
+using ChargerClass.Common.Configs;
 
 namespace ChargerClass.Content.Projectiles;
 
@@ -37,6 +38,7 @@ public class TronboneSonicProjectile : ModProjectile
 	public override void OnKill(int timeLeft)
 	{
 		Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-		SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		if (ChargerClassConfig.Instance.AudioToggle)
+			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 	}
 }

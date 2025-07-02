@@ -14,7 +14,7 @@ public class TitaniumBlowgun : ChargedWeapon
 	{
 		Item.width = 82;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +24,7 @@ public class TitaniumBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 4, 80, 0);
 		Item.useTime = 24;
 
-		Item.damage = 382;
+		Item.damage = 38;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 

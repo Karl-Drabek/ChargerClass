@@ -14,8 +14,19 @@ public class BoneTip : DartComponent
 		Item.rare = ItemRarityID.White;
 		DartSheetPlacement = 2;
 		Pen = 2;
-		Item.damage = 9;
+		Item.damage = 12;
 		Item.knockBack = 1f;
+	}
+
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
+	{
+		target.AddBuff(BuffID.Bleeding, 300);
 	}
 
 	public override void AddRecipes()

@@ -18,7 +18,7 @@ public class BloontoniumDart : ModItem
 		Item.width = 19;
 		Item.height = 7;
 
-		Item.damage = 32;
+		Item.damage = 10;
 		Item.DamageType = ChargerDamageClass.Instance;
 
 		Item.maxStack = 999;

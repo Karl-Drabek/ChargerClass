@@ -11,7 +11,7 @@ public class DragonsBreath : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 60;
+		Item.width = 16;
 		Item.height = 30;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Orange;
@@ -23,7 +23,7 @@ public class DragonsBreath : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 0, 2);
 		Item.useTime = 32;
 
-		Item.damage = 80;
+		Item.damage = 6;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 		Item.maxStack = 1;

@@ -58,7 +58,6 @@ class ChargeMeter : UIState
 		else totalCharge = ((ChargeWeaponHoldout)Main.projectile[player.heldProj].ModProjectile).Charge;
 
 		int MaxCharge = player.GetModPlayer<ChargeModPlayer>().GetMaxCharge();
-		if (ChargerClassConfig.Instance.MaxChargeToggle) Main.NewText(MaxCharge);
 		float chargePercentage = totalCharge / MaxCharge;
 		chargePercentage = Utils.Clamp(chargePercentage, 0f, 1f);
 

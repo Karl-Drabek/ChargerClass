@@ -14,8 +14,19 @@ public class UnicornTip : DartComponent
 		Item.rare = ItemRarityID.Blue;
 		DartSheetPlacement = 4;
 		Pen = 3;
-		Item.damage = 11;
+		Item.damage = 18;
 		Item.knockBack = 1f;
+	}
+
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
+	{
+		target.AddBuff(BuffID.Confused, 300);
 	}
 
 	public override void AddRecipes()

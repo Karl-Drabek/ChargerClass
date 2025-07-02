@@ -1,3 +1,4 @@
+using ChargerClass.Content.Mounts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,6 +12,8 @@ public class RailRailGunLaser : LaserProjectile
 	{
 		Projectile.width = 26;
 		Projectile.height = 28;
+		centerWidth = 30;
+		endsWidth = 22;
 		Projectile.timeLeft = 60;
 		InitialOffset = 70;
 		collide = false;
@@ -29,6 +32,16 @@ public class RailRailGunLaser : LaserProjectile
 	public override void CastLights(Player player)
 	{
 		DelegateMethods.v3_1 = new Vector3(0.8f, 0.8f, 1f);
-		Utils.PlotTileLine(player.Center + InitialOffset * Projectile.velocity, player.Center + Projectile.velocity * Distance, 26, DelegateMethods.CastLight);
+		Utils.PlotTileLine(
+			player.Center + InitialOffset * Projectile.velocity,
+			player.Center + Projectile.velocity * Distance,
+			26,
+			DelegateMethods.CastLight
+		);
 	}
+
+	public override Vector2 getLaserOffset() => new(-16 * Projectile.direction, 9);
+
+	public override bool CustomKillcondition(Player player) =>
+		player.mount.Type != ModContent.MountType<RailRailGunMount>();
 }

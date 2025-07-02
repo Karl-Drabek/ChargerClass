@@ -14,4 +14,10 @@ public class HydraRocketLauncherHoldout : AnimatedChargeWeaponHoldout
 	{
 		Projectile.scale = 0.75f;
 	}
+
+	public override void ModifyMuzzleOffset(ref Vector2 muzzleOffset)
+	{
+		muzzleOffset *= 50;
+		muzzleOffset += new Vector2(0, 1);
+	}
 }

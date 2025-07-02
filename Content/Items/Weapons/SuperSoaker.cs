@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ public class SuperSoaker : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Green;
 
 		chargeAmount = 90;
@@ -24,7 +25,7 @@ public class SuperSoaker : ChargedWeapon
 		ticsBetweenShots = 4;
 		repeatShot = true;
 
-		Item.damage = 5;
+		Item.damage = 3;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
@@ -41,4 +42,6 @@ public class SuperSoaker : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-2f, 2f);
 }

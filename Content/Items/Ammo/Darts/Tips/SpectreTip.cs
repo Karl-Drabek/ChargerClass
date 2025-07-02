@@ -14,7 +14,8 @@ public class SpectreTip : DartComponent
 		Item.rare = ItemRarityID.Lime;
 		DartSheetPlacement = 10;
 		Pen = 3;
-		Item.damage = 18;
+		Collide = false;
+		Item.damage = 33;
 		Item.knockBack = 1f;
 	}
 

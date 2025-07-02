@@ -14,7 +14,7 @@ public class RailRailGunBuff : ModBuff
 
 	public override void Update(Player player, ref int buffIndex)
 	{
-		player.mount.SetMount(ModContent.MountType<ExampleMount>(), player);
+		player.mount.SetMount(ModContent.MountType<RailRailGunMount>(), player);
 		player.buffTime[buffIndex] = 10; // reset buff time
 	}
 }

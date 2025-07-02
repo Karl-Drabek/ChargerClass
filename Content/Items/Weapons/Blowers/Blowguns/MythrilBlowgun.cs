@@ -14,7 +14,7 @@ public class MythrilBlowgun : ChargedWeapon
 	{
 		Item.width = 84;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +24,7 @@ public class MythrilBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 1, 80, 0);
 		Item.useTime = 27;
 
-		Item.damage = 348;
+		Item.damage = 35;
 		Item.crit = 0;
 		Item.knockBack = 2f;
 

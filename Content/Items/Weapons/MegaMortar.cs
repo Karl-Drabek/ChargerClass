@@ -11,8 +11,8 @@ public class MegaMortar : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 60;
-		Item.height = 30;
+		Item.width = 46;
+		Item.height = 70;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Yellow;
 
@@ -23,13 +23,15 @@ public class MegaMortar : ChargedWeapon
 		Item.value = Item.sellPrice(0, 14, 0, 0);
 		Item.useTime = 36;
 
-		Item.damage = 1120;
+		Item.damage = 488;
 		Item.crit = 0;
 		Item.knockBack = 6f;
 
 		Item.shoot = ModContent.ProjectileType<MegaMortarHoldout>();
 		Item.shootSpeed = 20f;
 		noAmmoProjectile = ModContent.ProjectileType<MegaMortarProjectile>();
+
+		Item.noUseGraphic = true;
 	}
 
 	public override void AddRecipes()

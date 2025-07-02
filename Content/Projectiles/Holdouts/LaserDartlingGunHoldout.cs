@@ -16,12 +16,24 @@ public class LaserDartlingGunHoldout : AnimatedChargeWeaponHoldout
 	{
 		Projectile.scale = 0.75f;
 	}
-	public override void PostProjectileEffects(int chargeLevel, Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
+
+	public override void PostProjectileEffects(
+		int chargeLevel,
+		Projectile proj,
+		ChargerProjectile chargerProj,
+		ChargeModPlayer modPlayer
+	)
 	{
 		proj.hostile = false;
 		proj.friendly = true;
 		proj.penetrate = 6;
 		proj.usesLocalNPCImmunity = true;
 		proj.localNPCHitCooldown = 10;
+	}
+
+	public override void ModifyMuzzleOffset(ref Vector2 muzzleOffset)
+	{
+		muzzleOffset *= 40;
+		muzzleOffset += new Vector2(0, 1);
 	}
 }

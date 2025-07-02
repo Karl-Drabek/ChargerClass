@@ -15,7 +15,7 @@ public class BlowgunRevolver : ChargedWeapon
 	{
 		Item.width = 82;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -27,7 +27,7 @@ public class BlowgunRevolver : ChargedWeapon
 		ticsBetweenShots = 4;
 		repeatShot = true;
 
-		Item.damage = 286;
+		Item.damage = 22;
 		Item.crit = 6;
 		Item.knockBack = 0f;
 

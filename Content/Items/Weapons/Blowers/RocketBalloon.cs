@@ -5,14 +5,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ChargerClass.Content.Items.Weapons;
+namespace ChargerClass.Content.Items.Weapons.Blowers;
 
 public class RocketBalloon : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 60;
-		Item.height = 30;
+		Item.width = 64;
+		Item.height = 10;
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Pink;
 
@@ -23,13 +23,14 @@ public class RocketBalloon : ChargedWeapon
 		Item.value = Item.sellPrice(0, 14, 0, 0);
 		Item.useTime = 26;
 
-		Item.damage = 200;
+		Item.damage = 80;
 		Item.crit = 10;
 		Item.knockBack = 0f;
 		Item.maxStack = 999;
 
 		Item.consumable = true;
 		shootSelf = true;
+		blowWeapon = true;
 
 		Item.shoot = ModContent.ProjectileType<RocketBalloonHoldout>();
 		Item.shootSpeed = 14f;

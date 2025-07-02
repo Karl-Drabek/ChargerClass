@@ -8,10 +8,18 @@ namespace ChargerClass.Content.Projectiles.Holdouts;
 public class ScorchingScreamHoldout : ChargeWeaponHoldout
 {
 	public override void SafeSetDefaults() { }
-	public override void PostProjectileEffects(int chargeLevel, Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
+
+	public override void PostProjectileEffects(
+		int chargeLevel,
+		Projectile proj,
+		ChargerProjectile chargerProj,
+		ChargeModPlayer modPlayer
+	)
 	{
 		proj.hostile = false;
 		proj.friendly = true;
 		proj.scale = 0.25f;
 	}
+
+	public override Vector2 GetMuzzleOffset() => new Vector2(35, 0);
 }

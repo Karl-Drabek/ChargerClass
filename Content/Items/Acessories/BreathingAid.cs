@@ -17,8 +17,8 @@ public class BreathingAid : ModItem
 	}
 	public override void SetDefaults()
 	{
-		Item.width = 16;
-		Item.height = 14;
+		Item.width = 24;
+		Item.height = 26;
 		Item.maxStack = 1;
 		Item.value = Item.sellPrice(0, 18, 50, 0);
 		Item.rare = ItemRarityID.Yellow;

@@ -9,12 +9,15 @@ namespace ChargerClass.Content.Items.Weapons.Blowers.Blowguns;
 public class AdamantiteBlowgun : ChargedWeapon
 {
 	public const int DAMAGE_INCREASE = 6;
-	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DAMAGE_INCREASE);
+	public const int HATE_DAMAGE_INCREASE = 4;
+	public override LocalizedText Tooltip =>
+		base.Tooltip.WithFormatArgs(DAMAGE_INCREASE, HATE_DAMAGE_INCREASE);
+
 	public override void SafeSetDefaults()
 	{
 		Item.width = 86;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -24,7 +27,7 @@ public class AdamantiteBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 2, 40, 0);
 		Item.useTime = 26;
 
-		Item.damage = 398;
+		Item.damage = 39;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 

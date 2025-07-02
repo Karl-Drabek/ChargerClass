@@ -21,7 +21,7 @@ public class Bola : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 0, 2);
 
-		Item.damage = 17;
+		Item.damage = 11;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 		Item.maxStack = 999;

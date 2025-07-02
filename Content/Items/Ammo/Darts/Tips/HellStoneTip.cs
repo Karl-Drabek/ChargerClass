@@ -14,11 +14,17 @@ public class HellstoneTip : DartComponent
 		Item.rare = ItemRarityID.Green;
 		DartSheetPlacement = 3;
 		Pen = 1;
-		Item.damage = 10;
+		Item.damage = 15;
 		Item.knockBack = 1.5f;
 	}
 
-	public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone, float buffTimeMultiplier)
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
 	{
 		target.AddBuff(BuffID.OnFire, 300);
 	}

@@ -14,7 +14,7 @@ public class TitaniumTip : DartComponent
 		Item.rare = ItemRarityID.Orange;
 		DartSheetPlacement = 6;
 		Pen = 2;
-		Item.damage = 12;
+		Item.damage = 20;
 		Item.knockBack = 2f;
 	}
 

@@ -13,8 +13,8 @@ public class ExoticEscargot : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 16;
+		Item.height = 12;
 
 		Item.maxStack = 999;
 		Item.value = Item.sellPrice(0, 0, 12, 0);

@@ -12,8 +12,31 @@ public class DragonsBreathHoldout : ChargeWeaponHoldout
 {
 	public override void SafeSetDefaults() { }
 
-	public override bool Shoot(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int chargeLevel){
-		Projectile flame1 = Projectile.NewProjectileDirect(source, position,velocity.RotatedByRandom(MathHelper.ToRadians(5)), ProjectileID.Flames, damage, knockback);
+	public override bool Shoot(
+		Player player,
+		Item item,
+		EntitySource_ItemUse_WithAmmo source,
+		Vector2 position,
+		Vector2 velocity,
+		int type,
+		int damage,
+		float knockback,
+		int chargeLevel
+	)
+	{
+		Projectile flame1 = Projectile.NewProjectileDirect(
+			source,
+			position,
+			velocity.RotatedByRandom(MathHelper.ToRadians(5)),
+			ProjectileID.Flames,
+			damage,
+			knockback
+		);
 		return false;
+	}
+
+	public override void ModifyMuzzleOffset(ref Vector2 muzzleOffset)
+	{
+		muzzleOffset *= 20;
 	}
 }

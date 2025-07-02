@@ -14,9 +14,9 @@ public class LunarBlowgun : ChargedWeapon
 	public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(CRIT_INCREASE, DAMAGE_INCREASE, KNOCKBACK_INCREASE);
 	public override void SafeSetDefaults()
 	{
-		Item.width = 86;
-		Item.height = 20;
-		Item.scale = 1f;
+		Item.width = 84;
+		Item.height = 56;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Red;
 
 		chargeAmount = 400;
@@ -26,7 +26,7 @@ public class LunarBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 18, 0, 0);
 		Item.useTime = 22;
 
-		Item.damage = 756;
+		Item.damage = 75;
 		Item.crit = 4;
 		Item.knockBack = 6f;
 

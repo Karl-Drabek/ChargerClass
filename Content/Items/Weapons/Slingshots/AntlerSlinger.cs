@@ -22,7 +22,7 @@ public class AntlerSlinger : ChargedWeapon
 
 		chargeAmount = 275;
 		Item.DamageType = ChargerDamageClass.Instance;
-		Item.damage = 73;
+		Item.damage = 51;
 		Item.crit = 3;
 		Item.knockBack = 3f;
 
@@ -31,5 +31,5 @@ public class AntlerSlinger : ChargedWeapon
 		Item.useAmmo = ModContent.ItemType<Ammo.Rocks.Rock>();
 	}
 
-	public override Vector2? HoldoutOffset() => new Vector2(0f, 0f);
+	public override Vector2? HoldoutOffset() => new Vector2(4f, 0f);
 }

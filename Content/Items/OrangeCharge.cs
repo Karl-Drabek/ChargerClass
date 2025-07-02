@@ -24,7 +24,7 @@ public class OrangeCharge : ModItem
 	{
 		if (player.HeldItem.ModItem is ChargedWeapon weapon)
 			weapon.bonusCharge += 150;
-		CombatText.NewText(player.getRect(), new Color(250, 200, 152, 255), 200);
+		CombatText.NewText(player.getRect(), new Color(250, 140, 0, 255), 150);
 		return false;
 	}
 }

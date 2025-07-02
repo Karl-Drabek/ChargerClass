@@ -15,7 +15,7 @@ public class ChlorophyteBlowgun : ChargedWeapon
 	{
 		Item.width = 86;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Lime;
 
 		chargeAmount = 400;
@@ -25,7 +25,7 @@ public class ChlorophyteBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 4, 80, 0);
 		Item.useTime = 30;
 
-		Item.damage = 494;
+		Item.damage = 44;
 		Item.crit = 2;
 		Item.knockBack = 4f;
 

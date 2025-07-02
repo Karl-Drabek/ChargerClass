@@ -1,10 +1,10 @@
+using ChargerClass.Common.Extensions;
+using ChargerClass.Content.DamageClasses;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.DamageClasses;
-using ChargerClass.Common.Extensions;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Projectiles;
 
@@ -28,10 +28,11 @@ public class HandCannonBombProjectile : ModProjectile
 		Projectile.tileCollide = true;
 		Projectile.extraUpdates = 0;
 
-
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
+
 	float rotation;
+
 	public override void OnSpawn(IEntitySource source)
 	{
 		if (source is EntitySource_Parent parent && parent.Entity is not Terraria.Projectile)
@@ -42,15 +43,49 @@ public class HandCannonBombProjectile : ModProjectile
 	{
 		Projectile.ai[1] += MathHelper.ToRadians(rotation);
 		Projectile.rotation = Projectile.ai[1];
+
+		if (Main.rand.NextBool(6))
+		{
+			Dust dust = Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.width,
+				Projectile.height,
+				DustID.Smoke
+			);
+			dust.noGravity = true;
+		}
+		if (Main.rand.NextBool(14))
+		{
+			Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.width,
+				Projectile.height,
+				DustID.Torch
+			);
+		}
 	}
 
 	public override void OnKill(int timeLeft)
 	{
-		Explosions.ExplodeCircle(Projectile.position, 60, Projectile.damage * 2, ChargerDamageClass.Instance, Projectile, knockback: 3f);
+		Explosions.ExplodeCircle(
+			Projectile.position,
+			60,
+			Projectile.damage * 2,
+			ChargerDamageClass.Instance,
+			Projectile,
+			knockback: 3f
+		);
 		if (Projectile.ai[2] == 1f)
-			for (int i = 0; i < 6; i++) {
-				Projectile proj = Projectile.NewProjectileDirect(new EntitySource_Parent(Projectile),
-				Projectile.Center, (Vector2.UnitX * 5).RotatedBy(MathHelper.ToRadians(i * 60)), ModContent.ProjectileType<HandCannonBombProjectile>(), Projectile.damage, Projectile.knockBack);
+			for (int i = 0; i < 6; i++)
+			{
+				Projectile proj = Projectile.NewProjectileDirect(
+					new EntitySource_Parent(Projectile),
+					Projectile.Center,
+					(Vector2.UnitX * 5).RotatedBy(MathHelper.ToRadians(i * 60)),
+					ModContent.ProjectileType<HandCannonBombProjectile>(),
+					Projectile.damage,
+					Projectile.knockBack
+				);
 				proj.friendly = proj.hostile = false;
 				proj.timeLeft = 25;
 				proj.aiStyle = 0;

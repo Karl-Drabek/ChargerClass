@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,10 +12,10 @@ public class NectarNailGun : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.7f;
 		Item.rare = ItemRarityID.Orange;
 
-		chargeAmount = 185;
+		chargeAmount = 235;
 		Item.useStyle = ItemUseStyleID.Shoot;
 
 		Item.UseSound = SoundID.Item1;
@@ -32,4 +33,6 @@ public class NectarNailGun : ChargedWeapon
 		Item.shootSpeed = 12f;
 		Item.useAmmo = ModContent.ItemType<Ammo.NectarNail>();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(0f, 6f);
 }

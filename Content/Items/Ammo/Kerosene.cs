@@ -18,7 +18,7 @@ public class Kerosene : ModItem
 		Item.width = 10;
 		Item.height = 32;
 
-		Item.damage = 5;
+		Item.damage = 3;
 		Item.DamageType = ChargerDamageClass.Instance;
 
 		Item.maxStack = 999;

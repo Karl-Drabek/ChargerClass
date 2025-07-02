@@ -170,8 +170,6 @@ public abstract class ChargeWeapon : ModItem
 			float ai0, ai1, ai2;
 			ai0 = ai1 = ai2 = 0f;
 			ModifyOtherStats(player, ref owner, ref ai0, ref ai1, ref ai2);
-			if (ChargerClassConfig.Instance.ShotInfoToggle)
-				Main.NewText($"Shot Stats:\n    Charge Levels: {chargeLevel}\n    Speed: {(int)Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y)}\n    Damage: {damage}\n    Knock Back: {(int)knockback}\n    Crit Chance: {player.GetWeaponCrit(Item)}");
 			Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, owner, ai0, ai1, ai2);
 			CombinedPostProjectileEffects(proj, modPlayer);
 		}

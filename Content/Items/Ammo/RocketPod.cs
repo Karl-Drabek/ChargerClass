@@ -19,7 +19,7 @@ public class RocketPod : ModItem
 		Item.width = 14;
 		Item.height = 22;
 
-		Item.damage = 24;
+		Item.damage = 6;
 		Item.DamageType = ChargerDamageClass.Instance;
 
 		Item.maxStack = 999;

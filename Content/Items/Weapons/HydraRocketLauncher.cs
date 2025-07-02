@@ -21,7 +21,7 @@ public class HydraRocketLauncher : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 
 		chargeAmount = 180;
-		Item.damage = 54;
+		Item.damage = 10;
 		Item.crit = 0;
 		Item.knockBack = 1f;
 

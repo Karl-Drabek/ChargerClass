@@ -1,4 +1,4 @@
-Working on Multiplayer Compatbility
+balancing
 
 Example Mod v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]

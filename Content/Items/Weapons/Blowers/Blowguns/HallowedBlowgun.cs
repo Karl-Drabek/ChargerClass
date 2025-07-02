@@ -15,7 +15,7 @@ public class HallowedBlowgun : ChargedWeapon
 	{
 		Item.width = 82;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.LightRed;
 
 		chargeAmount = 400;
@@ -25,7 +25,7 @@ public class HallowedBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 4, 0, 0);
 		Item.useTime = 26;
 
-		Item.damage = 442;
+		Item.damage = 44;
 		Item.crit = 4;
 		Item.knockBack = 4f;
 

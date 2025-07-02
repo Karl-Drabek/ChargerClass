@@ -23,13 +23,15 @@ public class RayOfBloon : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 0, 40);
 		Item.useTime = 42;
 
-		Item.damage = 5;
+		Item.damage = 33;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
 		Item.shoot = ModContent.ProjectileType<RayOfBloonHoldout>();
 		noAmmoProjectile = ModContent.ProjectileType<RayOfBloonLaser>();
 		Item.shootSpeed = 16f;
+
+		Item.noUseGraphic = true;
 	}
 
 	public override void AddRecipes()

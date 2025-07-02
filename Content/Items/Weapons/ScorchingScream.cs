@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ public class ScorchingScream : ChargedWeapon
 	{
 		Item.width = 58;
 		Item.height = 22;
-		Item.scale = 1f;
+		Item.scale = .75f;
 		Item.rare = ItemRarityID.Orange;
 
 		chargeAmount = 250;
@@ -21,7 +22,7 @@ public class ScorchingScream : ChargedWeapon
 		Item.value = Item.sellPrice(0, 0, 1, 25);
 		Item.useTime = 28;
 
-		Item.damage = 22;
+		Item.damage = 28;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 
@@ -42,4 +43,6 @@ public class ScorchingScream : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-2f, 2f);
 }

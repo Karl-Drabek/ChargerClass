@@ -14,7 +14,7 @@ public class AdamantiteTip : DartComponent
 		Item.rare = ItemRarityID.Orange;
 		DartSheetPlacement = 5;
 		Pen = 2;
-		Item.damage = 12;
+		Item.damage = 21;
 		Item.knockBack = 2f;
 	}
 

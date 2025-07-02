@@ -16,7 +16,7 @@ public class CompoundBow : ChargedWeapon
 	{
 		Item.width = 28;
 		Item.height = 72;
-		Item.scale = 1f;
+		Item.scale = 0.8f;
 		Item.rare = ItemRarityID.White;
 
 		chargeAmount = 450;
@@ -25,7 +25,7 @@ public class CompoundBow : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 6, 90);
 
-		Item.damage = 16;
+		Item.damage = 12;
 		Item.crit = 5;
 		Item.knockBack = 0f;
 		Item.useTime = 26;

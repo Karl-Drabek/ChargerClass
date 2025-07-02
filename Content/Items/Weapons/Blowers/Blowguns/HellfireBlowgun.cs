@@ -15,7 +15,7 @@ public class HellfireBlowgun : ChargedWeapon
 	{
 		Item.width = 82;
 		Item.height = 20;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Orange;
 
 		chargeAmount = 400;
@@ -24,7 +24,7 @@ public class HellfireBlowgun : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 1, 25, 0);
 
-		Item.damage = 132;
+		Item.damage = 26;
 		Item.crit = 6;
 		Item.knockBack = 4f;
 		Item.useTime = 26;

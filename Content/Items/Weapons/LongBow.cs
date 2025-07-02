@@ -15,7 +15,7 @@ public class LongBow : ChargedWeapon
 	{
 		Item.width = 16;
 		Item.height = 58;
-		Item.scale = 1f;
+		Item.scale = 0.9f;
 		Item.rare = ItemRarityID.Blue;
 
 		chargeAmount = 450;
@@ -24,7 +24,7 @@ public class LongBow : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 0, 30);
 
-		Item.damage = 46;
+		Item.damage = 34;
 		Item.crit = 4;
 		Item.knockBack = 0f;
 		Item.useTime = 32;

@@ -15,7 +15,7 @@ public class PhantomBlowgun : ChargedWeapon
 	{
 		Item.width = 88;
 		Item.height = 22;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Pink;
 
 		chargeAmount = 400;
@@ -25,7 +25,7 @@ public class PhantomBlowgun : ChargedWeapon
 		Item.value = Item.sellPrice(0, 16, 40, 0);
 		Item.useTime = 28;
 
-		Item.damage = 562;
+		Item.damage = 56;
 		Item.crit = 2;
 		Item.knockBack = 4f;
 

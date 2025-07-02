@@ -1,15 +1,15 @@
+using ChargerClass.Common.Configs;
+using ChargerClass.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Projectiles;
 
 public class NectarNailProjectile : ModProjectile
 {
-
 	public override void SetDefaults()
 	{
 		Projectile.width = 10;
@@ -36,7 +36,13 @@ public class NectarNailProjectile : ModProjectile
 
 	public override void OnKill(int timeLeft)
 	{
-		Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-		SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		Collision.HitTiles(
+			Projectile.position + Projectile.velocity,
+			Projectile.velocity,
+			Projectile.width,
+			Projectile.height
+		);
+		if (ChargerClassConfig.Instance.AudioToggle)
+			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 	}
 }

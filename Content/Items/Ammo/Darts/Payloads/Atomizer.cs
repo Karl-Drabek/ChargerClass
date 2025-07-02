@@ -1,8 +1,8 @@
+using ChargerClass.Common.Extensions;
+using ChargerClass.Content.DamageClasses;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Common.Extensions;
-using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Payloads;
 
@@ -19,7 +19,14 @@ public class Atomizer : DartComponent
 
 	public override void OnKill(Projectile projectile, int timeLeft)
 	{
-		Explosions.ExplodeCircle(projectile.position, 250, 400, ChargerDamageClass.Instance, projectile, knockback: 6f);
+		Explosions.ExplodeCircle(
+			projectile.position,
+			150,
+			155,
+			ChargerDamageClass.Instance,
+			projectile,
+			knockback: 6f
+		);
 	}
 
 	public override void AddRecipes()

@@ -1,17 +1,17 @@
-using Microsoft.Xna.Framework;
 using System;
+using ChargerClass.Common.Configs;
+using ChargerClass.Common.Extensions;
+using ChargerClass.Content.DamageClasses;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.DamageClasses;
-using ChargerClass.Common.Extensions;
 
 namespace ChargerClass.Content.Projectiles;
 
 public class HolyCrossProjectile : ModProjectile
 {
-
 	public static readonly float rotationSpeed = 7.5f;
 
 	public override void SetDefaults()
@@ -30,7 +30,6 @@ public class HolyCrossProjectile : ModProjectile
 		Projectile.tileCollide = false;
 		Projectile.extraUpdates = 0;
 
-
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
 
@@ -42,26 +41,39 @@ public class HolyCrossProjectile : ModProjectile
 
 	public override void AI()
 	{
-		if (Main.rand.NextBool(1, 3)) {
-			Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SolarFlare);
+		if (Main.rand.NextBool(1, 3))
+		{
+			Dust dust = Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.width,
+				Projectile.height,
+				DustID.SolarFlare
+			);
 			dust.noGravity = true;
 			dust.scale = 0.7f;
 		}
-		if (!shooting) {
+		if (!shooting)
+		{
 			Projectile.rotation += MathHelper.ToRadians(rotationSpeed);
 			Projectile.rotation = ClampAngle(Projectile.rotation);
 			Projectile.velocity *= 0.975f;
-			if (++Projectile.ai[0] >= 40) {
+			if (++Projectile.ai[0] >= 40)
+			{
 				if (target is null)
 					target = Targeting.FindClosestNPC(Projectile.position, 1000);
 				if (target is null)
 					return;
 				Vector2 toNPC = target.position - Projectile.position;
-				if (toNPC.Length() > 1000) {
+				if (toNPC.Length() > 1000)
+				{
 					target = null;
 					return;
 				}
-				if (Math.Abs(Projectile.rotation - ClampAngle(toNPC.ToRotation())) < MathHelper.ToRadians(rotationSpeed) * 2) {
+				if (
+					Math.Abs(Projectile.rotation - ClampAngle(toNPC.ToRotation()))
+					< MathHelper.ToRadians(rotationSpeed) * 2
+				)
+				{
 					;
 					shooting = true;
 					Projectile.velocity = Vector2.Normalize(toNPC) * 40;
@@ -73,13 +85,21 @@ public class HolyCrossProjectile : ModProjectile
 				}
 			}
 		}
-		else {
-			Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SolarFlare);
+		else
+		{
+			Dust dust = Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.width,
+				Projectile.height,
+				DustID.SolarFlare
+			);
 			dust.noGravity = true;
 			dust.scale = 0.7f;
-			if (targetPos.X - Projectile.position.X < 0 != direction) {
+			if (targetPos.X - Projectile.position.X < 0 != direction)
+			{
 				Projectile.velocity *= 0.9f;
-				if (++Projectile.ai[0] >= 20) {
+				if (++Projectile.ai[0] >= 20)
+				{
 					shooting = false;
 					Projectile.ai[0] = 0;
 				}
@@ -97,7 +117,15 @@ public class HolyCrossProjectile : ModProjectile
 
 	public override void OnKill(int timeLeft)
 	{
-		Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-		SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		Collision.HitTiles(
+			Projectile.position + Projectile.velocity,
+			Projectile.velocity,
+			Projectile.width,
+			Projectile.height
+		);
+		if (ChargerClassConfig.Instance.AudioToggle)
+		{
+			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		}
 	}
 }

@@ -1,25 +1,27 @@
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.GameInput;
-using Terraria.ModLoader;
-using ChargerClass.Content.Buffs;
-using ChargerClass.Content.Items.Weapons;
-using ChargerClass.Common.ModSystems;
-using ChargerClass.Content.Items.Consumables;
-using Terraria.ModLoader.IO;
 using System.IO;
+using ChargerClass.Common.GlobalProjectiles;
+using ChargerClass.Common.ModSystems;
+using ChargerClass.Content.Buffs;
+using ChargerClass.Content.Items.Acessories;
+using ChargerClass.Content.Items.Armor;
 using ChargerClass.Content.Items.Armor.ChaosArmor;
 using ChargerClass.Content.Items.Armor.MechArmor;
-using ChargerClass.Common.GlobalProjectiles;
-using ChargerClass.Content.Items.Armor;
-using Terraria.DataStructures;
+using ChargerClass.Content.Items.Consumables;
+using ChargerClass.Content.Items.Mounts;
+using ChargerClass.Content.Items.Weapons;
+using ChargerClass.Content.Mounts;
 using ChargerClass.Content.Projectiles;
-using static Terraria.NPC;
-using ChargerClass.Content.Items.Acessories;
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using Terraria.GameInput;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using static Terraria.NPC;
 
 namespace ChargerClass.Common.Players;
 
@@ -27,45 +29,108 @@ public class ChargeModPlayer : ModPlayer
 {
 	public const int MaxAdrenaline = 10_000;
 	public static readonly int DefaultCharge = 1000; //the defualt charge pre modifiers
-	public bool HasIronLung, Inhaler, HasExhaler, HasRespirator, HasBreathingAid, /*Whether the player has a given accesory at the time*/
-				HasAAABattery, Capacitor, HasCarBattery, HasOvercharger, HasPowerBank,
-				HasCharger, HasChargeRepository, HasExtensionCord, LightningRod, HasGenerator,
-				HasGripTape, LeatherGlove, HasShootingGlove, HasRedDot, HasTrackingSpecs,
-				 SecretStimulants, HasUltimateChargingGear, Haler, HasChargerEmblem,
-				 HydrogenBreath, IronDiaphragm, OverCritter;
-	public bool LightHeaded, RadiationSickness, Charge, Impatience, Stamina, RocketStormCooldown, Adrenaline;
-	private int overChargeCount, AdrenalineCharge;
+	private bool hate;
+	public bool HasIronLung,
+		Inhaler,
+		HasExhaler,
+		HasRespirator,
+		HasBreathingAid, /*Whether the player has a given accesory at the time*/
+		HasAAABattery,
+		Capacitor,
+		HasCarBattery,
+		HasOvercharger,
+		HasPowerBank,
+		HasCharger,
+		HasChargeRepository,
+		HasExtensionCord,
+		LightningRod,
+		HasGenerator,
+		HasGripTape,
+		LeatherGlove,
+		HasShootingGlove,
+		HasRedDot,
+		HasTrackingSpecs,
+		SecretStimulants,
+		HasUltimateChargingGear,
+		Haler,
+		HasChargerEmblem,
+		HydrogenBreath,
+		IronDiaphragm,
+		OverCritter;
+	public bool LightHeaded,
+		RadiationSickness,
+		Charge,
+		Impatience,
+		Stamina,
+		RocketStormCooldown,
+		Adrenaline,
+		Bound,
+		Cursed,
+		Dabilitated,
+		GodKillered,
+		LeadPoisoned,
+		Plagued,
+		Stunned,
+		SuperSlimed,
+		Tetnus;
+	private int overChargeCount,
+		AdrenalineCharge;
 	private int overChargeTimer = 0;
+	private int repositoryCooldown = 0;
 
-	public bool FestiveSet, HasChaosPlate, ChaosSet, MechLegs, MechLungSet, MADChest, MADSet,
-	CobaltArmorSet, MythrilArmorSet, AdamantiteArmorSet, HasChlorophyteCasque, HallowedArmorSet;
+	public bool FestiveSet,
+		HasChaosPlate,
+		ChaosSet,
+		MechLegs,
+		MechLungSet,
+		MADChest,
+		MADSet,
+		CobaltArmorSet,
+		MythrilArmorSet,
+		AdamantiteArmorSet,
+		HasChlorophyteCasque,
+		HallowedArmorSet;
 
-	public int VoltaicNuggetCount = 0, MightyVoltaicScrapCount = 0, FrightfulVoltaicScrapCount = 0, OpticVoltaicScrapCount = 0, StellerVoltaicFragmentCount = 0, CosmicVoltaicFragmentCount = 0;
+	public int VoltaicNuggetCount = 0,
+		MightyVoltaicScrapCount = 0,
+		FrightfulVoltaicScrapCount = 0,
+		OpticVoltaicScrapCount = 0,
+		StellerVoltaicFragmentCount = 0,
+		CosmicVoltaicFragmentCount = 0;
 	public bool FragmentedQuaser = false;
 
-	public int TailForCustomDart, PayloadForCustomDart, TipForCustomDart;
+	public int TailForCustomDart,
+		PayloadForCustomDart,
+		TipForCustomDart;
 
 	private int LungCancer = 0;
 	private int LungCancerTimer = 0;
 	public bool LungCancerBuff = false;
 
-	public void UseKarosene(){
-		if(!(Haler || HasRespirator || HasBreathingAid)){
-			if(++LungCancer > 10){
+	public void UseKarosene()
+	{
+		if (!(Haler || HasRespirator || HasBreathingAid))
+		{
+			if (++LungCancer > 10)
+			{
 				Player.AddBuff(ModContent.BuffType<LungCancer>(), 3600);
 			}
 		}
 	}
 
-	public void UseSteroids(){
+	public void UseSteroids()
+	{
 		LungCancer = 0;
 	}
 
-	public override void ModifyNursePrice(NPC nurse, int health, bool removeDebuffs, ref int price){
-		if(removeDebuffs) price += 100 * LungCancer;
+	public override void ModifyNursePrice(NPC nurse, int health, bool removeDebuffs, ref int price)
+	{
+		if (removeDebuffs)
+			price += 100 * LungCancer;
 	}
 
-	public override void PostNurseHeal(NPC nurse, int health, bool removeDebuffs, int price){
+	public override void PostNurseHeal(NPC nurse, int health, bool removeDebuffs, int price)
+	{
 		LungCancer = 0;
 	}
 
@@ -81,11 +146,55 @@ public class ChargeModPlayer : ModPlayer
 	}
 
 	public StatModifier MaxCharge = StatModifier.Default;
+
+	public override void PreUpdateMovement()
+	{
+		if (Stunned)
+		{
+			Player.velocity = Vector2.Zero;
+		}
+		if (Bound)
+		{
+			Player.velocity *= 0.95f;
+		}
+		if (SuperSlimed)
+		{
+			Player.velocity *= 0.9f;
+		}
+		if (Dabilitated)
+		{
+			Player.velocity *= 0.92f;
+		}
+	}
+
+	public bool getHate() => hate;
+
+	public override void PreUpdateBuffs()
+	{
+		if (hate)
+		{
+			Player.AddBuff(ModContent.BuffType<Hate>(), 2);
+		}
+		if (Dabilitated)
+		{
+			if (Main.rand.NextBool(1, 60))
+			{
+				Player.AddBuff(BuffID.Poisoned, 60);
+			}
+			if (Main.rand.NextBool(1, 120))
+			{
+				Player.AddBuff(BuffID.Confused, 60);
+			}
+		}
+	}
+
 	public int GetMaxCharge()
 	{
 		var maxCharge = MaxCharge;
 
-		maxCharge.Base += (VoltaicNuggetCount + MightyVoltaicScrapCount + StellerVoltaicFragmentCount) * VoltaicNugget.MaxChargeIncrease;
+		maxCharge.Base +=
+			(VoltaicNuggetCount + MightyVoltaicScrapCount + StellerVoltaicFragmentCount)
+			* VoltaicNugget.MaxChargeIncrease;
 
 		if (HasPowerBank)
 			maxCharge += PowerBank.MaxChargeIncrease / 100f;
@@ -94,8 +203,8 @@ public class ChargeModPlayer : ModPlayer
 		else if (HasAAABattery)
 			maxCharge += AAABattery.maxChargeIncrease / 100f;
 
-
-		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon) {
+		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon)
+		{
 			if (HasBreathingAid)
 				maxCharge += BreathingAid.StatIncrease / 100f;
 			else if (HasIronLung)
@@ -109,9 +218,122 @@ public class ChargeModPlayer : ModPlayer
 		return (int)maxCharge.ApplyTo(DefaultCharge);
 	}
 
+	public override void DrawEffects(
+		PlayerDrawSet drawInfo,
+		ref float r,
+		ref float g,
+		ref float b,
+		ref float a,
+		ref bool fullBright
+	)
+	{
+		if (RadiationSickness)
+		{
+			if (Main.rand.NextBool(6))
+				Dust.NewDustDirect(
+					Player.position,
+					Player.width,
+					Player.height,
+					DustID.GreenFairy,
+					Scale: 0.4f
+				);
+			Lighting.AddLight(Player.position, 0, 1, 0);
+		}
+		if (Tetnus)
+		{
+			Dust.NewDustDirect(Player.position, Player.width, Player.height, DustID.Blood);
+		}
+		if (GodKillered)
+		{
+			Dust dust = Dust.NewDustDirect(
+				Player.position,
+				Player.width,
+				Player.height,
+				DustID.WitherLightning
+			);
+		}
+		if (SuperSlimed)
+		{
+			if (Main.rand.NextBool(4))
+			{
+				Dust.NewDustPerfect(
+					Player.position
+						+ new Vector2(
+							Main.rand.NextFloat(0, Player.width),
+							Main.rand.NextFloat(0, Player.height)
+						),
+					DustID.Wet,
+					Vector2.Zero,
+					0,
+					Color.LightGreen
+				);
+			}
+		}
+		if (Dabilitated)
+		{
+			Dust.NewDustPerfect(
+				Player.position
+					+ new Vector2(
+						Main.rand.NextFloat(0, Player.width),
+						Main.rand.NextFloat(0, Player.height)
+					),
+				DustID.Blood
+			);
+		}
+		if (Cursed)
+		{
+			if (Main.rand.NextBool(1, 2))
+				Dust.NewDustDirect(Player.position, Player.width, Player.height, DustID.SpookyWood);
+			if (Main.rand.NextBool(1, 5))
+				Dust.NewDustDirect(Player.position, Player.width, Player.height, DustID.Venom);
+		}
+		if (Plagued)
+		{
+			if (Main.rand.NextBool(1, 2))
+			{
+				Dust dust = Dust.NewDustDirect(
+					Player.position,
+					Player.width,
+					Player.height,
+					DustID.Wraith
+				);
+				dust.scale = Main.rand.NextFloat(1f, 1.3f);
+				dust.noGravity = true;
+			}
+		}
+		if (Stunned)
+		{
+			Dust dust = Dust.NewDustDirect(
+				Player.position,
+				Player.width,
+				Player.height,
+				DustID.PinkTorch
+			);
+			dust.noGravity = true;
+			dust.noLight = true;
+			dust.noLightEmittence = true;
+			dust.fadeIn = 0.5f;
+			dust.scale = 0.75f;
+		}
+		if (LeadPoisoned)
+		{
+			if (Main.rand.NextBool(6))
+			{
+				Dust dust = Dust.NewDustDirect(
+					Player.position,
+					Player.width,
+					Player.height,
+					DustID.Lead
+				);
+				dust.noGravity = true;
+			}
+		}
+	}
+
 	public override float UseTimeMultiplier(Item item)
 	{
-		if (item.ModItem is ChargedWeapon weapon) {
+		if (item.ModItem is ChargedWeapon weapon)
+		{
 			StatModifier speed = StatModifier.Default;
 
 			speed += (FrightfulVoltaicScrapCount + CosmicVoltaicFragmentCount) * 0.05f;
@@ -121,14 +343,16 @@ public class ChargeModPlayer : ModPlayer
 			else if (HasExtensionCord)
 				speed += ExtensionCord.ChargeSpeedIncrease / 100f;
 			else if (HasCharger)
-				speed += Content.Items.Acessories.Charger.ChargeSpeedIncrease / 100f;
+				speed += Charger.ChargeSpeedIncrease / 100f;
 
-			if (weapon.blowWeapon) {
+			if (weapon.blowWeapon)
+			{
 				if (HasBreathingAid)
 					speed += BreathingAid.StatIncrease / 100f;
 				else if (IronDiaphragm)
 					speed += Diaphragm.ChargeSpeedIncrease / 100f;
-				if(LungCancerBuff){
+				if (LungCancerBuff)
+				{
 					speed -= 0.5f;
 				}
 			}
@@ -146,15 +370,20 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
 	{
-		if (item.ModItem is not ChargedWeapon chargeWeapon)return;
-		if(Player.heldProj == -1) return;
-		ChargeWeaponHoldout holdout = Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
-		if(holdout is null) return;
-
 		if (HasChargerEmblem)
 			damage += ChargerEmblem.DamageIncrease / 100f;
 
-		if (chargeWeapon.blowWeapon) {
+		if (item.ModItem is not ChargedWeapon chargeWeapon)
+			return;
+		if (Player.heldProj == -1)
+			return;
+		ChargeWeaponHoldout holdout =
+			Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
+		if (holdout is null)
+			return;
+
+		if (chargeWeapon.blowWeapon)
+		{
 			if (HasExhaler)
 				damage += Exhaler.ChargeDamageIncrease / 100f * holdout.GetChargeLevel(Player);
 			else if (Haler)
@@ -165,7 +394,7 @@ public class ChargeModPlayer : ModPlayer
 			else if (HasBreathingAid)
 				damage += BreathingAid.StatIncrease / 100f;
 
-			if(HydrogenBreath)
+			if (HydrogenBreath)
 				damage += HydrogenGas.DamageIncrease / 100f;
 		}
 
@@ -177,11 +406,16 @@ public class ChargeModPlayer : ModPlayer
 			damage += GripTape.ChargeDamageIncrease / 100f * holdout.GetChargeLevel(Player);
 
 		if (HasChlorophyteCasque)
-			damage += ChlorophyteCasque.StatIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : holdout.GetChargeLevel(Player));
+			damage +=
+				ChlorophyteCasque.StatIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels)
+						? ChlorophyteCasque.MaxLevels
+						: holdout.GetChargeLevel(Player)
+				);
 
 		if (MechLungSet && chargeWeapon.blowWeapon)
 			damage += MechLung.SetCritChanceIncrease / 100f;
-
 
 		if (Adrenaline)
 			damage *= 2f;
@@ -189,10 +423,14 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ModifyWeaponCrit(Item item, ref float crit)
 	{
-		if (item.ModItem is not ChargedWeapon chargeWeapon)return;
-		if(Player.heldProj == -1) return;
-		ChargeWeaponHoldout holdout = Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
-		if(holdout is null) return;
+		if (item.ModItem is not ChargedWeapon chargeWeapon)
+			return;
+		if (Player.heldProj == -1)
+			return;
+		ChargeWeaponHoldout holdout =
+			Main.projectile[Player.heldProj].ModProjectile as ChargeWeaponHoldout;
+		if (holdout is null)
+			return;
 
 		if (HasUltimateChargingGear)
 			crit += UltimateChargingGear.StatIncrease / 100f * holdout.GetChargeLevel(Player);
@@ -202,17 +440,53 @@ public class ChargeModPlayer : ModPlayer
 			crit += RedDot.CritChanceIncrease / 100f * holdout.GetChargeLevel(Player);
 
 		if (HasChaosPlate)
-			crit += ChaosPlate.ChargeCritChanceIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChaosPlate.MaxCritIncrease) ? ChaosPlate.MaxCritIncrease : holdout.GetChargeLevel(Player));
+			crit +=
+				ChaosPlate.ChargeCritChanceIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > ChaosPlate.MaxCritIncrease)
+						? ChaosPlate.MaxCritIncrease
+						: holdout.GetChargeLevel(Player)
+				);
 		if (CobaltArmorSet)
-			crit += CobaltCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > CobaltCasque.MaxCritIncrease) ? CobaltCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
+			crit +=
+				CobaltCasque.SetCritIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > CobaltCasque.MaxCritIncrease)
+						? CobaltCasque.MaxCritIncrease
+						: holdout.GetChargeLevel(Player)
+				);
 		if (MythrilArmorSet)
-			crit += MythrilCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > MythrilCasque.MaxCritIncrease) ? MythrilCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
+			crit +=
+				MythrilCasque.SetCritIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > MythrilCasque.MaxCritIncrease)
+						? MythrilCasque.MaxCritIncrease
+						: holdout.GetChargeLevel(Player)
+				);
 		if (AdamantiteArmorSet)
-			crit += AdamantiteCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > AdamantiteCasque.MaxCritIncrease) ? AdamantiteCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
+			crit +=
+				AdamantiteCasque.SetCritIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > AdamantiteCasque.MaxCritIncrease)
+						? AdamantiteCasque.MaxCritIncrease
+						: holdout.GetChargeLevel(Player)
+				);
 		if (HasChlorophyteCasque)
-			crit += ChlorophyteCasque.StatIncreasePerLevel * ((holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels) ? ChlorophyteCasque.MaxLevels : holdout.GetChargeLevel(Player));
+			crit +=
+				ChlorophyteCasque.StatIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > ChlorophyteCasque.MaxLevels)
+						? ChlorophyteCasque.MaxLevels
+						: holdout.GetChargeLevel(Player)
+				);
 		if (HallowedArmorSet)
-			crit += HallowedCasque.SetCritIncreasePerLevel * ((holdout.GetChargeLevel(Player) > HallowedCasque.MaxCritIncrease) ? HallowedCasque.MaxCritIncrease : holdout.GetChargeLevel(Player));
+			crit +=
+				HallowedCasque.SetCritIncreasePerLevel
+				* (
+					(holdout.GetChargeLevel(Player) > HallowedCasque.MaxCritIncrease)
+						? HallowedCasque.MaxCritIncrease
+						: holdout.GetChargeLevel(Player)
+				);
 
 		if (MechLungSet && chargeWeapon.blowWeapon)
 			crit += MechLung.SetCritChanceIncrease / 100f;
@@ -222,15 +496,22 @@ public class ChargeModPlayer : ModPlayer
 
 	public void ModifyProjectileSpeed(ref Vector2 velocity)
 	{
-		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon) {
+		if (Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon)
+		{
 			if (HasExhaler || Haler)
 				velocity *= 1 + Exhaler.ChargeVelocityIncrease / 100f;
 			if (MechLungSet)
-				velocity *= MechLung.SetShootSpeedIncrease / 100f;
+				velocity *= 1 + MechLung.SetShootSpeedIncrease / 100f;
 		}
 	}
 
-	public void PostProjectileEffects(bool blowWeapon, int charge, int chargeLevel, Projectile proj, ChargerProjectile chargerProj)
+	public void PostProjectileEffects(
+		bool blowWeapon,
+		int charge,
+		int chargeLevel,
+		Projectile proj,
+		ChargerProjectile chargerProj
+	)
 	{
 		if (MechLungSet && blowWeapon)
 			proj.penetrate += MechLung.SetPierceIncrease;
@@ -253,7 +534,10 @@ public class ChargeModPlayer : ModPlayer
 
 	public void ModifyChargeLevel(ref int chargeLevel, int crit)
 	{
-		if ((SecretStimulants || HasUltimateChargingGear) && Main.rand.NextBool(Utils.Clamp(crit, 0, 100), 100))
+		if (
+			(SecretStimulants || HasUltimateChargingGear)
+			&& Main.rand.NextBool(Utils.Clamp(crit, 0, 100), 100)
+		)
 			chargeLevel++;
 		if (FragmentedQuaser)
 			chargeLevel++;
@@ -263,10 +547,16 @@ public class ChargeModPlayer : ModPlayer
 
 	public void RepositorySuccess(int totalCharge)
 	{
-		if (Player.HeldItem.ModItem is ChargedWeapon weapon) {
-			weapon.bonusCharge += (int)(totalCharge * ChargeRepository.RetainedCharge / 100f);
+		if (repositoryCooldown == 0)
+		{
+			if (Player.HeldItem.ModItem is ChargedWeapon weapon)
+			{
+				weapon.bonusCharge += (int)(totalCharge * ChargeRepository.RetainedCharge / 100f);
+				repositoryCooldown = 60;
+			}
 		}
 	}
+
 	public int GetLightningRod()
 	{ //0 is no accesory, 1 is lightning rod, and 2 is generator.
 		if (HasGenerator)
@@ -281,50 +571,101 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void PostUpdateEquips()
 	{
+		if (repositoryCooldown > 0)
+		{
+			--repositoryCooldown;
+		}
+
 		if (!ChaosSet)
 			AdrenalineCharge = 0;
-		if (!(HasOvercharger || HasPowerBank)) {//resets the timer if the player doesnt have the accesories. this will set the count to 0 in a couple lines.
+		if (!(HasOvercharger || HasPowerBank))
+		{ //resets the timer if the player doesnt have the accesories. this will set the count to 0 in a couple lines.
 			overChargeTimer = 0;
 		}
-		if (overChargeTimer > 0) { //decrement if the timer is still going.
+		if (overChargeTimer > 0)
+		{ //decrement if the timer is still going.
 			overChargeTimer--;
 		}
-		else {
+		else
+		{
 			overChargeCount = 0; //reset the count if for any reason the timer has run out.
 		}
-		if (MechLegs) {
+		if (MechLegs)
+		{
 			Player.wingTimeMax = ArmorIDs.Wing.Sets.Stats[MechLeggings.wingsSlot].FlyTime;
 			Player.wingsLogic = MechLeggings.wingsSlot;
 			Player.noFallDmg = true;
-			if (!(Player.controlJump && Player.TryingToHoverDown && Player.wingTime > 0f) && !(Player.wingsLogic > 0 && Player.controlJump && Player.wingTime > 0f && Player.jump == 0 && Player.velocity.Y != 0f))
+			if (
+				!(Player.controlJump && Player.TryingToHoverDown && Player.wingTime > 0f)
+				&& !(
+					Player.wingsLogic > 0
+					&& Player.controlJump
+					&& Player.wingTime > 0f
+					&& Player.jump == 0
+					&& Player.velocity.Y != 0f
+				)
+			)
 				return;
-			for (int i = 0; i < 4; i++) { //smoke on wingtime
-				for (int j = 0; j < 4; j++) {
-					Dust dust = Dust.NewDustDirect(new Vector2(Player.BottomLeft.X - Player.width, Player.BottomLeft.Y), Player.width * 3, 1, DustID.Smoke, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(4f, 6f), 100, default, Main.rand.NextFloat(1.5f, 2.5f));
+			for (int i = 0; i < 4; i++)
+			{ //smoke on wingtime
+				for (int j = 0; j < 4; j++)
+				{
+					Dust dust = Dust.NewDustDirect(
+						new Vector2(Player.BottomLeft.X - Player.width, Player.BottomLeft.Y),
+						Player.width * 3,
+						1,
+						DustID.Smoke,
+						Main.rand.NextFloat(-1f, 1f),
+						Main.rand.NextFloat(4f, 6f),
+						100,
+						default,
+						Main.rand.NextFloat(1.5f, 2.5f)
+					);
 					dust.fadeIn = 1.5f;
 					dust.noGravity = true;
 				}
-				Dust.NewDustPerfect(Player.BottomLeft, DustID.Torch, new Vector2(-0.8f, 2).RotatedByRandom(MathHelper.ToRadians(10)) * Main.rand.NextFloat(1f, 1.1f), 100, default, 1.5f);
-				Dust.NewDustPerfect(Player.BottomRight, DustID.Torch, new Vector2(0.8f, 2).RotatedByRandom(MathHelper.ToRadians(10)) * Main.rand.NextFloat(1f, 1.1f), 100, default, 1.5f);
+				Dust.NewDustPerfect(
+					Player.BottomLeft,
+					DustID.Torch,
+					new Vector2(-0.8f, 2).RotatedByRandom(MathHelper.ToRadians(10))
+						* Main.rand.NextFloat(1f, 1.1f),
+					100,
+					default,
+					1.5f
+				);
+				Dust.NewDustPerfect(
+					Player.BottomRight,
+					DustID.Torch,
+					new Vector2(0.8f, 2).RotatedByRandom(MathHelper.ToRadians(10))
+						* Main.rand.NextFloat(1f, 1.1f),
+					100,
+					default,
+					1.5f
+				);
 			}
 		}
 	}
 
 	public void ShootInfo(Item item, int charge)
 	{
-		if (HasOvercharger || HasPowerBank) {
-			if (charge >= GetMaxCharge()) { //if the corrent accessories are equiped, the weapon has shot and it was fully charged.
-				if (overChargeCount < Overcharger.OverChargeMax) {
+		if (HasOvercharger || HasPowerBank)
+		{
+			if (charge >= GetMaxCharge())
+			{ //if the corrent accessories are equiped, the weapon has shot and it was fully charged.
+				if (overChargeCount < Overcharger.OverChargeMax)
+				{
 					overChargeCount++; //increase the amount if it is not greater than the max.
 				}
 				overChargeTimer = 600; //reset the timer regardless of the max.
 			}
-			else {
-				overChargeCount = 0;// otherwise reset the timer and the count.
+			else
+			{
+				overChargeCount = 0; // otherwise reset the timer and the count.
 				overChargeTimer = 0;
 			}
 		}
-		if (ChaosSet && !Adrenaline) {
+		if (ChaosSet && !Adrenaline)
+		{
 			AdrenalineCharge += (int)(Math.Pow(charge, 1.25d) * item.useTime / 1000d);
 			if (AdrenalineCharge > MaxAdrenaline)
 				AdrenalineCharge = MaxAdrenaline;
@@ -338,57 +679,178 @@ public class ChargeModPlayer : ModPlayer
 
 	public override void ProcessTriggers(TriggersSet triggersSet)
 	{
-		if (ChargerClassGeneralSystem.InhalerKeybind.JustPressed && Player.HeldItem.ModItem is ChargedWeapon weapon && weapon.blowWeapon && (Inhaler || Haler) && !LightHeaded) {
+		if (
+			ChargerClassGeneralSystem.InhalerKeybind.JustPressed
+			&& Player.HeldItem.ModItem is ChargedWeapon weapon
+			&& weapon.blowWeapon
+			&& (Inhaler || Haler)
+			&& !LightHeaded
+		)
+		{
 			Player.AddBuff(ModContent.BuffType<LightHeaded>(), 1200); //debuff to stop the player from using the ability for a 20 seconds.
 			weapon.bonusCharge += GetMaxCharge();
 		}
-		if (MADSet && ChargerClassGeneralSystem.RocketStormKeybind.JustPressed && !RocketStormCooldown) {
+		if (
+			MADSet
+			&& ChargerClassGeneralSystem.RocketStormKeybind.JustPressed
+			&& !RocketStormCooldown
+		)
+		{
 			Player.AddBuff(ModContent.BuffType<RocketStormCooldown>(), 1800);
-			for (int i = 0; i < 36; i++) {
-				Projectile proj = Projectile.NewProjectileDirect(new EntitySource_Parent(Player),
-				Player.Center, (Vector2.UnitX * RocketStormProjectile.Speed).RotatedBy(MathHelper.ToRadians(i * 10)), ModContent.ProjectileType<RocketStormProjectile>(), 40, 2f);
+			for (int i = 0; i < 36; i++)
+			{
+				Projectile proj = Projectile.NewProjectileDirect(
+					new EntitySource_Parent(Player),
+					Player.Center,
+					(Vector2.UnitX * RocketStormProjectile.Speed).RotatedBy(
+						MathHelper.ToRadians(i * 10)
+					),
+					ModContent.ProjectileType<RocketStormProjectile>(),
+					40,
+					2f
+				);
 				PostProjectileEffects(proj, proj.GetGlobalProjectile<ChargerProjectile>());
 			}
 		}
-		if (ChargerClassGeneralSystem.ChaosAdrenaline.JustPressed && AdrenalineCharge >= MaxAdrenaline) {
+		if (
+			ChargerClassGeneralSystem.ChaosAdrenaline.JustPressed
+			&& AdrenalineCharge >= MaxAdrenaline
+		)
+		{
 			AdrenalineCharge = 0;
 			Player.AddBuff(ModContent.BuffType<Adrenaline>(), 600);
+		}
+		if (ChargerClassGeneralSystem.AdamantiteBlowgunDamageToggle.JustPressed)
+		{
+			hate = !hate;
 		}
 	}
 
 	public override void ResetEffects()
 	{
-		HasIronLung = Inhaler = HasExhaler = HasRespirator = HasBreathingAid =
-		HasAAABattery = Capacitor = HasCarBattery = HasOvercharger = HasPowerBank =
-		HasCharger = HasChargeRepository = HasExtensionCord = LightningRod = HasGenerator =
-		HasGripTape = LeatherGlove = HasShootingGlove = HasRedDot = HasTrackingSpecs =
-		SecretStimulants = HasUltimateChargingGear = Haler = HasChargerEmblem = OverCritter = HydrogenBreath = false; //reset accessory effects.
-		LightHeaded = RadiationSickness = Charge = Impatience = Stamina = RocketStormCooldown = Adrenaline = false; //reset buff effects.
-		FestiveSet = ChaosSet = HasChaosPlate = MechLegs = MechLungSet = MADChest = MADSet =
-		CobaltArmorSet = MythrilArmorSet = AdamantiteArmorSet = LungCancerBuff = false;
+		HasIronLung =
+			Inhaler =
+			HasExhaler =
+			HasRespirator =
+			HasBreathingAid =
+			HasAAABattery =
+			Capacitor =
+			HasCarBattery =
+			HasOvercharger =
+			HasPowerBank =
+			HasCharger =
+			HasChargeRepository =
+			HasExtensionCord =
+			LightningRod =
+			HasGenerator =
+			HasGripTape =
+			LeatherGlove =
+			HasShootingGlove =
+			HasRedDot =
+			HasTrackingSpecs =
+			SecretStimulants =
+			HasUltimateChargingGear =
+			Haler =
+			HasChargerEmblem =
+			OverCritter =
+			HydrogenBreath =
+				false; //reset accessory effects.
+		LightHeaded =
+			RadiationSickness =
+			Charge =
+			Impatience =
+			Stamina =
+			RocketStormCooldown =
+			Adrenaline =
+			Bound =
+			Cursed =
+			Dabilitated =
+			GodKillered =
+			LeadPoisoned =
+			Plagued =
+			Stunned =
+			SuperSlimed =
+			Tetnus =
+				false; //reset buff effects.
+		FestiveSet =
+			ChaosSet =
+			HasChaosPlate =
+			MechLegs =
+			MechLungSet =
+			MADChest =
+			MADSet =
+			CobaltArmorSet =
+			MythrilArmorSet =
+			AdamantiteArmorSet =
+			LungCancerBuff =
+				false;
 		MaxCharge = StatModifier.Default;
+
+		if (Player.HeldItem.type != ModContent.ItemType<RailRailGun>())
+		{
+			if (Player.mount._type == ModContent.MountType<RailRailGunMount>())
+			{
+				Player.mount.Dismount(Player);
+			}
+		}
 	}
 
 	public override void UpdateBadLifeRegen()
 	{
-		if (RadiationSickness) {
-			if (Player.lifeRegen > 0)
-				Player.lifeRegen = 0;
-			Player.lifeRegenTime = 0;
-			Player.lifeRegen -= 30;
+		if (RadiationSickness)
+		{
+			safeUpdateBadLifeRegen(30);
 		}
-		if (LungCancerBuff) {
-			if (Player.lifeRegen > 0)
+		if (LungCancerBuff)
+		{
+			safeUpdateBadLifeRegen(5);
+		}
+		if (Tetnus)
+		{
+			safeUpdateBadLifeRegen(2);
+		}
+		if (LeadPoisoned)
+		{
+			safeUpdateBadLifeRegen(3);
+		}
+		if (Dabilitated)
+		{
+			safeUpdateBadLifeRegen(14);
+		}
+		if (Plagued)
+		{
+			safeUpdateBadLifeRegen(10);
+		}
+		if (GodKillered)
+		{
+			safeUpdateBadLifeRegen(60);
+		}
+		if (Cursed)
+		{
+			if (Player.lifeRegen < 0)
+			{
+				Player.lifeRegen *= 2;
+			}
+			else
 				Player.lifeRegen = 0;
-			Player.lifeRegenTime = 0;
-			Player.lifeRegen -= 5;
 		}
 	}
 
-	public override void PreUpdate(){
-		if(++LungCancerTimer > 600){
+	private void safeUpdateBadLifeRegen(int amount)
+	{
+		if (Player.lifeRegen > 0)
+			Player.lifeRegen = 0;
+		Player.lifeRegenTime = 0;
+		Player.lifeRegen -= amount;
+	}
+
+	public override void PreUpdate()
+	{
+		if (++LungCancerTimer > 600)
+		{
 			LungCancerTimer = 0;
-			if(LungCancer > 0) --LungCancer;
+			if (LungCancer > 0)
+				--LungCancer;
 		}
 	}
 
@@ -435,13 +897,15 @@ public class ChargeModPlayer : ModPlayer
 	{
 		ChargeModPlayer clone = (ChargeModPlayer)clientPlayer;
 
-		if (VoltaicNuggetCount != clone.VoltaicNuggetCount ||
-			MightyVoltaicScrapCount != clone.MightyVoltaicScrapCount ||
-			FrightfulVoltaicScrapCount != clone.FrightfulVoltaicScrapCount ||
-			OpticVoltaicScrapCount != clone.OpticVoltaicScrapCount ||
-			StellerVoltaicFragmentCount != clone.StellerVoltaicFragmentCount ||
-			CosmicVoltaicFragmentCount != clone.CosmicVoltaicFragmentCount ||
-			FragmentedQuaser != clone.FragmentedQuaser)
+		if (
+			VoltaicNuggetCount != clone.VoltaicNuggetCount
+			|| MightyVoltaicScrapCount != clone.MightyVoltaicScrapCount
+			|| FrightfulVoltaicScrapCount != clone.FrightfulVoltaicScrapCount
+			|| OpticVoltaicScrapCount != clone.OpticVoltaicScrapCount
+			|| StellerVoltaicFragmentCount != clone.StellerVoltaicFragmentCount
+			|| CosmicVoltaicFragmentCount != clone.CosmicVoltaicFragmentCount
+			|| FragmentedQuaser != clone.FragmentedQuaser
+		)
 			SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
 	}
 
@@ -466,28 +930,53 @@ public class ChargeModPlayer : ModPlayer
 		CosmicVoltaicFragmentCount = tag.GetInt("CosmicVoltaicFragmentCount");
 		FragmentedQuaser = tag.GetBool("fragmentedQuaser");
 	}
+
 	int critCount = 0;
-	public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref HitModifiers hitModifiers)
+
+	public override void ModifyHitNPCWithProj(
+		Projectile proj,
+		NPC target,
+		ref HitModifiers hitModifiers
+	)
 	{
-		if (OverCritter) {
+		if (OverCritter)
+		{
 			hitModifiers.HideCombatText();
-			critCount = proj.CritChance / 100 + (Main.rand.NextBool(proj.CritChance % 100, 100) ? 1 : 0);
-			hitModifiers.FinalDamage += (hitModifiers.CritDamage.Additive - 1) * critCount - (proj.CritChance > 100 ? 1 : 0);
+			critCount =
+				proj.CritChance / 100 + (Main.rand.NextBool(proj.CritChance % 100, 100) ? 1 : 0);
+			hitModifiers.FinalDamage +=
+				(hitModifiers.CritDamage.Additive - 1) * critCount
+				- (proj.CritChance > 100 ? 1 : 0);
 		}
 	}
-	public override void OnHitNPCWithProj(Projectile proj, NPC target, HitInfo hitInfo, int damageDone)
+
+	public override void OnHitNPCWithProj(
+		Projectile proj,
+		NPC target,
+		HitInfo hitInfo,
+		int damageDone
+	)
 	{
-		if (OverCritter) {
-			Color color = critCount switch {
+		if (OverCritter)
+		{
+			Color color = critCount switch
+			{
 				0 => CombatText.DamagedHostile,
 				1 => CombatText.DamagedHostileCrit,
 				2 => Color.DarkRed,
 				3 => Color.Fuchsia,
 				4 => Color.DarkViolet,
 				5 => Color.Navy,
-				_ => Color.Black
+				_ => Color.Black,
 			};
 			CombatText.NewText(target.getRect(), color, damageDone, true, true);
+			NetMessage.SendData(
+				MessageID.CombatTextInt,
+				number: (int)color.PackedValue,
+				number2: target.position.X,
+				number3: target.position.Y,
+				number4: damageDone
+			);
 		}
 	}
 }

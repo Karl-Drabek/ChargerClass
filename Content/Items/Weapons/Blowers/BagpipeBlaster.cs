@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts.Blowers;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,7 +15,7 @@ public class BagpipeBlaster : ChargedWeapon
 		Item.scale = 1f;
 		Item.rare = ItemRarityID.Orange;
 
-		chargeAmount = 90;
+		chargeAmount = 265;
 		Item.useStyle = ItemUseStyleID.Shoot;
 
 		Item.UseSound = SoundID.Item1;
@@ -26,12 +27,15 @@ public class BagpipeBlaster : ChargedWeapon
 		Item.damage = 6;
 		Item.crit = 0;
 		Item.knockBack = 1f;
+		Item.scale = 0.75f;
 
 		blowWeapon = true;
 		Item.shoot = ModContent.ProjectileType<BagpipeBlasterHoldout>();
 		Item.shootSpeed = 12f;
 		Item.useAmmo = AmmoID.Dart;
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-6f, 0f);
 
 	public override void AddRecipes()
 	{

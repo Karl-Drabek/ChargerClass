@@ -1,13 +1,15 @@
+using ChargerClass.Content.DamageClasses;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Projectiles;
 
 public class BellowsAirProjectile : ModProjectile
 {
+	float rotation = 0;
 
 	public override void SetDefaults()
 	{
@@ -17,21 +19,46 @@ public class BellowsAirProjectile : ModProjectile
 		Projectile.friendly = true;
 		Projectile.hostile = false;
 		Projectile.DamageType = ChargerDamageClass.Instance;
-		Projectile.penetrate = 1;
-		Projectile.timeLeft = 600;
+		Projectile.penetrate = 3;
+		Projectile.timeLeft = 60;
 		Projectile.alpha = 0;
 		Projectile.light = 0.0f;
 		Projectile.ignoreWater = true;
 		Projectile.tileCollide = true;
 		Projectile.extraUpdates = 0;
-
+		Projectile.hide = true;
 
 		AIType = ProjectileID.WoodenArrowFriendly;
 	}
 
+	public override void OnSpawn(IEntitySource source)
+	{
+		rotation = Main.rand.NextFloat(MathHelper.ToRadians(-5f), MathHelper.ToRadians(5f));
+	}
+
+	public override void AI()
+	{
+		Projectile.velocity *= 0.98f;
+		Projectile.alpha += 5;
+		Projectile.rotation += rotation;
+		if (Main.rand.NextBool(2))
+			Dust.NewDustDirect(
+				Projectile.position,
+				Projectile.height,
+				Projectile.width,
+				DustID.Smoke,
+				Scale: Main.rand.NextFloat(1, 2)
+			);
+	}
+
 	public override void OnKill(int timeLeft)
 	{
-		Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-		SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+		Dust.NewDustDirect(Projectile.position, 0, 0, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
+		Gore.NewGoreDirect(
+			new EntitySource_Parent(Projectile),
+			Projectile.position,
+			default,
+			Main.rand.Next(61, 64)
+		);
 	}
 }

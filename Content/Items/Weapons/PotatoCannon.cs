@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -15,7 +16,7 @@ public class PotatoCannon : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 1.2f;
 		Item.rare = ItemRarityID.Green;
 
 		chargeAmount = 400;
@@ -25,7 +26,7 @@ public class PotatoCannon : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 2, 30);
 
-		Item.damage = 34;
+		Item.damage = 22;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 
@@ -33,4 +34,6 @@ public class PotatoCannon : ChargedWeapon
 		Item.shootSpeed = 8f;
 		Item.useAmmo = ModContent.ItemType<Ammo.Potato>();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-14f, 4f);
 }

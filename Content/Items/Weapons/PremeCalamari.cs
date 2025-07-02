@@ -19,14 +19,15 @@ public class PremeCalamari : ChargedWeapon
 
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 4, 30);
-		Item.useTime = 72;
+		Item.useTime = 42;
 
-		Item.damage = 48;
+		Item.damage = 4;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 
 		Item.shoot = ModContent.ProjectileType<PremeCalamariHoldout>();
 		noAmmoProjectile = ModContent.ProjectileType<Projectiles.PremeCalamariLaser>();
+		Item.noUseGraphic = true;
 		Item.shootSpeed = 6f;
 	}
 }

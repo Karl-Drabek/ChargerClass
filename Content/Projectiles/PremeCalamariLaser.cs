@@ -12,17 +12,28 @@ public class PremeCalamariLaser : LaserProjectile
 	{
 		Projectile.width = 26;
 		Projectile.height = 28;
+		centerWidth = 30;
+		endsWidth = 22;
 		Projectile.timeLeft = 60;
 		InitialOffset = 70;
-		TextureAsset = ModContent.Request<Texture2D>("ChargerClass/Content/Projectiles/PremeCalamariLaser");
+		TextureAsset = ModContent.Request<Texture2D>(
+			"ChargerClass/Content/Projectiles/PremeCalamariLaser"
+		);
 	}
 
 	public override void SpawnDusts(Player player)
 	{
 		Vector2 origin = player.Center - new Vector2(Projectile.width, Projectile.height) / 2;
-		for (int i = InitialOffset; i < Distance; i += Spacing) {
-			if (Main.rand.NextBool(30)) {
-				Dust dust = Dust.NewDustDirect(origin + Projectile.velocity * i, Projectile.width, Projectile.height, DustID.Granite);
+		for (int i = InitialOffset; i < Distance; i += centerWidth)
+		{
+			if (Main.rand.NextBool(30))
+			{
+				Dust dust = Dust.NewDustDirect(
+					origin + Projectile.velocity * i,
+					Projectile.width,
+					Projectile.height,
+					DustID.Granite
+				);
 				dust.scale = 0.75f;
 			}
 		}

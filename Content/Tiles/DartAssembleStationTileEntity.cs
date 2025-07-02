@@ -83,7 +83,7 @@ public class DartAssemblyStationTileEntity : ModTileEntity
 	public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alterate)
 	{
 		if (Main.netMode == NetmodeID.MultiplayerClient) {
-			NetMessage.SendTileSquare(Main.myPlayer, i, j, 3);
+			NetMessage.SendTileSquare(Main.myPlayer, i, j, 4);
 			NetMessage.SendData(MessageID.TileEntityPlacement, number: i, number2: j, number3: Type);
 			return -1;
 		}

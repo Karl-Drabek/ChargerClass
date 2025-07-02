@@ -15,8 +15,8 @@ public class DartAssemblyStation : ModItem
 	public override void SetDefaults()
 	{
 		Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.DartAssemblyStationTile>());
-		Item.width = 8;
-		Item.height = 7;
+		Item.width = 66;
+		Item.height = 44;
 		Item.value = Item.sellPrice(0, 0, 42, 0);
 		Item.rare = ItemRarityID.Green;
 	}

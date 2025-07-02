@@ -29,14 +29,30 @@ public class DartAssemblyStationTile : ModTile
 		AddMapEntry(new Color(200, 200, 200), CreateMapEntryName());
 
 		// Placement
-		TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-		TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<DartAssemblyStationTileEntity>().Hook_AfterPlacement, -1, 0, true);
+		//TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
+		TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(
+			ModContent.GetInstance<DartAssemblyStationTileEntity>().Hook_AfterPlacement,
+			-1,
+			0,
+			true
+		);
 		TileObjectData.newTile.UsesCustomCanPlace = true;
 		TileObjectData.newTile.StyleHorizontal = true;
-		TileObjectData.newTile.Origin = new Point16(0, 1);
-		TileObjectData.newTile.CoordinateHeights = [16, 18];
-		//TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
-		TileObjectData.newTile.AnchorInvalidTiles = [
+		TileObjectData.newTile.Origin = new Point16(0, 2);
+		TileObjectData.newTile.Height = 3;
+		TileObjectData.newTile.Width = 4;
+		TileObjectData.newTile.CoordinatePadding = 2;
+		TileObjectData.newTile.CoordinateWidth = 16;
+		TileObjectData.newTile.DrawYOffset = 2;
+		TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
+		TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(
+			Chest.FindEmptyChest,
+			-1,
+			0,
+			true
+		);
+		TileObjectData.newTile.AnchorInvalidTiles =
+		[
 			TileID.MagicalIceBlock,
 			TileID.Boulder,
 			TileID.BouncyBoulder,
@@ -44,7 +60,11 @@ public class DartAssemblyStationTile : ModTile
 			TileID.RollingCactus,
 		];
 		TileObjectData.newTile.LavaDeath = false;
-		TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
+		TileObjectData.newTile.AnchorBottom = new AnchorData(
+			AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide,
+			TileObjectData.newTile.Width,
+			0
+		);
 		TileObjectData.addTile(Type);
 	}
 
@@ -75,7 +95,14 @@ public class DartAssemblyStationTile : ModTile
 		}
 		if (player.editedChestName)
 		{
-			NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f);
+			NetMessage.SendData(
+				MessageID.SyncPlayerChest,
+				-1,
+				-1,
+				NetworkText.FromLiteral(Main.chest[player.chest].name),
+				player.chest,
+				1f
+			);
 			player.editedChestName = false;
 		}
 		if (player.talkNPC > -1)
@@ -87,25 +114,31 @@ public class DartAssemblyStationTile : ModTile
 
 		if (TileUtils.TryGetTileEntityAs(i, j, out DartAssemblyStationTileEntity AssemblyStation))
 		{
-			if(AssemblyStation.inUse) return false;
+			if (AssemblyStation.inUse)
+				return false;
 			TileEntity.BasicOpenCloseInteraction(player, i * 16, j * 16, AssemblyStation.ID);
 			DartAssemblyStationUISystem.Instance.ShowUI();
 			DartAssemblyStationUISystem.Instance.DartAssemblyState.dartStation = AssemblyStation;
-			DartAssemblyStationUISystem.Instance.DartAssemblyState.UpdateItems(AssemblyStation.ComponentTypes, AssemblyStation.ComponentCounts);
+			DartAssemblyStationUISystem.Instance.DartAssemblyState.UpdateItems(
+				AssemblyStation.ComponentTypes,
+				AssemblyStation.ComponentCounts
+			);
 			AssemblyStation.inUse = true;
 			AssemblyStation.SendToServer();
 		}
 		return true;
 	}
 
-	public override IEnumerable<Item> GetItemDrops(int i, int j) => DartAssemblyStationUISystem.Instance.DartAssemblyState.GetItemDrops();
+	public override IEnumerable<Item> GetItemDrops(int i, int j) =>
+		DartAssemblyStationUISystem.Instance.DartAssemblyState.GetItemDrops();
 
 	public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
 	{
 		DartAssemblyStationUISystem.Instance.HideUI();
 	}
 
-	public override void KillMultiTile(int i, int j, int frameX, int frameY){
+	public override void KillMultiTile(int i, int j, int frameX, int frameY)
+	{
 		ModContent.GetInstance<DartAssemblyStationTileEntity>().Kill(i, j);
 	}
 

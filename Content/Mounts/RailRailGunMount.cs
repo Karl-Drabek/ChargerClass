@@ -1,17 +1,21 @@
+using System.Collections.Generic;
+using System.Linq;
 using ChargerClass.Content.Buffs;
 using Microsoft.Xna.Framework;
-using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Mounts;
 
-public class ExampleMount : ModMount
+public class RailRailGunMount : ModMount
 {
-	public override void SetStaticDefaults() {
+	public override void SetStaticDefaults()
+	{
 		// Movement
-		MountData.jumpHeight = 8; // How high the mount can jump.
+		MountData.jumpHeight = 12; // How high the mount can jump.
 		MountData.acceleration = 0.05f; // The rate at which the mount speeds up.
 		MountData.jumpSpeed = 4f; // The rate at which the player and mount ascend towards (negative y velocity) the jump height when the jump button is pressed.
 		MountData.blockExtraJumps = false; // Determines whether or not you can use a double jump (like cloud in a bottle) while in the mount.
@@ -62,17 +66,10 @@ public class ExampleMount : ModMount
 		MountData.swimFrameDelay = MountData.inAirFrameDelay;
 		MountData.swimFrameStart = MountData.inAirFrameStart;
 
-		if (!Main.dedServ) {
+		if (!Main.dedServ)
+		{
 			MountData.textureWidth = MountData.backTexture.Width();
 			MountData.textureHeight = MountData.backTexture.Height();
 		}
-    }
-
-	public override void AimAbility(Player player, Vector2 mousePosition){
-		Main.NewText("aiming");
-	}
-
-	public override void UseAbility(Player player, Vector2 mousePosition, bool toggleOn){
-		if(Main.mouseLeft) Main.NewText("use");
 	}
 }

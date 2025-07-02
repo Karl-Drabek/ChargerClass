@@ -18,7 +18,7 @@ public class MonkeyDart : ModItem
 		Item.width = 19;
 		Item.height = 7;
 
-		Item.damage = 20;
+		Item.damage = 8;
 		Item.DamageType = ChargerDamageClass.Instance;
 
 		Item.maxStack = 999;

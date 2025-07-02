@@ -1,8 +1,9 @@
+using ChargerClass.Common.GlobalProjectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -18,11 +19,22 @@ public class ToxicTail : DartComponent
 
 		Item.shootSpeed = 2f;
 	}
+
 	public override void AI(Projectile projectile, int payloadType)
 	{
-		if(projectile.owner != Main.myPlayer) return;
-		Projectile dust = Projectile.NewProjectileDirect(new EntitySource_Misc("No Desired Inheritance"), projectile.position, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10, Main.rand.Next(569, 572), 10, 0);
+		if (projectile.owner != Main.myPlayer)
+			return;
+		Projectile proj = Projectile.NewProjectileDirect(
+			new EntitySource_Misc("No Desired Inheritance"),
+			projectile.position,
+			Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(30)) * 10,
+			Main.rand.Next(569, 572),
+			10,
+			0
+		);
+		proj.GetGlobalProjectile<ChargerProjectile>().Toxic = true;
 	}
+
 	public override void AddRecipes()
 	{
 		Recipe recipe = CreateRecipe(25);

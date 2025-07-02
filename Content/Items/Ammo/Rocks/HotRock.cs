@@ -1,8 +1,8 @@
+using ChargerClass.Content.DamageClasses;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ChargerClass.Content.DamageClasses;
 
 namespace ChargerClass.Content.Items.Ammo.Rocks;
 
@@ -34,6 +34,11 @@ public class HotRock : ModItem
 		Item.ammo = ModContent.ItemType<Rock>();
 	}
 
+	public override void Update(ref float gravity, ref float maxFallSpeed)
+	{
+		Lighting.AddLight(Item.position, 0.2f, 0.1f, 0f);
+	}
+
 	public override void AddRecipes()
 	{
 		Recipe recipe = CreateRecipe(4);
@@ -42,5 +47,4 @@ public class HotRock : ModItem
 		recipe.AddTile(TileID.WorkBenches);
 		recipe.Register();
 	}
-
 }

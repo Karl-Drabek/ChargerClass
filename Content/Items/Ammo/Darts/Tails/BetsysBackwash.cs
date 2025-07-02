@@ -1,8 +1,8 @@
-using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using System;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -23,9 +23,20 @@ public class BetsysBackwash : DartComponent
 	public override void AI(Projectile projectile, int payloadType)
 	{
 		projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI / 2).ToRotation();
-		if(projectile.owner != Main.myPlayer) return;
-		for (int i = 0; i < 5; i++) {
-			Projectile fireball = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.Center - Vector2.Normalize(projectile.velocity), (Vector2.Normalize(projectile.velocity) * -10).RotatedByRandom(MathHelper.ToRadians(90)), ProjectileID.Fireball, projectile.damage / 25, 0f);
+		if (projectile.owner != Main.myPlayer)
+			return;
+		for (int i = 0; i < 5; i++)
+		{
+			Projectile fireball = Projectile.NewProjectileDirect(
+				new EntitySource_Parent(projectile),
+				projectile.Center - Vector2.Normalize(projectile.velocity),
+				(Vector2.Normalize(projectile.velocity) * -10).RotatedByRandom(
+					MathHelper.ToRadians(90)
+				),
+				ProjectileID.Fireball,
+				projectile.damage / 25,
+				0f
+			);
 			fireball.friendly = true;
 			fireball.hostile = false;
 			fireball.scale = Main.rand.NextFloat(1f, 2.5f);

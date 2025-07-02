@@ -7,7 +7,9 @@ namespace ChargerClass.Content.Projectiles.Holdouts;
 
 public class AirgunHoldout : ChargeWeaponHoldout
 {
-	public override void SafeSetDefaults() { }
+	public override void SafeSetDefaults() {
+		Projectile.scale = 0.75f;
+	 }
 
 	public override void PostProjectileEffects(int chargeLevel, Projectile proj, ChargerProjectile chargerProj, ChargeModPlayer modPlayer)
 	{

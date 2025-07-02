@@ -14,10 +14,20 @@ public class LunarTip : DartComponent
 		Item.rare = ItemRarityID.Cyan;
 		DartSheetPlacement = 12;
 		Pen = 5;
-		Item.damage = 23;
+		Item.damage = 45;
 		Item.knockBack = 5f;
 	}
 
+	public override void OnHitNPC(
+		Projectile projectile,
+		NPC target,
+		NPC.HitInfo hit,
+		int damageDone,
+		float buffTimeMultiplier
+	)
+	{
+		target.AddBuff(BuffID.Daybreak, 600);
+	}
 	public override void AddRecipes()
 	{
 		Recipe recipe = CreateRecipe(25);

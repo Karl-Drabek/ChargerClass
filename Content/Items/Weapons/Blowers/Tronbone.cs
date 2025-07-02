@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts.Blowers;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ public class Tronbone : ChargedWeapon
 	{
 		Item.width = 76;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.8f;
 		Item.rare = ItemRarityID.Green;
 
 		chargeAmount = 400;
@@ -22,7 +23,7 @@ public class Tronbone : ChargedWeapon
 		Item.useTime = 32;
 		repeatShot = true;
 
-		Item.damage = 32;
+		Item.damage = 7;
 		Item.crit = 2;
 		Item.knockBack = 1f;
 
@@ -32,4 +33,6 @@ public class Tronbone : ChargedWeapon
 		noAmmoProjectile = ModContent.ProjectileType<Projectiles.TronboneSonicProjectile>();
 		ticsBetweenShots = 1;
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-14f, 0f);
 }

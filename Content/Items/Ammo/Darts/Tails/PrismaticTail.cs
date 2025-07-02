@@ -1,10 +1,10 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
 using System;
 using ChargerClass.Content.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ChargerClass.Content.Items.Ammo.Darts.Tails;
 
@@ -32,30 +32,42 @@ public class PrismaticTail : DartComponent
 	public override void AI(Projectile projectile, int payloadType)
 	{
 		projectile.rotation = projectile.velocity.RotatedBy((float)Math.PI / 2).ToRotation();
-		if(projectile.owner != Main.myPlayer) return;
-		if (projectile.penetrate <= 1) {
-			Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.PinkTorch : DustID.BlueTorch, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
-			dust.noGravity = true;
+		if (projectile.owner != Main.myPlayer)
 			return;
+		if (projectile.ai[2] < 0)
+		{
+			Dust dust = Dust.NewDustDirect(
+				projectile.position,
+				projectile.width,
+				projectile.height,
+				Main.rand.NextBool() ? DustID.PinkTorch : DustID.BlueTorch,
+				Main.rand.NextFloat(-3f, 3f),
+				Main.rand.NextFloat(-3f, 3f)
+			);
+			dust.noGravity = true;
 		}
-		if (projectile.ai[2]++ > 20) {
-			Projectile dart = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, projectile.velocity.RotatedBy(MathHelper.ToRadians(-20)) * 0.75f,
-				projectile.type, projectile.damage, projectile.knockBack, projectile.owner);
-			CustomDartProjectile customDart = dart.ModProjectile as CustomDartProjectile;
-			
-			projectile.ai[2] = 0;
-			dart.penetrate = 1;
-			dart.alpha = 255;
-			dart.timeLeft = 90;
-			dart.netUpdate = true;
-			dart = Projectile.NewProjectileDirect(new EntitySource_Parent(projectile), projectile.position, projectile.velocity.RotatedBy(MathHelper.ToRadians(20)) * 0.75f,
-				projectile.type, projectile.damage, projectile.knockBack, projectile.owner);
-			projectile.ai[2] = 0;
-			dart.penetrate = 1;
-			dart.alpha = 255;
-			dart.timeLeft = 90;
-			dart.netUpdate = true;
+		else if (projectile.ai[2]++ > 20)
+		{
+			for (int angle = -20; angle <= 20; angle += 40)
+			{
+				Projectile dart = Projectile.NewProjectileDirect(
+					new EntitySource_Parent(projectile),
+					projectile.position,
+					projectile.velocity.RotatedBy(MathHelper.ToRadians(angle)) * 0.75f,
+					projectile.type,
+					projectile.damage / 5,
+					projectile.knockBack,
+					projectile.owner,
+					ai2: -1
+				);
+
+				dart.penetrate = 1;
+				dart.alpha = 255;
+				dart.timeLeft = 90;
+				dart.netUpdate = true;
 			}
+			projectile.ai[2] = 0;
+		}
 	}
 
 	public override void AddRecipes()

@@ -6,6 +6,7 @@ Mods: {
 			InhalerKeybind.DisplayName: Inhaler Keybind
 			RocketStormKeybind.DisplayName: Rocket Storm Keybind
 			ChaosAdrenaline.DisplayName: Chaos Adrenaline
+			AdamantiteBlowgunDamageToggle.DisplayName: Hate Toggle
 		}
 
 		DamageClasses.ChargerDamageClass.DisplayName: Charge Damage
@@ -112,6 +113,11 @@ Mods: {
 			LungCancer: {
 				DisplayName: Lung Cancer
 				Description: Mods.ChargerClass.Buffs.LungCancer.Description
+			}
+
+			Hate: {
+				DisplayName: Hate
+				Description: Mods.ChargerClass.Buffs.Hate.Description
 			}
 		}
 
@@ -339,7 +345,7 @@ Mods: {
 			}
 
 			Splitter: {
-				DisplayName: Spltter
+				DisplayName: Splitter
 				Tooltip: ""
 			}
 
@@ -587,7 +593,7 @@ Mods: {
 			}
 
 			Potato: {
-				Tooltip: Potatoe Potahto?
+				Tooltip: Potatoe?
 				DisplayName: Potato
 			}
 
@@ -628,7 +634,7 @@ Mods: {
 
 			AdamantiteBlowgun: {
 				DisplayName: Adamantite Blowgun
-				Tooltip: Charge Effect: +{0}% damage
+				Tooltip: Charge Effect: +{0}% damage, +{1}% damage and -1 health with hate
 			}
 
 			BlowgunRevolver: {
@@ -643,7 +649,7 @@ Mods: {
 
 			CobaltBlowgun: {
 				DisplayName: Cobalt Blowgun
-				Tooltip: Charge Effect: +{0}% crit chance
+				Tooltip: Charge Effect: +{0}% crit chance, {1}
 			}
 
 			HallowedBlowgun: {
@@ -653,22 +659,26 @@ Mods: {
 
 			MythrilBlowgun: {
 				DisplayName: Mythril Blowgun
-				Tooltip: Charge Effect: +{0}% crit chance
+				Tooltip: Charge Effect: +{0}% crit chance, slows enemies with repeated hits
 			}
 
 			OrichalcumBlowgun: {
 				DisplayName: Orichalcum Blowgun
-				Tooltip: Charge Effect: +{0}% damage
+				Tooltip: Charge Effect: +{0}% damage, enemies release petals on death
 			}
 
 			PalladiumBlowgun: {
 				DisplayName: Palladium Blowgun
-				Tooltip: Charge Effect: +{0}% damage
+				Tooltip: Charge Effect: +{0}% damage, heals charge level on crits
 			}
 
 			PhantomBlowgun: {
 				DisplayName: Phantom Blowgun
-				Tooltip: Charge Effect:  +{0}% crit chance, +{1}% damage
+				Tooltip:
+					'''
+					Charge Effect: +{0}% crit chance, +{1}% damage
+					deals increasing damage to the same target
+					'''
 			}
 
 			TitaniumBlowgun: {
@@ -1011,7 +1021,7 @@ Mods: {
 			}
 
 			StellerVoltaicFragment: {
-				DisplayName: Steller Voltaic Fragment
+				DisplayName: Stellar Voltaic Fragment
 				Tooltip: Permanently increase miximum charge by {0}
 			}
 
@@ -1407,7 +1417,7 @@ Mods: {
 			RockProjectile.DisplayName: Rock Projectile
 			SinkerProjectile.DisplayName: Sinker Projectile
 			SpikyRockProjectile.DisplayName: Spiky Rock Projectile
-			SplitterBrokenProjectile.DisplayName: Spltter Broken Projectile
+			SplitterBrokenProjectile.DisplayName: Splitter Broken Projectile
 			SplitterProjectile.DisplayName: Splitter Projectile
 			RubberbandProjectile.DisplayName: Rubberband Projectile
 			WaterSprayProjectile.DisplayName: Water Spray Projectile
@@ -1530,6 +1540,7 @@ Mods: {
 			HydrantHoserLaser.DisplayName: Hydrant Hoser Laser
 			RefractinatorLaser.DisplayName: Refractinator Laser
 			RailRailGunLaser.DisplayName: Rail Rail Gun Laser
+			HallowedTarget.DisplayName: Hallowed Target
 		}
 
 		Tiles: {
@@ -1547,14 +1558,14 @@ Mods: {
 				DisplayName: Charger Class Config
 				Headers.Info: Info Header
 
-				ShotInfoToggle: {
-					Label: Shot Info Toggle
-					Tooltip: Shows debug info relivant shooting
+				ShowChargeStatsToggle: {
+					Label: Charge State Toggle
+					Tooltip: Shows Charger Class stats for the player
 				}
 
-				MaxChargeToggle: {
-					Tooltip: ""
-					Label: Max Charge Toggle
+				AudioToggle: {
+					Tooltip: Enables audio for charge weapons
+					Label: Audio Toggle
 				}
 			}
 		}
@@ -1570,6 +1581,15 @@ Mods: {
 			Neutral.DisplayName: Neutral
 			Static.DisplayName: Static
 			SuperChargedPrefix.DisplayName: Super Charged
+		}
+
+		UI: {
+			ExampleFullscreenUI: {
+				IsSet: Mods.ChargerClass.UI.ExampleFullscreenUI.IsSet
+				Nothing: Mods.ChargerClass.UI.ExampleFullscreenUI.Nothing
+				Description: Mods.ChargerClass.UI.ExampleFullscreenUI.Description
+				Header: Mods.ChargerClass.UI.ExampleFullscreenUI.Header
+			}
 		}
 	}
 }

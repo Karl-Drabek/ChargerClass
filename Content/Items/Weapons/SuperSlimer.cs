@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ public class SuperSlimer : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.75f;
 		Item.rare = ItemRarityID.Green;
 
 		chargeAmount = 110;
@@ -24,7 +25,7 @@ public class SuperSlimer : ChargedWeapon
 		ticsBetweenShots = 4;
 		repeatShot = true;
 
-		Item.damage = 6;
+		Item.damage = 4;
 		Item.crit = 0;
 		Item.knockBack = 0f;
 
@@ -41,4 +42,6 @@ public class SuperSlimer : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-4f, 2f);
 }

@@ -9,19 +9,19 @@ public class SpiderBow : ChargedWeapon
 {
 	public override void SafeSetDefaults()
 	{
-		Item.width = 60;
-		Item.height = 30;
-		Item.scale = 1f;
+		Item.width = 40;
+		Item.height = 70;
+		Item.scale = 0.8f;
 		Item.rare = ItemRarityID.LightRed;
 
-		chargeAmount = 100;
+		chargeAmount = 240;
 		Item.useStyle = ItemUseStyleID.Shoot;
 
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 6, 0, 0);
 		Item.useTime = 29;
 
-		Item.damage = 900;
+		Item.damage = 43;
 		Item.crit = 8;
 		Item.knockBack = 2f;
 

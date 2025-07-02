@@ -14,7 +14,7 @@ public class HallowedTip : DartComponent
 		Item.rare = ItemRarityID.LightRed;
 		DartSheetPlacement = 7;
 		Pen = 3;
-		Item.damage = 14;
+		Item.damage = 25;
 		Item.knockBack = 2.5f;
 	}
 

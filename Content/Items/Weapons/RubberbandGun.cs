@@ -1,4 +1,5 @@
 using ChargerClass.Content.Projectiles.Holdouts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,10 +12,10 @@ public class RubberbandGun : ChargedWeapon
 	{
 		Item.width = 24;
 		Item.height = 32;
-		Item.scale = 1f;
+		Item.scale = 0.85f;
 		Item.rare = ItemRarityID.White;
 
-		chargeAmount = 220;
+		chargeAmount = 330;
 		Item.useTime = 32;
 		Item.useStyle = ItemUseStyleID.Shoot;
 
@@ -41,4 +42,6 @@ public class RubberbandGun : ChargedWeapon
 		recipe.AddTile(TileID.Anvils);
 		recipe.Register();
 	}
+
+	public override Vector2? HoldoutOffset() => new Vector2(-10f, 4f);
 }

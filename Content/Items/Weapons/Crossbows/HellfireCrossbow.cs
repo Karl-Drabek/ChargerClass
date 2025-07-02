@@ -22,7 +22,7 @@ public class HellfireCrossbow : ChargedWeapon
 		Item.UseSound = SoundID.Item1;
 		Item.value = Item.sellPrice(0, 0, 48, 0);
 
-		Item.damage = 83;
+		Item.damage = 49;
 		Item.crit = 0;
 		Item.knockBack = 3f;
 

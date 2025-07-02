@@ -10,13 +10,13 @@ public class Steroids : ModItem
 {
 	public override void SetDefaults()
 	{
-		Item.useStyle = ItemUseStyleID.DrinkLiquid	;
+		Item.useStyle = ItemUseStyleID.DrinkLiquid;
 		Item.consumable = true;
 		Item.useAnimation = 45;
 		Item.useTime = 45;
 		Item.UseSound = SoundID.Item92;
-		Item.width = 28;
-		Item.height = 28;
+		Item.width = 16;
+		Item.height = 16;
 		Item.maxStack = Item.CommonMaxStack;
 		Item.SetShopValues(ItemRarityColor.Green2, Item.buyPrice(0, 5));
 	}
